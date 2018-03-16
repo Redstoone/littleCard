@@ -1,0 +1,41 @@
+<view class="info">
+  <view class="header">
+    <view class="header_content">
+      <image class="avatarUrl" src="{{avatarUrl}}" />
+      <view class="nickName cfff">{{nickName}}</view>
+    </view>
+  </view>
+  <view class="zan-panel">
+    <navigator class="zan-cell zan-cell--access" url="/pages/order">
+      <view class="zan-cell__bd c000">
+        <!-- <image class="item_img" src="../images/icon_my_02.png" /> -->
+        <view class="text">我的评论</view>
+      </view>
+      <view class="zan-cell__ft"></view>
+    </navigator>
+    <navigator class="zan-cell zan-cell--access" url="/pages/reorder">
+      <view class="zan-cell__bd c000">
+        <!-- <image class="item_img" src="../images/icon_my_02.png" /> -->
+        <view class="text">我的赞</view>
+      </view>
+      <view class="zan-cell__ft"></view>
+    </navigator>
+    <navigator class="zan-cell zan-cell--access" url="/pages/points">
+      <view class="zan-cell__bd c000">
+        <!-- <image class="item_img" src="../images/icon_my_03.png" /> -->
+        <view class="text">设置</view>
+      </view>
+      <view class="zan-cell__ft"></view>
+    </navigator>
+    <navigator class="zan-cell zan-cell--access" url="/pages/collection?type=0">
+      <view class="zan-cell__bd c000">
+        <!-- <image class="item_img" src="../images/icon_my_04.png" /> -->
+        <view class="text">意见反馈</view>
+      </view>
+      <view class="zan-cell__ft"></view>
+    </navigator>
+  </view>
+  <view class="zan-panel">
+    <view class="info_title zan-font-16 c000">我的打卡日记</view>
+  </view>
+</view>

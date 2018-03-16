@@ -1,0 +1,20 @@
+.header {
+  background: #1dafaa;
+  height: 260rpx;
+  width: 100%
+}
+
+.header_content {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 48rpx
+}
+
+.zan-cell {
+  padding: 15px;
+}
+
+.info_title{
+  padding: 20rpx;
+}

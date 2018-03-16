@@ -1,0 +1,47 @@
+<import src="/plugins/zanui/capsule/index.wxml" />
+
+<view class="container">
+  <view class="zan-panel">
+    <view class="zan-row">
+      <view class="zan-col zan-col-6">
+        span: 8
+      </view>
+      <view class="zan-col zan-col-6">
+        span: 8
+      </view>
+      <view class="zan-col zan-col-6">
+        span: 8
+      </view>
+      <view class="zan-col zan-col-6">
+        span: 8
+      </view>
+    </view>
+  </view>
+
+
+  <view class="zan-panel">
+    <view class="zan-card">
+      <view class="zan-card__thumb">
+        <image class="zan-card__img" src="https://t11.baidu.com/it/u=741657904,1441720405&fm=173&app=12&f=JPEG?w=640&h=426&s=1B304980F4A718AC232588920300C0B3"
+          mode="aspectFit"></image>
+      </view>
+      <view class="zan-card__detail">
+        <view class="zan-card__detail-row zan-ellipsis--l2">
+          红烧牛肉
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-cell--last-child">
+            每天一课，从零开始学习钢琴
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <label class="card-accout fz12">1854人参加</label>
+          <label class="card-num fz12">3061次打卡</label>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
