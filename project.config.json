@@ -20,17 +20,28 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "classify",
-					"pathName": "pages/classify/index"
+					"pathName": "pages/classify/index",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "info",
+					"pathName": "pages/info/index/index",
+					"query": ""
 				}
 			]
 		}

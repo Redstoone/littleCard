@@ -1,39 +1,69 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
+  },
+  getUserInfo: function (cb) {
+    var _this = this
+    //调用登录接口
     wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+      success: function (e) {
+        wx.getUserInfo({
+          success: function (res) {
+            _this.globalData.userInfo = res.userInfo
+            // _this.getOpenId(e.code)
+            typeof cb == "function" && cb(_this.globalData.userInfo)
+          }, fail: function (res) {
+            wx.showModal({
+              title: '温馨提示',
+              content: '若不授权登录，则无法使用该小程序；点击授权，勾选‘用户信息’方可继续使用；或者，在微信[发现]－[小程序]，删除该小程序，重新搜索该小程序，方可使用。',
+              cancelText: '不授权',
+              confirmText: '授权',
+              success: (res) => {
+                if (res.confirm) {
+                  wx.openSetting({
+                    success: (r) => {
+                      wx.getUserInfo({
+                        success: function (res) {
+                          _this.globalData.userInfo = res.userInfo
+                          // _this.getOpenId(e.code)
+                          typeof cb == "function" && cb(_this.globalData.userInfo)
+                        }
+                      })
+                    }
+                  })
+                }
               }
-            }
-          })
-        }
+            })
+          }
+        })
       }
     })
   },
+  postRequest: function (url, method, data, fn) {
+    let _this = this
+    let userInfo = {}
+    if (this.globalData.userInfo) {
+      userInfo = this.globalData.userInfo
+    } else {
+      userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+    }
+    let para = {
+      openid: userInfo.openid
+    }
+    let datas = Object.assign(para, data)
+    wx.request({
+      url: _this.globalData.host + url,
+      method: method,
+      header: { 'Content-type': 'application/x-www-form-urlencoded' },
+      data: datas,
+      success: function (res) {
+        fn(res)
+      },
+      faile: function (err) { console.log(err) }
+    })
+  },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    host: 'https://api.nobebe.net/wx/',
   }
 })
