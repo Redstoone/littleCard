@@ -1,10 +1,12 @@
-.container{
+.container {
   background: #fff;
   padding: 20rpx;
 }
-.zan-panel{
+
+.zan-panel {
   width: 100%;
 }
+
 .zan-col {
   line-height: 60rpx;
   text-align: center;
@@ -16,7 +18,8 @@
 .zan-col:nth-child(even) {
   background-color: #66c6f2;
 }
-.zan-cell--last-child{
+
+.zan-cell--last-child {
   margin: 10rpx 0;
   padding: 0rpx 10rpx;
   font-size: 24rpx;
@@ -24,23 +27,47 @@
   background-color: #fff7f4;
   display: inline-block;
 }
-.zan-card{
+
+.zan-card {
   padding: 26rpx 0;
 }
-.zan-card__thumb{
+
+.zan-card__thumb {
   width: 298rpx;
   height: 200rpx;
 }
-.zan-card__img{
+
+.zan-card__img {
   border-top-left-radius: 10rpx;
   border-top-right-radius: 10rpx;
 }
-.zan-card__detail{
+
+.zan-card__detail {
   margin-left: 320rpx;
 }
-.card-accout{
+
+.card-accout {
   border-right: 2rpx solid #666;
   line-height: 32rpx;
   padding-right: 20rpx;
-  margin-right:20rpx; 
+  margin-right: 20rpx;
+}
+
+.classify-item, .classify-item:nth-child(even) {
+  width: 23%;
+  background-color: transparent;
+  border: 2rpx solid #ccc;
+  border-radius: 3px;
+  margin-right: 2.66667%;
+  margin-bottom: 10rpx;
+  color: #999;
+}
+
+.classify-item.active {
+  color: #1dafaa;
+  border-color: #1dafaa;
+}
+
+.classify-item:nth-child(4n) {
+  margin-right: 0;
 }

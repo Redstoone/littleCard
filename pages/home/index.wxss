@@ -1,4 +1,7 @@
 /**index.wxss**/
+.containers{
+	/*padding: 0 20rpx;*/
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -18,4 +21,157 @@
 
 .usermotto {
   margin-top: 200px;
+}
+.add-card{
+  text-align: left;
+  padding: 10rpx 20rpx;
+  font-size: 32rpx;
+  color: #1dafaa;
+}
+.add-card .add-card-tips{
+	padding-left: 15rpx;
+}
+.my-card-list{
+	padding: 0 20rpx 10rpx 20rpx;
+}
+.my-card-list .my-card-item{
+	padding: 20rpx 0 10rpx 20rpx;
+	border: 1px solid #f0f0f0;
+	box-shadow: 0 0 4rpx 1rpx rgba(200,200,200,0.5);
+	margin-bottom: 15rpx;
+}
+.my-card-item .card-item-img{
+	width: 100rpx;
+	height: 100rpx;
+	display: inline-block;
+}
+.my-card-item .card-item-info{
+	position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 120rpx);
+    height: 100rpx;
+    margin-left: 20rpx;
+}
+.card-item-info .card-item-title{
+	font-size: 34rpx;
+	color: #333;
+}
+.card-item-title .isMine{
+	display: inline-block;
+	padding: 4rpx 10rpx;
+	color: #fff;
+	font-size: 24rpx;
+	border-radius: 5rpx;
+	background-color: #f90;
+}
+.my-card-item .card-item-tips{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	display: inline-flex;
+	width: 100%;
+	align-items: center;
+	font-size: 26rpx;
+	color: #888;
+	vertical-align: bottom;
+}
+.my-card-item .card-item-tips text{
+	padding-right: 10rpx;
+}
+.my-card-item .card-item-tips .tips-item{
+	padding-right: 20rpx;
+}
+
+/*recommand*/
+.recommand-group{
+	width: 100%;
+}
+.recommand-group .recommand-item{
+	padding: 0 20rpx;
+}
+.recommand-item .item-top-info .pic-img{
+	display: inline-block;
+	width: 100rpx;
+	height: 100rpx;
+}
+.recommand-item .item-top-info{
+	padding: 20rpx 0;
+}
+
+.recommand-item .item-top-info .item-title-info{
+	position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 120rpx);
+    height: 100rpx;
+    margin-left: 20rpx;
+}
+.recommand-item .item-title{
+	font-size: 34rpx;
+	color: #065eb5
+}
+.recommand-item .item-time-tips{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	font-size: 28rpx;
+	color: #bbb;
+}
+.recommand-item .item-time-tips text:nth-of-type(2){
+	padding: 0 20rpx;
+}
+
+.recommand-item .item-remark{
+	padding: 0 0 20rpx 0;
+	font-size: 34rpx;
+	color: #333;
+}
+.recommand-item .item-desc{
+	margin: 10rpx 0 20rpx 0;
+	background-color: #f0f0f0;
+}
+.recommand-item .item-desc image{
+	display: inline-block;
+	width: 100rpx;
+	height: 100rpx;
+}
+.recommand-item .item-card-info{
+	position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 120rpx);
+    height: 100rpx;
+    margin-left: 20rpx;
+}
+.recommand-item .item-card-info .item-card-title{
+	font-size: 28rpx;
+	color: #333;
+	vertical-align: top;
+}
+.recommand-item .item-card-info .item-member-num{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	font-size: 24rpx;
+	color: #bbb;
+}
+.item-card-info .item-arrow{
+	position: absolute;
+	top: 50%;
+	right: 20rpx;
+	margin-top: -12rpx;
+	font-size: 24rpx;
+	color: #bbb;
+}
+.recommand-item .tool-bar{
+	padding: 10rpx 0 15rpx 0;
+	border-top: 1px solid #f0f0f0;
+}
+.recommand-item .tool-bar text{
+	display: table-cell;
+	width: 1%;
+	text-align: center;
+	color: #888;
+	font-size: 28rpx;
 }

@@ -2,7 +2,7 @@
   "pages": [
     "pages/home/index",
     "pages/classify/index",
-    "pages/info/index/index"
+    "pages/info/center/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +26,7 @@
       "iconPath": "images/icon_classify.png",
       "selectedIconPath": "images/icon_classify_active.png"
     },{
-      "pagePath": "pages/info/index/index",
+      "pagePath": "pages/info/center/index",
       "text": "我的",
       "iconPath": "images/icon_info.png",
       "selectedIconPath": "images/icon_info_active.png"

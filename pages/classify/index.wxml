@@ -3,45 +3,29 @@
 <view class="container">
   <view class="zan-panel">
     <view class="zan-row">
-      <view class="zan-col zan-col-6">
-        span: 8
-      </view>
-      <view class="zan-col zan-col-6">
-        span: 8
-      </view>
-      <view class="zan-col zan-col-6">
-        span: 8
-      </view>
-      <view class="zan-col zan-col-6">
-        span: 8
+      <view wx:for="{{classifyList}}" wx:key="{{index}}" class="zan-col zan-col-6 classify-item {{classifyActive == index ? 'active' : ''}}" bindtap="bindClassifyClick" data-idx="{{index}}" data-item="{{item}}">
+        {{item.name}}
       </view>
     </view>
   </view>
-
 
   <view class="zan-panel">
-    <view class="zan-card">
+    <view class="zan-card" wx:for="{{activityList}}" wx:key="index" bingtap="bindVeiwActivity" data-id="{{item.id}}">
       <view class="zan-card__thumb">
-        <image class="zan-card__img" src="https://t11.baidu.com/it/u=741657904,1441720405&fm=173&app=12&f=JPEG?w=640&h=426&s=1B304980F4A718AC232588920300C0B3"
-          mode="aspectFit"></image>
+        <image class="zan-card__img" src="{{item.img}}" mode="aspectFit"></image>
       </view>
       <view class="zan-card__detail">
-        <view class="zan-card__detail-row zan-ellipsis--l2">
-          红烧牛肉
+        <view class="zan-card__detail-row zan-ellipsis--l2">{{item.name}}</view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-cell--last-child">{{item.desc}}</view>
         </view>
 
         <view class="zan-card__detail-row zan-c-gray-darker">
-          <view class="zan-cell--last-child">
-            每天一课，从零开始学习钢琴
-          </view>
-        </view>
-
-        <view class="zan-card__detail-row zan-c-gray-darker">
-          <label class="card-accout fz12">1854人参加</label>
-          <label class="card-num fz12">3061次打卡</label>
+          <label class="card-accout fz12">{{item.accout}}人参加</label>
+          <label class="card-num fz12">{{item.num}}次打卡</label>
         </view>
       </view>
     </view>
   </view>
-
 </view>

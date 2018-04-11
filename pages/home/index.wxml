@@ -1,10 +1,71 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
+<view class="containers">
+	<view class="userinfo">
+		<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+	</view>
+	<!-- add card -->
+	<view class="add-card">
+		<text class="">+<text class="add-card-tips">新建打卡</text></text>
+	</view>
+	<view class="my-card-list">
+		<block wx:for="{{myCardList}}">
+			<view class="my-card-item">
+				<image class="card-item-img" src="{{item.imgurl}}"></image>
+				<view class="card-item-info">
+					<view class="card-item-title">
+						<text>{{item.title}}</text>
+						<text class="isMine" wx:if="{{item.isMy === 1}}">群主</text>
+					</view>
+					<view class="card-item-tips">
+						<text class="zan-icon zan-icon-discount"></text>
+						<text class="tips-item">{{item.time}}</text>
+						<text class="zan-icon zan-icon-contact"></text>
+						<text class="tips-item">{{item.memberClick}}已打卡</text>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+	<view class="underline"></view>
+	<!-- recommand -->
+	<view class="recommand-group">
+		<block wx:for="{{recommand}}">
+			<view class="recommand-item">
+				<view class="item-top-info">
+					<image class="pic-img" src="{{item.pic}}"></image>
+					<view class="item-title-info">
+						<view class="item-title">
+							<text>{{item.nick_name}}</text>
+						</view>
+						<view class="item-time-tips">
+							<text class="">{{item.time}}</text>
+							<text class="">·</text>
+							<text class="">已经坚持{{item.days}}天</text>
+						</view>
+					</view>
+				</view>
+				<view class="item-remark">{{item.remark}}</view>
+				<view class="item-pic">
+					<image src="{{item.item_pic}}"></image>
+				</view>
+				<view class="item-desc">
+					<image src="{{item.card_pic}}"></image>
+					<view class="item-card-info">
+						<text class="item-card-title">{{item.card_title}}</text>
+						<view class="item-member-num">
+							<text class="">{{item.card_num}}人已经参加</text>
+						</view>
+						<text class="item-arrow">></text>
+					</view>
+				</view>
+        <!-- tools-bar -->
+        <view class="tool-bar">
+        	<text>详情</text>
+        	<text>评论</text>
+        	<text>赞</text>
+        </view>
+			</view>
+			<view class="underline"></view>
+		</block>
+	</view>
 </view>

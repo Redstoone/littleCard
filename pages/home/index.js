@@ -4,45 +4,65 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    myCardList: [
+      {
+        id: 1,
+        imgurl: '/images/index/card_pic.png',
+        title: '早点喝水',
+        isMy: 1,
+        time: '6:00:00',
+        memberClick: 20,
+      }, {
+        id: 1,
+        imgurl: '/images/index/card_pic.png',
+        title: '户外锻炼',
+        isMy: 0,
+        time: '16:00:00',
+        memberClick: 20,
+      }
+    ],
+    recommand: [
+      {
+        id: 1,
+        pic: '/images/index/card_pic.png',
+        nick_name: '心潜',
+        time: '1分钟前',
+        days: '22',
+        remark: '坚持锻炼身体',
+        item_pic: '/images/index/card_pic.png',
+        card_pic: '/images/index/card_pic.png',
+        card_title: '户外锻炼',
+        card_num: 7650
+      }, {
+        id: 2,
+        pic: '/images/index/card_pic.png',
+        nick_name: '历史',
+        time: '5分钟前',
+        days: '100',
+        remark: '坚持锻炼身体',
+        item_pic: '/images/index/card_pic.png',
+        card_pic: '/images/index/card_pic.png',
+        card_title: '户外锻炼',
+        card_num: 7650
+      }
+    ]
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
+    let _this = this
+    let us = wx.getStorageSync('userInfo')
+    if (us) {
+      _this.setData({
+        userInfo: JSON.parse(us)
+      })      
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+      app.getUserInfo(function (userInfo) {
+        if (userInfo) {
+          _this.setData({
+            userInfo: userInfo
           })
         }
-      })
+      })      
     }
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  }
 })

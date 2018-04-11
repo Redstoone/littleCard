@@ -4,7 +4,7 @@ App({
   },
   getUserInfo: function (cb) {
     var _this = this
-    //调用登录接口
+      //调用登录接口
     wx.login({
       success: function (e) {
         wx.getUserInfo({
@@ -12,7 +12,7 @@ App({
             _this.globalData.userInfo = res.userInfo
             // _this.getOpenId(e.code)
             typeof cb == "function" && cb(_this.globalData.userInfo)
-          }, fail: function (res) {
+          }, fail: function(res) {
             wx.showModal({
               title: '温馨提示',
               content: '若不授权登录，则无法使用该小程序；点击授权，勾选‘用户信息’方可继续使用；或者，在微信[发现]－[小程序]，删除该小程序，重新搜索该小程序，方可使用。',
@@ -50,7 +50,7 @@ App({
     let para = {
       openid: userInfo.openid
     }
-    let datas = Object.assign(para, data)
+    let datas = Object.assign(para, data) 
     wx.request({
       url: _this.globalData.host + url,
       method: method,
@@ -60,6 +60,7 @@ App({
         fn(res)
       },
       faile: function (err) { console.log(err) }
+      // complete: function(obj) { console.log(obj) }
     })
   },
   globalData: {
