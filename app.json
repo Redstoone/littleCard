@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/newCard/newCard",
+    "pages/carddetail/carddetail",
     "pages/classify/index",
     "pages/info/center/index"
   ],

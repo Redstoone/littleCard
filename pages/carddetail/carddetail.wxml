@@ -1,0 +1,13 @@
+<!--pages/carddetail/carddetail.wxml-->
+<view class='cont tant'>
+  <image src='' style="width:100%;height:300rpx;background:#f9f9f9"></image>
+</view>
+
+ <view class="contant" wx:for="{{list}}" wx:key="ind" wx:for-index="idx" data-index="{{idx}}">
+    <view class='cont_title fz30 c000'>{{item.name}}</view>
+    <view class="cont_input">
+      <input class='fz28' wx:if="{{item.isInp == true}}" placeholder='{{item.place}}' value='{{item.value}}' bindinput="txtChange(ind)"></input>
+      <textarea  class='fz28' wx:if="{{item.isInp == false}}" placeholder='{{item.place}}' value='{{item.value}}' bindinput="txtChange"/>
+      <view class="txtNum fz24 c999">20</view>
+    </view>
+</view>  

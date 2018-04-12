@@ -211,3 +211,8 @@ page {
   height: 20rpx;
   background-color: #f0f0f0;
 }
+
+
+.clear::after{display: block;clear: both;content: "";height: 0;overflow: hidden;visibility: hidden}
+.left{float: left}
+.right{float: right}

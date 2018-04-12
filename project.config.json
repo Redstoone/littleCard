@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
-	"appid": "touristappid",
+	"appid": "wx78d21906d8f5d871",
 	"projectname": "wxLittleCard",
 	"condition": {
 		"search": {
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -42,6 +42,17 @@
 					"name": "info",
 					"pathName": "pages/info/index/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新建打卡",
+					"pathName": "pages/newCard/newCard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "pages/carddetail/carddetail"
 				}
 			]
 		}
