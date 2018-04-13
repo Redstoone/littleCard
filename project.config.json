@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -52,7 +52,25 @@
 				{
 					"id": -1,
 					"name": "详情",
-					"pathName": "pages/carddetail/carddetail"
+					"pathName": "pages/carddetail/carddetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "查看详情",
+					"pathName": "\"pages/lookdetail/lookdetail\",",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "查看详情",
+					"pathName": "pages/lookdetail/lookdetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "参加活动",
+					"pathName": "pages/activity/activity"
 				}
 			]
 		}

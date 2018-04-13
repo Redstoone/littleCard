@@ -1,0 +1,8 @@
+/* pages/activity/activity.wxss */
+.cont{background: #ffffff;margin-bottom: 20rpx}
+.contant{padding: 0  30rpx 30rpx 30rpx;}
+.look_title{padding: 20rpx 0;}
+.nameImg{margin-right: 20rpx}
+.names{padding-right:30rpx;border-right: 1rpx solid #eeeeee; }
+
+.name{line-height: 80rpx;margin-bottom: 20rpx}

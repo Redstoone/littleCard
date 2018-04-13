@@ -9,3 +9,12 @@
 .cont_input textarea{width: 98%;height: 120rpx;padding-left: 10rpx;line-height: 40rpx;padding: 10rpx}
 
 .txtNum{position: absolute;right: 4rpx;top: -22rpx}
+
+.cont_items{display: flex;font-size: 26rpx;color: #1dafaa;text-align: center;margin-top:60rpx;
+}
+.cont_item{flex: 1;}
+.store_info_btnImg{width: 25rpx;height: 25rpx;}
+.item_icon{margin-left: 60rpx;}
+.item_play{margin-left: 20rpx;}
+
+.nextbtn{background: #1dafaa;width: 400rpx;margin-top: 60rpx}

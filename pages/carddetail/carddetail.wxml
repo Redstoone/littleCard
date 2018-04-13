@@ -3,11 +3,55 @@
   <image src='' style="width:100%;height:300rpx;background:#f9f9f9"></image>
 </view>
 
- <view class="contant" wx:for="{{list}}" wx:key="ind" wx:for-index="idx" data-index="{{idx}}">
+  <view class="contant" wx:for="{{list}}" wx:key="ind">
     <view class='cont_title fz30 c000'>{{item.name}}</view>
     <view class="cont_input">
-      <input class='fz28' wx:if="{{item.isInp == true}}" placeholder='{{item.place}}' value='{{item.value}}' bindinput="txtChange(ind)"></input>
-      <textarea  class='fz28' wx:if="{{item.isInp == false}}" placeholder='{{item.place}}' value='{{item.value}}' bindinput="txtChange"/>
-      <view class="txtNum fz24 c999">20</view>
+      <input class='fz28' data-index="{{item.id}}" wx:if="{{item.isInp == true}}" placeholder='{{item.place}}' value='{{item.value}}' bindinput="txtChange"></input>
+      <textarea  class='fz28' data-index="{{item.id}}" wx:if="{{item.isInp == false}}" placeholder='{{item.place}}' value='{{item.value}}' bindinput="txtChange"/>
+      <view class="txtNum fz24 c999">{{item.txtnum}}/20</view>
     </view>
+</view>   
+ <view class="contant">
+  <view class='cont_title fz30 c000'>群管理员微信号</view>
+  <view class="fz26 c999">请填写群主微信号，让学员可以找到你</view>
+  <view class="cont_input" style="margin-top:20rpx;width:50%">
+    <input class='fz28' placeholder='请输入微信号'></input>
+  </view>
 </view>  
+<view class="contant">
+  <view class='cont_title fz30 c000'>群管理员微信号</view>
+  <view class="fz26 c999">使用电脑登录<text style='color:#1dafaa'>wwwww</text>编辑图文详情更方便
+  </view>
+  <view class="fz28 c666">
+  当前未设置打卡详情
+  </view>  
+  <view class="cont_items">
+      <view class='cont_item clear'>
+						<view class="left item_icon">
+              <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+            </view>
+						<view class="left item_play">添加文字</view>  
+      </view> 
+      <view class='cont_item clear'>       
+						<view class="left item_icon">
+              <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+              </view>
+						<view class="left item_play">添加图片</view>                 
+      </view>               
+  </view>
+  <view class="cont_items">
+      <view class='cont_item clear'>
+						<view class="left item_icon">
+              <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+            </view>
+						<view class="left item_play">添加音频</view>  
+      </view> 
+      <view class='cont_item clear'>       
+						<view class="left item_icon">
+              <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+              </view>
+						<view class="left item_play">添加视频</view>                 
+      </view>  
+  </view>
+  <view class="button nextbtn fz32 cfff">下一步</view>
+</view> 
