@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -40,7 +40,7 @@
 				{
 					"id": 1,
 					"name": "info",
-					"pathName": "pages/info/index/index",
+					"pathName": "pages/info/center/index",
 					"query": ""
 				},
 				{
@@ -70,7 +70,14 @@
 				{
 					"id": -1,
 					"name": "参加活动",
-					"pathName": "pages/activity/activity"
+					"pathName": "pages/activity/activity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "设置",
+					"pathName": "pages/info/setting/index",
+					"query": ""
 				}
 			]
 		}

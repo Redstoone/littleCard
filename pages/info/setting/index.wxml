@@ -1,0 +1,95 @@
+<!--pages/addInfo/addInfo.wxml-->
+<view class="container">
+  <view class="info-item clear">
+    <view class="left">
+      <view class="logotxt">头像</view>
+    </view>
+    <view class="right infoimg" bindtap='changeAvatar'>
+      <view wx:if="{{headicon}}">
+        <image style='width:90rpx;height:90rpx' src='{{headicon}}'></image>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="info-item clear">
+    <view class="left">
+      <view class="logotxt">个人主页背景图</view>
+    </view>
+    <view class="right infobgimg" bindtap='changeLogo'>
+      <view wx:if="{{avatarUrl}}">
+        <image style='width:90rpx;height:90rpx' src='{{avatarUrl}}'></image>
+      </view>
+    </view>
+  </view> -->
+  <view class="info-item clear">
+    <view class="left">
+      昵称
+    </view>
+    <view class="right">
+      <input placeholder='请输入昵称' value="{{nickname}}" bindinput="camNicknameTxt"></input>
+    </view>
+  </view>
+  <view class="info-item clear">
+    <view class="left">
+      性别
+    </view>
+    <view class="right">
+      <picker bindchange="bindPickerChange" value="{{gender}}" range="{{genderArray}}">
+        <view class="picker">
+          {{genderName}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="info-item clear">
+    <view class="left">
+      所在城市
+    </view>
+    <view class="right">
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+        {{region[0]}}，{{region[1]}}，{{region[2]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="info-item clear">
+    <view class="left">
+      手机号
+    </view>
+    <view class="right">
+      <input placeholder='请输入手机号' value="{{phone}}" bindinput="camPhoneTxt"></input>
+    </view>
+  </view>
+  <!-- <view class="info-item clear">
+    <view class="left">
+      出生日期
+    </view>
+    <view class="right">
+      <picker mode="date" value="{{date}}" start="1950-09-01" end="2035-09-01" bindchange="bindDateChange">
+        <view class="picker">
+          {{date}}
+        </view>
+      </picker>
+    </view>
+  </view> -->
+  
+
+  <view class="info-item clear">
+    <view class="left">
+      真实名字
+    </view>
+    <view class="right">
+      <input placeholder='请输入真实名字' value="{{realname}}" bindinput="camRealnameTxt"></input>
+    </view>
+  </view>
+  <!-- <view class="info-item clear">
+    <view class="left">
+      兴趣标签
+    </view>
+    <view class="right">
+      <input placeholder='选择兴趣，让别人更了解你' bindinput="camNameTxt"></input>
+    </view>
+  </view> -->
+
+  <view class='infoBtn' bindtap='submit'> 保存 </view>
+</view>
