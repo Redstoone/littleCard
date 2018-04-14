@@ -1,18 +1,80 @@
 <!--pages/activity/activity.wxml-->
 <view class='cont tant'>
-  <image src='' style="width:100%;height:300rpx;background:#f9f9f9"></image>
+  <image src='' style="width:100%;height:300rpx;background:#999999"></image>
   <view class='contant'>
     <view class="look_title ">剑圣60天</view>
-    <view class='look_pople clear'>
-        <view class='nameImg left'>
-          <image src='' style='width:40rpx;height:40rpx;background:#f1f1f1'></image>
-        </view>
-        <view class='names left fz26 c999'>
-          XXXXXXX参加
-        </view>
-       <view class='names left fz26 c999'>
-          次打卡
-        </view> 
+    <view class='names fz26'>
+      0人参加        |          0次打卡
+    </view>
+    <view class='nameImg fz26 clear'>
+      <image class="left head" src='' style=''></image>
+      <view class="left name">XXXXX</view>         
+       <view class="left btn">加微信</view>
+    </view>
+  </view> 
+  <view class="tant_txt clear">
+      <view class="left item_icon">
+        <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+      </view>
+      <view class="left item_play fz24">编辑详情</view>  
+  </view>
+  <view class="tant_com clear">
+      <view class="left item_icon">
+        <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+      </view>
+      <view class="left item_play fz24">邀请好友</view>    
+  </view>
+</view>
+<view class="pad cont_title fz30">
+    公告
+</view>
+
+<view class="pad">
+  <view class="clear cont_tant">
+    <view class="left">
+          <view class='cont_head left'>
+            <image src='' style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
+          </view>
+          <view class='cont_box left'>
+              <view class="cont_name fz28 c666">
+                  JJJJ      <text class="fz26 c999">修改昵称</text>
+              </view>
+              <view class="cont_day fz24 c999">
+                  已坚持打卡0天
+              </view>
+          </view>
+    </view>
+    <view class="right fz26 c666">
+      设置
     </view>
   </view> 
 </view>
+
+  <view class="contants fz26 c999">
+    <view class="_week_cant ">
+      <view class="_week">日</view>
+      <view class="_week">一</view>
+      <view class="_week">二</view>
+      <view class="_week">三</view>
+      <view class="_week">四</view>
+      <view class="_week">五</view>
+      <view class="_week">六</view>
+    </view>
+    <view class="_subYears_items clear">
+      <view wx:for="{{years}}" wx:key="gg">
+        <view class="_subYears_item_f left" style="margin-left:{{(item[0].week-1)*107}}rpx"></view>
+            <view wx:for-items="{{item}}" wx:key="{{index}}" id="{{index}}" class="_subYears_item left" bindtap="clickChecked">
+                <view>{{item.day}}</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="cont_now">
+        13天
+    </view>
+    <view class="cont_txt">
+        <view>打卡活动即将开始</view>
+        <view>开始日期：xxxx</view>
+    </view>
+  </view> 
+

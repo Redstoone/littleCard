@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
-	"appid": "wx78d21906d8f5d871",
+	"appid": "wxae25d8be817d714d",
 	"projectname": "wxLittleCard",
 	"condition": {
 		"search": {
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -83,6 +83,36 @@
 					"id": -1,
 					"name": "我的赞",
 					"pathName": "pages/info/zan/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/cardComment/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/info/setting/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/cardComment/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/cardComment/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/cardComment/index",
 					"query": ""
 				}
 			]

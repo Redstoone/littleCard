@@ -17,6 +17,9 @@
   </view> 
 </view>
 
+
+
+
 <view class='cont tant'>
   <view class='contant'>
     <view class="look_title">活动详情</view>
@@ -47,8 +50,7 @@
   <view class='contmess'>
         <view class="line"></view>
         <view class="mess">参加活动,查看更多精彩日记</view>  
-  </view> 
-  
+  </view>  
 </view>
 
 <view class="button nextbtn fz32 cfff clear">

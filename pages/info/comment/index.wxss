@@ -1,0 +1,76 @@
+page {
+  background: #f9f9f9;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #333333
+}
+
+.clear::after {
+  display: block;
+  clear: both;
+  content: "";
+  height: 0;
+  overflow: hidden;
+  visibility: hidden
+}
+
+.left {
+  float: left
+}
+
+.right {
+  float: right
+}
+
+.info-item {
+  padding: 20rpx;
+  background: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.info-item input {
+  text-align: right
+}
+
+.info-item .left {
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+
+.logotxt {
+  margin-top: 40rpx
+}
+
+.size {
+  font-size: 24rpx;
+  color: #999999
+}
+
+.infoimg {
+  width: 110rpx;
+  height: 110rpx;
+  position: relative;
+}
+
+.avart-img {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: 20rpx;
+}
+
+.info-item {
+  position: relative;
+  padding-left: 120rpx;
+}
+
+.info-item .name{
+  line-height: 32rpx;
+}
+.info-item .time {
+  font-size: 22rpx;
+  line-height: 26rpx;
+  color: #999;
+}

@@ -1,8 +1,12 @@
 <view class="info">
   <view class="header">
     <view class="header_content">
-      <image class="avatarUrl" mode="aspectFill" src="{{avatarUrl}}" />
-      <view class="nickName cfff">{{nickName}}</view>
+      <view class="userinfo-wrap">
+        <image class="user-img" mode="aspectFill" src="{{avatarUrl}}" />
+        <view class="user-name cfff">{{nickName}}</view>
+        <view class="user-id cfff">用户ID: 123456</view>
+      </view>
+      <view class="modify-userinfo" bindtap='navtoSetting'> 修改个人资料 </view>
     </view>
   </view>
   <view class="zan-panel">

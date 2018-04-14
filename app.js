@@ -7,10 +7,12 @@ App({
       //调用登录接口
     wx.login({
       success: function (e) {
+        console.log(e)
         wx.getUserInfo({
           success: function (res) {
+            console.log(res)
             _this.globalData.userInfo = res.userInfo
-            // _this.getOpenId(e.code)
+            _this.getOpenId(e.code)
             typeof cb == "function" && cb(_this.globalData.userInfo)
           }, fail: function(res) {
             wx.showModal({
@@ -39,6 +41,11 @@ App({
       }
     })
   },
+  getOpenId (code) {
+    this.postRequest("/wx/wechat/openid", 'GET', { code: code }, (data) => {
+      console.log(data)
+    })
+  },
   postRequest: function (url, method, data, fn) {
     let _this = this
     let userInfo = {}
@@ -65,6 +72,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'https://api.nobebe.net/wx/',
+    host: 'http://8h8ebu.natappfree.cc/wx',
+    nickname: '',
+    headicon: ''
   }
 })

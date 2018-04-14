@@ -1,6 +1,6 @@
 <!--pages/carddetail/carddetail.wxml-->
 <view class='cont tant'>
-  <image src='' style="width:100%;height:300rpx;background:#f9f9f9"></image>
+  <image src='' style="width:100%;height:300rpx;background:red"></image>
 </view>
 
   <view class="contant" wx:for="{{list}}" wx:key="ind">

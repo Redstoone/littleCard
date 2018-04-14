@@ -54,7 +54,7 @@
     margin-left: 20rpx;
 }
 .card-item-info .card-item-title{
-	font-size: 34rpx;
+	font-size: 32rpx;
 	color: #333;
 }
 .card-item-title .isMine{
@@ -92,8 +92,9 @@
 }
 .recommand-item .item-top-info .pic-img{
 	display: inline-block;
-	width: 100rpx;
-	height: 100rpx;
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
 }
 .recommand-item .item-top-info{
 	padding: 20rpx 0;
@@ -104,18 +105,18 @@
     display: inline-block;
     vertical-align: top;
     width: calc(100% - 120rpx);
-    height: 100rpx;
+    height: 80rpx;
     margin-left: 20rpx;
 }
 .recommand-item .item-title{
-	font-size: 34rpx;
+	font-size: 32rpx;
 	color: #065eb5
 }
 .recommand-item .item-time-tips{
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	font-size: 28rpx;
+	font-size: 24rpx;
 	color: #bbb;
 }
 .recommand-item .item-time-tips text:nth-of-type(2){
@@ -124,7 +125,7 @@
 
 .recommand-item .item-remark{
 	padding: 0 0 20rpx 0;
-	font-size: 34rpx;
+	font-size: 28rpx;
 	color: #333;
 }
 .recommand-item .item-desc{
@@ -133,15 +134,16 @@
 }
 .recommand-item .item-desc image{
 	display: inline-block;
-	width: 100rpx;
-	height: 100rpx;
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
 }
 .recommand-item .item-card-info{
 	position: relative;
     display: inline-block;
     vertical-align: top;
     width: calc(100% - 120rpx);
-    height: 100rpx;
+    height: 80rpx;
     margin-left: 20rpx;
 }
 .recommand-item .item-card-info .item-card-title{
