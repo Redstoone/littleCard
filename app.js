@@ -7,10 +7,8 @@ App({
       //调用登录接口
     wx.login({
       success: function (e) {
-        console.log(e)
         wx.getUserInfo({
           success: function (res) {
-            console.log(res)
             _this.globalData.userInfo = res.userInfo
             _this.getOpenId(e.code)
             typeof cb == "function" && cb(_this.globalData.userInfo)
@@ -27,7 +25,7 @@ App({
                       wx.getUserInfo({
                         success: function (res) {
                           _this.globalData.userInfo = res.userInfo
-                          // _this.getOpenId(e.code)
+                          _this.getOpenId(e.code)
                           typeof cb == "function" && cb(_this.globalData.userInfo)
                         }
                       })
@@ -42,8 +40,23 @@ App({
     })
   },
   getOpenId (code) {
-    this.postRequest("/wx/wechat/openid", 'GET', { code: code }, (data) => {
-      console.log(data)
+    let _this = this
+    this.postRequest("/wx/wechat/openid", 'POST', { code: code }, (res) => {
+      if (res.data.success) {
+        _this.globalData.openid = res.data.openid
+        this.postRequest("/wx/wechat/logged", 'POST', {
+          nickname: this.globalData.userInfo.nickName,
+          headicon: this.globalData.userInfo.avatarUrl,
+          gender: this.globalData.userInfo.gender,
+          province: this.globalData.userInfo.province,
+          city: this.globalData.userInfo.city,
+          county: this.globalData.userInfo.country
+        }, (rst) => {
+          if (rst.data.success){
+            console.log('login success')
+          }
+        })
+      }
     })
   },
   postRequest: function (url, method, data, fn) {
@@ -55,9 +68,9 @@ App({
       userInfo = JSON.parse(wx.getStorageSync('userInfo'))
     }
     let para = {
-      openid: userInfo.openid
+      id: this.globalData.openid
     }
-    let datas = Object.assign(para, data) 
+    let datas = Object.assign(para, data)
     wx.request({
       url: _this.globalData.host + url,
       method: method,
@@ -72,8 +85,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'http://8h8ebu.natappfree.cc/wx',
+    host: 'https://xgh.smarttinfo.com',
     nickname: '',
-    headicon: ''
+    headicon: '',
+    openid: null
   }
 })
