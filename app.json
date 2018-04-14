@@ -6,7 +6,8 @@
     "pages/lookdetail/lookdetail",
     "pages/activity/activity",
     "pages/classify/index",
-    "pages/info/center/index"
+    "pages/info/center/index",
+    "pages/clock/clock"
   ],
   "window": {
     "backgroundTextStyle": "light",

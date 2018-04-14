@@ -1,0 +1,43 @@
+<!--pages/clock/clock.wxml-->
+<view class="pad">
+    <view class="contant fz32 c999">
+      说说感想收货
+    </view>
+    <view class="cont_btn clear">
+        <view class='left'><image src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image></view>
+        <view class='left'><image src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image></view>
+        <view class='left'><image src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image></view>
+    </view>
+    <view class="clear fz26 c666 cont_nav">
+        <view class='clear left'>
+            <view class='left cont_b'>
+              <image style="width:24rpx;height:24rpx" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+            </view>
+            <view class='left'>所在位置</view>
+        </view>
+        <view class="right">></view>
+    </view>
+     <view class="clear fz26 c666 cont_nav">
+        <view class='clear left'>
+            <view class='left cont_b'>
+              <image style="width:24rpx;height:24rpx" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+            </view>
+            <view class='left'>谁可以看</view>
+        </view>
+        <view class="right">></view>
+    </view> 
+
+<view class='cont tant'>
+  <view class='contmess'>
+        <view class="line"></view>
+        <view class="mess">意见反馈</view>  
+  </view>  
+</view>    
+
+</view>
+
+<view class='cant_foot clear f32rpx'>
+    <view class='left col'>取消</view>
+    <view class='right com'>发表日记</view>
+</view>
+

@@ -58,19 +58,20 @@
 				{
 					"id": -1,
 					"name": "查看详情",
-					"pathName": "\"pages/lookdetail/lookdetail\",",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "查看详情",
 					"pathName": "pages/lookdetail/lookdetail",
 					"query": ""
 				},
 				{
 					"id": -1,
 					"name": "参加活动",
-					"pathName": "pages/activity/activity"
+					"pathName": "pages/activity/activity",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "发表日记",
+					"pathName": "pages/clock/clock",
+					"query": ""
 				}
 			]
 		}
