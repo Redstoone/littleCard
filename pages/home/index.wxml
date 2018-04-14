@@ -2,6 +2,7 @@
 <view class="containers">
 	<view class="userinfo">
 		<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+		<view class="user-bg"></view>
 	</view>
 	<!-- add card -->
 	<view class="add-card">
