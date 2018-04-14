@@ -1,4 +1,3 @@
-<!--pages/addInfo/addInfo.wxml-->
 <view class="container">
   <view class="info-item clear">
     <view class="left">

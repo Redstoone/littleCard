@@ -27,7 +27,7 @@
       </view>
       <view class="zan-cell__ft info-ft"></view>
     </navigator>
-    <navigator class="zan-cell zan-cell--access" url="/pages/reorder">
+    <navigator class="zan-cell zan-cell--access" url="/pages/info/zan/index">
       <view class="zan-cell__bd c000">
         <!-- <image class="item_img" src="../images/icon_my_02.png" /> -->
         <view class="text">我的赞</view>

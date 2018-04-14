@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="info-item clear">
+    <view class="left">
+      <image class="avart-img" src='{{headicon}}'></image>
+      <view class="user-info">
+        <view class="name">Ken</view>
+        <view class="icon"></view>
+        <view class="time">刚刚</view>
+      </view>
+    </view>
+    <view class="right">
+      <image class="infoimg" src='{{headicon}}'></image>
+    </view>
+  </view>
+</view>
