@@ -3,29 +3,30 @@
 <view class="container">
   <view class="zan-panel">
     <view class="zan-row">
-      <view wx:for="{{classifyList}}" wx:key="{{index}}" class="zan-col zan-col-6 classify-item {{classifyActive == index ? 'active' : ''}}" bindtap="bindClassifyClick" data-idx="{{index}}" data-item="{{item}}">
+      <view wx:for="{{classifyList}}" wx:key="{{index}}" class="zan-col zan-col-6 classify-item {{classifyActive == index ? 'active' : ''}}" bindtap="bindClassifyClick" data-idx="{{index}}" data-cid="{{item.id}}">
         {{item.name}}
       </view>
     </view>
   </view>
 
-  <view class="zan-panel">
+  <view class="zan-panel" wx:if="{{activityList.length > 0}}">
     <view class="zan-card" wx:for="{{activityList}}" wx:key="index" bingtap="bindVeiwActivity" data-id="{{item.id}}">
       <view class="zan-card__thumb">
-        <image class="zan-card__img" src="{{item.img}}" mode="aspectFit"></image>
+        <image class="zan-card__img" src="{{item.activityDetail.activityThumb}}" mode="aspectFit"></image>
       </view>
       <view class="zan-card__detail">
         <view class="zan-card__detail-row zan-ellipsis--l2">{{item.name}}</view>
 
-        <view class="zan-card__detail-row zan-c-gray-darker">
-          <view class="zan-cell--last-child">{{item.desc}}</view>
+        <view class="zan-card__detail-row zan-c-gray-darker" wx:if="{{item.activityDetail.mainDescription}}">
+          <view class="zan-cell--last-child">{{item.activityDetail.mainDescription}}</view>
         </view>
 
-        <view class="zan-card__detail-row zan-c-gray-darker">
-          <label class="card-accout fz12">{{item.accout}}人参加</label>
-          <label class="card-num fz12">{{item.num}}次打卡</label>
+        <view class="zan-card__detail-row zan-c-gray-darker c-footer">
+          <label class="card-accout fz12">{{item.memberNumber}}人参加</label>
+          <label class="card-num fz12">{{item.cardClickNumber}}次打卡</label>
         </view>
       </view>
     </view>
   </view>
+  <view class="no-data" wx:else>暂无活动列表</view>
 </view>
