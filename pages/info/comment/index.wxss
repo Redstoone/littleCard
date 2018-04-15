@@ -1,5 +1,4 @@
 page {
-  background: #f9f9f9;
   font-size: 28rpx;
   line-height: 40rpx;
   color: #333333
@@ -10,7 +9,7 @@ page {
 }
 
 .recommand-group .recommand-item {
-  padding: 0 20rpx;
+  padding: 0 30rpx;
 }
 
 .recommand-item .item-top-info .pic-img {
@@ -105,14 +104,26 @@ page {
 }
 
 .recommand-item .tool-bar text {
-  display: table-cell;
-  width: 1%;
   text-align: center;
   color: #888;
   font-size: 26rpx;
+  display: inline-block;
+  margin:0 20rpx;
 }
 
 .recommand-item .address {
   font-size: 26rpx;
   color: #6784e6;
+}
+
+.underline {
+  width: calc(100% - 60rpx);
+  height: 2rpx;
+  background-color: #f0f0f0;
+  margin: 0 auto;
+}
+
+.time{
+  color: #999;
+  font-size: 24rpx;
 }

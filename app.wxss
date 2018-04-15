@@ -13,45 +13,13 @@
 }
 
 page {
-  background: #f8f8f8;
+  background: #ffffff;
   height: 100%;
 }
 
 .container {
   position: relative;
   background: #ffffff
-}
-
-.no_data {
-  font-size: 40rpx;
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  color: #8b8b8b;
-  padding-top: 20rpx
-}
-
-.no_data .iconfont {
-  font-size: 40rpx
-}
-
-.loadMoreGif {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin: 15rpx auto;
-  width: 220rpx
-}
-
-.loadMoreGif text {
-  font-size: 30rpx;
-  color: #999;
-  margin-left: 10rpx
-}
-
-.loadMoreGif image {
-  width: 30rpx;
-  height: 30rpx
 }
 
 .hidden {
@@ -126,90 +94,6 @@ page {
   font-size: 32rpx
 }
 
-.type_red {
-  background: #ea4a3a;
-  color: #fff
-}
-
-.type_yellow {
-  background: #ff6a3c;
-  color: #fff
-}
-
-.type_green {
-  background: #09bb07;
-  color: #fff
-}
-
-.type_pick {
-  background: #ff4856;
-  color: #fff;
-  border: 1px solid #ff4856
-}
-
-.type_empity {
-  color: #333;
-  border: 1px solid #cccccc
-}
-
-.button {
-  font-size: 36rpx;
-  height: 95rpx;
-  line-height: 95rpx;
-  text-align: center;
-  margin: 0 auto;
-  width: 100%;
-  -moz-border-radius: 10rpx;
-  -webkit-border-radius: 10rpx;
-  border-radius: 10rpx
-}
-
-.search_read_only {
-  align-items: center;
-  display: flex;
-  margin: 0 auto;
-  width: 650rpx
-}
-
-.search_read_only .search_content {
-  display: flex;
-  align-items: center;
-  border-radius: 100rpx;
-  color: #999;
-  width: 500rpx;
-  background: #efefef;
-  padding: 0 30rpx;
-  height: 55rpx;
-  margin: 0 auto
-}
-
-.search_read_only .search_content .search_input {
-  font-size: 26rpx;
-  width: 100%
-}
-
-.search_read_only .icon-search {
-  font-size: 40rpx
-}
-
-.search_read_only .icon-message {
-  font-size: 50rpx
-}
-
-.top_search {
-  padding: 20rpx 0;
-  background: #fff
-}
-
-.spacing {
-  height: 20rpx;
-  width: 100%;
-  overflow: hidden;
-  background-color: #f5f5f5
-}
-
-/*xinqian*/
-
 .underline {
   width: 100%;
   height: 20rpx;
@@ -247,4 +131,26 @@ page {
 .no-data .txt {
   margin-top: 40rpx;
   font-size: 28rpx;
+  color: #999;
+}
+
+.icon-gender {
+  display: block;
+  width: 24rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.icon-gender .iconfont {
+  color: #fff;
+}
+
+.i-male {
+  background-color: #558ed5;
+}
+
+.i-female {
+  background-color: #ff99ff;
 }
