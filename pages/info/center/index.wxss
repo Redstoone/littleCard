@@ -7,26 +7,67 @@
 .header_content {
   width: 100%;
   margin: 0 auto;
-  text-align: center;
-  padding-top: 48rpx
+  position: relative;
+  padding-top: 40rpx;
 }
 
 .zan-cell {
   padding: 15px;
 }
 
-.info_title{
+.info_title {
   padding: 20rpx;
 }
 
-.info-ft::after{
-  height:16rpx !important;
-  width:16rpx !important;
-  border-width:2rpx 2rpx 0 0 !important;
+.info-ft::after {
+  height: 16rpx !important;
+  width: 16rpx !important;
+  border-width: 2rpx 2rpx 0 0 !important;
 }
 
-.avatarUrl{
+.userinfo-wrap {
+  position: relative;
+  padding-left: 180rpx;
+}
+
+.userinfo-wrap .user-img {
+  position: absolute;
+  left: 30rpx;
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
+  border: 4rpx solid #fff;
+}
+
+.userinfo-wrap .user-name {
+  font-size: 32rpx;
+  padding-top: 15rpx;
+  margin-bottom: 10rpx;
+}
+
+.userinfo-wrap .user-id {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, .8);
+}
+
+.modify-userinfo {
+  position: absolute;
+  right: 50rpx;
+  font-size: 24rpx;
+  color: #fff;
+  top: 80rpx;
+  padding-right: 10rpx;
+}
+
+.modify-userinfo::after {
+  content: '';
+  width: 12rpx;
+  height: 12rpx;
+  border: 2rpx solid #fff;
+  border-left: 0;
+  border-bottom: 0;
+  position: absolute;
+  transform: rotate(45deg);
+  right: -10rpx;
+  top: 10rpx;
 }

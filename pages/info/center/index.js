@@ -18,6 +18,12 @@ Page({
 
   },
 
+  navtoSetting () {
+    wx.navigateTo({
+      url: '/pages/info/setting/index'
+    })
+  },
+
   // 下拉刷新
   onPullDownRefresh () {
     wx.showNavigationBarLoading();

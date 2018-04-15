@@ -23,7 +23,7 @@
   margin: 10rpx 0;
   padding: 0rpx 10rpx;
   font-size: 24rpx;
-  border: 4rpx solid #fb4a0a;
+  border: 3rpx solid #fb4a0a;
   background-color: #fff7f4;
   display: inline-block;
 }
@@ -70,4 +70,20 @@
 
 .classify-item:nth-child(4n) {
   margin-right: 0;
+}
+
+.zan-card__detail {
+  min-height: 200rpx;
+}
+
+.c-footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.no-data{
+  font-size: 32rpx;
+  text-align: center;
+  color: #666;
+  margin: 50rpx 0;
 }

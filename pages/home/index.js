@@ -1,5 +1,4 @@
 //index.js
-//获取应用实例
 const app = getApp()
 
 Page({
@@ -49,12 +48,17 @@ Page({
     ]
   },
   onLoad: function () {
+    this.getUserInfo()
+    // this.getActivity()
+  },
+
+  getUserInfo () {
     let _this = this
     let us = wx.getStorageSync('userInfo')
     if (us) {
       _this.setData({
         userInfo: JSON.parse(us)
-      })      
+      })
     } else {
       app.getUserInfo(function (userInfo) {
         if (userInfo) {
@@ -62,7 +66,25 @@ Page({
             userInfo: userInfo
           })
         }
-      })      
+      })
     }
   },
+
+  getActivity () {
+    console.log(app.globalData.openid)
+    app.postRequest('/wx/activity/activity', 'POST', { consumerId: app.globalData.openid }, (res) => {
+      if (res.data.success) {
+        this.setData({
+          classifyList: res.data.item,
+          categoryId: res.data.item[0].id
+        })
+        this.getActivityList(res.data.item[0].id)
+      }
+    })
+  },
+  addCard(){
+    wx.navigateTo({
+      url: '../newCard/newCard',
+    })
+  }
 })

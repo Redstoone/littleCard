@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
-	"appid": "wx78d21906d8f5d871",
+	"appid": "wxae25d8be817d714d",
 	"projectname": "wxLittleCard",
 	"condition": {
 		"search": {
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -40,7 +40,7 @@
 				{
 					"id": 1,
 					"name": "info",
-					"pathName": "pages/info/index/index",
+					"pathName": "pages/info/center/index",
 					"query": ""
 				},
 				{
@@ -68,9 +68,51 @@
 					"query": ""
 				},
 				{
-					"id": 6,
-					"name": "发表日记",
-					"pathName": "pages/clock/clock",
+					"id": -1,
+					"name": "参加活动",
+					"pathName": "pages/activity/activity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "设置",
+					"pathName": "pages/info/setting/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的赞",
+					"pathName": "pages/info/zan/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/cardComment/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/info/setting/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/cardComment/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/cardComment/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡评论",
+					"pathName": "pages/cardComment/index",
 					"query": ""
 				}
 			]

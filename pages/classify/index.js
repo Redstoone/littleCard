@@ -2,66 +2,48 @@ const app = getApp()
 
 Page({
   data: {
-    classifyList: [
-      {
-        cId: 0,
-        name: '全部'
-      },
-      {
-        cId: 0,
-        name: '阅读'
-      }
-      ,
-      {
-        cId: 0,
-        name: '外语'
-      },
-      {
-        cId: 0,
-        name: '亲子'
-      },
-      {
-        cId: 0,
-        name: '技能'
-      },
-      {
-        name: '习惯'
-      },
-      {
-        cId: 0,
-        name: '运动'
-      },
-      {
-        cId: 0,
-        name: '艺术'
-      }
-    ],
+    classifyList: [],
+    activityList: [],
     classifyActive: 0,
-    activityList: [{
-      id: 1234,
-      img: 'https://t11.baidu.com/it/u=741657904,1441720405&fm=173&app=12&f=JPEG?w=640&h=426&s=1B304980F4A718AC232588920300C0B3',
-      name: '红烧牛肉',
-      desc: '每天一课，从零开始学习钢琴',
-      accout: 10733,
-      num: 54223
-    }]
+    categoryId: null
   },
   onLoad: function () {
-    // this.getActivityList();
+    this.getActivityCategoryList();
   },
 
   // 切换分类
   bindClassifyClick (e) {
-    let _idx = e.target.dataset.idx;
-    let _item = e.target.dataset.item;
+    let _idx = e.target.dataset.idx
     this.setData({
-      classifyActive: e.target.dataset.idx
+      classifyActive: e.target.dataset.idx,
+      categoryId: e.target.dataset.cid
+    })
+    this.getActivityList(e.target.dataset.cid)
+  },
+
+  // 获取活动分类
+  getActivityCategoryList () {
+    app.postRequest('/wx/category/record', 'POST', '', (res) => {
+      if (res.data.success) {
+        this.setData({
+          classifyList: res.data.item,
+          categoryId: res.data.item[0].id
+        })
+        this.getActivityList(res.data.item[0].id)
+      }
     })
   },
 
   // 获取活动列表
-  getActivityList () {
-
+  getActivityList(categoryId) {
+    app.postRequest('/wx/activity/activitys', 'POST', { categoryId, categoryId }, (res) => {
+      console.log(res)
+      if (res.data.success) {
+        this.setData({
+          activityList: res.data.rows
+        })
+      }
+    })
   },
 
   // 跳转活动详情页面

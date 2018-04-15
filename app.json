@@ -7,6 +7,9 @@
     "pages/activity/activity",
     "pages/classify/index",
     "pages/info/center/index",
+    "pages/info/zan/index",
+    "pages/info/setting/index",
+    "pages/cardComment/index",
     "pages/clock/clock"
   ],
   "window": {

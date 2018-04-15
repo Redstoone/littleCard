@@ -10,7 +10,7 @@ App({
         wx.getUserInfo({
           success: function (res) {
             _this.globalData.userInfo = res.userInfo
-            // _this.getOpenId(e.code)
+            _this.getOpenId(e.code)
             typeof cb == "function" && cb(_this.globalData.userInfo)
           }, fail: function(res) {
             wx.showModal({
@@ -25,7 +25,7 @@ App({
                       wx.getUserInfo({
                         success: function (res) {
                           _this.globalData.userInfo = res.userInfo
-                          // _this.getOpenId(e.code)
+                          _this.getOpenId(e.code)
                           typeof cb == "function" && cb(_this.globalData.userInfo)
                         }
                       })
@@ -39,18 +39,38 @@ App({
       }
     })
   },
+  getOpenId (code) {
+    let _this = this
+    this.postRequest("/wx/wechat/openid", 'POST', { code: code }, (res) => {
+      if (res.data.success) {
+        _this.globalData.openid = res.data.openid
+        this.postRequest("/wx/wechat/logged", 'POST', {
+          nickname: this.globalData.userInfo.nickName,
+          headicon: this.globalData.userInfo.avatarUrl,
+          gender: this.globalData.userInfo.gender,
+          province: this.globalData.userInfo.province,
+          city: this.globalData.userInfo.city,
+          county: this.globalData.userInfo.country
+        }, (rst) => {
+          if (rst.data.success){
+            console.log('login success')
+          }
+        })
+      }
+    })
+  },
   postRequest: function (url, method, data, fn) {
     let _this = this
     let userInfo = {}
     if (this.globalData.userInfo) {
       userInfo = this.globalData.userInfo
     } else {
-      userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+      //userInfo = JSON.parse(wx.getStorageSync('userInfo'))
     }
     let para = {
-      openid: userInfo.openid
+      id: this.globalData.openid
     }
-    let datas = Object.assign(para, data) 
+    let datas = Object.assign(para, data)
     wx.request({
       url: _this.globalData.host + url,
       method: method,
@@ -65,6 +85,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'https://api.nobebe.net/wx/',
+    host: 'https://xgh.smarttinfo.com',
+    nickname: '',
+    headicon: '',
+    openid: null
   }
 })
