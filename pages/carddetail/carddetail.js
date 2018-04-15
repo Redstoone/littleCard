@@ -6,26 +6,46 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:[
-      { name: '活动名称', place: '请输入活动名称', isInp: true, value:'',id:0,txtnum:0},
-      { name: '群主简介', place: '请输入群主简介', isInp: false, value: '', id: 1, txtnum: 0},
-      { name: '打卡公告', place: '请输入打卡公告', isInp: false, value: '', id: 2, txtnum: 0},
+    list: [{
+        name: '活动名称',
+        place: '请输入活动名称',
+        isInp: true,
+        value: '',
+        id: 0,
+        txtnum: 0
+      },
+      {
+        name: '群主简介',
+        place: '请输入群主简介',
+        isInp: false,
+        value: '',
+        id: 1,
+        txtnum: 0
+      },
+      {
+        name: '打卡公告',
+        place: '请输入打卡公告',
+        isInp: false,
+        value: '',
+        id: 2,
+        txtnum: 0
+      },
     ],
-    wxtxt:'',
-    id:''
+    wxtxt: '',
+    id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  txtChange(e){
+  txtChange(e) {
     var that = this
     var idx = Number(e.currentTarget.dataset.index);
-    if (idx == 0){
+    if (idx == 0) {
       that.setData({
         'list[0].txtnum': e.detail.value.length,
         'list[0].value': e.detail.value
-      })           
+      })
     }
     if (idx == 1) {
       that.setData({
@@ -38,15 +58,15 @@ Page({
         'list[2].txtnum': e.detail.value.length,
         'list[2].value': e.detail.value
       })
-    }   
+    }
   },
-  wxtxt(e){
+  wxtxt(e) {
     console.log(e.detail.value)
-      var that=this;
+    var that = this;
 
-      that.setData({
-        wxtxt: e.detail.value
-      })
+    that.setData({
+      wxtxt: e.detail.value
+    })
   },
   next() {
     if (this.data.list[0].value.length == 0) {
@@ -82,20 +102,26 @@ Page({
       return false;
     }
 
-    app.postRequest('/wx/activity/detail/add_second', 'POST', { mainDescription: this.data.list[1].value, activityNotice: this.data.list[2].value, mainWx: this.data.wxtxt, consumerId: app.globalData.openid, id: this.data.id }, (res) => {
-        if (res.data.success) {
-          wx.navigateTo({
-            url: '../lookdetail/carddetail',
-          })
-        }
-      })
+    app.postRequest('/wx/activity/detail/add_second', 'POST', {
+      mainDescription: this.data.list[1].value,
+      activityNotice: this.data.list[2].value,
+      mainWx: this.data.wxtxt,
+      activityId: this.data.id,
+      // id: app.globalData.openid
+    }, (res) => {
+      if (res.data.success) {
+        wx.navigateTo({
+          url: '../lookdetail/lookdetail',
+        })
+      }
+    })
   },
-  onLoad(e){
+  onLoad(e) {
     var that = this;
     that.setData({
       'list[0].txtnum': e.title.length,
       'list[0].value': e.title,
-      id:e.id
+      id: e.id
     })
   }
 })
