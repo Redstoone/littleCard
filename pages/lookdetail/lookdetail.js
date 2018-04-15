@@ -1,4 +1,5 @@
 // pages/lookdetail/lookdetail.js
+const app = getApp()
 Page({
 
   /**
