@@ -32,15 +32,19 @@ page {
 .info-item input {
   text-align: right
 }
-.info-item .left{
+
+.info-item .left {
   height: 1.4rem;
   line-height: 1.4rem;
 }
-.info-item .right{
+
+.info-item .right {
   padding-right: 30rpx;
   position: relative;
+  min-height: 42rpx;
 }
-.info-item .right:after{
+
+.info-item .right:after {
   content: '';
   width: 14rpx;
   height: 14rpx;
@@ -68,10 +72,12 @@ page {
   position: relative;
   border-radius: 50%;
 }
+
 .infoimg image {
   border-radius: 50%;
 }
-.infobgimg image{
+
+.infobgimg image {
   border-radius: 10rpx;
 }
 
@@ -118,7 +124,7 @@ page {
   color: #ffffff
 }
 
-.hr{
+.hr {
   width: 100%;
   height: 20rpx;
   background-color: #f9f9f9;

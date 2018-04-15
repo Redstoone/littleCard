@@ -1,16 +1,17 @@
 const app = getApp()
 Page({
   data: {
-    headicon: 'https://t10.baidu.com/it/u=3788365272,318725089&fm=173&app=25&f=JPEG?w=640&h=363&s=361016CC28B3EA475C13653D0300505A',
-    nickname: 'ken',
-    region: ['北京市', '北京市', ''],
+    headicon: '',
+    nickname: '',
+    region: ['北京市', '', ''],
     customItem: '全部',
     genderArray: ['未知', '男', '女'],
     gender: 0,
     genderName: '未知',
     phone: '',
     realname: '',
-    brithDate: ''
+    brithDate: '',
+    sign: ''
   },
 
   onLoad () {
@@ -19,8 +20,22 @@ Page({
 
   getUserinfo () {
     app.postRequest('/wx/consumer/record', 'POST', { consumerId: app.globalData.openid}, (res) => {
+      let _genderName = '未知'
+      if (res.data.item.gender === 1) {
+        _genderName = '男'
+      } else if (res.data.item.gender === 2) {
+        _genderName = '女'
+      }
       this.setData({
-        user: res.data.user
+        headicon: res.data.item.headicon,
+        gender: res.data.item.gender,
+        nickname: res.data.item.nickname,
+        genderName: _genderName,
+        brithDate: res.data.item.brithDate,
+        sign: res.data.item.sign,
+        realname: res.data.item.realname,
+        phone: res.data.item.phone,
+        region: [res.data.item.province, res.data.item.city, '']
       })
     })
   },
@@ -95,16 +110,31 @@ Page({
     app.postRequest('/wx/consumer/merged', 'POST', 
     { 
       id: app.globalData.openid,
-      nickname: this.globalData.userInfo.nickName,
-      headicon: this.globalData.userInfo.avatarUrl,
-      gender: this.globalData.userInfo.gender,
-      province: this.globalData.userInfo.province,
-      city: this.globalData.userInfo.city,
-      county: this.globalData.userInfo.country
+      nickname: this.data.nickname,
+      headicon: this.data.headicon,
+      gender:  this.data.gender,
+      province: this.data.region[0],
+      city: this.data.region[1],
+      county: this.data.region[2],
+      phone: this.data.phone,
+      realname: this.data.realname,
+      sign: this.data.sign,
+      brithDate: this.data.brithDate
     }, (res) => {
-      this.setData({
-        user: res.data.user
-      })
+      console.log(res)
+      if (res.data.success) {
+        wx.showToast({
+          title: '修改个人资料成功',
+          icon: 'success',
+          duration: 1500
+        })
+      } else {
+        wx.showToast({
+          title: '修改个人资料失败',
+          icon: 'error',
+          duration: 1500
+        })
+      }
     })
   }
 })

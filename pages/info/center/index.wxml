@@ -4,7 +4,7 @@
       <view class="userinfo-wrap">
         <image class="user-img" mode="aspectFill" src="{{avatarUrl}}" />
         <view class="user-name cfff">{{nickName}}</view>
-        <view class="user-id cfff">用户ID: 123456</view>
+        <!-- <view class="user-id cfff">用户ID: 123456</view> -->
       </view>
       <view class="modify-userinfo" bindtap='navtoSetting'> 修改个人资料 </view>
     </view>
@@ -26,21 +26,27 @@
     </navigator> -->
     <navigator class="zan-cell zan-cell--access" url="/pages/order">
       <view class="zan-cell__bd c000">
-        <!-- <image class="item_img" src="../images/icon_my_02.png" /> -->
+        <view class="center-icon ci1">
+          <i class="iconfont icon-communityfill"></i>
+        </view>
         <view class="text">我的评论</view>
       </view>
       <view class="zan-cell__ft info-ft"></view>
     </navigator>
     <navigator class="zan-cell zan-cell--access" url="/pages/info/zan/index">
       <view class="zan-cell__bd c000">
-        <!-- <image class="item_img" src="../images/icon_my_02.png" /> -->
+        <view class="center-icon ci2">
+          <i class="iconfont icon-xin1"></i>
+        </view>
         <view class="text">我的赞</view>
       </view>
       <view class="zan-cell__ft info-ft"></view>
     </navigator>
     <navigator class="zan-cell zan-cell--access" url="/pages/info/setting/index">
       <view class="zan-cell__bd c000">
-        <!-- <image class="item_img" src="../images/icon_my_03.png" /> -->
+        <view class="center-icon ci3">
+          <i class="iconfont icon-setting"></i>
+        </view>
         <view class="text">设置</view>
       </view>
       <view class="zan-cell__ft info-ft"></view>

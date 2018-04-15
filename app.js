@@ -8,10 +8,11 @@ App({
     wx.login({
       success: function (e) {
         wx.getUserInfo({
+          lang: 'zh_CN',
           success: function (res) {
             _this.globalData.userInfo = res.userInfo
             _this.getOpenId(e.code)
-            wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
+            // wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
             typeof cb == "function" && cb(_this.globalData.userInfo)
           }, fail: function(res) {
             wx.showModal({
@@ -41,11 +42,10 @@ App({
     })
   },
   getOpenId (code) {
-    let _this = this
     this.postRequest("/wx/wechat/openid", 'POST', { code: code }, (res) => {
       if (res.data.success) {
-        _this.globalData.openid = res.data.openid
-        wx.setStorageSync('openid', res.data.openid)
+        this.globalData.openid = res.data.openid
+        // wx.setStorageSync('openid', res.data.openid)
         this.postRequest("/wx/wechat/logged", 'POST', {
           id: res.data.openid,
           nickname: this.globalData.userInfo.nickName,
@@ -64,12 +64,12 @@ App({
   },
   postRequest: function (url, method, data, fn) {
     let _this = this
-    let userInfo = {}
-    if (this.globalData.userInfo) {
-      userInfo = this.globalData.userInfo
-    } else {
-      //userInfo = JSON.parse(wx.getStorageSync('userInfo'))
-    }
+    // let userInfo = {}
+    // if (this.globalData.userInfo) {
+    //   userInfo = this.globalData.userInfo
+    // } else {
+    //   //userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+    // }
     let datas = Object.assign(data)
     wx.request({
       url: _this.globalData.host + url,

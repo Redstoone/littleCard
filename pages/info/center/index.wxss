@@ -71,3 +71,33 @@
   right: -10rpx;
   top: 10rpx;
 }
+
+.center-icon {
+  width: 50rpx;
+  height: 50prpx;
+  border-radius: 8rpx;
+  background-color: #1dafaa;
+  display: inline-block;
+  margin-right: 16rpx;
+  text-align: center;
+}
+
+.ci1 {
+  background-color: #4b96f1;
+}
+
+.ci2 {
+  background-color: #fd6869;
+}
+
+.ci3 {
+  background-color: #6089e8;
+}
+
+.center-icon .iconfont {
+  color: #fff;
+}
+
+.zan-cell__bd .text {
+  display: inline-block;
+}

@@ -1,0 +1,64 @@
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-check:before { content: "\e645"; }
+
+.icon-close:before { content: "\e646"; }
+
+.icon-time:before { content: "\e65f"; }
+
+.icon-camera:before { content: "\e665"; }
+
+.icon-comment:before { content: "\e667"; }
+
+.icon-remind:before { content: "\e6b2"; }
+
+.icon-home:before { content: "\e6b8"; }
+
+.icon-share:before { content: "\e6f3"; }
+
+.icon-female:before { content: "\e71a"; }
+
+.icon-male:before { content: "\e71c"; }
+
+.icon-people:before { content: "\e736"; }
+
+.icon-attentionfill:before { content: "\e73c"; }
+
+.icon-attention:before { content: "\e73d"; }
+
+.icon-communityfill:before { content: "\e740"; }
+
+.icon-community:before { content: "\e741"; }
+
+.icon-xin:before { content: "\e613"; }
+
+.icon-my:before { content: "\e78b"; }
+
+.icon-myfill:before { content: "\e78c"; }
+
+.icon-xin1:before { content: "\e640"; }
+
+.icon-voicelight:before { content: "\e7b9"; }
+
+.icon-video:before { content: "\e7c8"; }
+
+.icon-02:before { content: "\e606"; }
+
+.icon-home_light:before { content: "\e7d4"; }
+
+.icon-home_fill_light:before { content: "\e7d8"; }
+
+.icon-camera_light:before { content: "\e7dd"; }
+
+.icon-share_light:before { content: "\e7e0"; }
+
+.icon-fenlei:before { content: "\e630"; }
+
+.icon-icon--:before { content: "\e75f"; }
+
