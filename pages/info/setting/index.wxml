@@ -59,18 +59,18 @@
       <input placeholder='请输入手机号' value="{{phone}}" bindinput="camPhoneTxt"></input>
     </view>
   </view>
-  <!-- <view class="info-item clear">
+  <view class="info-item clear">
     <view class="left">
       出生日期
     </view>
     <view class="right">
-      <picker mode="date" value="{{date}}" start="1950-09-01" end="2035-09-01" bindchange="bindDateChange">
+      <picker mode="date" value="{{brithDate}}" start="1950-09-01" end="2035-09-01" bindchange="bindDateChange">
         <view class="picker">
-          {{date}}
+          {{brithDate}}
         </view>
       </picker>
     </view>
-  </view> -->
+  </view>
   
 
   <view class="info-item clear">
@@ -81,14 +81,14 @@
       <input placeholder='请输入真实名字' value="{{realname}}" bindinput="camRealnameTxt"></input>
     </view>
   </view>
-  <!-- <view class="info-item clear">
+  <view class="info-item clear">
     <view class="left">
-      兴趣标签
+      个性签名
     </view>
     <view class="right">
-      <input placeholder='选择兴趣，让别人更了解你' bindinput="camNameTxt"></input>
+      <input placeholder='一句话介绍你自己' value="{{sign}}" bindinput="camSignTxt"></input>
     </view>
-  </view> -->
+  </view>
 
   <view class='infoBtn' bindtap='submit'> 保存 </view>
 </view>
