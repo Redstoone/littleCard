@@ -51,6 +51,7 @@
   line-height: 32rpx;
   padding-right: 20rpx;
   margin-right: 20rpx;
+  font-size: 24rpx;
 }
 
 .classify-item, .classify-item:nth-child(even) {
@@ -81,9 +82,13 @@
   bottom: 0;
 }
 
-.no-data{
+.no-data {
   font-size: 32rpx;
   text-align: center;
   color: #666;
   margin: 50rpx 0;
+}
+
+.fz12{
+  font-size: 24rpx;
 }

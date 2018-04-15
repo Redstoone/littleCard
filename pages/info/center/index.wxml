@@ -2,8 +2,8 @@
   <view class="header">
     <view class="header_content">
       <view class="userinfo-wrap">
-        <image class="user-img" mode="aspectFill" src="{{avatarUrl}}" />
-        <view class="user-name cfff">{{nickName}}</view>
+        <image class="user-img" mode="aspectFill" src="{{userInfo.headicon}}" />
+        <view class="user-name cfff">{{userInfo.nickname}}</view>
         <!-- <view class="user-id cfff">用户ID: 123456</view> -->
       </view>
       <view class="modify-userinfo" bindtap='navtoSetting'> 修改个人资料 </view>
@@ -24,7 +24,7 @@
       </view>
       <view class="zan-cell__ft info-ft"></view>
     </navigator> -->
-    <navigator class="zan-cell zan-cell--access" url="/pages/order">
+    <navigator class="zan-cell zan-cell--access" url="/pages/info/comment/index">
       <view class="zan-cell__bd c000">
         <view class="center-icon ci1">
           <i class="iconfont icon-communityfill"></i>

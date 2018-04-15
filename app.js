@@ -26,7 +26,7 @@ App({
                     success: (r) => {
                       wx.getUserInfo({
                         success: function (res) {
-                          _this.globalData.userInfo = res.userInfo
+                          // _this.globalData.userInfo = res.userInfo
                           _this.getOpenId(e.code)
                           typeof cb == "function" && cb(_this.globalData.userInfo)
                         }
@@ -42,21 +42,28 @@ App({
     })
   },
   getOpenId (code) {
+    let _this = this
     this.postRequest("/wx/wechat/openid", 'POST', { code: code }, (res) => {
       if (res.data.success) {
         this.globalData.openid = res.data.openid
         // wx.setStorageSync('openid', res.data.openid)
-        this.postRequest("/wx/wechat/logged", 'POST', {
-          id: res.data.openid,
-          nickname: this.globalData.userInfo.nickName,
-          headicon: this.globalData.userInfo.avatarUrl,
-          gender: this.globalData.userInfo.gender,
-          province: this.globalData.userInfo.province,
-          city: this.globalData.userInfo.city,
-          county: this.globalData.userInfo.country
-        }, (rst) => {
-          if (rst.data.success){
-            console.log('login success')
+        _this.postRequest('/wx/consumer/record', 'POST', { consumerId: res.data.openid }, (rst) => {
+          if (rst.data.item) {
+            _this.globalData.userInfo = rst.data.item
+          } else {
+            _this.postRequest("/wx/wechat/logged", 'POST', {
+              id: res.data.openid,
+              nickname: _this.globalData.userInfo.nickName,
+              headicon: _this.globalData.userInfo.avatarUrl,
+              gender: _this.globalData.userInfo.gender,
+              province: _this.globalData.userInfo.province,
+              city: _this.globalData.userInfo.city,
+              county: _this.globalData.userInfo.country
+            }, (rst) => {
+              if (rst.data.success){
+                console.log('login success')
+              }
+            })
           }
         })
       }

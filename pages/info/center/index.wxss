@@ -40,9 +40,10 @@
 }
 
 .userinfo-wrap .user-name {
-  font-size: 32rpx;
+  font-size: 36rpx;
   padding-top: 15rpx;
   margin-bottom: 10rpx;
+  line-height: 100rpx;
 }
 
 .userinfo-wrap .user-id {
@@ -111,6 +112,6 @@
   color: #ccc;
 }
 
-.zan-panel{
+.zan-panel {
   margin-top: 0
 }

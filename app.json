@@ -9,6 +9,7 @@
     "pages/info/center/index",
     "pages/info/zan/index",
     "pages/info/setting/index",
+    "pages/info/comment/index",
     "pages/cardComment/index",
     "pages/clock/clock"
   ],

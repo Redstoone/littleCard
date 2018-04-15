@@ -5,72 +5,114 @@ page {
   color: #333333
 }
 
-.clear::after {
-  display: block;
-  clear: both;
-  content: "";
-  height: 0;
-  overflow: hidden;
-  visibility: hidden
-}
-
-.left {
-  float: left
-}
-
-.right {
-  float: right
-}
-
-.info-item {
-  padding: 20rpx;
-  background: #ffffff;
+.recommand-group {
   width: 100%;
-  box-sizing: border-box;
 }
 
-.info-item input {
-  text-align: right
+.recommand-group .recommand-item {
+  padding: 0 20rpx;
 }
 
-.info-item .left {
-  height: 1.4rem;
-  line-height: 1.4rem;
-}
-
-.logotxt {
-  margin-top: 40rpx
-}
-
-.size {
-  font-size: 24rpx;
-  color: #999999
-}
-
-.infoimg {
-  width: 110rpx;
-  height: 110rpx;
-  position: relative;
-}
-
-.avart-img {
-  width: 70rpx;
-  height: 70rpx;
+.recommand-item .item-top-info .pic-img {
+  display: inline-block;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
-  position: absolute;
-  left: 20rpx;
 }
 
-.info-item {
+.recommand-item .item-top-info {
+  padding: 20rpx 0;
+}
+
+.recommand-item .item-top-info .item-title-info {
   position: relative;
-  padding-left: 120rpx;
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 120rpx);
+  height: 80rpx;
+  margin-left: 20rpx;
 }
 
-.info-item .name{
-  line-height: 32rpx;
+.recommand-item .item-title {
+  font-size: 32rpx;
+  color: #065eb5
 }
-.info-item .time {
-  font-size: 22rpx;
-  line-height: 26rpx;
-  color: #999;
+
+.recommand-item .item-time-tips {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 24rpx;
+  color: #bbb;
+}
+
+.recommand-item .item-time-tips text:nth-of-type(2) {
+  padding: 0 20rpx;
+}
+
+.recommand-item .item-remark {
+  padding: 0 0 20rpx 0;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.recommand-item .item-desc {
+  margin: 10rpx 0 20rpx 0;
+  background-color: #f0f0f0;
+}
+
+.recommand-item .item-desc image {
+  display: inline-block;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.recommand-item .item-card-info {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 120rpx);
+  height: 80rpx;
+  margin-left: 20rpx;
+}
+
+.recommand-item .item-card-info .item-card-title {
+  font-size: 28rpx;
+  color: #333;
+  vertical-align: top;
+}
+
+.recommand-item .item-card-info .item-member-num {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 24rpx;
+  color: #bbb;
+}
+
+.item-card-info .item-arrow {
+  position: absolute;
+  top: 50%;
+  right: 20rpx;
+  margin-top: -12rpx;
+  font-size: 24rpx;
+  color: #bbb;
+}
+
+.recommand-item .tool-bar {
+  padding: 10rpx 0 15rpx 0;
+}
+
+.recommand-item .tool-bar text {
+  display: table-cell;
+  width: 1%;
+  text-align: center;
+  color: #888;
+  font-size: 26rpx;
+}
+
+.recommand-item .address {
+  font-size: 26rpx;
+  color: #6784e6;
 }
