@@ -2,7 +2,7 @@
 <view class="contant">
   <view class='cont_title fz30 c000'>活动名称</view>
   <view class="cont_input">
-    <input class='fz28' placeholder='输入活动标题'></input>
+    <input class='fz28' placeholder='输入活动标题' value='{{title}}' bindinput='inputTxt'></input>
   </view>
 </view> 
 <view class='backg'></view>
@@ -19,18 +19,18 @@
   </radio-group> 
   <view class="clear setTime">
       <view class="left fz26 c666">开始日期:</view>
-       <picker  class="left" mode="date" value="{{date}}" start="2018-01-01" end="2200-01-01" bindchange="bindDateChange">  
+       <picker  class="left" mode="date" value="{{startTime}}" start="2018-01-01" end="2200-01-01" bindchange="startTimeChange">  
         <view class="picker fz26 c666">  
-          {{dates}}  
+          {{startTime}}  
         </view>  
         <image class='pickerImg' src='../../images/index/time.png'></image>
       </picker>  
   </view>
   <view class="clear setTime">
       <view class="left fz26 c666">结束日期:</view>
-       <picker  class="left" mode="date" value="{{date}}" start="2018-01-01" end="2200-01-01" bindchange="bindDateChange">  
+       <picker  class="left" mode="date" value="{{overTime}}" start="2018-01-01" end="2200-01-01" bindchange="overTimeChange">  
         <view class="picker fz26 c666">  
-          {{dates}}  
+          {{overTime}}  
         </view>  
         <image class='pickerImg' src='../../images/index/time.png'></image>
       </picker>  
@@ -39,4 +39,4 @@
 </view>
 <view class='backg'></view>
 
-<view class="button nextbtn fz32 cfff">下一步</view>
+<view class="button nextbtn fz32 cfff" bindtap='next'>下一步</view>

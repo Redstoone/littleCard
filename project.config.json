@@ -58,13 +58,13 @@
 				{
 					"id": -1,
 					"name": "查看详情",
-					"pathName": "\"pages/lookdetail/lookdetail\",",
+					"pathName": "pages/lookdetail/lookdetail",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "查看详情",
-					"pathName": "pages/lookdetail/lookdetail",
+					"name": "参加活动",
+					"pathName": "pages/activity/activity",
 					"query": ""
 				},
 				{

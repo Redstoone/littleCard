@@ -68,7 +68,7 @@ App({
     if (this.globalData.userInfo) {
       userInfo = this.globalData.userInfo
     } else {
-      userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+      //userInfo = JSON.parse(wx.getStorageSync('userInfo'))
     }
     let datas = Object.assign(data)
     wx.request({

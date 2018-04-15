@@ -83,5 +83,10 @@ Page({
         })
       }
     })
+  },
+  addCard(){
+    wx.navigateTo({
+      url: '../newCard/newCard',
+    })
   }
 })

@@ -5,7 +5,7 @@
 		<view class="user-bg"></view>
 	</view>
 	<!-- add card -->
-	<view class="add-card">
+	<view class="add-card" bindtap='addCard'>
 		<text class="">+<text class="add-card-tips">新建打卡</text></text>
 	</view>
 	<view class="my-card-list">
@@ -30,7 +30,7 @@
 	<view class="underline"></view>
 	<!-- recommand -->
 	<view class="recommand-group">
-		<block wx:for="{{recommand}}" wx:key="{{index}}">
+		<block wx:for="{{recommand}}" wx:key="idx">
 			<view class="recommand-item">
 				<view class="item-top-info">
 					<image class="pic-img" src="{{item.pic}}"></image>
