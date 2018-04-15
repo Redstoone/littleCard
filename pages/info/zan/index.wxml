@@ -1,15 +1,23 @@
 <view class="container">
-  <view class="info-item clear">
-    <view class="left">
-      <image class="avart-img" src='{{headicon}}'></image>
-      <view class="user-info">
-        <view class="name">Ken</view>
-        <view class="icon"></view>
-        <view class="time">刚刚</view>
+  <view class="" wx:if="{{zanList.length > 0}}">
+    <view class="info-item clear" wx:for="{{zanList}}" wx:key="{{index}}">
+      <view class="left">
+        <image class="avart-img" src='{{headicon}}'></image>
+        <view class="user-info">
+          <view class="name">{{item.name}}</view>
+          <view class="icon"></view>
+          <view class="time">{{item.time}}</view>
+        </view>
+      </view>
+      <view class="right">
+        <image class="infoimg" src='{{headicon}}'></image>
       </view>
     </view>
-    <view class="right">
-      <image class="infoimg" src='{{headicon}}'></image>
+  </view>
+  <view class="no-data" wx:else>
+    <view class="nd-icon">
+      <i class="iconfont icon-02"></i>
     </view>
+    <view class="txt">您还没有赞过别人哦~~~</view>
   </view>
 </view>

@@ -101,3 +101,16 @@
 .zan-cell__bd .text {
   display: inline-block;
 }
+
+.no-data {
+  margin-top: 50px;
+}
+
+.no-data .nd-icon .iconfont {
+  font-size: 100rpx;
+  color: #ccc;
+}
+
+.zan-panel{
+  margin-top: 0
+}

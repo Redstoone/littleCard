@@ -111,7 +111,7 @@ Page({
     }, (res) => {
       if (res.data.success) {
         wx.navigateTo({
-          url: '../lookdetail/lookdetail',
+          url: '../lookdetail/lookdetail?acId' + this.data.id,
         })
       }
     })

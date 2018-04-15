@@ -66,9 +66,10 @@ page {
   padding-left: 120rpx;
 }
 
-.info-item .name{
+.info-item .name {
   line-height: 32rpx;
 }
+
 .info-item .time {
   font-size: 22rpx;
   line-height: 26rpx;

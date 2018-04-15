@@ -18,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this 
-    app.postRequest('/wx/activity/detail/singleDetail', 'POST', { }, (res) => {
+    app.postRequest('/wx/activity/detail/singleDetail', 'POST', { activityId: options.acId}, (res) => {
       if (res.data.success) {
           console.log(res)
           that.staData({
