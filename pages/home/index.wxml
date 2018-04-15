@@ -5,8 +5,11 @@
 		<view class="user-bg"></view>
 	</view>
 	<!-- add card -->
-	<view class="add-card" bindtap='addCard'>
+	<view class="add-card" bindtap='addCard' wx:if="{{myCardList.length > 0}}">
 		<text class="">+<text class="add-card-tips">新建打卡</text></text>
+	</view>
+	<view class="add-card add-card2" bindtap='addCard' wx:else>
+		<text class="">+ <text class="add-card-tips">新建打卡</text> </text>
 	</view>
 	<view class="my-card-list">
 		<block wx:for="{{myCardList}}" wx:key="{{index}}">

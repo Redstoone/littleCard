@@ -6,26 +6,15 @@ Page({
   },
 
   onLoad() {
-    app.postRequest('/wx/consumer/record', 'POST', { consumerId: app.globalData.openid }, (ret) => {
-      this.setData({
-        user: ret.data.item
-      })
-    })
     this.getCommandList()
   },
 
   getCommandList () {
-    
-    // app.postRequest('/wx/cardRecordComment/record', 'POST', { consumerId: app.globalData.openid }, (res) => {
-    app.postRequest('/wx/cardRecordComment/record', 'POST', { consumerId: 1 }, (res) => {
+    app.postRequest('/wx/cardRecordComment/record', 'POST', { consumerId: app.globalData.openid }, (res) => {
       let _recommand = res.data.item
-      _recommand.map((item, index) => {
-        let _item = item
-        _item.timeFormat = this.getTimeFormatText(_item.createTime)
-        return _item
-      })
       this.setData({
-        recommand: _recommand
+        recommand: res.data.item,
+        user: res.data.user
       })
     })
   },

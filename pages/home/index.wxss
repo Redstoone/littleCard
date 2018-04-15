@@ -219,3 +219,14 @@
 	border-bottom-left-radius: 50%;
 	border-bottom-right-radius: 50%;
 }
+
+.add-card2 {
+	text-align: center;
+	padding: 30rpx;
+	border: 1px solid #ddd;
+	width: calc(100% - 60rpx);
+	margin: 30rpx auto;
+	box-sizing: border-box;
+	box-shadow: 0 0 4rpx 1rpx rgba(200, 200, 200, 0.5);
+	border-radius: 8rpx;
+}

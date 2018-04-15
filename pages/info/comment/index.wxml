@@ -2,13 +2,13 @@
   <view class="recommand-group" wx:if="{{recommand.length > 0}}">
     <block wx:for="{{recommand}}" wx:key="{{index}}">
       <view class="recommand-item">
-        <view class="item-top-info">
-          <view class="">
+        <view class="item-top-info user-header">
+          <view class="user-avater">
             <image class="pic-img" src="{{user.headicon}}"></image>
-            <view class="icon-gender i-male">
+            <view class="icon-gender i-male" wx:if="{{user.gender == 1}}">
               <i class="iconfont icon-male"></i>
             </view>
-            <view class="icon-gender i-female">
+            <view class="icon-gender i-female" wx:elif="{{user.gender == 2}}">
               <i class="iconfont icon-female"></i>
             </view>
           </view>
