@@ -9,7 +9,7 @@
 		<text class="">+<text class="add-card-tips">新建打卡</text></text>
 	</view>
 	<view class="my-card-list">
-		<block wx:for="{{myCardList}}" wx:key="idx">
+		<block wx:for="{{myCardList}}" wx:key="{{index}}">
 			<view class="my-card-item">
 				<image class="card-item-img" src="{{item.imgurl}}"></image>
 				<view class="card-item-info">
