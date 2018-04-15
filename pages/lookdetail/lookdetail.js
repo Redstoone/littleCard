@@ -1,18 +1,35 @@
 // pages/lookdetail/lookdetail.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    activityThumb:'',//活动主图
+    mainDescription:'',	//群主描述
+    activityNotice:'',//	活动通知
+    mainWx:'',	//群主微信
+    activityDescription:''	//活动描述
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this 
+    app.postRequest('/wx/activity/detail/singleDetail', 'POST', { }, (res) => {
+      if (res.data.success) {
+          console.log(res)
+          that.staData({
+            activityThumb: '',//活动主图
+            mainDescription: '',	//群主描述
+            activityNotice: '',//	活动通知
+            mainWx: '',	//群主微信
+            activityDescription: ''	//活动描述            
+          })
+      }
+    }) 
   },
 
   /**

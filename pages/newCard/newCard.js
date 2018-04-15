@@ -27,26 +27,22 @@ Page({
     })
   },
   startTimeChange: function (e) {
-    console.log(e.detail.value)
     this.setData({
       startTime: e.detail.value
     })
   },
   overTimeChange: function (e) {
-    console.log(e.detail.value)
     this.setData({
       overTime: e.detail.value
     })
   },
   inputTxt(e){
-    console.log(e)
     var that= this
     that.setData({
       title:e.detail.value
     })
   },
   next(){
-    console.log(app.globalData.openid)
     if (this.data.title.length == 0) {
       wx.showToast({
         title: '请活动名称！',
@@ -57,10 +53,11 @@ Page({
     }
     if (this.data.items[0].checked == true){
       app.postRequest('/wx/activity/add_first', 'POST', { name: this.data.title, timeType: 10, consumerId: app.globalData.openid }, (res) => {
-        console.log(res)
         if (res.data.success) {
-            wx.navigateTo({
-              url: '../carddetail/carddetail',
+          var title = res.data.item.name;
+          var id = res.data.item.id
+            wx.navigateTo({              
+              url: '../carddetail/carddetail?id=' + id + "&title=" + title,
             })
         }
       })
@@ -73,7 +70,7 @@ Page({
         })
         return false;
       }
-      if (this.data.startTime == '') {
+      if (this.data.overTime == '') {
         wx.showToast({
           title: '请选择结束时间！',
           icon: 'loading',
@@ -83,8 +80,10 @@ Page({
       }      
       app.postRequest('/wx/activity/add_first', 'POST', { name: this.data.title, timeType: 20, consumerId: app.globalData.openid, startTime: this.data.startTime, overTime: this.data.overTime }, (res) => {
         if (res.data.success) {
+          var title = res.data.item.name;
+          var id = res.data.item.id
           wx.navigateTo({
-            url: '../carddetail/carddetail',
+            url: '../carddetail/carddetail?id=' + id + "&title=" + title,
           })
         }
       })
