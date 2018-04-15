@@ -15,7 +15,7 @@
   <view class='cont_title fz30 c000'>群管理员微信号</view>
   <view class="fz26 c999">请填写群主微信号，让学员可以找到你</view>
   <view class="cont_input" style="margin-top:20rpx;width:50%">
-    <input class='fz28' placeholder='请输入微信号'></input>
+    <input class='fz28' placeholder='请输入微信号' value='{{wxtxt}}' bindinput='wxtxt'></input>
   </view>
 </view>  
 <view class="contant">
@@ -53,5 +53,5 @@
 						<view class="left item_play">添加视频</view>                 
       </view>  
   </view>
-  <view class="button nextbtn fz32 cfff">下一步</view>
+  <view class="button nextbtn fz32 cfff" bindtap='next'>下一步</view>
 </view> 
