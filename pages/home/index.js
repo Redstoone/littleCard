@@ -49,7 +49,7 @@ Page({
   },
   onLoad: function () {
     this.getUserInfo()
-    this.getActivity()
+    // this.getActivity()
   },
 
   getUserInfo () {
@@ -59,26 +59,28 @@ Page({
       _this.setData({
         userInfo: JSON.parse(us)
       })
+
+      _this.getActivity()
     } else {
       app.getUserInfo(function (userInfo) {
         if (userInfo) {
           _this.setData({
             userInfo: userInfo
           })
+
+          _this.getActivity()
         }
       })
     }
   },
 
   getActivity () {
-    console.log(app.globalData.openid)
-    app.postRequest('/wx/activity/activity', 'POST', { consumerId: app.globalData.openid }, (res) => {
+    let gd = app.globalData
+    app.postRequest('/wx/activity/activity', 'POST', { consumerId: wx.getStorageSync('openid') }, (res) => {
       if (res.data.success) {
         this.setData({
-          classifyList: res.data.item,
-          categoryId: res.data.item[0].id
+          myCardList: res.data.item
         })
-        this.getActivityList(res.data.item[0].id)
       }
     })
   }

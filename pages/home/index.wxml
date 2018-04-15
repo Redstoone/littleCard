@@ -9,7 +9,7 @@
 		<text class="">+<text class="add-card-tips">新建打卡</text></text>
 	</view>
 	<view class="my-card-list">
-		<block wx:for="{{myCardList}}">
+		<block wx:for="{{myCardList}}" wx:key="{{index}}">
 			<view class="my-card-item">
 				<image class="card-item-img" src="{{item.imgurl}}"></image>
 				<view class="card-item-info">
@@ -30,7 +30,7 @@
 	<view class="underline"></view>
 	<!-- recommand -->
 	<view class="recommand-group">
-		<block wx:for="{{recommand}}">
+		<block wx:for="{{recommand}}" wx:key="{{index}}">
 			<view class="recommand-item">
 				<view class="item-top-info">
 					<image class="pic-img" src="{{item.pic}}"></image>
