@@ -33,7 +33,11 @@ Page({
     ],
     wxtxt: '',
     id: '',
-    Bg:''
+    Bg:'',
+    currentTab:0,
+    items: [{ name: '添加文字' }, { name: '添加图片' }, { name: '添加音频' }, { name: '添加视频' }],
+    thetxt:'',//活动文安
+    files: [],//多图
   },
 
   /**
@@ -117,14 +121,14 @@ Page({
       }
     })
   },
-  onLoad(e) {
-    var that = this;
-    that.setData({
-      'list[0].txtnum': e.title.length,
-      'list[0].value': e.title,
-      id: e.id
-    })
-  },
+  // onLoad(e) {
+  //   var that = this;
+  //   that.setData({
+  //     'list[0].txtnum': e.title.length,
+  //     'list[0].value': e.title,
+  //     id: e.id
+  //   })
+  // },
   changeBg() {
     var that = this
     wx.chooseImage({
@@ -145,6 +149,7 @@ Page({
             'X-Requested-Page': 'json'
           },
           success: function (data) {
+            
             wx.uploadFile({
               url: 'https://up.qbox.me',
               filePath: tempFilePaths[0],
@@ -154,9 +159,10 @@ Page({
                 'accept': 'text/plain'
               },
               success: function (res) {
+                console.log(res, "11111data")
                 var data = JSON.parse(res.data);
                 that.setData({ 
-                  camBg: 'http://p1xmy74ds.bkt.clouddn.com/' + data.key, 
+                  camBg: 'http://tmp-qiniu.smarttinfo.com/' + data.key + '?imageView/2/w/120/h/120', 
                   isLogo: true,
                   key: data.key
                   })
@@ -170,4 +176,95 @@ Page({
       }
     })    
   },
+  thetxtChange(e){//活动文案
+    var that = this
+      that.setData({
+        thetxt: e.detail.value
+      })
+  },
+  navbarTap(e){
+    console.log(e)
+  },
+
+uploadImg(){//上传多图
+var that = this
+  if (that.data.files.length < 10) {
+    var maxCount = 10 - that.data.files.length
+    wx.chooseImage({
+      count: maxCount, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths       
+        wx.request({
+          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          //url: 'https://union.wevirtus.cn/utoken',
+          data: {
+          },
+          method: "POST",
+          header: {
+            "content-type": "application/x-www-form-urlencoded",
+            'X-Requested-Page': 'json'
+          },
+          success: function (data) {
+           
+            for (let i = 0; i < res.tempFilePaths.length; i++) {
+              wx.uploadFile({
+                url: 'https://up.qbox.me', //仅为示例，并非真实的接口地址
+                filePath: res.tempFilePaths[i],
+                name: 'file',
+                formData: {
+                  'token': data.data.uptoken,
+                  'accept': 'text/plain'
+                },
+                success: function (data) {
+                  var data = JSON.parse(data.data)
+                  if (data.key) {
+                    var fileArr = that.data.files
+                    let testImg ='http://tmp-qiniu.smarttinfo.com/' + data.key + '?imageView/2/w/120/h/120';
+                    fileArr.push(testImg)
+                    that.setData({
+                      files: fileArr
+                    })
+ 
+                    console.log(that.data.files)
+
+                  } else {
+                    wx.showToast({
+                      title: "图片上传失败",
+                      icon: 'loading',
+                      duration: 2000
+                    })
+                  }
+                }
+              })
+            }
+
+          },
+        })
+      }
+    })
+
+  }
+  else {
+    wx.showToast({
+      title: "图片太多了~",
+      icon: 'loading',
+      duration: 2000
+    })
+  }
+
+
+},
+remove(e) {//多图删除
+  var index = Number(e.currentTarget.id) 
+var that = this
+  var files = that.data.files;
+  files.splice(index)
+  that.setData({
+    files: files
+  })
+},
+
 })

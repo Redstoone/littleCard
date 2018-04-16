@@ -26,33 +26,64 @@
   <view class="fz28 c666">
   当前未设置打卡详情
   </view>  
-  <view class="cont_items">
-      <view class='cont_item clear'>
-						<view class="left item_icon">
-              <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
-            </view>
-						<view class="left item_play">添加文字</view>  
-      </view> 
-      <view class='cont_item clear'>       
-						<view class="left item_icon">
-              <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
-              </view>
-						<view class="left item_play">添加图片</view>                 
-      </view>               
+
+
+
+<!-- 文字 -->
+  <view class="theText theback">
+      <view class="thetitle clear">
+          <view class="left fz28 c333">
+              文字部分
+          </view>
+          <view class='thebtn right clear'>
+              <view class='thetop right'></view>
+              <view class='thebottom right'></view>
+          </view>
+      </view>
+      <view class="thecont">
+          <textarea  class='fz28 thecont_box'  placeholder='请输入活动详情文案' value='{{thetxt}}' bindinput="thetxtChange"/>
+      </view>
+      <view class="thecal fz24">X</view>
   </view>
-  <view class="cont_items">
-      <view class='cont_item clear'>
-						<view class="left item_icon">
-              <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+  <!-- 图片 -->
+  <view class="theImage theback">
+      <view class="thetitle clear">
+          <view class="left fz28 c333">
+              图片部分
+          </view>
+          <view class='thebtn right clear'>
+              <view class='thetop right'></view>
+              <view class='thebottom right'></view>
+          </view>
+      </view>
+      <view class="thecont">
+          <view class="thecont_box upload">
+            <view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
+                <image class="previewImg" src="{{item}}"></image>
+                <view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">
+                      X
+                </view>
             </view>
-						<view class="left item_play">添加音频</view>  
-      </view> 
-      <view class='cont_item clear'>       
-						<view class="left item_icon">
-              <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
-              </view>
-						<view class="left item_play">添加视频</view>                 
-      </view>  
+            <view class="upload_input" bindtap="uploadImg" wx:if="{{files.length < 10}}">
+                <view class="pos-a line"></view>
+                <view class="pos-a lines"></view>
+            </view>  
+          </view>                            
+      </view>
+      <view class="thecal fz24">X</view>   
   </view>
+
+			<view class="cont_items clear">
+          <view wx:for="{{items}}" wx:key="index" class='cont_item clear left' id="{{index}}"  bindtap="navbarTap">       
+                <view class="left item_icon">
+                  <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
+                  </view>
+                <view class="left item_play fz26">{{item.name}}</view>                 
+          </view>
+			</view>
+
+
+
+
   <view class="button nextbtn fz32 cfff" bindtap='next'>下一步</view>
 </view> 

@@ -11,11 +11,49 @@
 
 .txtNum{position: absolute;right: 4rpx;top: -22rpx}
 
-.cont_items{display: flex;font-size: 26rpx;color: #1dafaa;text-align: center;margin-top:60rpx;
+.cont_items{margin-top:60rpx;font-size: 26rpx;color: #1dafaa;text-align: center;
 }
-.cont_item{flex: 1;}
+.cont_item{width: 50%;}
 .store_info_btnImg{width: 25rpx;height: 25rpx;}
-.item_icon{margin-left: 60rpx;}
-.item_play{margin-left: 20rpx;}
+.item_icon{margin-left: 60rpx;margin-top: 15rpx}
+.item_play{margin-left: 20rpx;line-height: 60rpx;height: 60rpx}
+
+.theback{height: 300rpx;border:solid 1rpx #eeeeee;border-radius: 10rpx;padding: 20rpx;box-shadow: 0px 0px 5px #999999;margin-top: 20rpx;position: relative}
+.thebtn{margin-right: 60rpx}
+.thecal{position: absolute;width: 40rpx;height: 40rpx;border-radius: 50%;background: red;color: #fff;line-height: 40rpx; text-align: center;right: 10rpx; top: 10rpx }
+.thetop{
+  position: relative;
+  height: 0px;
+  width: 0px;
+  border-left: 20rpx solid transparent;
+  border-bottom: 30rpx solid black;
+  border-right: 20rpx solid transparent;
+}
+.thebottom{
+  position: relative;
+  height: 0px;
+  width: 0px;
+  border-left: 20rpx solid transparent;
+  border-top: 30rpx solid black;
+  border-right: 20rpx solid transparent;
+}
+
+
+.thecont{border: solid 1rpx #eeeeee;margin-top: 40rpx;width: 100%;border-radius:20rpx;height: 200rpx;}
+.thecont .thecont_box{width: 96%;height: 180rpx;padding: 10rpx;overflow-x:hidden;padding-bottom: 0rpx;}
+
+
+.previewImgs{position: relative;width:140rpx;height:140rpx;margin-right: 30rpx;margin-bottom: 20rpx}
+.previewImg{width:140rpx;height: 140rpx;}
+.upload{flex-wrap:wrap;display:flex}
+.upload_input {width:140rpx;height:140rpx;border:2rpx solid #C9C9C9;border-radius:4px;position:relative;
+}
+.shanchuimg{width:40rpx;height:40rpx;line-height:40rpx;background:#7A8189;border-radius:50%;-moz-border-radius:50%;-webkit-border-radius:50%;top:-10rpx;right:-10rpx;position: absolute;text-align: center;font-size: 22rpx;color: #fff}
+
+
+.line{top:76rpx;left:36rpx;background:#D8D8D8;border-radius:4px;-moz-border-radius:4rpx;-webkit-border-radius:4rpx;width:86rpx;height:4rpx;position:absolute}
+.lines{top:36rpx;left:76rpx;background:#D8D8D8;border-radius:4px;-moz-border-radius:4rpx;-webkit-border-radius:4rpx;width:4rpx;height:86rpx;position: absolute}
+
+
 
 .nextbtn{background: #1dafaa;width: 400rpx;margin-top: 60rpx}
