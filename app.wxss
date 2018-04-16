@@ -169,3 +169,4 @@ page {
 .i-female {
   background-color: #ff99ff;
 }
+.button{height: 100rpx;line-height: 100rpx;text-align: center;border-radius: 10rpx;margin-left: auto;margin-right: auto}

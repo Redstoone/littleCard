@@ -32,7 +32,8 @@ Page({
       },
     ],
     wxtxt: '',
-    id: ''
+    id: '',
+    Bg:''
   },
 
   /**
@@ -123,5 +124,50 @@ Page({
       'list[0].value': e.title,
       id: e.id
     })
-  }
+  },
+  changeBg() {
+    var that = this
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        wx.request({
+          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          //url: 'https://union.wevirtus.cn/utoken',
+          data: {
+          },
+          method: "POST",
+          header: {
+            "content-type": "application/x-www-form-urlencoded",
+            'X-Requested-Page': 'json'
+          },
+          success: function (data) {
+            wx.uploadFile({
+              url: 'https://up.qbox.me',
+              filePath: tempFilePaths[0],
+              name: 'file',
+              formData: {
+                'token': data.data.uptoken,
+                'accept': 'text/plain'
+              },
+              success: function (res) {
+                var data = JSON.parse(res.data);
+                that.setData({ 
+                  camBg: 'http://p1xmy74ds.bkt.clouddn.com/' + data.key, 
+                  isLogo: true,
+                  key: data.key
+                  })
+
+                console.log(that.data.camBg)
+              }
+            })
+
+          },
+        })
+      }
+    })    
+  },
 })

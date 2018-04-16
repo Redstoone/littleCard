@@ -1,6 +1,7 @@
 <!--pages/carddetail/carddetail.wxml-->
-<view class='cont tant'>
-  <image src='' style="width:100%;height:300rpx;background:red"></image>
+<view class='cont tant' bindtap='changeBg'>
+  <image src='{{camBg}}' style="width:100%;height:300rpx;background:red"></image>
+  <view class="tant_set fz24 cfff">修改头图</view>
 </view>
 
   <view class="contant" wx:for="{{list}}" wx:key="ind">

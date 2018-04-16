@@ -1,6 +1,7 @@
 /* pages/carddetail/carddetail.wxss */
 .cont{padding: 0 30rpx;background: #ffffff}
-.tant{padding: 30rpx}
+.tant{padding: 30rpx;position: relative}
+.tant_set{position: absolute;right: 50rpx;bottom: 60rpx;background: rgba(0, 0, 0, 0.5);width: 120rpx;height: 40rpx;line-height: 40rpx;text-align: center}
 
 .contant{padding: 0 30rpx;padding-bottom: 40rpx;background: #ffffff;margin-top:20rpx }
 .cont_title{line-height: 100rpx;}
