@@ -42,6 +42,13 @@ Page({
     isimage:false
   },
 
+  onLoad(option) {
+    this.setData({
+      id: option.id,
+      'list[0].value': option.title
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -118,7 +125,7 @@ Page({
     }, (res) => {
       if (res.data.success) {
         wx.navigateTo({
-          url: '../lookdetail/lookdetail?acId' + this.data.id,
+          url: '../lookdetail/lookdetail?acId=' + this.data.id,
         })
       }
     })

@@ -2,7 +2,7 @@
 page{background: #ffffff;}
 .contant{padding: 0 30rpx;padding-bottom: 40rpx}
 .cont_title{line-height: 100rpx;}
-.cont_input{width: 100%;border: solid 1rpx #1dafaa;line-height: 80rpx;border-radius: 8rpx}
+.cont_input{width: 100%;border: solid 1rpx #C9C9C9;line-height: 80rpx;border-radius: 8rpx}
 .cont_input input{width: 98%;height: 80rpx;padding-left: 10rpx;}
 .backg{width: 100%;height: 20rpx;background: #f8f8f8}
 

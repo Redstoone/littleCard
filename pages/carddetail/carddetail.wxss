@@ -5,7 +5,7 @@
 
 .contant{padding: 0 30rpx;padding-bottom: 40rpx;background: #ffffff;margin-top:20rpx }
 .cont_title{line-height: 100rpx;}
-.cont_input{width: 100%;border: solid 1rpx #1dafaa;line-height: 80rpx;border-radius: 8rpx;position: relative}
+.cont_input{width: 100%;border: solid 1rpx #C9C9C9;line-height: 80rpx;border-radius: 8rpx;position: relative}
 .cont_input input{width: 98%;height: 80rpx;padding-left: 10rpx;}
 .cont_input textarea{width: 98%;height: 120rpx;padding-left: 10rpx;line-height: 40rpx;padding: 10rpx}
 
