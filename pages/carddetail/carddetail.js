@@ -39,7 +39,10 @@ Page({
     thetxt:'',//活动文安
     files: [],//多图
     istext:false,
-    isimage:false
+    isimage:false,
+    isvd:false,
+    filesvd:[],
+    isaudio:false
   },
 
   /**
@@ -197,8 +200,17 @@ Page({
       that.setData({
         isimage: true
       })
-    }    
-    
+    }  
+    if (idx == 2) {//音频
+      that.setData({
+        isaudio: true
+      })
+    }     
+    if (idx == 3) {
+      that.setData({
+        isvd: true
+      })
+    }   
   },
   hidetext(){
     var that = this
@@ -212,7 +224,12 @@ Page({
       isimage: false
     })
   },  
-
+  hidevd(){
+    var that = this
+    that.setData({
+      isvd: false
+    })    
+  },
 uploadImg(){//上传多图
 var that = this
   if (that.data.files.length < 10) {
@@ -292,5 +309,76 @@ var that = this
     files: files
   })
 },
+  uploadvd(){//上传多视频
+  var that = this
+    if (that.data.files.length < 10) {
+      var maxCount = 10 - that.data.files.length
+      wx.chooseVideo({
+        sourceType: ['album', 'camera'],
+        maxDuration: 60,
+        camera: 'back',
+        success: function (res) {
+          var tempFilePaths = res.tempFilePath
+          console.log(res.tempFilePath,"res.tempFilePath")
+          wx.request({
+            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            data: {
+            },
+            method: "POST",
+            header: {
+              "content-type": "application/x-www-form-urlencoded",
+              'X-Requested-Page': 'json'
+            },
+            success: function (data) {
+                    console.log(data,"---")
+                    wx.uploadFile({
+                      url: 'https://up.qbox.me',
+                      filePath: tempFilePaths,
+                      name: 'file',
+                      formData: {
+                        'token': data.data.uptoken,
+                        'accept': 'text/plain'
+                      },
+                      success: function (res) {
+                        var data = JSON.parse(res.data);
+                        if (data.key) {
+                          var fileArr = that.data.files
+                          let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key
+                          fileArr.push(testImg)
+                          that.setData({
+                            filesvd: fileArr
+                          })
+                        } else {
+                          wx.showToast({
+                            title: "视频上传失败",
+                            icon: 'loading',
+                            duration: 2000
+                          })
+                        }
+                      }
+                    })
+                  },
+                })
+              }
+            })
+          }
+        },
 
+  removevd(e) {//多视频删除
+    var index = Number(e.currentTarget.id)
+    var that = this
+    var files = that.data.files;
+    files.splice(index)
+    that.setData({
+      filesvd: filesvd
+    })
+  },
+  audioBtn(){//音频提示
+    var that= this
+    that.setData({
+
+        isaudio: false
+     
+    })
+  }
 })
