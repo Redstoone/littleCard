@@ -30,7 +30,7 @@
 
 
 <!-- 文字 -->
-  <view class="theText theback">
+  <view class="theText theback" wx:if="{{istext}}">
       <view class="thetitle clear">
           <view class="left fz28 c333">
               文字部分
@@ -43,10 +43,10 @@
       <view class="thecont">
           <textarea  class='fz28 thecont_box'  placeholder='请输入活动详情文案' value='{{thetxt}}' bindinput="thetxtChange"/>
       </view>
-      <view class="thecal fz24">X</view>
+      <view class="thecal fz24" bindtap='hidetext'>X</view>
   </view>
   <!-- 图片 -->
-  <view class="theImage theback">
+  <view class="theImage theback"  wx:if="{{isimage}}">
       <view class="thetitle clear">
           <view class="left fz28 c333">
               图片部分
@@ -70,7 +70,7 @@
             </view>  
           </view>                            
       </view>
-      <view class="thecal fz24">X</view>   
+      <view class="thecal fz24" bindtap='hideimage'>X</view>   
   </view>
 
 			<view class="cont_items clear">

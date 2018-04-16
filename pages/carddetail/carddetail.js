@@ -38,6 +38,8 @@ Page({
     items: [{ name: '添加文字' }, { name: '添加图片' }, { name: '添加音频' }, { name: '添加视频' }],
     thetxt:'',//活动文安
     files: [],//多图
+    istext:false,
+    isimage:false
   },
 
   /**
@@ -183,8 +185,33 @@ Page({
       })
   },
   navbarTap(e){
+    var that = this
+    var idx = e.currentTarget.id
     console.log(e)
+    if (idx == 0){
+      that.setData({
+        istext:true
+      })
+    }
+    if (idx == 1) {
+      that.setData({
+        isimage: true
+      })
+    }    
+    
   },
+  hidetext(){
+    var that = this
+    that.setData({
+      istext: false
+    })   
+  },
+  hideimage() {
+    var that = this
+    that.setData({
+      isimage: false
+    })
+  },  
 
 uploadImg(){//上传多图
 var that = this
@@ -199,7 +226,6 @@ var that = this
         var tempFilePaths = res.tempFilePaths       
         wx.request({
           url: 'https://xgh.smarttinfo.com/wx/index/utoken',
-          //url: 'https://union.wevirtus.cn/utoken',
           data: {
           },
           method: "POST",
