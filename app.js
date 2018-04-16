@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    this.getUserInfo()
   },
   getUserInfo: function (cb) {
     var _this = this

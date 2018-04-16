@@ -47,6 +47,7 @@
 	border: 1px solid #f0f0f0;
 	box-shadow: 0 0 4rpx 1rpx rgba(200, 200, 200, 0.5);
 	margin-bottom: 15rpx;
+	position: relative;
 }
 
 .my-card-item .card-item-img {
@@ -229,4 +230,22 @@
 	box-sizing: border-box;
 	box-shadow: 0 0 4rpx 1rpx rgba(200, 200, 200, 0.5);
 	border-radius: 8rpx;
+}
+
+.has-card {
+	font-size: 26rpx;
+	color: #fff;
+	padding: 8rpx 0;
+	background-color: #1dafaa;
+	border-radius: 8rpx;
+	width: 100rpx;
+	text-align: center;
+	display: inline-block;
+	position: absolute;
+	right: 40rpx;
+	top: 25rpx;
+}
+
+.has-no-card{
+	background-color: #999;
 }
