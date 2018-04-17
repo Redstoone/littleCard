@@ -2,14 +2,14 @@
 <view class='cont tant'>
   <image src='' style="width:100%;height:300rpx;background:#999999"></image>
   <view class='contant'>
-    <view class="look_title ">剑圣60天</view>
+    <view class="look_title ">{{name}}</view>
     <view class='names fz26'>
-      0人参加        |          0次打卡
+     {{memberNumber}}人参加        |          {{cardClickNumber}}次打卡
     </view>
     <view class='nameImg fz26 clear'>
       <image class="left head" src='' style=''></image>
-      <view class="left name">XXXXX</view>         
-       <view class="left btn">加微信</view>
+      <view class="left name">{{mainWx}}</view>         
+       <!-- <view class="left btn">加微信</view> -->
     </view>
   </view> 
   <view class="tant_txt clear">
@@ -26,25 +26,25 @@
   </view>
 </view>
 <view class="pad cont_title fz30">
-    公告
+    {{activityNotice}}
 </view>
 
-<view class="pad">
+<view class="">
   <view class="clear cont_tant">
     <view class="left">
           <view class='cont_head left'>
-            <image src='' style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
+            <image src='{{headicon}}' style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
           </view>
           <view class='cont_box left'>
               <view class="cont_name fz28 c666">
-                  JJJJ      <text class="fz26 c999">修改昵称</text>
+                 {{nickname}}       <!-- <text class="fz26 c999">修改昵称</text> -->
               </view>
               <view class="cont_day fz24 c999">
                   已坚持打卡0天
               </view>
           </view>
     </view>
-    <view class="right fz26 c666">
+    <view class="right fz26 set c666" bindtap='set'>
       设置
     </view>
   </view> 
@@ -69,8 +69,11 @@
         </view>
     </view>
 
-    <view class="cont_now">
-        13天
+    <view class="cont_now" bindtap='clickCard'>
+        <view class="cont_days"><text style="font-size:40rpx">13</text>天</view>
+        <view class="cont_time fz26">
+        {{clock}}
+        </view>
     </view>
     <view class="cont_txt">
         <view>打卡活动即将开始</view>

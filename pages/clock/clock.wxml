@@ -2,11 +2,32 @@
 <view class="pad">
     <view class="contant fz32 c999">
       说说感想收货
+
+
+      <view class="thecont">
+          <view class="thecont_box upload">
+            <view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
+                <image class="previewImg" src="{{item}}"></image>
+                <view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">
+                      X
+                </view>
+            </view>
+            <view class="upload_input" bindtap="uploadImg" wx:if="{{isUp&&files.length!==0  &&files.length < 10}}">
+                <view class="pos-a line"></view>
+                <view class="pos-a lines"></view>
+            </view>  
+          </view>                            
+      </view>
+      <video class="myVideo" id="myVideo" wx:if="{{camvd}}" src="{{camvd}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
     </view>
+
+
+
+
     <view class="cont_btn clear">
-        <view class='left'><image src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image></view>
-        <view class='left'><image src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image></view>
-        <view class='left'><image src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image></view>
+        <view class='left' bindtap='clickImg'><image src="../../images/01.png"></image></view>
+        <view class='left'><image src="../../images/02.png"></image></view>
+        <view class='left' bindtap='changevd'><image src="../../images/03.png"></image></view>
     </view>
     <view class="clear fz26 c666 cont_nav">
         <view class='clear left'>

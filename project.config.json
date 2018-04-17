@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 14,
 			"list": [
 				{
 					"id": -1,
@@ -113,6 +113,12 @@
 					"id": -1,
 					"name": "打卡评论",
 					"pathName": "pages/cardComment/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发表日记",
+					"pathName": "pages/clock/clock",
 					"query": ""
 				}
 			]
