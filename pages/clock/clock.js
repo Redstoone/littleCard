@@ -6,25 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    files: [],//多图
-    isUp:false,
-    camvd:''//视频
+    files: [], //多图
+    isUp: false,
+    camvd: '' //视频
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
 
-  push(){//发表日记
+  push() { //发表日记
     app.postRequest('	/wx/cardRecord/merged', 'POST', {
-       consumerId: app.globalData.openid,
-       activityId:1,     //活动id
-       viewType:10,      //查看权限(10 对外公开 20群主和私人可见 30 仅私人可见)
-       recordDescription:22, //日记内容
-       recordPoint:022,//	
+      consumerId: app.globalData.openid,
+      activityId: 1, //活动id
+      viewType: 10, //查看权限(10 对外公开 20群主和私人可见 30 仅私人可见)
+      recordDescription: 22, //日记内容
+      recordPoint: 22, //
     }, (res) => {
       if (res.data.success) {
         console.log("发表成功")
@@ -36,12 +36,12 @@ Page({
 
   clickImg(e) {
     var that = this
-      that.setData({
-        isUp: true
-      })
-      that.uploadImg()
+    that.setData({
+      isUp: true
+    })
+    that.uploadImg()
   },
-  uploadImg() {//上传多图
+  uploadImg() { //上传多图
     var that = this
     if (that.data.files.length < 10) {
       var maxCount = 10 - that.data.files.length
@@ -54,8 +54,7 @@ Page({
           var tempFilePaths = res.tempFilePaths
           wx.request({
             url: 'https://xgh.smarttinfo.com/wx/index/utoken',
-            data: {
-            },
+            data: {},
             method: "POST",
             header: {
               "content-type": "application/x-www-form-urlencoded",
@@ -99,8 +98,7 @@ Page({
           })
         }
       })
-    }
-    else {
+    } else {
       wx.showToast({
         title: "图片太多了~",
         icon: 'loading',
@@ -110,7 +108,7 @@ Page({
 
 
   },
-  remove(e) {//多图删除
+  remove(e) { //多图删除
     var index = Number(e.currentTarget.id)
     var that = this
     var files = that.data.files;
@@ -121,7 +119,7 @@ Page({
   },
 
 
-  changevd() {//上传视频
+  changevd() { //上传视频
     var that = this
     wx.chooseVideo({
       sourceType: ['album', 'camera'],
@@ -133,8 +131,7 @@ Page({
         wx.request({
           url: 'https://xgh.smarttinfo.com/wx/index/utoken',
           //url: 'https://union.wevirtus.cn/utoken',
-          data: {
-          },
+          data: {},
           method: "POST",
           header: {
             "content-type": "application/x-www-form-urlencoded",

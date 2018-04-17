@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -69,12 +69,6 @@
 				},
 				{
 					"id": -1,
-					"name": "参加活动",
-					"pathName": "pages/activity/activity",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "设置",
 					"pathName": "pages/info/setting/index",
 					"query": ""
@@ -93,38 +87,15 @@
 				},
 				{
 					"id": -1,
-					"name": "打卡评论",
-					"pathName": "pages/info/setting/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "打卡评论",
-					"pathName": "pages/cardComment/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "打卡评论",
-					"pathName": "pages/cardComment/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "打卡评论",
-					"pathName": "pages/cardComment/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-<<<<<<< HEAD
 					"name": "打卡日记",
-					"pathName": "pages/comment/cardDiary/index"
-=======
+					"pathName": "pages/comment/cardDiary/index",
+					"query": ""
+				},
+				{
+					"id": -1,
 					"name": "发表日记",
 					"pathName": "pages/clock/clock",
 					"query": ""
->>>>>>> 441c5ed39dd5306c4270cbedb20a0583a25a3ebd
 				}
 			]
 		}

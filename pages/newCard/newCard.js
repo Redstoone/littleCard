@@ -45,7 +45,7 @@ Page({
   next(){
     if (this.data.title.length == 0) {
       wx.showToast({
-        title: '请活动名称！',
+        title: '请输入活动名称！',
         icon: 'loading',
         duration: 1500
       })
