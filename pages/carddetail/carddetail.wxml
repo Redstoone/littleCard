@@ -1,6 +1,6 @@
 <!--pages/carddetail/carddetail.wxml-->
 <view class='cont tant' bindtap='changeBg'>
-	<image src='{{camBg}}' style="width:100%;height:300rpx;background:red"></image>
+	<image src='{{camBg}}' style="width:100%;height:300rpx;"></image>
 	<view class="tant_set fz24 cfff">修改头图</view>
 </view>
 
@@ -122,8 +122,8 @@
 <view class="back" wx:if="{{isaudio}}"></view>
 <view class="audiobox" wx:if="{{isaudio}}">
 	<view class="audio_box">
-		<view class="audiobox_title fz32 c333">请登录PC</view>
-		<view class="audiobox_txt fz28 c666">非官方峡谷先锋那些个发你下发给</view>
+		<!-- <view class="audiobox_title fz32 c333">请登录PC</view> -->
+		<view class="audiobox_txt fz28 c666">暂未开放音频功能</view>
 		<view class="audiobox_btn fz28 " bindtap='audioBtn'>确定</view>
 	</view>
 </view>
