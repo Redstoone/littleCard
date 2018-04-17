@@ -6,7 +6,7 @@
 .cont_btn view{margin-right: 10rpx;}
 .cont_btn view image{width: 120rpx;height: 120rpx;margin-top:20rpx;margin-left: 20rpx; }
 
-.cont_nav{height: 80rpx;line-height: 80rpx}
+.cont_nav{height: 80rpx;line-height: 80rpx;overflow:hidden;}
 .cont_b{margin-right: 30rpx}
 
 .contmess{margin-top: 30rpx;border-radius: 10rpx;padding: 30rpx 24rpx;background: #ffffff;position: relative}

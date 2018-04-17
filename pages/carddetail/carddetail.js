@@ -35,7 +35,7 @@ Page({
     id: '',
     Bg:'',
     currentTab:0,
-    items: [{ name: '添加文字' }, { name: '添加图片' }, { name: '添加音频' }, { name: '添加视频' }],
+    items: [{ name: '添加文字', icon: 'icon-post' }, { name: '添加图片', icon: 'icon-album' }, { name: '添加音频', icon: 'icon-voicelight' }, { name: '添加视频', icon: 'icon-shipin1'}],
     thetxt:'',//活动文安
     files: [],//多图
     istext:false,
