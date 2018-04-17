@@ -18,7 +18,6 @@ Page({
     ],
     isLook:false,
     title: '',//感想
-
   },
 
   /**

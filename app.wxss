@@ -313,3 +313,10 @@ page {
   color: #999;
   font-size: 24rpx;
 }
+
+.no-recommand{
+  text-align: center;
+  margin: 40rpx auto;
+  color:#999;
+  font-size: 24rpx;
+}
