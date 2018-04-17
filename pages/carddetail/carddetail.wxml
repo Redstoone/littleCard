@@ -15,124 +15,23 @@
 	</view>
 </view>
 <view class="contant">
-<<<<<<< HEAD
-  <view class='cont_title fz30 c000'>群管理员微信号</view>
-  <view class="fz26 c999">使用电脑登录<text style='color:#1dafaa'>wwwww</text>编辑图文详情更方便
-  </view>
-  <view class="fz28 c666">
-  当前未设置打卡详情
-  </view>  
-
-
-
-<!-- 文字 -->
-  <view class="theText theback" wx:if="{{istext}}">
-      <view class="thetitle clear">
-          <view class="left fz28 c333">
-              文字部分
-          </view>
-          <!-- <view class='thebtn right clear'>
-              <view class='thetop right'></view>
-              <view class='thebottom right'></view>
-          </view> -->
-      </view>
-      <view class="thecont">
-          <textarea  class='fz28 thecont_box'  placeholder='请输入活动详情文案' value='{{thetxt}}' bindinput="thetxtChange"/>
-      </view>
-      <view class="thecal fz24" bindtap='hidetext'>X</view>
-  </view>
-  <!-- 图片 -->
-  <view class="theImage theback"  wx:if="{{isimage}}">
-      <view class="thetitle clear">
-          <view class="left fz28 c333">
-              图片部分
-          </view>
-          <!-- <view class='thebtn right clear'>
-              <view class='thetop right'></view>
-              <view class='thebottom right'></view>
-          </view> -->
-      </view>
-      <view class="thecont">
-          <view class="thecont_box upload">
-            <view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
-                <image class="previewImg" src="{{item}}"></image>
-                <view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">
-                      X
-                </view>
-            </view>
-            <view class="upload_input" bindtap="uploadImg" wx:if="{{files.length < 10}}">
-                <view class="pos-a line"></view>
-                <view class="pos-a lines"></view>
-            </view>  
-          </view>                            
-      </view>
-      <view class="thecal fz24" bindtap='hideimage'>X</view>   
-  </view>
-
-
-  <!-- 视频 -->
-  <view class="theImage theback"  wx:if="{{isvd}}">
-      <view class="thetitle clear">
-          <view class="left fz28 c333">
-              视频部分
-          </view>
-          <!-- <view class='thebtn right clear'>
-              <view class='thetop right'></view>
-              <view class='thebottom right'></view>
-          </view> -->
-      </view>
-      <view class="thecont">
-          <view class="thecont_box upload">
-            <view class="previewImgs pos-r mb30" wx:for="{{filesvd}}" wx:key="files">
-                <video class="previewImg" id="myVideo" src="{{item}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
-                <view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="removevd">
-                      X
-                </view>
-            </view>
-            <view class="upload_input" bindtap="uploadvd" wx:if="{{filesvd.length < 10}}">
-                <view class="pos-a line"></view>
-                <view class="pos-a lines"></view>
-            </view>  
-          </view>                            
-      </view>
-      <view class="thecal fz24" bindtap='hidevd'>X</view>   
-  </view>
-
-
-			<view class="cont_items clear">
-          <view wx:for="{{items}}" wx:key="index" class='cont_item clear left' id="{{index}}"  bindtap="navbarTap">       
-                <view class="left item_icon">
-                  <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
-                  </view>
-                <view class="left item_play fz26">{{item.name}}</view>                 
-          </view>
-=======
 	<view class='cont_title fz30 c000'>群管理员微信号</view>
-	<view class="fz26 c999">请填写群主微信号，让学员可以找到你</view>
-	<view class="cont_input" style="margin-top:20rpx;width:50%">
-		<input class='fz28' placeholder='请输入微信号' value='{{wxtxt}}' bindinput='wxtxt'></input>
-	</view>
-</view>
-<view class="contant">
-	<view class='cont_title fz30 c000'>群管理员微信号</view>
-	<!-- <view class="fz26 c999">使用电脑登录
+	<view class="fz26 c999">使用电脑登录
 		<text style='color:#1dafaa'>wwwww</text>编辑图文详情更方便
-	</view> -->
+	</view>
 	<view class="fz28 c666">
 		当前未设置打卡详情
 	</view>
-
 	<!-- 文字 -->
 	<view class="theText theback" wx:if="{{istext}}">
 		<view class="thetitle clear">
 			<view class="left fz28 c333">
 				文字部分
->>>>>>> fcb574c6bbd94f68488a445ed3baae8225967e92
 			</view>
-			<view class='thebtn right clear'>
-				<view class='thetop right'></view>
-				<view class='thebottom right'></view>
-			</view>
+			<!-- <view class='thebtn right clear'>
+              <view class='thetop right'></view>
+              <view class='thebottom right'></view>
+          </view> -->
 		</view>
 		<view class="thecont">
 			<textarea class='fz28 thecont_box' placeholder='请输入活动详情文案' value='{{thetxt}}' bindinput="thetxtChange" />
@@ -145,10 +44,10 @@
 			<view class="left fz28 c333">
 				图片部分
 			</view>
-			<view class='thebtn right clear'>
-				<view class='thetop right'></view>
-				<view class='thebottom right'></view>
-			</view>
+			<!-- <view class='thebtn right clear'>
+              <view class='thetop right'></view>
+              <view class='thebottom right'></view>
+          </view> -->
 		</view>
 		<view class="thecont">
 			<view class="thecont_box upload">
@@ -167,6 +66,34 @@
 		<view class="thecal fz24" bindtap='hideimage'>X</view>
 	</view>
 
+	<!-- 视频 -->
+	<view class="theImage theback" wx:if="{{isvd}}">
+		<view class="thetitle clear">
+			<view class="left fz28 c333">
+				视频部分
+			</view>
+			<!-- <view class='thebtn right clear'>
+              <view class='thetop right'></view>
+              <view class='thebottom right'></view>
+          </view> -->
+		</view>
+		<view class="thecont">
+			<view class="thecont_box upload">
+				<view class="previewImgs pos-r mb30" wx:for="{{filesvd}}" wx:key="files">
+					<video class="previewImg" id="myVideo" src="{{item}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+					<view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="removevd">
+						X
+					</view>
+				</view>
+				<view class="upload_input" bindtap="uploadvd" wx:if="{{filesvd.length < 10}}">
+					<view class="pos-a line"></view>
+					<view class="pos-a lines"></view>
+				</view>
+			</view>
+		</view>
+		<view class="thecal fz24" bindtap='hidevd'>X</view>
+	</view>
+
 	<view class="cont_items clear">
 		<view wx:for="{{items}}" wx:key="index" class='cont_item clear left' id="{{index}}" bindtap="navbarTap">
 			<view class="left item_icon">
@@ -175,22 +102,19 @@
 			<view class="left item_play fz26">{{item.name}}</view>
 		</view>
 	</view>
-
-<<<<<<< HEAD
-
-
-  <view class="button nextbtn fz32 cfff" bindtap='next'>保存并预览</view>
-</view> 
+	<!-- <view class='thebtn right clear'>
+		<view class='thetop right'></view>
+		<view class='thebottom right'></view>
+	</view> -->
+	<view class="button nextbtn fz32 cfff" bindtap='next'>下一步</view>
+</view>
 
 <!-- 音频 -->
 <view class="back" wx:if="{{isaudio}}"></view>
 <view class="audiobox" wx:if="{{isaudio}}">
-    <view class="audio_box">
-      <view class="audiobox_title fz32 c333">请登录PC</view>
-      <view class="audiobox_txt fz28 c666">非官方峡谷先锋那些个发你下发给</view>
-      <view class="audiobox_btn fz28 " bindtap='audioBtn'>确定</view>    
-    </view>
-=======
-	<view class="button nextbtn fz32 cfff" bindtap='next'>下一步</view>
->>>>>>> fcb574c6bbd94f68488a445ed3baae8225967e92
+	<view class="audio_box">
+		<view class="audiobox_title fz32 c333">请登录PC</view>
+		<view class="audiobox_txt fz28 c666">非官方峡谷先锋那些个发你下发给</view>
+		<view class="audiobox_btn fz28 " bindtap='audioBtn'>确定</view>
+	</view>
 </view>
