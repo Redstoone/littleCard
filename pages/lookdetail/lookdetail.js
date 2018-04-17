@@ -9,8 +9,8 @@ Page({
     activityDetail: null,
     cardClickNumber: null,
     name: null,
-    acId: null
-    // activityThumb:'',//活动主图
+    acId: null,
+    activityThumb: '', //活动主图
     // mainDescription:'',	//群主描述
     // activityNotice:'',//	活动通知
     // mainWx:'',	//群主微信
@@ -30,8 +30,8 @@ Page({
             activityDetail: res.data.item.activityDetail,
             cardClickNumber: res.data.item.cardClickNumber,
             name: res.data.item.name,
-            acId: options.acId
-            // activityThumb: '',//活动主图
+            acId: options.acId,
+            activityThumb: res.data.item,//活动主图
             // mainDescription: '',	//群主描述
             // activityNotice: '',//	活动通知
             // mainWx: '',	//群主微信

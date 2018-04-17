@@ -10,7 +10,7 @@ Page({
   onLoad: function () {
     this.getUserInfo()
     // this.getActivity()
-    this.getCardRecord()
+    // this.getCardRecord()
   },
 
   getUserInfo() {
@@ -20,25 +20,22 @@ Page({
       _this.setData({
         userInfo: JSON.parse(us)
       })
-
-      _this.getActivity()
     } else {
-      app.getUserInfo(function (userInfo) {
-        if (userInfo) {
+      app.getUserInfo(function (openid, userInfo) {
+        if (openid) {
           _this.setData({
             userInfo: userInfo
           })
-
           _this.getActivity()
+          _this.getCardRecord()
         }
       })
     }
   },
 
   getActivity() {
-    // app.postRequest('/wx/activity/activity', 'POST', { consumerId: app.globalData.openid }, (res) => {
     app.postRequest('/wx/activity/activity', 'POST', {
-      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI'
+      consumerId: app.globalData.openid
     }, (res) => {
       if (res.data.success) {
         let _myCardList = res.data.item
@@ -61,10 +58,8 @@ Page({
 
   getCardRecord() {
     app.postRequest('/wx/cardRecord/record2', 'POST', {
-      // consumerId: app.globalData.openid
-      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI'
+      consumerId: app.globalData.openid
     }, (res) => {
-      console.log(res)
       let _recommand = res.data.rows
 
       _recommand.map((item, index) => {

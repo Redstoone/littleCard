@@ -1,7 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-    this.getUserInfo()
+    // this.getUserInfo();
   },
   getUserInfo: function (cb) {
     var _this = this
@@ -12,9 +12,9 @@ App({
           lang: 'zh_CN',
           success: function (res) {
             _this.globalData.userInfo = res.userInfo
-            _this.getOpenId(e.code)
+            _this.getOpenId(e.code, cb)
             // wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-            typeof cb == "function" && cb(_this.globalData.userInfo)
+            // typeof cb == "function" && cb(_this.globalData.userInfo)
           }, fail: function(res) {
             wx.showModal({
               title: '温馨提示',
@@ -29,7 +29,6 @@ App({
                         success: function (res) {
                           // _this.globalData.userInfo = res.userInfo
                           _this.getOpenId(e.code)
-                          typeof cb == "function" && cb(_this.globalData.userInfo)
                         }
                       })
                     }
@@ -42,12 +41,13 @@ App({
       }
     })
   },
-  getOpenId (code) {
+  getOpenId (code, cb) {
     let _this = this
     this.postRequest("/wx/wechat/openid", 'POST', { code: code }, (res) => {
       if (res.data.success) {
         this.globalData.openid = res.data.openid
         // wx.setStorageSync('openid', res.data.openid)
+        typeof cb == "function" && cb(res.data.openid, _this.globalData.userInfo)
         _this.postRequest('/wx/consumer/record', 'POST', { consumerId: res.data.openid }, (rst) => {
           if (rst.data.item) {
             _this.globalData.userInfo = rst.data.item
@@ -63,6 +63,7 @@ App({
             }, (rst) => {
               if (rst.data.success){
                 console.log('login success')
+                
               }
             })
           }
