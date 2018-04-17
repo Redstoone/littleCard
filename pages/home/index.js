@@ -43,24 +43,31 @@ Page({
       _this.setData({
         userInfo: JSON.parse(us)
       })
-
-      _this.getActivity()
+      if (app.globalData.openid == null || app.globalData.openid == ''){
+        app.watch = _this.getActivity
+      }else{
+        _this.getActivity()
+      }
+      
     } else {
       app.getUserInfo(function (userInfo) {
         if (userInfo) {
           _this.setData({
             userInfo: userInfo
           })
-
-          _this.getActivity()
+          if (app.globalData.openid == null || app.globalData.openid == '') {
+            app.watch = _this.getActivity
+          } else {
+            _this.getActivity()
+          }
         }
       })
     }
   },
 
   getActivity () {
-      // app.postRequest('/wx/activity/activity', 'POST', { consumerId: app.globalData.openid }, (res) => {
-      app.postRequest('/wx/activity/activity', 'POST', { consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI' }, (res) => {
+      app.postRequest('/wx/activity/activity', 'POST', { consumerId: app.globalData.openid }, (res) => {
+      // app.postRequest('/wx/activity/activity', 'POST', { consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI' }, (res) => {
         if (res.data.success) {
           let _myCardList = res.data.item
   

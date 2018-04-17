@@ -63,6 +63,7 @@ App({
             }, (rst) => {
               if (rst.data.success){
                 console.log('login success')
+                that.watch && that.watch()
               }
             })
           }
