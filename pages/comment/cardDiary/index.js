@@ -7,7 +7,7 @@ Page({
     user: null
   },
 
-  onLoad() {
+  onShow() {
     this.getCommandList()
   },
 
@@ -33,7 +33,7 @@ Page({
     let _crid = e.currentTarget.dataset.crid
     let _cruid = e.currentTarget.dataset.cruid
     wx.navigateTo({
-      url: '../create/index?acid=' + _crid + '&cruid=' + _cruid
+      url: '../create/index?crid=' + _crid + '&cruid=' + _cruid
     })
   },
 

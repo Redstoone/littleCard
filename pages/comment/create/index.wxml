@@ -1,9 +1,9 @@
 <view class="container">
   <view class="contant fz32 c999">
-    说说感想收货
+    <textarea class="comment-desc" maxlength="-1" focus="true" placeholder="写评论" value="{{description}}" bindblur="bindTextAreaBlur"></textarea>
   </view>
   <view class='cant_foot clear f32rpx'>
-    <view class='left col'>取消</view>
-    <view class='right com'>发表日记</view>
+    <view class='left col' bindtap="bindCancel">取消</view>
+    <view class='right com' bindtap="bindCardComment">发表评论</view>
   </view>
 </view>
