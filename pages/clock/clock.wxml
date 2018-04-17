@@ -1,7 +1,7 @@
 <!--pages/clock/clock.wxml-->
 <view class="pad">
 	<view class="contant fz32 c999">
-		说说感想收货
+    <input class='fz28' placeholder='说说感想收获' value='{{title}}' bindinput='inputTxt'></input>
 		<view class="thecont">
 			<view class="thecont_box upload">
 				<view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
@@ -30,16 +30,16 @@
 			<image src="../../images/03.png"></image>
 		</view>
 	</view>
-	<view class="clear fz26 c666 cont_nav">
+	<view class="clear fz26 c666 cont_nav" bindtap='getLocation'>
 		<view class='clear left'>
 			<view class='left cont_b'>
 				<i class="iconfont icon-location"></i>
 			</view>
 			<view class='left'>所在位置</view>
 		</view>
-		<view class="right">></view>
+		<view class="right">{{currentCity}}></view>
 	</view>
-	<view class="clear fz26 c666 cont_nav">
+	<view class="clear fz26 c666 cont_nav" bindtap='getlook'>
 		<view class='clear left'>
 			<view class='left cont_b'>
 				<i class="iconfont icon-friend"></i>
@@ -61,3 +61,18 @@
 	<view class='left col'>取消</view>
 	<view class='right com'>发表日记</view>
 </view>
+
+  <view class="back" wx:if="{{isLook}}"></view>
+  <view class="group" wx:if="{{isLook}}">
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="clear" wx:for="{{items}}" wx:key="ind" wx:for-index="idx">
+        <radio value="{{item.value}}" checked="{{item.checked}}" style="opacity: 0" />
+        <view class="asdo left">        
+            <view class=" {{item.checked ? 'asdi':'black'}}"></view>
+        </view>        
+        <view class="left fz26 c666">{{item.text}}</view>
+      </label>
+      <view class="g_btn fz30" bindtap='hideLook'>确定</view>
+   </radio-group> 
+  </view>
+ 

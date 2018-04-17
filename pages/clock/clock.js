@@ -8,7 +8,17 @@ Page({
   data: {
     files: [], //多图
     isUp: false,
-    camvd: '' //视频
+    camvd: '', //视频
+    currentCity:'',
+    items: [
+      { id: 1, value: '10', text: '对外公开', checked: true },
+      { id: 2, value: '20', text: '群主和私人可见', checked: false },
+      { id: 3, value: '30', text: '仅私人可见', checked: false }
+      
+    ],
+    isLook:false,
+    title: '',//感想
+
   },
 
   /**
@@ -16,6 +26,12 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+  inputTxt(e) {
+    var that = this
+    that.setData({
+      title: e.detail.value
+    })
   },
 
   push() { //发表日记
@@ -162,6 +178,48 @@ Page({
           },
         })
       }
+    })
+  },
+
+  getLocation: function () {//定位
+  var that=this
+    wx.getUserInfo({
+      lang:'zh_CN',
+      success: function (res) {
+        var userInfo = res.userInfo
+        var currentCity = userInfo.city
+        that.setData({
+          currentCity: currentCity
+        })
+      }
+    })
+  },
+  getlook(){
+    var that = this
+    that.setData({
+      isLook:true
+    })
+  },
+  hideLook(){
+    var that = this
+    that.setData({
+      isLook: false
+    })    
+  },
+  radioChange: function (e) {//权限
+    console.log(e)
+    var that = this;
+    var items = [];
+    for (var i = 0; i < that.data.items.length; i++) {
+      var item = that.data.items[i]
+      item.checked = false
+      if (e.detail.value && e.detail.value === that.data.items[i].value) {
+        item.checked = true
+      }
+      items.push(item)
+    }
+    that.setData({
+      items: items
     })
   },
 })
