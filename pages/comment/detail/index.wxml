@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="c-tabs">
+    <view class="tab-item {{selectedId == 0 ? 'active' : ''}}" bindtap = "changeTab" data-idx="0">日记</view>
+    <view class="tab-item {{selectedId == 1 ? 'active' : ''}}" bindtap = "changeTab" data-idx="1">详情</view>
+    <view class="tab-item {{selectedId == 2 ? 'active' : ''}}" bindtap = "changeTab" data-idx="2">成员</view>
+  </view>
+
+  <view class="tabs-cont">
+    <view class="tab-panel" wx:if="{{selectedId == 0}}">
+      <view class="recommand-group">
+        <block wx:for="{{recommand}}">
+          <view class="recommand-item">
+            <view class="item-top-info">
+              <image class="pic-img" src="{{item.pic}}"></image>
+              <view class="item-title-info">
+                <view class="item-title">
+                  <text>{{item.nick_name}}</text>
+                </view>
+                <view class="item-time-tips">
+                  <text class="">{{item.time}}</text>
+                  <text class="">·</text>
+                  <text class="">已经坚持{{item.days}}天</text>
+                </view>
+              </view>
+            </view>
+            <view class="item-remark">{{item.remark}}</view>
+            <view class="item-pic">
+              <image src="{{item.item_pic}}"></image>
+            </view>
+            <view class="address">128广场</view>
+            <view class="tool-bar">
+              <text>详情</text>
+              <text>评论</text>
+              <text>赞</text>
+            </view>
+          </view>
+          <view class="underline"></view>
+        </block>
+      </view>
+    </view>
+    <view class="tab-panel" wx:elif="{{selectedId == 1}}">
+      <view class="">
+        <view class="member-list">
+          <view class="member-item clear">
+            <view class="">
+              <image src="{{headicon}}" class="member-img"></image>
+              <view class="member-name">Joel</view>
+              <view class="member-qun">群主</view>
+              <view class="member-desc">这里是群主介绍~~~</view>
+            </view>
+            <view class="right join-time addwx">加Ta微信</view>
+          </view>
+        </view>
+
+        <view class="hr"></view>
+        <view class="activity-wrap">
+          <view class="aw-title">活动详情</view>
+          <view class="aw-detail">这里是活动详情~~~~</view>
+        </view>
+      </view>
+    </view>
+    <view class="tab-panel" wx:elif="{{selectedId == 2}}">
+      <view class="member-list">
+        <view class="member-item clear">
+          <view class="">
+            <image src="{{headicon}}" class="member-img"></image>
+            <view class="member-name mi-name">Joel</view>
+          </view>
+          <view class="right join-time">2018-03-18 加入</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
