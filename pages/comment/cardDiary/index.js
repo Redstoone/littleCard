@@ -1,38 +1,49 @@
+var utils = require("../../../utils/util")
+const app = getApp()
+
 Page({
   data: {
-    zanList: [],
-    selectedId: 0,
-    headicon: 'https://t10.baidu.com/it/u=3788365272,318725089&fm=173&app=25&f=JPEG?w=640&h=363&s=361016CC28B3EA475C13653D0300505A',
-    recommand: [
-      {
-        id: 1,
-        pic: '/images/index/card_pic.png',
-        nick_name: '心潜',
-        time: '1分钟前',
-        days: '22',
-        remark: '坚持锻炼身体',
-        item_pic: '/images/index/card_pic.png',
-        card_pic: '/images/index/card_pic.png',
-        card_title: '户外锻炼',
-        card_num: 7650
-      }, {
-        id: 2,
-        pic: '/images/index/card_pic.png',
-        nick_name: '历史',
-        time: '5分钟前',
-        days: '100',
-        remark: '坚持锻炼身体',
-        item_pic: '/images/index/card_pic.png',
-        card_pic: '/images/index/card_pic.png',
-        card_title: '户外锻炼',
-        card_num: 7650
-      }
-    ]
+    recommand: [],
+    user: null
   },
 
-  changeTab(e) {
-    this.setData({
-      selectedId: e.currentTarget.dataset.idx
+  onLoad() {
+    this.getCommandList()
+  },
+
+  getCommandList() {
+    // app.postRequest('/wx/cardRecordComment/record', 'POST', { consumerId: app.globalData.openid }, (res) => {
+    app.postRequest('/wx/cardRecordComment/record', 'POST', { consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI' }, (res) => {
+      let _recommand = res.data.item
+
+      _recommand.map((item, index) => {
+        let _item = item
+        _item.timeFormat = utils.formatTimeText(item.createTime)
+        return _item
+      })
+
+      this.setData({
+        recommand: _recommand,
+        user: res.data.user
+      })
+    })
+  },
+
+  bindComment (e) {
+    let _crid = e.currentTarget.dataset.crid
+    let _cruid = e.currentTarget.dataset.cruid
+    wx.navigateTo({
+      url: '../create/index?acid=' + _crid + '&cruid=' + _cruid
+    })
+  },
+
+  bindZan (e) {
+    let _crid = e.currentTarget.dataset.crid
+    app.postRequest('/wx/cardRecordPraise/click', 'POST', {
+      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI',
+      cardRecordId: _crid
+    }, (res) => {
+      console.log(res)
     })
   }
 })
