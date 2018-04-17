@@ -63,3 +63,5 @@
 .audio_box{padding:40rpx }
 .audiobox_title{margin-bottom: 20rpx}
 .audiobox_btn{position: absolute ;right: 40rpx;bottom:40rpx;color: green}
+
+

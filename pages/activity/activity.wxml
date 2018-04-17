@@ -18,12 +18,12 @@
       </view>
       <view class="left item_play fz24">编辑详情</view>  
   </view>
-  <view class="tant_com clear">
+  <button open-type="share" class="tant_com clear" style="padding:0">
       <view class="left item_icon">
         <image  class="store_info_btnImg" src="http://image.vdongchina.com/M00/03/2A/ZSUkmVnewuaEAgYvAAAAADa1yvs029.png"></image>
       </view>
       <view class="left item_play fz24">邀请好友</view>    
-  </view>
+  </button>
 </view>
 <view class="pad cont_title fz30">
     {{activityNotice}}

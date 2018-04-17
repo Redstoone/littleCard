@@ -18,6 +18,7 @@ Page({
     clock:'',
     startTime:'',
     isClick:false,//打卡状态
+    acId:''
   },
     getWeek:function(week){
     if (week>=0&&week<7){
@@ -92,7 +93,7 @@ Page({
   onLoad: function (e) {
     var that =this
     console.log(e.acId)
-
+    that.setData({ acId: e.acId})
     app.postRequest('/wx/activity/singleAll','POST', {
       id: e.acId
     }, (res) => {
@@ -192,6 +193,12 @@ Page({
       })
     }
     
+  },
+  onShareAppMessage:function(){//分享
+      return{
+        title: "打卡",        // 默认是小程序的名称(可以写slogan等)
+        path: '/pages/activity/activity?acId=' + this.data.acId,
+      }
   }
   
 })
