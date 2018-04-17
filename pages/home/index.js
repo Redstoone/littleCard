@@ -5,38 +5,15 @@ Page({
   data: {
     userInfo: {},
     myCardList: [],
-    recommand: [
-      {
-        id: 1,
-        pic: '/images/index/card_pic.png',
-        nick_name: '心潜',
-        time: '1分钟前',
-        days: '22',
-        remark: '坚持锻炼身体',
-        item_pic: '/images/index/card_pic.png',
-        card_pic: '/images/index/card_pic.png',
-        card_title: '户外锻炼',
-        card_num: 7650
-      }, {
-        id: 2,
-        pic: '/images/index/card_pic.png',
-        nick_name: '历史',
-        time: '5分钟前',
-        days: '100',
-        remark: '坚持锻炼身体',
-        item_pic: '/images/index/card_pic.png',
-        card_pic: '/images/index/card_pic.png',
-        card_title: '户外锻炼',
-        card_num: 7650
-      }
-    ]
+    recommand: []
   },
   onLoad: function () {
     this.getUserInfo()
     // this.getActivity()
+    this.getCardRecord()
   },
 
-  getUserInfo () {
+  getUserInfo() {
     let _this = this
     let us = wx.getStorageSync('userInfo')
     if (us) {
@@ -58,37 +35,60 @@ Page({
     }
   },
 
-  getActivity () {
-      // app.postRequest('/wx/activity/activity', 'POST', { consumerId: app.globalData.openid }, (res) => {
-      app.postRequest('/wx/activity/activity', 'POST', { consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI' }, (res) => {
-        if (res.data.success) {
-          let _myCardList = res.data.item
-  
-          _myCardList.map((item, index) => {
-            let _item = item
-            app.postRequest('/wx/cardRecord/hasCard', 'POST', { consumerId: item.consumerId }, (ret) => {
-              _item.hasCard = ret.data.hasCardRecord
-            })
-          })
-  
-          this.setData({
-            myCardList: res.data.item
-          })
-        }
-      })
-    // } else {
+  getActivity() {
+    // app.postRequest('/wx/activity/activity', 'POST', { consumerId: app.globalData.openid }, (res) => {
+    app.postRequest('/wx/activity/activity', 'POST', {
+      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI'
+    }, (res) => {
+      if (res.data.success) {
+        let _myCardList = res.data.item
 
-    // }
+        _myCardList.map((item, index) => {
+          let _item = item
+          app.postRequest('/wx/cardRecord/hasCard', 'POST', {
+            consumerId: item.consumerId
+          }, (ret) => {
+            _item.hasCard = ret.data.hasCardRecord
+          })
+        })
+
+        this.setData({
+          myCardList: res.data.item
+        })
+      }
+    })
   },
 
-  addCard(){
+  getCardRecord() {
+    app.postRequest('/wx/cardRecord/record2', 'POST', {
+      // consumerId: app.globalData.openid
+      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI'
+    }, (res) => {
+      console.log(res)
+      let _recommand = res.data.rows
+
+      _recommand.map((item, index) => {
+        let _item = item
+        app.postRequest('/wx/consumer/record', 'POST', {
+          consumerId: item.consumerId
+        }, (ret) => {
+          _item.user = ret.data.item
+        })
+      })
+
+      this.setData({
+        recommand: _recommand
+      })
+    })
+  },
+
+  addCard() {
     wx.navigateTo({
       url: '../newCard/newCard',
     })
   },
 
-  bindViewCard (e) {
-    console.log(e)
+  bindViewCard(e) {
     wx.navigateTo({
       url: '../activity/activity?acId=' + e.currentTarget.dataset.id,
     })

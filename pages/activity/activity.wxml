@@ -92,30 +92,41 @@
   <view class="tabs-cont">
     <view class="tab-panel" wx:if="{{selectedId == 0}}">
       <view class="recommand-group" wx:if="{{recommand.length > 0}}">
-        <block wx:for="{{recommand}}">
+        <block wx:for="{{recommand}}" wx:key="{{index}}">
           <view class="recommand-item">
-            <view class="item-top-info">
-              <image class="pic-img" src="{{item.pic}}"></image>
+            <view class="item-top-info user-header">
+              <view class="user-avater">
+                <image class="pic-img" src="{{item.commentConsumer.headicon}}"></image>
+                <view class="icon-gender i-male" wx:if="{{item.commentConsumer.gender == 1}}">
+                  <i class="iconfont icon-male"></i>
+                </view>
+                <view class="icon-gender i-female" wx:elif="{{item.commentConsumer.gender == 2}}">
+                  <i class="iconfont icon-female"></i>
+                </view>
+              </view>
               <view class="item-title-info">
                 <view class="item-title">
-                  <text>{{item.nick_name}}</text>
+                  <text>{{user.nickname}}</text>
                 </view>
                 <view class="item-time-tips">
-                  <text class="">{{item.time}}</text>
+                  <text class="time">{{item.timeFormat}}</text>
                   <text class="">·</text>
-                  <text class="">已经坚持{{item.days}}天</text>
+                  <!-- <text class="">已经坚持{{item.days}}天</text> -->
                 </view>
               </view>
             </view>
-            <view class="item-remark">{{item.remark}}</view>
-            <view class="item-pic">
-              <image src="{{item.item_pic}}"></image>
-            </view>
-            <view class="address">128广场</view>
+            <view class="item-remark">{{item.commentDescription}}</view>
+            <!-- <view class="item-pic">
+                    <image src="{{item.item_pic}}"></image>
+                  </view> -->
+            <!-- <view class="address">128广场</view> -->
             <view class="tool-bar">
-              <text>详情</text>
-              <text>评论</text>
-              <text>赞</text>
+              <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+                <i class="iconfont icon-more-o"></i> 详情</view>
+              <view class="tb-item" bindtap="bindComment" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+                <i class="iconfont icon-comment"></i> 评论</view>
+              <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}">
+                <i class="iconfont icon-xin"></i> 赞</view>
             </view>
           </view>
           <view class="underline"></view>

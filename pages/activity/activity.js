@@ -1,4 +1,5 @@
 // pages/activity/activity.js
+var utils = require("../../utils/util")
 const app = getApp()
 Page({
   /**
@@ -20,7 +21,8 @@ Page({
     startTime: '',
     isClick: false, //打卡状态
     acId: '',
-    selectedId: 0
+    selectedId: 0,
+    recommand: []
   },
   changeTab(e) {
     this.setData({
@@ -147,13 +149,28 @@ Page({
             })
           }
         })
-
-
       }
     })
 
-
     this.getDateList();
+    this.getCardRecordComment(e.acId);
+  },
+  getCardRecordComment(acid) {
+    app.postRequest('/wx/cardRecordComment/record2', 'POST', {
+      cardRecordId: acid
+    }, (res) => {
+      let _recommand = res.data.rows
+
+      _recommand.map((item, index) => {
+        let _item = item
+        _item.timeFormat = utils.formatTimeText(item.createTime)
+        return _item
+      })
+
+      this.setData({
+        recommand: _recommand,
+      })
+    })
   },
   set() {
     wx.redirectTo({
@@ -224,6 +241,24 @@ Page({
       path: '/pages/home/index',
       // path: '/pages/activity/activity?acId=' + this.data.acId,
     }
+  },
+
+  bindComment(e) {
+    let _crid = e.currentTarget.dataset.crid
+    let _cruid = e.currentTarget.dataset.cruid
+    wx.navigateTo({
+      url: '../comment/create/index?crid=' + _crid + '&cruid=' + _cruid
+    })
+  },
+
+  bindZan(e) {
+    let _crid = e.currentTarget.dataset.crid
+    app.postRequest('/wx/cardRecordPraise/click', 'POST', {
+      consumerId: app.globalData.openid,
+      cardRecordId: _crid
+    }, (res) => {
+      console.log(res)
+    })
   }
 
 })

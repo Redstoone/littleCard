@@ -39,10 +39,10 @@
 		<block wx:for="{{recommand}}" wx:key="idx">
 			<view class="recommand-item">
 				<view class="item-top-info">
-					<image class="pic-img" src="{{item.pic}}"></image>
+					<image class="pic-img" src="{{item.headicon}}"></image>
 					<view class="item-title-info">
 						<view class="item-title">
-							<text>{{item.nick_name}}</text>
+							<text>{{item.nickname}}</text>
 						</view>
 						<view class="item-time-tips">
 							<text class="">{{item.time}}</text>

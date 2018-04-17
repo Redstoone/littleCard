@@ -137,6 +137,8 @@ Page({
       activityNotice: this.data.list[2].value,
       mainWx: this.data.wxtxt,
       activityId: this.data.id,
+      activityThumb: this.data.camBg,
+      activityDescription: this.data.thetxt
       // id: app.globalData.openid
     }, (res) => {
       if (res.data.success) {
