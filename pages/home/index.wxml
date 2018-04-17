@@ -12,23 +12,26 @@
 		<text class="">+ <text class="add-card-tips">新建打卡</text> </text>
 	</view>
 	<view class="my-card-list">
-		<block wx:for="{{myCardList}}" wx:key="{{index}}">
+		<view wx:for="{{myCardList}}" wx:key="{{index}}" bindtap="bindViewCard" data-id="{{item.id}}">
 			<view class="my-card-item">
-				<image class="card-item-img" src="{{item.imgurl}}"></image>
+				<image class="card-item-img" src="{{item.activityDetail.activityThumb}}"></image>
 				<view class="card-item-info">
 					<view class="card-item-title">
-						<text>{{item.title}}</text>
-						<text class="isMine" wx:if="{{item.isMy === 1}}">群主</text>
+						<text>{{item.name}}</text>
+						<text class="isMine" wx:if="{{item.main}}">群主</text>
 					</view>
 					<view class="card-item-tips">
-						<text class="zan-icon zan-icon-discount"></text>
-						<text class="tips-item">{{item.time}}</text>
+						<!-- <text class="zan-icon zan-icon-discount"></text> -->
+						<!-- <text class="tips-item">{{item.createTime}}</text> -->
 						<text class="zan-icon zan-icon-contact"></text>
-						<text class="tips-item">{{item.memberClick}}已打卡</text>
+						<text class="tips-item">{{item.cardClickNumber}}已打卡</text>
 					</view>
+
+					<view class="has-card" wx:if="{{!item.hasCard}}"> 打卡 </view>
+					<view class="has-card has-no-card" wx:else> 已打卡 </view>
 				</view>
 			</view>
-		</block>
+		</view>
 	</view>
 	<view class="underline"></view>
 	<!-- recommand -->

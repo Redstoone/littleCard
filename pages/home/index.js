@@ -4,23 +4,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    myCardList: [
-      {
-        id: 1,
-        imgurl: '/images/index/card_pic.png',
-        title: '早点喝水',
-        isMy: 1,
-        time: '6:00:00',
-        memberClick: 20,
-      }, {
-        id: 1,
-        imgurl: '/images/index/card_pic.png',
-        title: '户外锻炼',
-        isMy: 0,
-        time: '16:00:00',
-        memberClick: 20,
-      }
-    ],
+    myCardList: [],
     recommand: [
       {
         id: 1,
@@ -75,18 +59,38 @@ Page({
   },
 
   getActivity () {
-    let gd = app.globalData
-    app.postRequest('/wx/activity/activity', 'POST', { consumerId: wx.getStorageSync('openid') }, (res) => {
-      if (res.data.success) {
-        this.setData({
-          myCardList: res.data.item
-        })
-      }
-    })
+      // app.postRequest('/wx/activity/activity', 'POST', { consumerId: app.globalData.openid }, (res) => {
+      app.postRequest('/wx/activity/activity', 'POST', { consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI' }, (res) => {
+        if (res.data.success) {
+          let _myCardList = res.data.item
+  
+          _myCardList.map((item, index) => {
+            let _item = item
+            app.postRequest('/wx/cardRecord/hasCard', 'POST', { consumerId: item.consumerId }, (ret) => {
+              _item.hasCard = ret.data.hasCardRecord
+            })
+          })
+  
+          this.setData({
+            myCardList: res.data.item
+          })
+        }
+      })
+    // } else {
+
+    // }
   },
+
   addCard(){
     wx.navigateTo({
       url: '../newCard/newCard',
+    })
+  },
+
+  bindViewCard (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '../activity/activity?acId=' + e.currentTarget.dataset.id,
     })
   }
 })

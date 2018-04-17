@@ -2,7 +2,7 @@
 <view class='cont tant'>
   <image src='' style="width:100%;height:300rpx;background:#f9f9f9"></image>
   <view class='contant'>
-    <view class="look_title ">剑圣60天</view>
+    <view class="look_title ">{{name}}</view>
     <view class='look_pople clear'>
       <view class='nameImg left'>
         <image src='' style='width:40rpx;height:40rpx;background:#f1f1f1'></image>
@@ -11,7 +11,7 @@
         XXXXXXX参加
       </view>
       <view class='names left fz26 c999'>
-        次打卡
+        {{cardClickNumber}}次打卡
       </view>
     </view>
   </view>
@@ -21,7 +21,7 @@
   <view class='contant'>
     <view class="look_title">活动详情</view>
     <view class='fz26 c666'>
-      详情描述
+      {{activityDetail.activityDescription}}
     </view>
   </view>
 </view>
@@ -34,7 +34,7 @@
         <image src='' style='width:80rpx;height:80rpx;background:#f1f1f1'></image>
       </view>
       <view class='name left fz26 c333'>
-        XXXX
+        {{activityDetail.mainDescription}}
       </view>
     </view>
     <view class='fz26 c666'>
@@ -51,10 +51,10 @@
 </view>
 
 <view class="button nextbtn fz32 cfff clear">
-  <view class='left join'>进入活动</view>
-  <view class='left share'>
+  <view class='left join' bindtap="bindJoinActivity">进入活动</view>
+  <!-- <view class='left share'>
     <view class="share_d share_d1"></view>
     <view class="share_d share_d2"></view>
     <view class="share_d share_d3"></view>
-  </view>
+  </view> -->
 </view>

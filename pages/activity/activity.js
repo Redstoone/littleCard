@@ -1,12 +1,23 @@
 // pages/activity/activity.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    week:''
-
+    week:'',
+    name: "",//活动名称
+    mainWx: "",//群主微信
+    memberNumber: "",//参加人数
+    cardClickNumber:"", //打卡次数
+    activityNotice:'',//公告
+    headicon:'',//头像
+    nickname: '',//昵称
+    totalms:'',//时间
+    clock:'',
+    startTime:'',
+    isClick:false,//打卡状态
   },
     getWeek:function(week){
     if (week>=0&&week<7){
@@ -78,7 +89,109 @@ Page({
   clickChecked(e){
     console.log(e)
   },
-  onLoad: function () {
+  onLoad: function (e) {
+    var that =this
+    console.log(e.acId)
+
+    app.postRequest('/wx/activity/singleAll','POST', {
+      id: e.acId
+    }, (res) => {
+      if (res.data.success) {
+          var item = res.data.item
+        that.setData({
+          name: item.name,
+          mainWx: item.mainWx,
+          memberNumber: item.memberNumber,
+          cardClickNumber: item.cardClickNumber,
+          activityNotice: item.activityDetail.activityNotice,
+          startTime: item.startTime,
+          totalms:this.dateFormat(item.startTime) + 86400000 - new Date().getTime()
+        })
+        that.countDown()
+        app.postRequest('/wx/consumer/record', 'POST', {
+          //consumerId: item.consumerId
+           consumerId: "1"
+        }, (res) => {
+          if (res.data.success) {
+            console.log(res)
+            that.setData({
+              headicon: res.data.item.headicon,
+              nickname: res.data.item.nickname
+            
+            })
+          }
+        })
+
+
+      }
+    })
+
+      
     this.getDateList();
   },
+  set(){
+    wx.redirectTo({
+      url: '/pages/info/setting/index',
+    })
+  },
+  dateFormat(time) {//时间转换
+    return new Date(time).getTime()
+  },
+  countDown() {
+    var that = this
+    //				// 渲染倒计时时钟
+    var clock = this.date_format(this.data.totalms)
+    that.setData({
+      clock :clock
+    })
+    console.log(clock,"clock")
+    if (this.data.totalms <= 0) {
+      that.setData({
+        clock: "点击打卡",
+        isClick:true
+      })
+      // timeout则跳出递归
+      return;
+    }
+    setTimeout(() => {
+      // 放在最后--
+      that.setData({
+        totalms:this.dateFormat(that.data.startTime) + 86400000 - new Date().getTime()
+      })
+      this.countDown()
+    }, 1000)
+  },
+  // 时间格式化输出，如03:25:19 86。每10ms都会调用一次
+  date_format(micro) {
+    micro = micro || 1
+    // 秒数
+    var second = Math.floor(micro / 1000);
+    // 小时位
+    var hr = Math.floor(second / 3600);
+    // 分钟位
+    var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+    // 秒位
+    var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60)); // equal to => var sec = second % 60;
+
+    if (hr) {
+      return hr + ":" + min + ":" + sec;
+    } else {
+      return '00'+':'+min + ":" + sec
+    }
+  },
+  // 位数不足补零
+  fill_zero_prefix(num) {
+    return num < 10 ? "0" + num : num
+  },
+
+
+  clickCard(){//点击打卡
+    if (this.data.isClick){//为true倒计时结束  可以跳转
+      wx.navigateTo({
+        url: '../clock/clock',
+      })
+    }
+    
+  }
+  
 })

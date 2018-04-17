@@ -3,8 +3,8 @@
 .contant{padding-top:40rpx;padding-bottom: 40rpx;width: 100%;min-height: 200rpx;border-bottom: 1rpx #eeeeee solid }
 
 .cont_btn{margin-top: 20rpx}
-.cont_btn view{margin-right: 10rpx;width: 120rpx;height: 120rpx; border:solid 1rpx #eeeeee;}
-.cont_btn view image{width: 80rpx;height: 80rpx;margin-top:20rpx;margin-left: 20rpx; }
+.cont_btn view{margin-right: 10rpx;}
+.cont_btn view image{width: 120rpx;height: 120rpx;margin-top:20rpx;margin-left: 20rpx; }
 
 .cont_nav{height: 80rpx;line-height: 80rpx}
 .cont_b{margin-right: 30rpx}
@@ -21,3 +21,19 @@
 
 .col{width: 30%;background: #999999}
 .com{width: 70%}
+
+.thecont{margin-top: 40rpx}
+
+.previewImgs{position: relative;width:140rpx;height:140rpx;margin-right: 30rpx;margin-bottom: 20rpx}
+.previewImg{width:140rpx;height: 140rpx;}
+.upload{flex-wrap:wrap;display:flex}
+.upload_input {width:140rpx;height:140rpx;border:2rpx solid #C9C9C9;border-radius:4px;position:relative;
+}
+.shanchuimg{width:40rpx;height:40rpx;line-height:40rpx;background:#7A8189;border-radius:50%;-moz-border-radius:50%;-webkit-border-radius:50%;top:-10rpx;right:-10rpx;position: absolute;text-align: center;font-size: 22rpx;color: #fff}
+
+
+.line{top:44rpx;left:27rpx;background:#D8D8D8;border-radius:4px;-moz-border-radius:4rpx;-webkit-border-radius:4rpx;width:86rpx;height:4rpx;position:absolute}
+.lines{top:27rpx;left:66rpx;background:#D8D8D8;border-radius:4px;-moz-border-radius:4rpx;-webkit-border-radius:4rpx;width:4rpx;height:86rpx;position: absolute}
+
+
+.myVideo{width: 500rpx;height: 300rpx;margin-top: 40rpx}

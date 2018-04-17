@@ -115,3 +115,7 @@
 .zan-panel {
   margin-top: 0
 }
+
+.zan-panel::after{
+  opacity: 0;
+}

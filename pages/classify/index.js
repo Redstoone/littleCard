@@ -47,9 +47,9 @@ Page({
   },
 
   // 跳转活动详情页面
-  bindVeiwActivity () {
-
+  bindVeiwActivity (e) {
+    wx.navigateTo({
+      url: '../lookdetail/lookdetail?acId=' + e.currentTarget.dataset.id,
+    })
   }
-
-
 })

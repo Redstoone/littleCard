@@ -5,6 +5,12 @@
         <view class="item-top-info user-header">
           <view class="user-avater">
             <image class="pic-img" src="{{user.headicon}}"></image>
+            <view class="icon-gender i-male" wx:if="{{user.gender == 1}}">
+              <i class="iconfont icon-male"></i>
+            </view>
+            <view class="icon-gender i-female" wx:elif="{{user.gender == 2}}">
+              <i class="iconfont icon-female"></i>
+            </view>
           </view>
           <view class="item-title-info">
             <view class="item-title">
@@ -13,10 +19,20 @@
             <view class="item-time-tips">
               <text class="time">{{item.timeFormat}}</text>
               <text class="">·</text>
+              <!-- <text class="">已经坚持{{item.days}}天</text> -->
             </view>
           </view>
         </view>
         <view class="item-remark">{{item.commentDescription}}</view>
+        <!-- <view class="item-pic">
+          <image src="{{item.item_pic}}"></image>
+        </view> -->
+        <!-- <view class="address">128广场</view> -->
+        <view class="tool-bar">
+          <view class="tb-item"><i class="iconfont icon-more-o"></i> 详情</view>
+          <view class="tb-item"><i class="iconfont icon-comment"></i> 评论</view>
+          <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}"><i class="iconfont icon-xin"></i> 赞</view>
+        </view>
       </view>
       <view class="underline"></view>
     </block>
