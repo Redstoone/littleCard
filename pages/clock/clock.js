@@ -34,12 +34,20 @@ Page({
   },
 
   push() { //发表日记
+    var value;
+    for (var i=0; i < this.data.items.length; i++){
+      if (this.data.items[i].checked == true ){
+        value = this.data.items[i].value
+      }
+    }
     app.postRequest('	/wx/cardRecord/merged', 'POST', {
       consumerId: app.globalData.openid,
       activityId: 1, //活动id
-      viewType: 10, //查看权限(10 对外公开 20群主和私人可见 30 仅私人可见)
-      recordDescription: 22, //日记内容
-      recordPoint: 22, //
+      viewType: value, //查看权限(10 对外公开 20群主和私人可见 30 仅私人可见)
+      recordDescription: this.data.title, //日记内容
+      recordPoint: this.data.currentCity, //地点
+      recordDescImg:this.data.files,//图片
+      recordDescVideo: this.data.camvd,//视频
     }, (res) => {
       if (res.data.success) {
         console.log("发表成功")

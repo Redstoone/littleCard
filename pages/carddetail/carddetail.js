@@ -138,7 +138,9 @@ Page({
       mainWx: this.data.wxtxt,
       activityId: this.data.id,
       activityThumb: this.data.camBg,
-      activityDescription: this.data.thetxt
+      activityDescription: this.data.thetxt,
+      activityDescImg: this.data.files,
+      activityDescVideo: this.data.filesvd,
       // id: app.globalData.openid
     }, (res) => {
       if (res.data.success) {
@@ -358,7 +360,7 @@ Page({
                 success: function (res) {
                   var data = JSON.parse(res.data);
                   if (data.key) {
-                    var fileArr = that.data.files
+                    var fileArr = that.data.filesvd
                     let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key
                     fileArr.push(testImg)
                     that.setData({
@@ -383,8 +385,8 @@ Page({
   removevd(e) { //多视频删除
     var index = Number(e.currentTarget.id)
     var that = this
-    var files = that.data.files;
-    files.splice(index)
+    var filesvd = that.data.filesvd;
+    filesvd.splice(index)
     that.setData({
       filesvd: filesvd
     })
