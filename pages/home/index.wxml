@@ -74,6 +74,17 @@
 						<i class="iconfont icon-xin"></i> 赞</view>
 				</view>
 			</view>
+      <view class="recommand-item" >
+          <view class="tb-item fz26 c999">
+						<i class="iconfont icon-xin"></i> <text wx:for="{{item.cardRecordPraiseList}}">{{item.praiseConsumer.nickname+','}}</text></view>
+      </view>
+
+      <view class="recommand-item" wx:for="{{item.cardRecordCommentList}}">
+          <view class="tb-item fz26 c999">
+						{{item.commentConsumer.nickname+':'+item.commentDescription}}
+          </view>
+      </view>      
+
 		</block>
 	</view>
 	<view class="no-data" style="font-size: 28rpx;color: #999;text-align: center;" wx:else>

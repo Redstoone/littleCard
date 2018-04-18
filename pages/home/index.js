@@ -8,7 +8,7 @@ Page({
     myCardList: [],
     recommand: []
   },
-  onLoad: function () {
+  onShow: function () {
     this.getUserInfo()
     // this.getActivity()
     // this.getCardRecord()
@@ -66,7 +66,13 @@ Page({
       _recommand.map((item, index) => {
         let _item = item
         _item.timeFormat = utils.formatTimeText(item.recordDate)
-        return _item
+        return 
+        
+
+
+
+
+                
       })
 
       this.setData({
