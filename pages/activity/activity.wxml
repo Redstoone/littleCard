@@ -98,17 +98,17 @@
             <view class="recommand-item">
               <view class="item-top-info user-header">
                 <view class="user-avater">
-                  <image class="pic-img" src="{{item.commentConsumer.headicon}}"></image>
-                  <view class="icon-gender i-male" wx:if="{{item.commentConsumer.gender == 1}}">
+                  <image class="pic-img" src="{{item.recordConsumer.headicon}}"></image>
+                  <view class="icon-gender i-male" wx:if="{{item.recordConsumer.gender == 1}}">
                     <i class="iconfont icon-male"></i>
                   </view>
-                  <view class="icon-gender i-female" wx:elif="{{item.commentConsumer.gender == 2}}">
+                  <view class="icon-gender i-female" wx:elif="{{item.recordConsumer.gender == 2}}">
                     <i class="iconfont icon-female"></i>
                   </view>
                 </view>
                 <view class="item-title-info">
                   <view class="item-title">
-                    <text>{{user.nickname}}</text>
+                    <text>{{item.recordConsumer.nickname}}</text>
                   </view>
                   <view class="item-time-tips">
                     <text class="time">{{item.timeFormat}}</text>
@@ -116,13 +116,13 @@
                   </view>
                 </view>
               </view>
-              <view class="item-remark">{{item.commentDescription}}</view>
+              <view class="item-remark">{{item.recordDescription}}</view>
               <view class="tool-bar">
-                <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+                <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.consumerId}}">
                   <i class="iconfont icon-more-o"></i> 详情</view>
-                <view class="tb-item" bindtap="bindComment" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+                <view class="tb-item" bindtap="bindComment" data-crid="{{item.id}}" data-cruid="{{item.consumerId}}">
                   <i class="iconfont icon-comment"></i> 评论</view>
-                <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}" data-idx="{{index}}">
+                <view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}" data-idx="{{index}}">
                   <i class="iconfont {{item.isZan ? 'icon-xin1' : 'icon-xin'}}"></i> 赞</view>
               </view>
 

@@ -71,17 +71,22 @@ Page({
       recordDescImg: this.data.files, //图片
       recordDescVideo: this.data.camvd, //视频
     }, (res) => {
+      console.log(res)
       if (res.data.success) {
-        if (res.data.success) {
-          wx.showToast({
-            title: '发表日记成功',
-            icon: 'success',
-            duration: 500,
-            success: function (ret) {
-              wx.navigateBack();
-            }
-          })
-        }
+        wx.showToast({
+          title: '发表日记成功',
+          icon: 'success',
+          duration: 1500,
+          success: function (ret) {
+            wx.navigateBack();
+          }
+        })
+      } else {
+        wx.showToast({
+          title: '今日已打卡',
+          icon: 'success',
+          duration: 1500
+        })
       }
     })
   },

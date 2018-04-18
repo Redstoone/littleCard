@@ -252,8 +252,8 @@ Page({
   },
   uploadImg() { //上传多图
     var that = this
-    if (that.data.files.length < 10) {
-      var maxCount = 10 - that.data.files.length
+    if (that.data.files.length < 5) {
+      var maxCount = 5 - that.data.files.length
       wx.chooseImage({
         count: maxCount, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -289,9 +289,6 @@ Page({
                       that.setData({
                         files: fileArr
                       })
-
-                      console.log(that.data.files)
-
                     } else {
                       wx.showToast({
                         title: "图片上传失败",
@@ -302,7 +299,6 @@ Page({
                   }
                 })
               }
-
             },
           })
         }
@@ -310,7 +306,7 @@ Page({
 
     } else {
       wx.showToast({
-        title: "图片太多了~",
+        title: "最多只能上传4张图片",
         icon: 'loading',
         duration: 2000
       })

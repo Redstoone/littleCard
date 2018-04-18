@@ -184,6 +184,7 @@ page {
 
 .recommand-group .recommand-item {
   padding: 0 30rpx;
+  padding-bottom: 20rpx;
 }
 
 .recommand-item .item-top-info .pic-img {

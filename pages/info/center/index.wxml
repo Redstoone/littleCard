@@ -59,7 +59,7 @@
       <view class="zan-cell__ft info-ft"></view>
     </navigator> -->
   </view>
-  <view class="zan-panel">
+  <view class="zan-panel" style="margin-bottom:20rpx;">
     <view class="info_title zan-font-16 c000">我的打卡日记</view>
 
     <view class="recommand-group" wx:if="{{recommand.length > 0}}">

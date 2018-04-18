@@ -27,17 +27,24 @@ Page({
       if (res.data.success && res.data.item.length > 0) {
         this.setData({
           classifyList: res.data.item,
-          categoryId: res.data.item[0].id
+          // categoryId: res.data.item[0].id
         })
-        this.getActivityList(res.data.item[0].id)
+        this.getActivityList()
       }
     })
   },
 
+  onShow() {
+    this.getActivityList(this.data.categoryId)
+  },
+
   // 获取活动列表
-  getActivityList(categoryId) {
-    app.postRequest('/wx/activity/activitys', 'POST', { categoryId, categoryId }, (res) => {
-      console.log(res)
+  getActivityList(categoryId = null) {
+    let _data = {}
+    if (categoryId){
+      _data = { categoryId, categoryId }
+    }
+    app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
       if (res.data.success) {
         this.setData({
           activityList: res.data.rows

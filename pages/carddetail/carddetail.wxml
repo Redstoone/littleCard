@@ -24,7 +24,7 @@
 </view>
 
 <view class="contant">
-	<view class='cont_title fz30 c000'>群管理员微信号</view>
+	<view class='cont_title fz30 c000'>设置打卡详情</view>
 	<!-- <view class="fz26 c999">使用电脑登录
 		<text style='color:#1dafaa'>wwwww</text>编辑图文详情更方便
 	</view> -->

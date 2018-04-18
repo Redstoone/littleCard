@@ -184,8 +184,19 @@ Page({
       let _recommand = res.data.rows
 
       _recommand.map((item, index) => {
-        let _item = item
-        _item.timeFormat = utils.formatTimeText(item.createTime)
+        let _item = item,
+          _isZan = false
+        _item.timeFormat = utils.formatTimeText(item.recordDate)
+        _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
+          if (item2.consumerId == app.globalData.openid) {
+            _isZan = true
+          }
+          return {
+            consumerId: item2.consumerId,
+            nickname: item2.praiseConsumer.nickname
+          }
+        })
+        _item.isZan = _isZan
         return _item
       })
 
@@ -275,11 +286,22 @@ Page({
 
   bindZan(e) {
     let _crid = e.currentTarget.dataset.crid
+    let _idx = e.currentTarget.dataset.idx
     app.postRequest('/wx/cardRecordPraise/click', 'POST', {
       consumerId: app.globalData.openid,
       cardRecordId: _crid
     }, (res) => {
-      console.log(res)
+      if (res.data.success) {
+        this.data.recommand[_idx].isZan = true
+        this.data.recommand[_idx].zanList.push({
+          consumerId: app.globalData.openid,
+          nickname: app.globalData.userInfo.nickname
+        })
+
+        this.setData({
+          recommand: this.data.recommand
+        })
+      }
     })
   },
 
@@ -293,5 +315,13 @@ Page({
     wx.switchTab({
       url: '/pages/classify/index'
     })
-  }
+  },
+
+  bindCommentDetail(e) {
+    let _crid = e.currentTarget.dataset.crid
+    let _cruid = e.currentTarget.dataset.cruid
+    wx.navigateTo({
+      url: '../comment/cardDiary/index?crid=' + _crid + '&cruid=' + _cruid
+    })
+  },
 })

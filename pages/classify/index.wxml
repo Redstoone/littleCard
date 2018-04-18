@@ -12,7 +12,7 @@
   <view class="zan-panel" wx:if="{{activityList.length > 0}}">
     <view class="zan-card" wx:for="{{activityList}}" wx:key="index" bindtap="bindVeiwActivity" data-id="{{item.id}}">
       <view class="zan-card__thumb">
-        <image class="zan-card__img" src="{{item.activityDetail.activityThumb}}" mode="aspectFit"></image>
+        <image class="zan-card__img" src="{{item.activityDetail.activityThumb}}" mode="aspectFill"></image>
       </view>
       <view class="zan-card__detail">
         <view class="zan-card__detail-row zan-ellipsis--l2">{{item.name}}</view>
