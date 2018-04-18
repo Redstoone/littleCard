@@ -173,16 +173,16 @@
 </view>
 
 <view class="tabbars">
-  <view class="bar-item">
+  <view class="bar-item" bindtap='gotoHome'>
     <image src="/images/icon_home.png"></image>
     首页
   </view>
   <view class="bar-item" bindtap='clickCard'>
     <view class="bar-card-clik">
-      已打卡
+      打卡
     </view>
   </view>
-  <view class="bar-item">
+  <view class="bar-item" bindtap='gotoClassify'>
     <image src="/images/icon_classify.png"></image>
     发现
   </view>

@@ -33,46 +33,48 @@
 			</view>
 		</view>
 	</view>
-	<view class="underline"></view>
 	<!-- recommand -->
-	<view class="recommand-group">
-		<block wx:for="{{recommand}}" wx:key="idx">
+	<view class="recommand-group" wx:if="{{recommand.length > 0}}">
+		<block wx:for="{{recommand}}" wx:key="{{index}}">
 			<view class="recommand-item">
-				<view class="item-top-info">
-					<image class="pic-img" src="{{item.headicon}}"></image>
+				<view class="item-top-info user-header">
+					<view class="user-avater">
+						<image class="pic-img" src="{{item.recordConsumer.headicon}}"></image>
+						<view class="icon-gender i-male" wx:if="{{item.recordConsumer.gender == 1}}">
+							<i class="iconfont icon-male"></i>
+						</view>
+						<view class="icon-gender i-female" wx:elif="{{item.recordConsumer.gender == 2}}">
+							<i class="iconfont icon-female"></i>
+						</view>
+					</view>
 					<view class="item-title-info">
 						<view class="item-title">
-							<text>{{item.nickname}}</text>
+							<text>{{item.recordConsumer.nickname}}</text>
 						</view>
 						<view class="item-time-tips">
-							<text class="">{{item.time}}</text>
+							<text class="time">{{item.timeFormat}}</text>
 							<text class="">·</text>
-							<text class="">已经坚持{{item.days}}天</text>
+							<!-- <text class="">已经坚持{{item.days}}天</text> -->
 						</view>
 					</view>
 				</view>
-				<view class="item-remark">{{item.remark}}</view>
-				<view class="item-pic">
-					<image src="{{item.item_pic}}"></image>
+				<view class="item-remark">{{item.recordDescription}}</view>
+				<!-- <view class="item-pic">
+		                    <image src="{{item.item_pic}}"></image>
+		                  </view> -->
+				<!-- <view class="address">128广场</view> -->
+				<view class="tool-bar">
+					<view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+						<i class="iconfont icon-more-o"></i> 详情</view>
+					<view class="tb-item" bindtap="bindComment" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+						<i class="iconfont icon-comment"></i> 评论</view>
+					<view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}">
+						<i class="iconfont icon-xin"></i> 赞</view>
 				</view>
-				<view class="item-desc">
-					<image src="{{item.card_pic}}"></image>
-					<view class="item-card-info">
-						<text class="item-card-title">{{item.card_title}}</text>
-						<view class="item-member-num">
-							<text class="">{{item.card_num}}人已经参加</text>
-						</view>
-						<text class="item-arrow">></text>
-					</view>
-				</view>
-        <!-- tools-bar -->
-        <view class="tool-bar">
-        	<text>详情</text>
-        	<text>评论</text>
-        	<text>赞</text>
-        </view>
 			</view>
-			<view class="underline"></view>
 		</block>
+	</view>
+	<view class="no-data" style="font-size: 28rpx;color: #999;" wx:else>
+		暂无打卡日记
 	</view>
 </view>

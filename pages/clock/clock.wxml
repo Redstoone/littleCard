@@ -37,7 +37,7 @@
 			</view>
 			<view class='left'>所在位置</view>
 		</view>
-		<view class="right">{{currentCity}}></view>
+		<view class="right arrow-right">{{currentCity}}</view>
 	</view>
 	<view class="clear fz26 c666 cont_nav" bindtap='getlook'>
 		<view class='clear left'>
@@ -46,7 +46,7 @@
 			</view>
 			<view class='left'>谁可以看</view>
 		</view>
-		<view class="right">></view>
+		<view class="right arrow-right">{{viewText}}</view>
 	</view>
 
 	<!-- <view class='cont tant'>
@@ -58,7 +58,7 @@
 </view>
 
 <view class='cant_foot clear f32rpx'>
-	<view class='left col'>取消</view>
+	<view class='left col' bindtap="bindCancel">取消</view>
 	<view class='right com' bindtap='push'>发表日记</view>
 </view>
 

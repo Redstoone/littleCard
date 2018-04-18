@@ -1,4 +1,5 @@
 //index.js
+var utils = require("../../utils/util")
 const app = getApp()
 
 Page({
@@ -64,11 +65,8 @@ Page({
 
       _recommand.map((item, index) => {
         let _item = item
-        app.postRequest('/wx/consumer/record', 'POST', {
-          consumerId: item.consumerId
-        }, (ret) => {
-          _item.user = ret.data.item
-        })
+        _item.timeFormat = utils.formatTimeText(item.recordDate)
+        return _item
       })
 
       this.setData({
@@ -86,6 +84,24 @@ Page({
   bindViewCard(e) {
     wx.navigateTo({
       url: '../activity/activity?acId=' + e.currentTarget.dataset.id,
+    })
+  },
+
+  bindComment(e) {
+    let _crid = e.currentTarget.dataset.crid
+    let _cruid = e.currentTarget.dataset.cruid
+    wx.navigateTo({
+      url: '../create/index?crid=' + _crid + '&cruid=' + _cruid
+    })
+  },
+
+  bindZan(e) {
+    let _crid = e.currentTarget.dataset.crid
+    app.postRequest('/wx/cardRecordPraise/click', 'POST', {
+      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI',
+      cardRecordId: _crid
+    }, (res) => {
+      console.log(res)
     })
   }
 })

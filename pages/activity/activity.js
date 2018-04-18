@@ -244,9 +244,9 @@ Page({
 
 
   clickCard() { //点击打卡
-    if (this.data.isClick) { //为true倒计时结束  可以跳转
+    if (this.data.isClick) { // 是不已打卡
       wx.navigateTo({
-        url: '../clock/clock',
+        url: '../clock/clock?acId=' + this.data.acId,
       })
     }
 
@@ -275,6 +275,17 @@ Page({
     }, (res) => {
       console.log(res)
     })
-  }
+  },
 
+  gotoHome () {
+    wx.navigateTo({
+      url: '../home/index'
+    })
+  },
+
+  gotoClassify () {
+    wx.navigateTo({
+      url: '../classify/index'
+    })
+  }
 })

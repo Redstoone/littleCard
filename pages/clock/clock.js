@@ -9,23 +9,41 @@ Page({
     files: [], //多图
     isUp: false,
     camvd: '', //视频
-    currentCity:'',
-    items: [
-      { id: 1, value: '10', text: '对外公开', checked: true },
-      { id: 2, value: '20', text: '群主和私人可见', checked: false },
-      { id: 3, value: '30', text: '仅私人可见', checked: false }
-      
+    currentCity: '',
+    items: [{
+        id: 1,
+        value: '10',
+        text: '对外公开',
+        checked: true
+      },
+      {
+        id: 2,
+        value: '20',
+        text: '群主和私人可见',
+        checked: false
+      },
+      {
+        id: 3,
+        value: '30',
+        text: '仅私人可见',
+        checked: false
+      }
     ],
-    isLook:false,
-    title: '',//感想
+    isLook: false,
+    title: '', //感想
+    acid: null,
+    viewText: '对外公开'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      acid: options.acId
+    })
   },
+
   inputTxt(e) {
     var that = this
     that.setData({
@@ -33,24 +51,37 @@ Page({
     })
   },
 
+  bindCancel() {
+    wx.navigateBack();
+  },
+
   push() { //发表日记
     var value;
-    for (var i=0; i < this.data.items.length; i++){
-      if (this.data.items[i].checked == true ){
+    for (var i = 0; i < this.data.items.length; i++) {
+      if (this.data.items[i].checked == true) {
         value = this.data.items[i].value
       }
     }
     app.postRequest('	/wx/cardRecord/merged', 'POST', {
       consumerId: app.globalData.openid,
-      activityId: 1, //活动id
+      activityId: this.data.acid, //活动id
       viewType: value, //查看权限(10 对外公开 20群主和私人可见 30 仅私人可见)
       recordDescription: this.data.title, //日记内容
       recordPoint: this.data.currentCity, //地点
-      recordDescImg:this.data.files,//图片
-      recordDescVideo: this.data.camvd,//视频
+      recordDescImg: this.data.files, //图片
+      recordDescVideo: this.data.camvd, //视频
     }, (res) => {
       if (res.data.success) {
-        console.log("发表成功")
+        if (res.data.success) {
+          wx.showToast({
+            title: '发表日记成功',
+            icon: 'success',
+            duration: 500,
+            success: function (ret) {
+              wx.navigateBack();
+            }
+          })
+        }
       }
     })
   },
@@ -103,9 +134,6 @@ Page({
                       that.setData({
                         files: fileArr
                       })
-
-                      console.log(that.data.files)
-
                     } else {
                       wx.showToast({
                         title: "图片上传失败",
@@ -170,28 +198,25 @@ Page({
                 'accept': 'text/plain'
               },
               success: function (res) {
-                console.log(res, "11111data")
                 var data = JSON.parse(res.data);
                 that.setData({
                   camvd: 'http://tmp-qiniu.smarttinfo.com/' + data.key,
                   isLogo: true,
                   key: data.key
                 })
-
                 console.log(that.data.camvd)
               }
             })
-
           },
         })
       }
     })
   },
 
-  getLocation: function () {//定位
-  var that=this
+  getLocation: function () { //定位
+    var that = this
     wx.getUserInfo({
-      lang:'zh_CN',
+      lang: 'zh_CN',
       success: function (res) {
         var userInfo = res.userInfo
         var currentCity = userInfo.city
@@ -201,32 +226,34 @@ Page({
       }
     })
   },
-  getlook(){
+  getlook() {
     var that = this
     that.setData({
-      isLook:true
+      isLook: true
     })
   },
-  hideLook(){
+  hideLook() {
     var that = this
     that.setData({
       isLook: false
-    })    
+    })
   },
-  radioChange: function (e) {//权限
-    console.log(e)
+  radioChange: function (e) { //权限
     var that = this;
     var items = [];
+    var _viewtext = ''
     for (var i = 0; i < that.data.items.length; i++) {
       var item = that.data.items[i]
       item.checked = false
       if (e.detail.value && e.detail.value === that.data.items[i].value) {
         item.checked = true
+        _viewtext = item.text
       }
       items.push(item)
     }
     that.setData({
-      items: items
+      items: items,
+      viewText: _viewtext
     })
   },
 })
