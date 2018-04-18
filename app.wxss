@@ -1,7 +1,6 @@
 /**app.wxss**/
 
 @import "plugins/zanui/index.wxss";
-@import "plugins/iconfont/iconfont.wxss";
 @import "utils/font.wxss";
 @import "utils/iconfont.wxss";
 .container {

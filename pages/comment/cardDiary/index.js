@@ -58,14 +58,13 @@ Page({
 
   bindZan(e) {
     let _crid = e.currentTarget.dataset.crid
-    let _idx = e.currentTarget.dataset.idx
     app.postRequest('/wx/cardRecordPraise/click', 'POST', {
       consumerId: app.globalData.openid,
       cardRecordId: _crid
     }, (res) => {
       if (res.data.success) {
-        this.data.recommand[_idx].isZan = true
-        this.data.recommand[_idx].zanList.push({
+        this.data.recommand.isZan = true
+        this.data.recommand.zanList.push({
           consumerId: app.globalData.openid,
           nickname: app.globalData.userInfo.nickname
         })
