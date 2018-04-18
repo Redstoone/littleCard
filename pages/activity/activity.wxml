@@ -122,8 +122,13 @@
                   <i class="iconfont icon-more-o"></i> 详情</view>
                 <view class="tb-item" bindtap="bindComment" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
                   <i class="iconfont icon-comment"></i> 评论</view>
-                <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}">
-                  <i class="iconfont icon-xin"></i> 赞</view>
+                <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}" data-idx="{{index}}">
+                  <i class="iconfont {{item.isZan ? 'icon-xin1' : 'icon-xin'}}"></i> 赞</view>
+              </view>
+
+              <view class="praise-group" wx:if="{{item.zanList.length > 0}}">
+                <i class="iconfont icon-xin"></i>
+                <text wx:for="{{item.zanList}}" wx:key="{{index}}">{{item.nickname}}</text>
               </view>
 
               <view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">

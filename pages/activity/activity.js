@@ -204,7 +204,7 @@ Page({
   },
   countDown() {
     var that = this
-    //				// 渲染倒计时时钟
+    // 渲染倒计时时钟
     var clock = this.date_format(this.data.totalms)
     that.setData({
       clock: clock

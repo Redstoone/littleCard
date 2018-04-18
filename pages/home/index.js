@@ -62,17 +62,21 @@ Page({
       consumerId: app.globalData.openid
     }, (res) => {
       let _recommand = res.data.rows
-
       _recommand.map((item, index) => {
-        let _item = item
+        let _item = item,
+          _isZan = false
         _item.timeFormat = utils.formatTimeText(item.recordDate)
-        return 
-        
-
-
-
-
-                
+        _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
+          if (item2.consumerId == app.globalData.openid) {
+            _isZan = true
+          }
+          return {
+            consumerId: item2.consumerId,
+            nickname: item2.praiseConsumer.nickname
+          }
+        })
+        _item.isZan = _isZan
+        return _item
       })
 
       this.setData({
@@ -111,11 +115,22 @@ Page({
 
   bindZan(e) {
     let _crid = e.currentTarget.dataset.crid
+    let _idx = e.currentTarget.dataset.idx
     app.postRequest('/wx/cardRecordPraise/click', 'POST', {
-      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI',
+      consumerId: app.globalData.openid,
       cardRecordId: _crid
     }, (res) => {
-      console.log(res)
+      if (res.data.success) {
+        this.data.recommand[_idx].isZan = true
+        this.data.recommand[_idx].zanList.push({
+          consumerId: app.globalData.openid,
+          nickname: app.globalData.userInfo.nickname
+        })
+
+        this.setData({
+          recommand: this.data.recommand
+        })
+      }
     })
   }
 })

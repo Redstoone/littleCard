@@ -72,12 +72,12 @@
 						<i class="iconfont icon-more-o"></i> 详情</view>
 					<view class="tb-item" bindtap="bindComment" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
 						<i class="iconfont icon-comment"></i> 评论</view>
-					<view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}">
-						<i class="iconfont icon-xin"></i> 赞</view>
+					<view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}" data-idx="{{index}}">
+						<i class="iconfont {{item.isZan ? 'icon-xin1' : 'icon-xin'}}"></i> 赞</view>
 				</view>
-				<view class="praise-group" wx:if="{{item.cardRecordPraiseList.length > 0}}">
+				<view class="praise-group" wx:if="{{item.zanList.length > 0}}">
 					<i class="iconfont icon-xin"></i>
-					<text wx:for="{{item.cardRecordPraiseList}}" wx:key="{{index}}">{{item.praiseConsumer.nickname}}</text>
+					<text wx:for="{{item.zanList}}" wx:key="{{index}}">{{item.nickname}}</text>
 				</view>
 				<!-- <view class="recommand-item">
 					<view class="tb-item fz26 c999">

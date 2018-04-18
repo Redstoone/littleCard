@@ -67,17 +67,17 @@
         <view class="recommand-item">
           <view class="item-top-info user-header">
             <view class="user-avater">
-              <image class="pic-img" src="{{item.recordConsumer.headicon}}"></image>
-              <view class="icon-gender i-male" wx:if="{{item.recordConsumer.gender == 1}}">
+              <image class="pic-img" src="{{userInfo.headicon}}"></image>
+              <view class="icon-gender i-male" wx:if="{{userInfo.gender == 1}}">
                 <i class="iconfont icon-male"></i>
               </view>
-              <view class="icon-gender i-female" wx:elif="{{item.recordConsumer.gender == 2}}">
+              <view class="icon-gender i-female" wx:elif="{{userInfo.gender == 2}}">
                 <i class="iconfont icon-female"></i>
               </view>
             </view>
             <view class="item-title-info">
               <view class="item-title">
-                <text>{{item.recordConsumer.nickname}}</text>
+                <text>{{userInfo.nickname}}</text>
               </view>
               <view class="item-time-tips">
                 <text class="time">{{item.timeFormat}}</text>
@@ -96,13 +96,13 @@
               <i class="iconfont icon-more-o"></i> 详情</view>
             <view class="tb-item" bindtap="bindComment" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
               <i class="iconfont icon-comment"></i> 评论</view>
-            <view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}">
-              <i class="iconfont icon-xin"></i> 赞</view>
+            <view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}" data-idx="{{index}}">
+              <i class="iconfont {{item.isZan ? 'icon-xin1' : 'icon-xin'}}"></i> 赞</view>
           </view>
 
-          <view class="praise-group" wx:if="{{item.cardRecordPraiseList.length > 0}}">
+          <view class="praise-group" wx:if="{{item.zanList.length > 0}}">
             <i class="iconfont icon-xin"></i>
-            <text wx:for="{{item.cardRecordPraiseList}}" wx:key="{{index}}">{{item.praiseConsumer.nickname}}</text>
+            <text wx:for="{{item.zanList}}" wx:key="{{index}}">{{item.nickname}}</text>
           </view>
           
           <view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">

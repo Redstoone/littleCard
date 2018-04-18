@@ -339,3 +339,7 @@ page {
   font-size: 24rpx;
   margin-top: 8rpx;
 }
+
+.icon-xin1 {
+  color: #065eb5;
+}
