@@ -1,7 +1,8 @@
 /* pages/activity/activity.wxss */
 
 page {
-  background: #f8f8f8
+  background: #fff;
+  overflow: hidden;
 }
 
 .cont {
@@ -177,7 +178,7 @@ page {
   left: 50%;
   margin-left: -75rpx;
   color: #1dafaa;
-  top: 30%
+  top: 20%
 }
 
 .cont_time {
@@ -257,8 +258,6 @@ page {
 .tabs-cont {
   width: 100%;
 }
-
-.member-list {}
 
 .member-list .member-item {
   padding: 10rpx 20rpx;
@@ -349,4 +348,46 @@ page {
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.activity-room {
+  height: calc(100% - 120rpx);
+  overflow-y: auto;
+}
+
+.tabbars {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  height: 100rpx;
+  font-size: 24rpx;
+  color: #999;
+  background-color: #fff;
+  border-top: 2rpx solid #999;
+}
+
+.tabbars .bar-item {
+  flex: 1;
+  text-align: center
+}
+
+.tabbars .bar-item image {
+  width: 50rpx;
+  height: 50rpx;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10rpx;
+}
+
+.bar-card-clik{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #1dafaa;
+  color: #fff;
+  line-height: 100rpx;
+  margin-top: -30rpx;
+  font-size: 28rpx;
 }

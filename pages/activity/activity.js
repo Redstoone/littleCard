@@ -19,10 +19,14 @@ Page({
     totalms: '', //时间
     clock: '',
     startTime: '',
-    isClick: false, //打卡状态
+    isClick: true, //打卡状态
     acId: '',
     selectedId: 0,
-    recommand: []
+    recommand: [],
+    user: null,
+    activityDetail: null,
+    countDay: 0,
+    activityMember: null
   },
   changeTab(e) {
     this.setData({
@@ -134,18 +138,29 @@ Page({
           cardClickNumber: item.cardClickNumber,
           activityDescription: item.activityDetail.activityDescription,
           activityNotice: item.activityDetail.activityNotice,
+          activityNotice: item.activityDetail.activityNotice,
+          activityDetail: item.activityDetail,
           startTime: item.startTime,
+          activityMember: item.activityMember,
           totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime()
         })
         that.countDown()
         app.postRequest('/wx/consumer/record', 'POST', {
-          //consumerId: item.consumerId
-          consumerId: "1"
+          consumerId: item.consumerId
         }, (ret) => {
           if (ret.data.success) {
             that.setData({
-              headicon: ret.data.item.headicon,
-              nickname: ret.data.item.nickname
+              user: ret.data.item
+            })
+          }
+        })
+        app.postRequest('/wx/cardRecord/countDay', 'POST', {
+          consumerId: item.consumerId,
+          activityId: e.acId
+        }, (ret) => {
+          if (ret.data.success) {
+            that.setData({
+              countDay: ret.data.item
             })
           }
         })
@@ -156,8 +171,9 @@ Page({
     this.getCardRecordComment(e.acId);
   },
   getCardRecordComment(acid) {
-    app.postRequest('/wx/cardRecordComment/record2', 'POST', {
-      cardRecordId: acid
+    app.postRequest('/wx/cardRecord/record', 'POST', {
+      consumerId: app.globalData.openid,
+      activityId: acid
     }, (res) => {
       let _recommand = res.data.rows
 
@@ -187,14 +203,14 @@ Page({
     that.setData({
       clock: clock
     })
-    if (this.data.totalms <= 0) {
-      that.setData({
-        clock: "点击打卡",
-        isClick: true
-      })
-      // timeout则跳出递归
-      return;
-    }
+    // if (this.data.totalms <= 0) {
+    //   that.setData({
+    //     clock: "点击打卡",
+    //     isClick: true
+    //   })
+    //   // timeout则跳出递归
+    //   return;
+    // }
     setTimeout(() => {
       // 放在最后--
       that.setData({

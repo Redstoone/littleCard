@@ -1,171 +1,189 @@
 <!--pages/activity/activity.wxml-->
-<view class='cont tant'>
-  <image src='' style="width:100%;height:300rpx;background:#999999"></image>
-  <view class='contant'>
-    <view class="look_title ">{{name}}</view>
-    <view class='names fz26'>
-      {{memberNumber}}人参加 | {{cardClickNumber}}次打卡
+<view class="activity-room">
+  <view class='cont tant'>
+    <image src='{{activityDetail.activityThumb}}' style="width:100%;height:300rpx;background:#999999"></image>
+    <view class='contant'>
+      <view class="look_title ">{{name}}</view>
+      <view class='names fz26'>
+        {{memberNumber}}人参加 | {{cardClickNumber}}次打卡
+      </view>
+      <view class='nameImg fz26 clear'>
+        <image class="left head" src='{{user.headicon}}' style=''></image>
+        <view class="left name">{{user.nickname}}</view>
+        <!-- <view class="left btn">加微信</view> -->
+      </view>
     </view>
-    <view class='nameImg fz26 clear'>
-      <image class="left head" src='{{headicon}}' style=''></image>
-      <view class="left name">{{mainWx}}</view>
-      <!-- <view class="left btn">加微信</view> -->
-    </view>
-  </view>
-  <view class="tant_txt clear">
+    <!-- <view class="tant_txt clear">
     <view class="item_icon">
       <i class="iconfont icon-post"></i>
     </view>
     <view class="item_play fz24">编辑详情</view>
-  </view>
-  <button open-type="share" class="tant_com clear" style="padding:0">
-    <view class="item_icon">
-      <i class="iconfont icon-share"></i>
-    </view>
-    <view class="item_play fz24">邀请好友</view>
-  </button>
-</view>
-<view class="pad cont_title fz30">
-  {{activityNotice}}
-</view>
-
-<view class="">
-  <view class="clear cont_tant">
-    <view class="left">
-      <view class='cont_head left'>
-        <image src='{{headicon}}' style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
+  </view> -->
+    <button open-type="share" class="tant_com clear" style="padding:0">
+      <view class="item_icon">
+        <i class="iconfont icon-share"></i>
       </view>
-      <view class='cont_box left'>
-        <view class="cont_name fz28 c666">
-          {{nickname}}
-          <!-- <text class="fz26 c999">修改昵称</text> -->
+      <view class="item_play fz24">邀请好友</view>
+    </button>
+  </view>
+  <view class="pad cont_title fz30">
+    {{activityNotice}}
+  </view>
+
+  <view class="">
+    <view class="clear cont_tant">
+      <view class="left">
+        <view class='cont_head left'>
+          <image src='{{user.headicon}}' style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
         </view>
-        <view class="cont_day fz24 c999">
-          已坚持打卡0天
+        <view class='cont_box left'>
+          <view class="cont_name fz28 c666">
+            {{user.nickname}}
+            <!-- <text class="fz26 c999">修改昵称</text> -->
+          </view>
+          <view class="cont_day fz24 c999">
+            已坚持打卡0天
+          </view>
+        </view>
+      </view>
+      <view class="right fz26 set c666" bindtap='set'>
+        设置
+      </view>
+    </view>
+  </view>
+
+  <view class="contants fz26 c999">
+    <view class="_week_cant ">
+      <view class="_week">日</view>
+      <view class="_week">一</view>
+      <view class="_week">二</view>
+      <view class="_week">三</view>
+      <view class="_week">四</view>
+      <view class="_week">五</view>
+      <view class="_week">六</view>
+    </view>
+    <view class="_subYears_items clear">
+      <view class="_subYears_wrap" wx:for="{{years}}" wx:key="index">
+        <!-- <view class="_subYears_item_f" style="margin-left:{{(item[0].week-1)*107}}rpx"></view> -->
+        <view wx:for-items="{{item}}" wx:key="{{index}}" id="{{index}}" class="_subYears_item left" bindtap="clickChecked">
+          <view>{{item.str == '今天' ? item.str : item.day}}</view>
         </view>
       </view>
     </view>
-    <view class="right fz26 set c666" bindtap='set'>
-      设置
-    </view>
-  </view>
-</view>
 
-<view class="contants fz26 c999">
-  <view class="_week_cant ">
-    <view class="_week">日</view>
-    <view class="_week">一</view>
-    <view class="_week">二</view>
-    <view class="_week">三</view>
-    <view class="_week">四</view>
-    <view class="_week">五</view>
-    <view class="_week">六</view>
-  </view>
-  <view class="_subYears_items clear">
-    <view class="_subYears_wrap" wx:for="{{years}}" wx:key="index">
-      <!-- <view class="_subYears_item_f" style="margin-left:{{(item[0].week-1)*107}}rpx"></view> -->
-      <view wx:for-items="{{item}}" wx:key="{{index}}" id="{{index}}" class="_subYears_item left" bindtap="clickChecked">
-        <view>{{item.str == '今天' ? item.str : item.day}}</view>
+    <view class="cont_now" >
+      <view class="cont_days">
+        打卡
+        <text style="font-size:72rpx">{{countDay}}</text>天
       </view>
-    </view>
-  </view>
-
-  <view class="cont_now" bindtap='clickCard'>
-    <!-- <view class="cont_days">
-      <text style="font-size:40rpx">13</text>天
-    </view> -->
-    <view class="cont_time fz32">
+      <!-- <view class="cont_time fz32">
       {{clock}}
+    </view> -->
     </view>
-  </view>
-  <!-- <view class="cont_txt">
+    <!-- <view class="cont_txt">
     <view>打卡活动即将开始</view>
     <view>开始日期：xxxx</view>
   </view> -->
 
-  <view class="c-tabs" style="margin-top: 20rpx;">
-    <view class="tab-item {{selectedId == 0 ? 'active' : ''}}" bindtap="changeTab" data-idx="0">日记</view>
-    <view class="tab-item {{selectedId == 1 ? 'active' : ''}}" bindtap="changeTab" data-idx="1">详情</view>
-    <view class="tab-item {{selectedId == 2 ? 'active' : ''}}" bindtap="changeTab" data-idx="2">成员</view>
-  </view>
-  
-  <view class="tabs-cont">
-    <view class="tab-panel" wx:if="{{selectedId == 0}}">
-      <view class="recommand-group" wx:if="{{recommand.length > 0}}">
-        <block wx:for="{{recommand}}" wx:key="{{index}}">
-          <view class="recommand-item">
-            <view class="item-top-info user-header">
-              <view class="user-avater">
-                <image class="pic-img" src="{{item.commentConsumer.headicon}}"></image>
-                <view class="icon-gender i-male" wx:if="{{item.commentConsumer.gender == 1}}">
-                  <i class="iconfont icon-male"></i>
+    <view class="c-tabs" style="margin-top: 20rpx;">
+      <view class="tab-item {{selectedId == 0 ? 'active' : ''}}" bindtap="changeTab" data-idx="0">日记</view>
+      <view class="tab-item {{selectedId == 1 ? 'active' : ''}}" bindtap="changeTab" data-idx="1">详情</view>
+      <view class="tab-item {{selectedId == 2 ? 'active' : ''}}" bindtap="changeTab" data-idx="2">成员</view>
+    </view>
+
+    <view class="tabs-cont">
+      <view class="tab-panel" wx:if="{{selectedId == 0}}">
+        <view class="recommand-group" wx:if="{{recommand.length > 0}}">
+          <block wx:for="{{recommand}}" wx:key="{{index}}">
+            <view class="recommand-item">
+              <view class="item-top-info user-header">
+                <view class="user-avater">
+                  <image class="pic-img" src="{{item.commentConsumer.headicon}}"></image>
+                  <view class="icon-gender i-male" wx:if="{{item.commentConsumer.gender == 1}}">
+                    <i class="iconfont icon-male"></i>
+                  </view>
+                  <view class="icon-gender i-female" wx:elif="{{item.commentConsumer.gender == 2}}">
+                    <i class="iconfont icon-female"></i>
+                  </view>
                 </view>
-                <view class="icon-gender i-female" wx:elif="{{item.commentConsumer.gender == 2}}">
-                  <i class="iconfont icon-female"></i>
+                <view class="item-title-info">
+                  <view class="item-title">
+                    <text>{{user.nickname}}</text>
+                  </view>
+                  <view class="item-time-tips">
+                    <text class="time">{{item.timeFormat}}</text>
+                    <text class="">·</text>
+                    <!-- <text class="">已经坚持{{item.days}}天</text> -->
+                  </view>
                 </view>
               </view>
-              <view class="item-title-info">
-                <view class="item-title">
-                  <text>{{user.nickname}}</text>
-                </view>
-                <view class="item-time-tips">
-                  <text class="time">{{item.timeFormat}}</text>
-                  <text class="">·</text>
-                  <!-- <text class="">已经坚持{{item.days}}天</text> -->
-                </view>
-              </view>
-            </view>
-            <view class="item-remark">{{item.commentDescription}}</view>
-            <!-- <view class="item-pic">
+              <view class="item-remark">{{item.commentDescription}}</view>
+              <!-- <view class="item-pic">
                     <image src="{{item.item_pic}}"></image>
                   </view> -->
-            <!-- <view class="address">128广场</view> -->
-            <view class="tool-bar">
-              <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
-                <i class="iconfont icon-more-o"></i> 详情</view>
-              <view class="tb-item" bindtap="bindComment" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
-                <i class="iconfont icon-comment"></i> 评论</view>
-              <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}">
-                <i class="iconfont icon-xin"></i> 赞</view>
+              <!-- <view class="address">128广场</view> -->
+              <view class="tool-bar">
+                <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+                  <i class="iconfont icon-more-o"></i> 详情</view>
+                <view class="tb-item" bindtap="bindComment" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+                  <i class="iconfont icon-comment"></i> 评论</view>
+                <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}">
+                  <i class="iconfont icon-xin"></i> 赞</view>
+              </view>
+            </view>
+            <view class="underline"></view>
+          </block>
+        </view>
+        <view class="no-recommand" wx:else>暂无打卡日记</view>
+      </view>
+      <view class="tab-panel" wx:elif="{{selectedId == 1}}">
+        <view class="">
+          <view class="member-list">
+            <view class="member-item clear">
+              <view class="">
+                <image src="{{user.headicon}}" class="member-img"></image>
+                <view class="member-name">{{user.nickname}}</view>
+                <!-- <view class="member-qun">群主</view> -->
+                <view class="member-desc">{{mainDescription}}</view>
+              </view>
+              <!-- <view class="right join-time addwx">加Ta微信</view> -->
             </view>
           </view>
-          <view class="underline"></view>
-        </block>
+
+          <view class="hr"></view>
+          <view class="activity-wrap">
+            <view class="aw-title">活动详情</view>
+            <view class="aw-detail">{{activityDescription}}</view>
+          </view>
+        </view>
       </view>
-      <view class="no-recommand" wx:else>暂无打卡日记</view>
-    </view>
-    <view class="tab-panel" wx:elif="{{selectedId == 1}}">
-      <view class="">
+      <view class="tab-panel" wx:elif="{{selectedId == 2}}">
         <view class="member-list">
-          <view class="member-item clear">
+          <view class="member-item clear" wx:for="{{activityMember}}" wx:key="{{index}}">
             <view class="">
-              <image src="{{headicon}}" class="member-img"></image>
-              <view class="member-name">{{nickname}}</view>
-              <!-- <view class="member-qun">群主</view> -->
-              <view class="member-desc">{{mainDescription}}</view>
+              <image src="{{item.consumer.headicon}}" class="member-img"></image>
+              <view class="member-name mi-name">{{item.consumer.nickname}}</view>
             </view>
-            <!-- <view class="right join-time addwx">加Ta微信</view> -->
+            <view class="right join-time">{{item.createTime}} 加入</view>
           </view>
-        </view>
-  
-        <view class="hr"></view>
-        <view class="activity-wrap">
-          <view class="aw-title">活动详情</view>
-          <view class="aw-detail">{{activityDescription}}</view>
-        </view>
-      </view>
-    </view>
-    <view class="tab-panel" wx:elif="{{selectedId == 2}}">
-      <view class="member-list">
-        <view class="member-item clear">
-          <view class="">
-            <image src="{{headicon}}" class="member-img"></image>
-            <view class="member-name mi-name">{{nickname}}</view>
-          </view>
-          <view class="right join-time">2018-03-18 加入</view>
         </view>
       </view>
     </view>
   </view>
 </view>
 
+<view class="tabbars">
+  <view class="bar-item">
+    <image src="/images/icon_home.png"></image>
+    首页
+  </view>
+  <view class="bar-item" bindtap='clickCard'>
+    <view class="bar-card-clik">
+      已打卡
+    </view>
+  </view>
+  <view class="bar-item">
+    <image src="/images/icon_classify.png"></image>
+    发现
+  </view>
+</view>
