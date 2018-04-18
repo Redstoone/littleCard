@@ -24,7 +24,7 @@ Page({
   // 获取活动分类
   getActivityCategoryList () {
     app.postRequest('/wx/category/record', 'POST', '', (res) => {
-      if (res.data.success) {
+      if (res.data.success && res.data.item.length > 0) {
         this.setData({
           classifyList: res.data.item,
           categoryId: res.data.item[0].id

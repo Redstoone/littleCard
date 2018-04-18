@@ -16,7 +16,7 @@
 
 
 .nextbtn{position: absolute;bottom:0;background: #1dafaa;width:100%;left:0;border-radius: 0}
-.join{width: 90%;height: 96rpx;}
+.join{width: 100%;height: 96rpx;}
 .share{width: 10%;background: red;height: 100rpx;}
 .share_d{width: 10rpx;height: 10rpx;background: #fff;border-radius: 50%;margin-left: auto;margin-right: auto;}
 .share_d1{margin-top: 20rpx;}

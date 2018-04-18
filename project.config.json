@@ -96,6 +96,12 @@
 					"name": "发表日记",
 					"pathName": "pages/clock/clock",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "pages/lookdetail/lookdetail",
+					"query": "acId=923246910607724544"
 				}
 			]
 		}
