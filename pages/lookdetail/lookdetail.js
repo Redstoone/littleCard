@@ -62,6 +62,12 @@ Page({
             })
           }
         })
+      } else {
+        wx.showToast({
+          title: '活动未开始',
+          icon: 'loading',
+          duration: 1500
+        })
       }
     });
   },

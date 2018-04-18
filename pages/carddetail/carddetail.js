@@ -187,7 +187,6 @@ Page({
                 'accept': 'text/plain'
               },
               success: function (res) {
-                console.log(res, "11111data")
                 var data = JSON.parse(res.data);
                 that.setData({
                   camBg: 'http://tmp-qiniu.smarttinfo.com/' + data.key + '?imageView/2/w/750/h/300',
@@ -285,7 +284,7 @@ Page({
                     var data = JSON.parse(data.data)
                     if (data.key) {
                       var fileArr = that.data.files
-                      let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key + '?imageView/2/w/120/h/120';
+                      let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key;
                       fileArr.push(testImg)
                       that.setData({
                         files: fileArr

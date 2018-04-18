@@ -26,7 +26,8 @@ Page({
     user: null,
     activityDetail: null,
     countDay: 0,
-    activityMember: null
+    activityMember: null,
+    activityDescImg: null
   },
   changeTab(e) {
     this.setData({
@@ -141,6 +142,7 @@ Page({
           activityNotice: item.activityDetail.activityNotice,
           activityDetail: item.activityDetail,
           startTime: item.startTime,
+          activityDescImg: item.activityDetail.activityDescImg.split(','),
           activityMember: item.activityMember,
           totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime()
         })

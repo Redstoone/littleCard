@@ -380,7 +380,7 @@ page {
   margin-top: 10rpx;
 }
 
-.bar-card-clik{
+.bar-card-clik {
   width: 100rpx;
   height: 100rpx;
   margin: 0 auto;
@@ -390,4 +390,15 @@ page {
   line-height: 100rpx;
   margin-top: -30rpx;
   font-size: 28rpx;
+}
+
+.aw-img {
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.aw-img image{
+  max-width: 100%;
+  margin: 10rpx auto;
+  display: block;
 }

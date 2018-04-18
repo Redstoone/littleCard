@@ -5,7 +5,7 @@
     <view class="look_title ">{{name}}</view>
     <view class='look_pople clear'>
       <view class='nameImg left'>
-        <image src='{{user.headicon}}' style='width:40rpx;height:40rpx;background:#f1f1f1'></image>
+        <image src='{{user.headicon}}' style='width:40rpx;height:40rpx;background:#f1f1f1;border-radius: 50%;'></image>
       </view>
       <view class='names left fz26 c999'>
         
@@ -32,7 +32,7 @@
     <view class="look_title">群主简介</view>
     <view class='look_pople clear'>
       <view class='nameImg left'>
-        <image src='{{user.headicon}}' style='width:80rpx;height:80rpx;background:#f1f1f1'></image>
+        <image src='{{user.headicon}}' style='width:80rpx;height:80rpx;background:#f1f1f1;border-radius: 50%;'></image>
       </view>
       <view class='name left fz26 c333'>
         {{user.nickname}}

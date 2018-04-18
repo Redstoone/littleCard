@@ -8,11 +8,27 @@ Page({
   },
 
   onLoad () {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
-    this.getCardRecord();
+    this.getUserInfo();
   }, 
+
+  getUserInfo() {
+    let _this = this
+    let us = app.globalData.userInfo
+    if (us) {
+      _this.setData({
+        userInfo: us
+      })
+    } else {
+      app.getUserInfo(function (openid, userInfo) {
+        if (openid) {
+          _this.setData({
+            userInfo: userInfo
+          })
+          _this.getCardRecord()
+        }
+      })
+    }
+  },
 
   navtoSetting () {
     wx.navigateTo({

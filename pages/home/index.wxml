@@ -73,6 +73,10 @@
 					<view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}">
 						<i class="iconfont icon-xin"></i> 赞</view>
 				</view>
+				<view class="praise-group" wx:if="{{item.cardRecordPraiseList.length > 0}}">
+					<i class="iconfont icon-xin"></i>
+					<text wx:for="{{item.cardRecordPraiseList}}" wx:key="{{index}}">{{item.praiseConsumer.nickname}}</text>
+				</view>
 			</view>
 		</block>
 	</view>
