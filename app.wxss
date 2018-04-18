@@ -276,11 +276,12 @@ page {
 
 .recommand-item .tool-bar {
   padding: 0 0 15rpx 0;
+  padding-left: 90rpx;
 }
 
 .recommand-item .tool-bar .tb-item {
   display: inline-block;
-  margin-right: 30rpx;
+  margin-right: 50rpx;
   color: #999;
   font-size: 24rpx;
 }
@@ -314,9 +315,9 @@ page {
   font-size: 24rpx;
 }
 
-.no-recommand{
+.no-recommand {
   text-align: center;
   margin: 40rpx auto;
-  color:#999;
+  color: #999;
   font-size: 24rpx;
 }

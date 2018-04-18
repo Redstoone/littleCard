@@ -14,7 +14,7 @@ Page({
     })
   },
 
-  bindTextAreaBlur: function (e) {
+  bindTextAreaInput: function (e) {
     this.setData({
       description: e.detail.value
     })

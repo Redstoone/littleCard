@@ -1,6 +1,6 @@
 <view class="container">
   <view class="contant fz32 c999">
-    <textarea class="comment-desc" maxlength="-1" focus="true" placeholder="写评论" value="{{description}}" bindblur="bindTextAreaBlur"></textarea>
+    <textarea class="comment-desc" maxlength="-1" focus="true" placeholder="写评论" value="{{description}}" bindinput="bindTextAreaInput"></textarea>
   </view>
   <view class='cant_foot clear f32rpx'>
     <view class='left col' bindtap="bindCancel">取消</view>

@@ -61,7 +61,48 @@
   </view>
   <view class="zan-panel">
     <view class="info_title zan-font-16 c000">我的打卡日记</view>
-    <view class="no-data">
+
+    <view class="recommand-group" wx:if="{{recommand.length > 0}}">
+      <block wx:for="{{recommand}}" wx:key="{{index}}">
+        <view class="recommand-item">
+          <view class="item-top-info user-header">
+            <view class="user-avater">
+              <image class="pic-img" src="{{item.recordConsumer.headicon}}"></image>
+              <view class="icon-gender i-male" wx:if="{{item.recordConsumer.gender == 1}}">
+                <i class="iconfont icon-male"></i>
+              </view>
+              <view class="icon-gender i-female" wx:elif="{{item.recordConsumer.gender == 2}}">
+                <i class="iconfont icon-female"></i>
+              </view>
+            </view>
+            <view class="item-title-info">
+              <view class="item-title">
+                <text>{{item.recordConsumer.nickname}}</text>
+              </view>
+              <view class="item-time-tips">
+                <text class="time">{{item.timeFormat}}</text>
+                <text class="">·</text>
+                <!-- <text class="">已经坚持{{item.days}}天</text> -->
+              </view>
+            </view>
+          </view>
+          <view class="item-remark">{{item.recordDescription}}</view>
+          <!-- <view class="item-pic">
+    		                    <image src="{{item.item_pic}}"></image>
+    		                  </view> -->
+          <!-- <view class="address">128广场</view> -->
+          <view class="tool-bar">
+            <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
+              <i class="iconfont icon-more-o"></i> 详情</view>
+            <view class="tb-item" bindtap="bindComment" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
+              <i class="iconfont icon-comment"></i> 评论</view>
+            <view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}">
+              <i class="iconfont icon-xin"></i> 赞</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="no-data" wx:else>
       <view class="nd-icon">
         <i class="iconfont icon-02"></i>
       </view>

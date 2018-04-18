@@ -6,15 +6,17 @@
 	</view>
 	<!-- add card -->
 	<view class="add-card" bindtap='addCard' wx:if="{{myCardList.length > 0}}">
-		<text class="">+<text class="add-card-tips">新建打卡</text></text>
+		<view class="">+<text class="add-card-tips">新建打卡</text>
+		</view>
 	</view>
 	<view class="add-card add-card2" bindtap='addCard' wx:else>
-		<text class="">+ <text class="add-card-tips">新建打卡</text> </text>
+		<view class="">+<text class="add-card-tips">新建打卡</text>
+		</view>
 	</view>
 	<view class="my-card-list">
 		<view wx:for="{{myCardList}}" wx:key="{{index}}" bindtap="bindViewCard" data-id="{{item.id}}">
 			<view class="my-card-item">
-				<image class="card-item-img" src="{{item.activityDetail.activityThumb}}"></image>
+				<image class="card-item-img" src="{{item.activityDetail.activityThumb}}" mode="aspectFill"></image>
 				<view class="card-item-info">
 					<view class="card-item-title">
 						<text>{{item.name}}</text>
@@ -64,17 +66,17 @@
 		                  </view> -->
 				<!-- <view class="address">128广场</view> -->
 				<view class="tool-bar">
-					<view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+					<view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
 						<i class="iconfont icon-more-o"></i> 详情</view>
-					<view class="tb-item" bindtap="bindComment" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+					<view class="tb-item" bindtap="bindComment" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
 						<i class="iconfont icon-comment"></i> 评论</view>
-					<view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}">
+					<view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}">
 						<i class="iconfont icon-xin"></i> 赞</view>
 				</view>
 			</view>
 		</block>
 	</view>
-	<view class="no-data" style="font-size: 28rpx;color: #999;" wx:else>
+	<view class="no-data" style="font-size: 28rpx;color: #999;text-align: center;" wx:else>
 		暂无打卡日记
 	</view>
 </view>

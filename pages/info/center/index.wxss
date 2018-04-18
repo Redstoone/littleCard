@@ -17,6 +17,7 @@
 
 .info_title {
   padding: 20rpx;
+  border-top: 20rpx solid #f8f8f8;
 }
 
 .info-ft::after {

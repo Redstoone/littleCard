@@ -29,7 +29,7 @@
 
 .add-card {
 	text-align: left;
-	padding: 10rpx 20rpx;
+	padding: 20rpx;
 	font-size: 32rpx;
 	color: #1dafaa;
 }

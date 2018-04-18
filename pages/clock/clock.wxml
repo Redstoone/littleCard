@@ -20,17 +20,17 @@
 	</view>
 
 	<view class="cont_btn clear">
-		<view class='left' bindtap='clickImg'>
+		<view class='left' bindtap='clickImg' wx:If="{{!files}}">
 			<image src="../../images/01.png"></image>
 		</view>
-		<view class='left'>
+		<!-- <view class='left'>
 			<image src="../../images/02.png"></image>
-		</view>
+		</view> -->
 		<view class='left' bindtap='changevd'>
 			<image src="../../images/03.png"></image>
 		</view>
 	</view>
-	<view class="clear fz26 c666 cont_nav" bindtap='getLocation'>
+	<!-- <view class="clear fz26 c666 cont_nav" bindtap='getLocation'>
 		<view class='clear left'>
 			<view class='left cont_b'>
 				<i class="iconfont icon-location"></i>
@@ -38,7 +38,7 @@
 			<view class='left'>所在位置</view>
 		</view>
 		<view class="right arrow-right">{{currentCity}}</view>
-	</view>
+	</view> -->
 	<view class="clear fz26 c666 cont_nav" bindtap='getlook'>
 		<view class='clear left'>
 			<view class='left cont_b'>

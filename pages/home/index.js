@@ -87,11 +87,19 @@ Page({
     })
   },
 
+  bindCommentDetail(e) {
+    let _crid = e.currentTarget.dataset.crid
+    let _cruid = e.currentTarget.dataset.cruid
+    wx.navigateTo({
+      url: '../comment/cardDiary/index?crid=' + _crid + '&cruid=' + _cruid
+    })
+  },
+
   bindComment(e) {
     let _crid = e.currentTarget.dataset.crid
     let _cruid = e.currentTarget.dataset.cruid
     wx.navigateTo({
-      url: '../create/index?crid=' + _crid + '&cruid=' + _cruid
+      url: '../comment/create/index?crid=' + _crid + '&cruid=' + _cruid
     })
   },
 

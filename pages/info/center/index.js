@@ -1,26 +1,18 @@
 const app = getApp()
+var utils = require("../../../utils/util")
 
 Page({
   data: {
     userInfo: null,
-    // hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    // avatarUrl: 'https://t10.baidu.com/it/u=3788365272,318725089&fm=173&app=25&f=JPEG?w=640&h=363&s=361016CC28B3EA475C13653D0300505A',
-    // nickName: 'ken'
   },
 
   onLoad () {
-    this.getUserInfo();
-    console.log(app.globalData.userInfo)
     this.setData({
       userInfo: app.globalData.userInfo
     })
+    this.getCardRecord();
   }, 
-
-  // 获取用户信息
-  getUserInfo () {
-
-  },
 
   navtoSetting () {
     wx.navigateTo({
@@ -32,6 +24,41 @@ Page({
   onPullDownRefresh () {
     wx.showNavigationBarLoading();
     var that = this;
-  }
+  },
 
+  getCardRecord() {
+    app.postRequest('/wx/cardRecord/record2', 'POST', {
+      consumerId: app.globalData.openid
+    }, (res) => {
+      let _recommand = res.data.rows
+
+      _recommand.map((item, index) => {
+        let _item = item
+        _item.timeFormat = utils.formatTimeText(item.recordDate)
+        return _item
+      })
+
+      this.setData({
+        recommand: _recommand
+      })
+    })
+  },
+
+  bindComment(e) {
+    let _crid = e.currentTarget.dataset.crid
+    let _cruid = e.currentTarget.dataset.cruid
+    wx.navigateTo({
+      url: '../../comment/create/index?crid=' + _crid + '&cruid=' + _cruid
+    })
+  },
+
+  bindZan(e) {
+    let _crid = e.currentTarget.dataset.crid
+    app.postRequest('/wx/cardRecordPraise/click', 'POST', {
+      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI',
+      cardRecordId: _crid
+    }, (res) => {
+      console.log(res)
+    })
+  }
 })

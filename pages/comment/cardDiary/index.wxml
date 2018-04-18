@@ -1,6 +1,6 @@
 <view class="container">
   <view class="recommand-group">
-    <block wx:for="{{recommand}}" wx:key="{{index}}">
+    <block>
       <view class="recommand-item">
         <view class="item-top-info user-header">
           <view class="user-avater">
@@ -17,27 +17,24 @@
               <text>{{user.nickname}}</text>
             </view>
             <view class="item-time-tips">
-              <text class="time">{{item.timeFormat}}</text>
+              <text class="time">{{recommand.timeFormat}}</text>
               <text class="">·</text>
               <!-- <text class="">已经坚持{{item.days}}天</text> -->
             </view>
           </view>
         </view>
-        <view class="item-remark">{{item.commentDescription}}</view>
+        <view class="item-remark">{{recommand.recordDescription}}</view>
         <!-- <view class="item-pic">
             <image src="{{item.item_pic}}"></image>
           </view> -->
         <!-- <view class="address">128广场</view> -->
         <view class="tool-bar">
-          <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
-            <i class="iconfont icon-more-o"></i> 详情</view>
-          <view class="tb-item" bindtap="bindComment" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
+          <view class="tb-item" bindtap="bindComment" data-crid="{{recommand.id}}" data-cruid="{{recommand.consumerId}}">
             <i class="iconfont icon-comment"></i> 评论</view>
-          <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}">
+          <view class="tb-item" bindtap="bindZan" data-crid="{{recommand.id}}">
             <i class="iconfont icon-xin"></i> 赞</view>
         </view>
       </view>
-      <view class="underline"></view>
     </block>
   </view>
 </view>

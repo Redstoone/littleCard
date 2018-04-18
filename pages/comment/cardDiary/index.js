@@ -3,41 +3,43 @@ const app = getApp()
 
 Page({
   data: {
-    recommand: [],
-    user: null
+    recommand: null,
+    user: null,
+    crid: null,
+    cruid: null
   },
 
-  onShow() {
-    this.getCommandList()
+  onLoad(options) {
+    this.setData({
+      crid: options.crid,
+      cruid: options.cruid
+    })
+    this.getCommandList(options.crid, options.cruid)
   },
 
-  getCommandList() {
-    // app.postRequest('/wx/cardRecordComment/record', 'POST', { consumerId: app.globalData.openid }, (res) => {
-    app.postRequest('/wx/cardRecordComment/record', 'POST', { consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI' }, (res) => {
+  getCommandList(crid, cruid) {
+    app.postRequest('/wx/cardRecord/detail', 'POST', {
+      consumerId: cruid,
+      cardRecordId: crid
+    }, (res) => {
       let _recommand = res.data.item
-
-      _recommand.map((item, index) => {
-        let _item = item
-        _item.timeFormat = utils.formatTimeText(item.createTime)
-        return _item
-      })
-
+      _recommand.timeFormat = utils.formatTimeText(_recommand.createTime)
       this.setData({
         recommand: _recommand,
-        user: res.data.user
+        user: app.globalData.userInfo
       })
     })
   },
 
-  bindComment (e) {
+  bindComment(e) {
     let _crid = e.currentTarget.dataset.crid
     let _cruid = e.currentTarget.dataset.cruid
     wx.navigateTo({
-      url: '../create/index?crid=' + _crid + '&cruid=' + _cruid
+      url: '../../create/index?crid=' + _crid + '&cruid=' + _cruid
     })
   },
 
-  bindZan (e) {
+  bindZan(e) {
     let _crid = e.currentTarget.dataset.crid
     app.postRequest('/wx/cardRecordPraise/click', 'POST', {
       consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI',
