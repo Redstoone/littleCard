@@ -59,7 +59,7 @@
 
 <view class='cant_foot clear f32rpx'>
 	<view class='left col'>取消</view>
-	<view class='right com'>发表日记</view>
+	<view class='right com' bindtap='push'>发表日记</view>
 </view>
 
   <view class="back" wx:if="{{isLook}}"></view>
