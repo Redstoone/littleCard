@@ -5,6 +5,7 @@ Page({
   data: {
     userInfo: null,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    recommand: []
   },
 
   onLoad () {
@@ -18,6 +19,7 @@ Page({
       _this.setData({
         userInfo: us
       })
+      _this.getCardRecord()
     } else {
       app.getUserInfo(function (openid, userInfo) {
         if (openid) {
@@ -42,6 +44,10 @@ Page({
     var that = this;
   },
 
+  onShow() {
+    this.getCardRecord()
+  },
+
   getCardRecord() {
     app.postRequest('/wx/cardRecord/record2', 'POST', {
       consumerId: app.globalData.openid
@@ -53,10 +59,17 @@ Page({
         _item.timeFormat = utils.formatTimeText(item.recordDate)
         return _item
       })
-
       this.setData({
         recommand: _recommand
       })
+    })
+  },
+
+  bindCommentDetail(e) {
+    let _crid = e.currentTarget.dataset.crid
+    let _cruid = e.currentTarget.dataset.cruid
+    wx.navigateTo({
+      url: '../../comment/cardDiary/index?crid=' + _crid + '&cruid=' + _cruid
     })
   },
 

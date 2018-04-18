@@ -172,6 +172,10 @@ Page({
     this.getDateList();
     this.getCardRecordComment(e.acId);
   },
+
+  onShow() {
+    this.getCardRecordComment(this.data.acId);
+  },
   getCardRecordComment(acid) {
     app.postRequest('/wx/cardRecord/record', 'POST', {
       consumerId: app.globalData.openid,
@@ -280,14 +284,14 @@ Page({
   },
 
   gotoHome () {
-    wx.navigateTo({
-      url: '../home/index'
+    wx.switchTab({
+      url: '/pages/home/index'
     })
   },
 
   gotoClassify () {
-    wx.navigateTo({
-      url: '../classify/index'
+    wx.switchTab({
+      url: '/pages/classify/index'
     })
   }
 })

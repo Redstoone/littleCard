@@ -34,6 +34,17 @@
           <view class="tb-item" bindtap="bindZan" data-crid="{{recommand.id}}">
             <i class="iconfont icon-xin"></i> 赞</view>
         </view>
+
+        <view class="praise-group" wx:if="{{recommand.cardRecordPraiseList.length > 0}}">
+          <i class="iconfont icon-xin"></i>
+          <text wx:for="{{recommand.cardRecordPraiseList}}" wx:key="{{index}}">{{item.praiseConsumer.nickname}}</text>
+        </view>
+        
+        <view class="comment-group" wx:for="{{recommand.cardRecordCommentList}}" wx:key="{{index}}">
+          <view class="tb-item fz26 c999">
+            {{item.commentConsumer.nickname + ': ' + item.commentDescription}}
+          </view>
+        </view>
       </view>
     </block>
   </view>

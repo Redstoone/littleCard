@@ -113,15 +113,10 @@
                   <view class="item-time-tips">
                     <text class="time">{{item.timeFormat}}</text>
                     <text class="">·</text>
-                    <!-- <text class="">已经坚持{{item.days}}天</text> -->
                   </view>
                 </view>
               </view>
               <view class="item-remark">{{item.commentDescription}}</view>
-              <!-- <view class="item-pic">
-                    <image src="{{item.item_pic}}"></image>
-                  </view> -->
-              <!-- <view class="address">128广场</view> -->
               <view class="tool-bar">
                 <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.cardRecordId}}" data-cruid="{{item.cardRecordUserId}}">
                   <i class="iconfont icon-more-o"></i> 详情</view>
@@ -129,6 +124,12 @@
                   <i class="iconfont icon-comment"></i> 评论</view>
                 <view class="tb-item" bindtap="bindZan" data-crid="{{item.cardRecordId}}">
                   <i class="iconfont icon-xin"></i> 赞</view>
+              </view>
+
+              <view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">
+                <view class="tb-item fz26 c999">
+                  {{item.commentConsumer.nickname+': '+item.commentDescription}}
+                </view>
               </view>
             </view>
             <view class="underline"></view>

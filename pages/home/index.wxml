@@ -6,11 +6,13 @@
 	</view>
 	<!-- add card -->
 	<view class="add-card" bindtap='addCard' wx:if="{{myCardList.length > 0}}">
-		<view class="">+<text class="add-card-tips">新建打卡</text>
+		<view class="">+
+			<text class="add-card-tips">新建打卡</text>
 		</view>
 	</view>
 	<view class="add-card add-card2" bindtap='addCard' wx:else>
-		<view class="">+<text class="add-card-tips">新建打卡</text>
+		<view class="">+
+			<text class="add-card-tips">新建打卡</text>
 		</view>
 	</view>
 	<view class="my-card-list">
@@ -77,18 +79,18 @@
 					<i class="iconfont icon-xin"></i>
 					<text wx:for="{{item.cardRecordPraiseList}}" wx:key="{{index}}">{{item.praiseConsumer.nickname}}</text>
 				</view>
+				<!-- <view class="recommand-item">
+					<view class="tb-item fz26 c999">
+						<i class="iconfont icon-xin"></i>
+						<text wx:for="{{item.cardRecordPraiseList}}">{{item.praiseConsumer.nickname+','}}</text>
+					</view>
+				</view> -->
+				<view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">
+					<view class="tb-item fz26 c999">
+						{{item.commentConsumer.nickname+': '+item.commentDescription}}
+					</view>
+				</view>
 			</view>
-      <view class="recommand-item" >
-          <view class="tb-item fz26 c999">
-						<i class="iconfont icon-xin"></i> <text wx:for="{{item.cardRecordPraiseList}}">{{item.praiseConsumer.nickname+','}}</text></view>
-      </view>
-
-      <view class="recommand-item" wx:for="{{item.cardRecordCommentList}}">
-          <view class="tb-item fz26 c999">
-						{{item.commentConsumer.nickname+':'+item.commentDescription}}
-          </view>
-      </view>      
-
 		</block>
 	</view>
 	<view class="no-data" style="font-size: 28rpx;color: #999;text-align: center;" wx:else>

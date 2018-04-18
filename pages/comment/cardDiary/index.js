@@ -17,6 +17,10 @@ Page({
     this.getCommandList(options.crid, options.cruid)
   },
 
+  onShow() {
+    this.getCommandList(this.data.crid, this.data.cruid)
+  },
+
   getCommandList(crid, cruid) {
     app.postRequest('/wx/cardRecord/detail', 'POST', {
       consumerId: cruid,

@@ -364,7 +364,7 @@ page {
   font-size: 24rpx;
   color: #999;
   background-color: #fff;
-  border-top: 2rpx solid #999;
+  border-top: 2rpx solid #ddd;
 }
 
 .tabbars .bar-item {
