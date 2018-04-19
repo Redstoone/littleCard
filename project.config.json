@@ -98,10 +98,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 11,
 					"name": "活动详情",
 					"pathName": "pages/lookdetail/lookdetail",
-					"query": "acId=923246910607724544"
+					"query": "acId=923774739162337280"
 				},
 				{
 					"id": -1,

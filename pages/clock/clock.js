@@ -56,13 +56,22 @@ Page({
   },
 
   push() { //发表日记
+    if (!this.data.title) {
+      wx.showToast({
+        title: '发表日记不能为空',
+        icon: 'none',
+        duration: 1500,
+      })
+    }
+
     var value;
     for (var i = 0; i < this.data.items.length; i++) {
       if (this.data.items[i].checked == true) {
         value = this.data.items[i].value
       }
     }
-    app.postRequest('	/wx/cardRecord/merged', 'POST', {
+    console.log('rasf')
+    app.postRequest('/wx/cardRecord/merged', 'POST', {
       consumerId: app.globalData.openid,
       activityId: this.data.acid, //活动id
       viewType: value, //查看权限(10 对外公开 20群主和私人可见 30 仅私人可见)

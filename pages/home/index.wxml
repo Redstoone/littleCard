@@ -26,7 +26,7 @@
 					</view>
 					<view class="card-item-tips">
 						<!-- <text class="zan-icon zan-icon-discount"></text> -->
-						<!-- <text class="tips-item">{{item.createTime}}</text> -->
+						<!-- <text class="tips-item">{{item.memberNumber}}参加</text> -->
 						<text class="zan-icon zan-icon-contact"></text>
 						<text class="tips-item">{{item.cardClickNumber}}已打卡</text>
 					</view>

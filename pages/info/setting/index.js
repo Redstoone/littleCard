@@ -124,14 +124,14 @@ Page({
       console.log(res)
       if (res.data.success) {
         wx.showToast({
-          title: '修改个人资料成功',
+          title: '修改资料成功',
           icon: 'success',
           duration: 1500
         })
       } else {
         wx.showToast({
-          title: '修改个人资料失败',
-          icon: 'error',
+          title: '修改资料失败',
+          icon: 'none',
           duration: 1500
         })
       }
