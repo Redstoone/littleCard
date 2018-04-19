@@ -46,9 +46,9 @@
           </view>
         </view>
       </view>
-      <view class="right fz26 set c666" bindtap='set'>
+      <!-- <view class="right fz26 set c666" bindtap='set'>
         设置
-      </view>
+      </view> -->
     </view>
   </view>
 

@@ -89,6 +89,14 @@
   margin: 50rpx 0;
 }
 
-.fz12{
+.fz12 {
   font-size: 24rpx;
+}
+
+.zan-card {
+  border-bottom: 2rpx solid #dfdfdf;
+}
+
+.zan-panel::after {
+  border-bottom: none;
 }

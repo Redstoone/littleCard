@@ -70,7 +70,6 @@ Page({
         value = this.data.items[i].value
       }
     }
-    console.log('rasf')
     app.postRequest('/wx/cardRecord/merged', 'POST', {
       consumerId: app.globalData.openid,
       activityId: this.data.acid, //活动id
@@ -80,7 +79,6 @@ Page({
       recordDescImg: this.data.files, //图片
       recordDescVideo: this.data.camvd, //视频
     }, (res) => {
-      console.log(res)
       if (res.data.success) {
         wx.showToast({
           title: '发表日记成功',

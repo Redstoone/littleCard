@@ -4,8 +4,10 @@ Page({
   data: {
     classifyList: [],
     activityList: [],
-    classifyActive: 0,
-    categoryId: null
+    classifyActive: '',
+    categoryId: '',
+    page: 1,
+    size: 5
   },
   onLoad: function () {
     this.getActivityCategoryList();
@@ -40,14 +42,39 @@ Page({
 
   // 获取活动列表
   getActivityList(categoryId = null) {
-    let _data = {}
+    let _data = {
+      page: this.data.page,
+      size: this.data.size
+    }
     if (categoryId){
-      _data = { categoryId, categoryId }
+      _data.categoryId = categoryId
     }
     app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
       if (res.data.success) {
         this.setData({
           activityList: res.data.rows
+        })
+      }
+    })
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    let that = this
+    that.data.page += 1;
+    let _data = {
+      page: that.data.page,
+      size: that.data.size
+    }
+    if (that.data.categoryId) {
+      _data.categoryId = that.data.categoryId
+    }
+    app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
+      if (res.data.success) {
+        that.setData({
+          activityList: that.data.activityList.concat(res.data.rows)
         })
       }
     })
