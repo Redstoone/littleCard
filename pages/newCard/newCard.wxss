@@ -10,13 +10,10 @@ page{background: #ffffff;}
 .radio-group label{margin-bottom: 20rpx}
 .asdo{width: 40rpx;height: 40rpx;border: solid 1rpx #f1f1f1;position: relative;border-radius: 50%;margin-right: 20rpx;margin-top: 10rpx}
 .asdi{position: absolute;width: 20rpx;height: 20rpx;background: #1dafaa;left: 50%;margin-left: -10rpx;top: 50%;margin-top: -10rpx;border-radius:50%; }
-.black{}
 
 .setTime{line-height: 60rpx;padding-top: 40rpx;padding-left: 40rpx}
-.setTime picker{margin-left: 20rpx;width: 200rpx;position: relative}
-.picker{width: 200rpx;height: 60rpx;border: solid 1rpx #f1f1f1;padding-left: 6rpx}
+.setTime picker{margin-left: 20rpx;width: 250rpx;position: relative}
+.picker{width: 250rpx;height: 60rpx;border: solid 1rpx #f1f1f1;padding-left: 6rpx}
 .pickerImg{position: absolute;width: 40rpx;height: 40rpx;right: 2rpx;top: 10rpx}
-
-
 
 .nextbtn{position: absolute;left: 50%;bottom: 60rpx;background: #1dafaa;width: 400rpx;margin-left: -200rpx;}

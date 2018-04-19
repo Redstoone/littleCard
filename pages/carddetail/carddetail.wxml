@@ -1,6 +1,6 @@
 <!--pages/carddetail/carddetail.wxml-->
 <view class='cont tant' bindtap='changeBg'>
-	<image src='{{camBg}}' style="width:100%;height:300rpx;"></image>
+	<image src='{{camBg}}' style="width:100%;height:300rpx;" mode="aspectFill"></image>
 	<view class="tant_set fz24 cfff">修改头图</view>
 </view>
 
@@ -11,7 +11,7 @@
 		  bindinput="txtChange"></input>
 		<textarea class='fz28' data-index="{{item.id}}" wx:if="{{item.isInp == false}}" placeholder='{{item.place}}' value='{{item.value}}'
 		  bindinput="txtChange" />
-		<view class="txtNum fz24 c999">{{item.txtnum}}/20</view>
+		<!-- <view class="txtNum fz24 c999">{{item.txtnum}}/20</view> -->
 	</view>
 </view>
 

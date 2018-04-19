@@ -4,36 +4,36 @@
   <view class="cont_input">
     <input class='fz28' placeholder='输入活动标题' value='{{title}}' bindinput='inputTxt'></input>
   </view>
-</view> 
+</view>
 <view class='backg'></view>
 <view class="contant">
   <view class='cont_title fz30 c000'>开始结束时间</view>
-   <radio-group class="radio-group" bindchange="radioChange">
-      <label class="clear" wx:for="{{items}}" wx:key="ind" wx:for-index="idx">
-        <radio value="{{item.value}}" checked="{{item.checked}}" style="opacity: 0" />
-        <view class="asdo left">        
-            <view class=" {{item.checked ? 'asdi':'black'}}"></view>
-        </view>        
-        <view class="left fz26 c666">{{item.text}}</view>
-      </label>
-  </radio-group> 
+  <radio-group class="radio-group" bindchange="radioChange">
+    <label class="clear" wx:for="{{items}}" wx:key="ind" wx:for-index="idx">
+      <radio value="{{item.value}}" checked="{{item.checked}}" style="opacity: 0" />
+      <view class="asdo left">
+        <view class=" {{item.checked ? 'asdi':'black'}}"></view>
+      </view>
+      <view class="left fz26 c666">{{item.text}}</view>
+    </label>
+  </radio-group>
   <view class="clear setTime">
-      <view class="left fz26 c666">开始日期:</view>
-       <picker  class="left" mode="date" value="{{startTime}}" start="2018-01-01" end="2200-01-01" bindchange="startTimeChange">  
-        <view class="picker fz26 c666">  
-          {{startTime}}  
-        </view>  
-        <image class='pickerImg' src='../../images/index/time.png'></image>
-      </picker>  
+    <view class="left fz26 c666">开始日期:</view>
+    <picker disabled="{{isTimeDisabled}}" class="left" mode="date" value="{{startTime}}" start="2018-01-01" end="2200-01-01" bindchange="startTimeChange">
+      <view class="picker fz26 c666">
+        {{startTime}}
+      </view>
+      <image class='pickerImg' src='../../images/index/time.png'></image>
+    </picker>
   </view>
   <view class="clear setTime">
-      <view class="left fz26 c666">结束日期:</view>
-       <picker  class="left" mode="date" value="{{overTime}}" start="2018-01-01" end="2200-01-01" bindchange="overTimeChange">  
-        <view class="picker fz26 c666">  
-          {{overTime}}  
-        </view>  
-        <image class='pickerImg' src='../../images/index/time.png'></image>
-      </picker>  
+    <view class="left fz26 c666">结束日期:</view>
+    <picker disabled="{{isTimeDisabled}}" class="left" mode="date" value="{{overTime}}" start="2018-01-01" end="2200-01-01" bindchange="overTimeChange">
+      <view class="picker fz26 c666">
+        {{overTime}}
+      </view>
+      <image class='pickerImg' src='../../images/index/time.png'></image>
+    </picker>
   </view>
 
 </view>
