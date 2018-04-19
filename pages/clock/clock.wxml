@@ -1,24 +1,23 @@
 <!--pages/clock/clock.wxml-->
-<view class="pad">
-	<view class="contant fz32 c999">
-    <input class='fz28' placeholder='说说感想收获' value='{{title}}' bindinput='inputTxt'></input>
-		<view class="thecont">
-			<view class="thecont_box upload">
-				<view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
-					<image class="previewImg" src="{{item}}"></image>
-					<view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">
-						X
-					</view>
-				</view>
-				<view class="upload_input" bindtap="uploadImg" wx:if="{{isUp&&files.length!==0  &&files.length < 10}}">
-					<view class="pos-a line"></view>
-					<view class="pos-a lines"></view>
+<view class="contant fz32 c999">
+	<textarea class='card-contant fz28' maxlength="-1" focus="true" placeholder='说说感想收获' value='{{title}}' bindinput='inputTxt'></textarea>
+	<view class="thecont">
+		<view class="thecont_box upload">
+			<view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
+				<image class="previewImg" src="{{item}}"></image>
+				<view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">
+					X
 				</view>
 			</view>
+			<view class="upload_input" bindtap="uploadImg" wx:if="{{isUp&&files.length!==0  &&files.length < 10}}">
+				<view class="pos-a line"></view>
+				<view class="pos-a lines"></view>
+			</view>
 		</view>
-		<video class="myVideo" id="myVideo" wx:if="{{camvd}}" src="{{camvd}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
 	</view>
-
+	<video class="myVideo" id="myVideo" wx:if="{{camvd}}" src="{{camvd}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+</view>
+<view class="pad">
 	<view class="cont_btn clear">
 		<view class='left' bindtap='clickImg' wx:If="{{!files}}">
 			<image src="../../images/01.png"></image>
@@ -39,7 +38,7 @@
 		</view>
 		<view class="right arrow-right">{{currentCity}}</view>
 	</view> -->
-	<view class="clear fz26 c666 cont_nav" bindtap='getlook'>
+	<view class="clear fz28 c666 cont_nav" bindtap='getlook'>
 		<view class='clear left'>
 			<view class='left cont_b'>
 				<i class="iconfont icon-friend"></i>
@@ -62,17 +61,16 @@
 	<view class='right com' bindtap='push'>发表日记</view>
 </view>
 
-  <view class="back" wx:if="{{isLook}}"></view>
-  <view class="group" wx:if="{{isLook}}">
-    <radio-group class="radio-group" bindchange="radioChange">
-      <label class="clear" wx:for="{{items}}" wx:key="ind" wx:for-index="idx">
-        <radio value="{{item.value}}" checked="{{item.checked}}" style="opacity: 0" />
-        <view class="asdo left">        
-            <view class=" {{item.checked ? 'asdi':'black'}}"></view>
-        </view>        
-        <view class="left fz26 c666">{{item.text}}</view>
-      </label>
-      <view class="g_btn fz30" bindtap='hideLook'>确定</view>
-   </radio-group> 
-  </view>
- 
+<view class="back" wx:if="{{isLook}}"></view>
+<view class="group" wx:if="{{isLook}}">
+	<radio-group class="radio-group" bindchange="radioChange">
+		<label class="clear" wx:for="{{items}}" wx:key="ind" wx:for-index="idx">
+			<radio value="{{item.value}}" checked="{{item.checked}}" style="opacity: 0" />
+			<view class="asdo left">
+				<view class=" {{item.checked ? 'asdi':'black'}}"></view>
+			</view>
+			<view class="left fz26 c666">{{item.text}}</view>
+		</label>
+		<view class="g_btn fz30" bindtap='hideLook'>确定</view>
+	</radio-group>
+</view>

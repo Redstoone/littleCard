@@ -35,12 +35,11 @@ Page({
     }
 
     app.postRequest('/wx/cardRecordComment/merged', 'POST', {
-      consumerId: 'o3S065KtkR7Kp4Kr0jsSDE11bniI',
+      consumerId: app.globalData.openid,
       cardRecordId: this.data.crid,
       commentDescription: this.data.description,
       cardRecordUserId: this.data.cruid
     }, (res) => {
-      console.log(res)
       if (res.data.success) {
         wx.showToast({
           title: '发表评论成功',
