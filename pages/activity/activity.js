@@ -139,7 +139,7 @@ Page({
           cardClickNumber: item.cardClickNumber,
           activityDescription: item.activityDetail.activityDescription,
           activityNotice: item.activityDetail.activityNotice,
-          activityNotice: item.activityDetail.activityNotice,
+          activityMemberHeader: item.activityMember.slice(0, 3),
           activityDetail: item.activityDetail,
           startTime: item.startTime,
           activityDescImg: item.activityDetail.activityDescImg.split(','),

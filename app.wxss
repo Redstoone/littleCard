@@ -344,6 +344,19 @@ page {
   color: #065eb5;
 }
 
-.btn-fixed{
+.btn-fixed {
   position: fixed;
+}
+
+.ac-member-img {
+  width: 40rpx;
+  height: 40rpx;
+  background: #f1f1f1;
+  border-radius: 50%;
+  border: 4rpx solid #fff;
+  margin-left: -20rpx;
+}
+
+.ac-member-img:first-child {
+  margin-left: 0;
 }
