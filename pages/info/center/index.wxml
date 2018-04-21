@@ -67,7 +67,7 @@
         <view class="recommand-item">
           <view class="item-top-info user-header">
             <view class="user-avater">
-              <image class="pic-img" src="{{userInfo.headicon}}"></image>
+              <image class="pic-img" mode="aspectFill" src="{{userInfo.headicon}}" mode="aspectFill"></image>
               <view class="icon-gender i-male" wx:if="{{userInfo.gender == 1}}">
                 <i class="iconfont icon-male"></i>
               </view>

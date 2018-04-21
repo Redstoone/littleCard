@@ -103,7 +103,7 @@
             <view class="recommand-item">
               <view class="item-top-info user-header">
                 <view class="user-avater">
-                  <image class="pic-img" src="{{item.recordConsumer.headicon}}"></image>
+                  <image class="pic-img" mode="aspectFill" src="{{item.recordConsumer.headicon}}"></image>
                   <view class="icon-gender i-male" wx:if="{{item.recordConsumer.gender == 1}}">
                     <i class="iconfont icon-male"></i>
                   </view>

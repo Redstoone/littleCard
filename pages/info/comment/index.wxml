@@ -4,7 +4,7 @@
       <view class="recommand-item">
         <view class="item-top-info user-header">
           <view class="user-avater">
-            <image class="pic-img" src="{{user.headicon}}"></image>
+            <image class="pic-img" mode="aspectFill" src="{{user.headicon}}"></image>
           </view>
           <view class="item-title-info">
             <view class="item-title">

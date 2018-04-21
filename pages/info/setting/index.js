@@ -14,12 +14,14 @@ Page({
     sign: ''
   },
 
-  onLoad () {
+  onLoad() {
     this.getUserinfo()
   },
 
-  getUserinfo () {
-    app.postRequest('/wx/consumer/record', 'POST', { consumerId: app.globalData.openid}, (res) => {
+  getUserinfo() {
+    app.postRequest('/wx/consumer/record', 'POST', {
+      consumerId: app.globalData.openid
+    }, (res) => {
       let _genderName = '未知'
       if (res.data.item.gender === 1) {
         _genderName = '男'
@@ -86,6 +88,32 @@ Page({
       sourceType: ["album", "camera"],
       success: function (res) {
         var tempFilePaths = res.tempFilePaths;
+        wx.request({
+          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          data: {},
+          method: "POST",
+          header: {
+            "content-type": "application/x-www-form-urlencoded",
+            'X-Requested-Page': 'json'
+          },
+          success: function (data) {
+            wx.uploadFile({
+              url: 'https://up.qbox.me',
+              filePath: tempFilePaths[0],
+              name: 'file',
+              formData: {
+                'token': data.data.uptoken,
+                'accept': 'text/plain'
+              },
+              success: function (res) {
+                var data = JSON.parse(res.data);
+                that.setData({
+                  headicon: 'http://tmp-qiniu.smarttinfo.com/' + data.key,
+                })
+              }
+            })
+          }
+        })
       }
     })
   },
@@ -97,7 +125,7 @@ Page({
   },
 
   //提交信息
-  submit () {
+  submit() {
     if (this.data.nickname.length == 0) {
       wx.showToast({
         title: '请输入昵称',
@@ -107,12 +135,11 @@ Page({
       return false;
     }
 
-    app.postRequest('/wx/consumer/merged', 'POST', 
-    { 
+    app.postRequest('/wx/consumer/merged', 'POST', {
       id: app.globalData.openid,
       nickname: this.data.nickname,
       headicon: this.data.headicon,
-      gender:  this.data.gender,
+      gender: this.data.gender,
       province: this.data.region[0],
       city: this.data.region[1],
       county: this.data.region[2],

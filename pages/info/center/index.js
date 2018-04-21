@@ -10,7 +10,7 @@ Page({
 
   onLoad () {
     this.getUserInfo();
-  }, 
+  },
 
   getUserInfo() {
     let _this = this
@@ -45,6 +45,13 @@ Page({
   },
 
   onShow() {
+    app.postRequest('/wx/consumer/record', 'POST', {
+      consumerId: app.globalData.openid
+    }, (res) => {
+      this.setData({
+        userInfo: res.data.item
+      })
+    })
     this.getCardRecord()
   },
 

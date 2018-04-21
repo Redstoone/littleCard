@@ -11,7 +11,7 @@
         <block wx:for="{{recommand}}">
           <view class="recommand-item">
             <view class="item-top-info">
-              <image class="pic-img" src="{{item.pic}}"></image>
+              <image class="pic-img" mode="aspectFill" src="{{item.pic}}"></image>
               <view class="item-title-info">
                 <view class="item-title">
                   <text>{{item.nick_name}}</text>

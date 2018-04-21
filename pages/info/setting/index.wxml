@@ -5,7 +5,7 @@
     </view>
     <view class="right infoimg" bindtap='changeAvatar'>
       <view wx:if="{{headicon}}">
-        <image style='width:90rpx;height:90rpx' src='{{headicon}}'></image>
+        <image style='width:90rpx;height:90rpx' src='{{headicon}}' mode="aspectFill"></image>
       </view>
     </view>
   </view>
