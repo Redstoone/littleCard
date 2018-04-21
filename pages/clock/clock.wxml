@@ -1,7 +1,9 @@
 <!--pages/clock/clock.wxml-->
 <view class="contant fz32 c999">
 	<textarea class='card-contant fz28' maxlength="-1" focus="true" placeholder='说说感想收获' value='{{title}}' bindinput='inputTxt'></textarea>
-	<view class="thecont">
+</view>
+<view>
+	<view class="thecont" wx:if="{{files}}">
 		<view class="thecont_box upload">
 			<view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
 				<image class="previewImg" src="{{item}}"></image>
@@ -15,17 +17,20 @@
 			</view>
 		</view>
 	</view>
-	<video class="myVideo" id="myVideo" wx:if="{{camvd}}" src="{{camvd}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+	<view class="thecont" wx:if="{{camvd}}">
+		<video class="clockVideo" id="myVideo" src="{{camvd}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+		<view class="remove-video" bindtap="removeVideo"> 删除 </view>
+	</view>
 </view>
 <view class="pad">
 	<view class="cont_btn clear">
-		<view class='left' bindtap='clickImg' wx:If="{{!files}}">
+		<view class='left' bindtap='clickImg' wx:if="{{files.length == 0}}">
 			<image src="../../images/01.png"></image>
 		</view>
 		<!-- <view class='left'>
 			<image src="../../images/02.png"></image>
 		</view> -->
-		<view class='left' bindtap='changevd'>
+		<view class='left' bindtap='changevd' wx:if="{{!camvd}}">
 			<image src="../../images/03.png"></image>
 		</view>
 	</view>

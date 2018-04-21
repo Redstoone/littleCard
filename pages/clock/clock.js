@@ -181,19 +181,25 @@ Page({
     })
   },
 
+  removeVideo () {
+    this.setData({
+      camvd: ''
+    })
+  },
 
-  changevd() { //上传视频
+  changevd() {
     var that = this
     wx.chooseVideo({
       sourceType: ['album', 'camera'],
       maxDuration: 60,
       camera: 'back',
       success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePath;
+        wx.showLoading({
+          title: '上传中'
+        })
         wx.request({
           url: 'https://xgh.smarttinfo.com/wx/index/utoken',
-          //url: 'https://union.wevirtus.cn/utoken',
           data: {},
           method: "POST",
           header: {
@@ -216,7 +222,7 @@ Page({
                   isLogo: true,
                   key: data.key
                 })
-                console.log(that.data.camvd)
+                wx.hideLoading()
               }
             })
           },

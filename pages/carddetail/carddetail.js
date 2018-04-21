@@ -333,7 +333,6 @@ Page({
         camera: 'back',
         success: function (res) {
           var tempFilePaths = res.tempFilePath
-          console.log(res.tempFilePath, "res.tempFilePath")
           wx.request({
             url: 'https://xgh.smarttinfo.com/wx/index/utoken',
             data: {},
@@ -343,7 +342,6 @@ Page({
               'X-Requested-Page': 'json'
             },
             success: function (data) {
-              console.log(data, "---")
               wx.uploadFile({
                 url: 'https://up.qbox.me',
                 filePath: tempFilePaths,
