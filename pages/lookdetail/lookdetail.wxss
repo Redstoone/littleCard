@@ -22,3 +22,15 @@
 .share_d1{margin-top: 20rpx;}
 .share_d2{margin-top: 10rpx;}
 .share_d3{margin-top: 10rpx;}
+
+.ac-member-img{
+  width:40rpx;
+  height:40rpx;
+  background:#f1f1f1;
+  border-radius: 50%;
+  border: 4rpx solid #fff;
+  margin-left: -15rpx;
+}
+.ac-member-img:first-child{
+  margin-left: 0;
+}

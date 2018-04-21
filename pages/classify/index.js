@@ -12,7 +12,7 @@ Page({
   onLoad: function () {
     this.getActivityCategoryList();
   },
-
+  
   // 切换分类
   bindClassifyClick (e) {
     let _idx = e.target.dataset.idx
@@ -37,6 +37,9 @@ Page({
   },
 
   onShow() {
+    this.setData({
+      page: 1
+    })
     this.getActivityList(this.data.categoryId)
   },
 

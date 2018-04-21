@@ -5,11 +5,10 @@
     <view class="look_title ">{{name}}</view>
     <view class='look_pople clear'>
       <view class='nameImg left'>
-        <image src='{{user.headicon}}' style='width:40rpx;height:40rpx;background:#f1f1f1;border-radius: 50%;'></image>
+        <image wx:for="{{activityMember}}" wx:key="{{index}}" src='{{item.consumer.headicon}}' class="ac-member-img"></image>
       </view>
       <view class='names left fz26 c999'>
-        
-        {{user.nickname}}参加
+        {{activityMember && activityMember[0].consumer.nickname}} 等 {{memberNumber}}参加
       </view>
       <view class='names left fz26 c999'>
         {{cardClickNumber}}次打卡
@@ -23,6 +22,9 @@
     <view class="look_title">活动详情</view>
     <view class='fz26 c666'>
       {{activityDetail.activityDescription}}
+      <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
+        <image wx:for="{{activityDescImg}}" src="{{item}}" mode="scaleToFill" wx:key="{{index}}"></image>
+      </view>
     </view>
   </view>
 </view>
@@ -39,7 +41,7 @@
       </view>
     </view>
     <view class='fz26 c666'>
-       {{activityDetail.mainDescription}}
+      {{activityDetail.mainDescription}}
     </view>
   </view>
 </view>
@@ -51,7 +53,7 @@
   </view>
 </view>
 
-<view class="button nextbtn fz32 cfff clear">
+<view class="button nextbtn fz32 cfff clear btn-fixed">
   <view class='left join' bindtap="bindJoinActivity">进入活动</view>
   <!-- <view class='left share'>
     <view class="share_d share_d1"></view>

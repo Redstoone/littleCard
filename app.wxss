@@ -343,3 +343,7 @@ page {
 .icon-xin1 {
   color: #065eb5;
 }
+
+.btn-fixed{
+  position: fixed;
+}

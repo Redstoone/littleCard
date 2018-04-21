@@ -121,7 +121,6 @@ Page({
       sign: this.data.sign,
       brithDate: this.data.brithDate
     }, (res) => {
-      console.log(res)
       if (res.data.success) {
         wx.showToast({
           title: '修改资料成功',

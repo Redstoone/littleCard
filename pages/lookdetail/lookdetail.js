@@ -2,24 +2,15 @@
 const app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     activityDetail: '',
+    activityMember: '',
     cardClickNumber: '',
+    activityDescImg: '',
     name: '',
     acId: '',
-    // activityThumb: '', //活动主图
-    // mainDescription:'',	//群主描述
-    // activityNotice:'',//	活动通知
-    // mainWx:'',	//群主微信
-    // activityDescription:''	//活动描述
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     var that = this
     app.postRequest('/wx/activity/singleAll', 'POST', {
@@ -27,8 +18,11 @@ Page({
     }, (res) => {
       if (res.data.success) {
         that.setData({
-          activityDetail: res.data.item.activityDetail, //活动详情    
+          activityDetail: res.data.item.activityDetail,
+          activityMember: res.data.item.activityMember.slice(0, 3),
           cardClickNumber: res.data.item.cardClickNumber,
+          activityDescImg: res.data.item.activityDetail.activityDescImg ? res.data.item.activityDetail.activityDescImg.split(',') : [],
+          memberNumber: res.data.item.memberNumber,
           name: res.data.item.name,
           acId: options.acId
         })
@@ -70,19 +64,5 @@ Page({
         })
       }
     });
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 })
