@@ -345,7 +345,7 @@ page {
 }
 
 .btn-fixed {
-  position: fixed;
+  position: fixed !important;
 }
 
 .ac-member-img {
@@ -353,10 +353,14 @@ page {
   height: 40rpx;
   background: #f1f1f1;
   border-radius: 50%;
-  border: 4rpx solid #fff;
+  border: 2rpx solid #ddd;
   margin-left: -20rpx;
 }
 
 .ac-member-img:first-child {
   margin-left: 0;
+}
+
+.cont-broder{
+  border-top: 20rpx solid #f8f8f8;
 }

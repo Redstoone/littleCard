@@ -27,7 +27,11 @@ Page({
     activityDetail: null,
     countDay: 0,
     activityMember: null,
-    activityDescImg: null
+    activityDescImg: null,
+    activityDescImgData: '',
+    activityDescVideo: '',
+    activityDescVideoData: ''
+
   },
   changeTab(e) {
     this.setData({
@@ -144,6 +148,7 @@ Page({
           startTime: item.startTime,
           activityDescImg: item.activityDetail.activityDescImg.split(','),
           activityMember: item.activityMember,
+          activityDescVideo: item.activityDetail.activityDescVideo,
           totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime()
         })
         that.countDown()
@@ -322,6 +327,22 @@ Page({
     let _cruid = e.currentTarget.dataset.cruid
     wx.navigateTo({
       url: '../comment/cardDiary/index?crid=' + _crid + '&cruid=' + _cruid
+    })
+  },
+
+  imageLoad(e) {
+    let $width = e.detail.width, //获取图片真实宽度
+      $height = e.detail.height,
+      ratio = $width / $height; //图片的真实宽高比例
+    let viewWidth = 710, //设置图片显示宽度，左右留有16rpx边距
+      viewHeight = 710 / ratio; //计算的高度值
+    let image = this.data.activityDescImg;
+    image[e.target.dataset.index] = {
+      width: viewWidth,
+      height: viewHeight
+    }
+    this.setData({
+      activityDescImgData: image
     })
   },
 })

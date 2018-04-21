@@ -8,7 +8,7 @@
         <image wx:for="{{activityMember}}" wx:key="{{index}}" src='{{item.consumer.headicon}}' class="ac-member-img"></image>
       </view>
       <view class='names left fz26 c999'>
-        {{activityMember && activityMember[0].consumer.nickname}} 等 {{memberNumber}}参加
+        {{activityMember && activityMember[0].consumer.nickname}} <span wx:if="{{activityMember.length >= 2}}">等</span> 共{{memberNumber}}人参加
       </view>
       <view class='names left fz26 c999'>
         {{cardClickNumber}}次打卡
@@ -17,19 +17,24 @@
   </view>
 </view>
 
-<view class='cont tant'>
+<view class='cont tant cont-broder'>
   <view class='contant'>
     <view class="look_title">活动详情</view>
     <view class='fz26 c666'>
       {{activityDetail.activityDescription}}
+      <view class="aw-video" wx:if="{{activityDescVideo}}">
+        <video class="previewVideo" src="{{activityDescVideo}}" enable-danmu danmu-btn controls></video>
+      </view>
       <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
-        <image wx:for="{{activityDescImg}}" src="{{item}}" mode="scaleToFill" wx:key="{{index}}"></image>
+        <image wx:for="{{activityDescImg}}" data-index="{{index}}"
+          src=" {{item}} " wx:key="{{index}}" bindload="imageLoad" 
+          style="width:{{ activityDescImgData[index].width }}rpx; height:{{ activityDescImgData[index].height }}rpx; margin: 10rpx auto;"></image>
       </view>
     </view>
   </view>
 </view>
 
-<view class='cont tant'>
+<view class='cont tant cont-broder'>
   <view class='contant'>
     <view class="look_title">群主简介</view>
     <view class='look_pople clear'>
@@ -46,7 +51,7 @@
   </view>
 </view>
 
-<view class='cont tant'>
+<view class='cont tant lookmore'>
   <view class='contmess'>
     <view class="line"></view>
     <view class="mess">参加活动,查看更多精彩日记</view>

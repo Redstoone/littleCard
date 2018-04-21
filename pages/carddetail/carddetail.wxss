@@ -48,7 +48,7 @@
 .upload{flex-wrap:wrap;display:flex}
 .upload_input {width:140rpx;height:140rpx;border:2rpx solid #C9C9C9;border-radius:4px;position:relative;
 }
-.shanchuimg{width:40rpx;height:40rpx;line-height:40rpx;background:#7A8189;border-radius:50%;-moz-border-radius:50%;-webkit-border-radius:50%;top:-10rpx;right:-10rpx;position: absolute;text-align: center;font-size: 22rpx;color: #fff}
+.shanchuimg{width:40rpx;height:40rpx;line-height:40rpx;background:#7A8189;border-radius:50%;-moz-border-radius:50%;-webkit-border-radius:50%;top:-10rpx;right:-10rpx;position: absolute;text-align: center;font-size: 22rpx;color: #fff;z-index: 18;}
 
 
 .line{top:70rpx;left:30rpx;background:#D8D8D8;border-radius:4px;-moz-border-radius:4rpx;-webkit-border-radius:4rpx;width:86rpx;height:4rpx;position:absolute}

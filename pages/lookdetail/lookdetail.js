@@ -7,6 +7,9 @@ Page({
     activityMember: '',
     cardClickNumber: '',
     activityDescImg: '',
+    activityDescImgData: '',
+    activityDescVideo: '',
+    activityDescVideoData: '',
     name: '',
     acId: '',
   },
@@ -22,6 +25,7 @@ Page({
           activityMember: res.data.item.activityMember.slice(0, 3),
           cardClickNumber: res.data.item.cardClickNumber,
           activityDescImg: res.data.item.activityDetail.activityDescImg ? res.data.item.activityDetail.activityDescImg.split(',') : [],
+          activityDescVideo: res.data.item.activityDetail.activityDescVideo,
           memberNumber: res.data.item.memberNumber,
           name: res.data.item.name,
           acId: options.acId
@@ -64,5 +68,21 @@ Page({
         })
       }
     });
+  },
+
+  imageLoad (e) {
+    let $width = e.detail.width, //获取图片真实宽度
+      $height = e.detail.height,
+      ratio = $width / $height; //图片的真实宽高比例
+    let viewWidth = 690, //设置图片显示宽度，左右留有16rpx边距
+      viewHeight = 690 / ratio; //计算的高度值
+    let image = this.data.activityDescImg;
+    image[e.target.dataset.index] = {
+      width: viewWidth,
+      height: viewHeight
+    }
+    this.setData({
+      activityDescImgData: image
+    })
   },
 })

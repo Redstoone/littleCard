@@ -165,8 +165,14 @@
           <view class="activity-wrap">
             <view class="aw-title">活动详情</view>
             <view class="aw-detail">{{activityDescription}}</view>
-            <view class="aw-img">
+            <!-- <view class="aw-img">
               <image wx:for="{{activityDescImg}}" src="{{item}}" mode="scaleToFill" wx:key="{{index}}"></image>
+            </view> -->
+            <view class="aw-video" wx:if="{{activityDescVideo}}">
+              <video class="previewVideo" src="{{activityDescVideo}}" enable-danmu danmu-btn controls></video>
+            </view>
+            <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
+              <image wx:for="{{activityDescImg}}" data-index="{{index}}" src=" {{item}} " wx:key="{{index}}" bindload="imageLoad" style="width:{{ activityDescImgData[index].width }}rpx; height:{{ activityDescImgData[index].height }}rpx; margin: 10rpx auto;"></image>
             </view>
           </view>
         </view>

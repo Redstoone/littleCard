@@ -419,3 +419,8 @@ page {
   top: 0;
   left: 0;
 }
+
+.previewVideo {
+  width: 100%;
+  margin: 10rpx auto;
+}
