@@ -150,14 +150,7 @@ Page({
       }
     })
   },
-  // onLoad(e) {
-  //   var that = this;
-  //   that.setData({
-  //     'list[0].txtnum': e.title.length,
-  //     'list[0].value': e.title,
-  //     id: e.id
-  //   })
-  // },
+  
   changeBg() {
     var that = this
     wx.chooseImage({

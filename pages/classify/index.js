@@ -7,7 +7,9 @@ Page({
     classifyActive: '',
     categoryId: '',
     page: 1,
-    size: 5
+    size: 5,
+    loading: false,
+    loadingComplete: false
   },
   onLoad: function () {
     this.getActivityCategoryList();
@@ -65,22 +67,37 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    let that = this
-    that.data.page += 1;
-    let _data = {
-      page: that.data.page,
-      size: that.data.size
-    }
-    if (that.data.categoryId) {
-      _data.categoryId = that.data.categoryId
-    }
-    app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
-      if (res.data.success) {
-        that.setData({
-          activityList: that.data.activityList.concat(res.data.rows)
-        })
+    let that = this;
+    if (!that.data.loadingComplete) {
+      that.setData({
+        page: that.data.page + 1,
+        loading: true
+      });
+      let _data = {
+        page: that.data.page,
+        size: that.data.size
       }
-    })
+      if (that.data.categoryId) {
+        _data.categoryId = that.data.categoryId
+      }
+      app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
+        if (res.data.success) {
+          console.log(res.data.rows)
+          if (res.data.rows.length < this.data.size) {
+            that.setData({
+              activityList: that.data.activityList.concat(res.data.rows),
+              loadingComplete: true,
+              loading: false
+            })
+          } else {
+            that.setData({
+              activityList: that.data.activityList.concat(res.data.rows),
+              loading: false
+            })
+          }
+        }
+      })
+    }
   },
 
   // 跳转活动详情页面
@@ -88,5 +105,5 @@ Page({
     wx.navigateTo({
       url: '../lookdetail/lookdetail?acId=' + e.currentTarget.dataset.id,
     })
-  }
+  },
 })

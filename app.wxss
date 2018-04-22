@@ -361,6 +361,13 @@ page {
   margin-left: 0;
 }
 
-.cont-broder{
+.cont-broder {
   border-top: 20rpx solid #f8f8f8;
+}
+
+.loading {
+  padding-top: 20rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
 }
