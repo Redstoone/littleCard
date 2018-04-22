@@ -13,7 +13,8 @@ Page({
     name: '',
     acId: '',
     isPlay: false,
-    videoCtx: null
+    videoCtx: null,
+    hasJoin: false
   },
 
   onLoad: function (options) {
@@ -40,6 +41,25 @@ Page({
               user: ret.data.item
             })
           }
+        })
+      }
+    })
+    this.getHasJon(options.acId)
+  },
+
+  getHasJon (acId) {
+    let that = this
+    app.postRequest('/wx/activity/member/hasJoin', 'POST', {
+      activityId: acId,
+      consumerId: app.globalData.openid
+    }, (res) => {
+      if (res.data.success) {
+        this.setData({
+          hasJoin: true
+        })
+      } else {
+        this.setData({
+          hasJoin: false
         })
       }
     })
@@ -70,6 +90,12 @@ Page({
         })
       }
     });
+  },
+
+  bindGotoActivity () {
+    wx.navigateTo({
+      url: '../activity/activity?acId=' + this.data.acId,
+    })
   },
 
   imageLoad (e) {

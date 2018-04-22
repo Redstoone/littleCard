@@ -1,16 +1,17 @@
 <view class="container">
-  <view class="" wx:if="{{zanList.length > 0}}">
+  <view class="zan-list" wx:if="{{zanList.length > 0}}">
     <view class="info-item clear" wx:for="{{zanList}}" wx:key="{{index}}">
       <view class="left">
-        <image class="avart-img" src='{{headicon}}'></image>
+        <image class="avart-img" src='{{item.praiseConsumer.headicon}}'></image>
         <view class="user-info">
-          <view class="name">{{item.name}}</view>
-          <view class="icon"></view>
-          <view class="time">{{item.time}}</view>
+          <view class="name">{{item.praiseConsumer.nickname}}</view>
+          <view class="iconfont icon-xin1"></view>
+          <view class="time">{{item.createTime}}</view>
         </view>
       </view>
       <view class="right">
-        <image class="infoimg" src='{{headicon}}'></image>
+        <image class="infoimg" src='{{item.recordImg}}' wx:if="{{item.recordImg}}"></image>
+        <text class="infoimg info-text" wx:if="{{!item.recordImg && item.cardRecord.recordDescription}}">{{item.cardRecord.recordDescription}}</text>
       </view>
     </view>
   </view>

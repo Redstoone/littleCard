@@ -74,3 +74,14 @@ page {
   line-height: 26rpx;
   color: #999;
 }
+
+.zan-list {
+  width: 100%;
+}
+
+.info-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}

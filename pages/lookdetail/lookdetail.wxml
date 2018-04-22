@@ -64,7 +64,8 @@
 </view>
 
 <view class="button nextbtn fz32 cfff clear btn-fixed">
-  <view class='left join' bindtap="bindJoinActivity">进入活动</view>
+  <view class='left join has-join' bindtap="bindGotoActivity" wx:if="{{hasJoin}}">已加入活动</view>
+  <view class='left join' bindtap="bindJoinActivity" wx:else>加入活动</view>
   <!-- <view class='left share'>
     <view class="share_d share_d1"></view>
     <view class="share_d share_d2"></view>

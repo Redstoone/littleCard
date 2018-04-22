@@ -76,20 +76,19 @@
 .nextbtn {
   position: absolute;
   bottom: 0;
-  background: #1dafaa;
   width: 100%;
   left: 0;
-  border-radius: 0
+  border-radius: 0;
+  z-index: 19999;
 }
 
 .join {
   width: 100%;
-  height: 96rpx;
+  height: 100%;
 }
 
 .share {
   width: 10%;
-  background: red;
   height: 100rpx;
 }
 
@@ -147,6 +146,15 @@
   margin: auto;
 }
 
-.contant-detail{
+.contant-detail {
   position: relative;
+}
+
+.join {
+  background-color: #1dafaa;
+}
+
+.has-join {
+  background-color: #eee;
+  color: #1dafaa;
 }
