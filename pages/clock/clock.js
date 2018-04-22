@@ -32,7 +32,8 @@ Page({
     isLook: false,
     title: '', //感想
     acid: null,
-    viewText: '对外公开'
+    viewText: '对外公开',
+    isPlay: false
   },
 
   /**
@@ -273,5 +274,23 @@ Page({
       items: items,
       viewText: _viewtext
     })
+  },
+
+  videoClose () {
+    this.setData({
+      isPlay: false
+    })
+    this.videoCtx.pause();
+    this.videoCtx.seek(0);
+  },
+
+  onReady (e) {
+    this.videoCtx = wx.createVideoContext('myVideo')
+  },
+  showVideo () {
+    this.setData({
+      isPlay: true
+    })
+    this.videoCtx.play()
   },
 })
