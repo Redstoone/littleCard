@@ -6,12 +6,17 @@ Page({
   data: {
     userInfo: {},
     myCardList: [],
-    recommand: []
+    recommand: [],
+    page: 1,
+    size: 5,
+    loading: false,
+    loadingComplete: false
   },
   onShow: function () {
+    this.setData({
+      page: 1
+    })
     this.getUserInfo()
-    // this.getActivity()
-    // this.getCardRecord()
   },
 
   getUserInfo() {
@@ -58,9 +63,13 @@ Page({
   },
 
   getCardRecord() {
-    app.postRequest('/wx/cardRecord/record2', 'POST', {
+    let that = this
+    let _data = {
+      page: that.data.page,
+      size: that.data.size,
       consumerId: app.globalData.openid
-    }, (res) => {
+    }
+    app.postRequest('/wx/cardRecord/record2', 'POST', _data, (res) => {
       let _recommand = res.data.rows
       _recommand.map((item, index) => {
         let _item = item,
@@ -79,9 +88,16 @@ Page({
         return _item
       })
 
-      this.setData({
-        recommand: _recommand
+      that.setData({
+        recommand: that.data.recommand.concat(_recommand),
+        loading: false
       })
+
+      if (res.data.rows.length < this.data.size) {
+        that.setData({
+          loadingComplete: true,
+        })
+      }
     })
   },
 
@@ -132,5 +148,19 @@ Page({
         })
       }
     })
-  }
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    let that = this;
+    if (!that.data.loadingComplete) {
+      that.setData({
+        page: that.data.page + 1,
+        loading: true
+      });
+      this.getCardRecord()
+    }
+  },
 })

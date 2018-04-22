@@ -330,7 +330,7 @@ page {
   margin-bottom: 8rpx;
 }
 
-.praise-group text {
+.praise-group .usname {
   margin-left: 6rpx;
 }
 
@@ -366,7 +366,7 @@ page {
 }
 
 .loading {
-  padding-top: 20rpx;
+  padding: 20rpx;
   text-align: center;
   font-size: 24rpx;
   color: #999;

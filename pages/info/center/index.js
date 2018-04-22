@@ -5,7 +5,11 @@ Page({
   data: {
     userInfo: null,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    recommand: []
+    recommand: [],
+    page: 1,
+    size: 5,
+    loading: false,
+    loadingComplete: false
   },
 
   onLoad () {
@@ -52,13 +56,21 @@ Page({
         userInfo: res.data.item
       })
     })
-    this.getCardRecord()
+    this.setData({
+      page: 1,
+      recommand: []
+    })
+    this.getCardRecord ()
   },
 
-  getCardRecord() {
-    app.postRequest('/wx/cardRecord/my', 'POST', {
+  getCardRecord () {
+    let that = this
+    let _data = {
+      page: that.data.page,
+      size: that.data.size,
       consumerId: app.globalData.openid
-    }, (res) => {
+    }
+    app.postRequest('/wx/cardRecord/my', 'POST', _data, (res) => {
       let _recommand = res.data.rows
 
       _recommand.map((item, index) => {
@@ -81,7 +93,14 @@ Page({
       this.setData({
         recommand: _recommand
       })
+
+      if (res.data.rows.length < this.data.size) {
+        that.setData({
+          loadingComplete: true,
+        })
+      }
     })
+    
   },
 
   bindCommentDetail(e) {
@@ -119,5 +138,54 @@ Page({
         })
       }
     })
-  }
+  },
+
+  /**
+ * 页面上拉触底事件的处理函数
+ */
+  onReachBottom: function () {
+    let that = this;
+    if (!that.data.loadingComplete) {
+      that.setData({
+        page: that.data.page + 1,
+        loading: true
+      });
+      let that = this
+      let _data = {
+        page: that.data.page,
+        size: that.data.size,
+        consumerId: app.globalData.openid
+      }
+      app.postRequest('/wx/cardRecord/my', 'POST', _data, (res) => {
+        let _recommand = res.data.rows
+        _recommand.map((item, index) => {
+          let _item = item,
+            _isZan = false
+          _item.timeFormat = utils.formatTimeText(item.recordDate)
+          _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
+            if (item2.consumerId == app.globalData.openid) {
+              _isZan = true
+            }
+            return {
+              consumerId: item2.consumerId,
+              nickname: item2.praiseConsumer.nickname
+            }
+          })
+          _item.isZan = _isZan
+          return _item
+        })
+
+        that.setData({
+          recommand: that.data.recommand.concat(_recommand),
+          loading: false
+        })
+
+        if (res.data.rows.length < this.data.size) {
+          that.setData({
+            loadingComplete: true,
+          })
+        }
+      })
+    }
+  },
 })

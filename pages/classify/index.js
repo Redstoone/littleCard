@@ -82,17 +82,13 @@ Page({
       }
       app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
         if (res.data.success) {
-          console.log(res.data.rows)
+          that.setData({
+            activityList: that.data.activityList.concat(res.data.rows),
+            loading: false
+          })
           if (res.data.rows.length < this.data.size) {
             that.setData({
-              activityList: that.data.activityList.concat(res.data.rows),
               loadingComplete: true,
-              loading: false
-            })
-          } else {
-            that.setData({
-              activityList: that.data.activityList.concat(res.data.rows),
-              loading: false
             })
           }
         }

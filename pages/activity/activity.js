@@ -32,8 +32,11 @@ Page({
     activityDescVideo: '',
     activityDescVideoData: '',
     isPlay: false,
-    videoCtx: ''
-
+    videoCtx: '',
+    page: 1,
+    size: 5,
+    loading: false,
+    loadingComplete: false
   },
   changeTab(e) {
     this.setData({
@@ -83,7 +86,6 @@ Page({
     var today = month + "/" + day;
     //当月天数
     var count = new Date(year, month, 0).getDate();
-    console.log(count)
     var list = [];
     var newList = [
       []
@@ -125,7 +127,6 @@ Page({
     })
   },
   clickChecked(e) {
-    console.log(e)
   },
   onLoad: function (e) {
     var that = this
@@ -184,10 +185,14 @@ Page({
     this.getCardRecordComment(this.data.acId);
   },
   getCardRecordComment(acid) {
-    app.postRequest('/wx/cardRecord/record', 'POST', {
+    let that = this
+    let _data = {
+      page: that.data.page,
+      size: that.data.size,
       consumerId: app.globalData.openid,
       activityId: acid
-    }, (res) => {
+    }
+    app.postRequest('/wx/cardRecord/record', 'POST', _data, (res) => {
       let _recommand = res.data.rows
 
       _recommand.map((item, index) => {
@@ -210,6 +215,12 @@ Page({
       this.setData({
         recommand: _recommand,
       })
+
+      if (res.data.rows.length < this.data.size) {
+        that.setData({
+          loadingComplete: true,
+        })
+      }
     })
   },
   set() {
@@ -354,5 +365,55 @@ Page({
       isPlay: true
     })
     this.videoCtx.play()
+  },
+
+  /**
+ * 页面上拉触底事件的处理函数
+ */
+  onReachBottom: function () {
+    let that = this;
+    if (!that.data.loadingComplete) {
+      that.setData({
+        page: that.data.page + 1,
+        loading: true
+      });
+      let that = this
+      let _data = {
+        page: that.data.page,
+        size: that.data.size,
+        consumerId: app.globalData.openid,
+        activityId: this.data.acid
+      }
+      app.postRequest('/wx/cardRecord/record', 'POST', _data, (res) => {
+        let _recommand = res.data.rows
+        _recommand.map((item, index) => {
+          let _item = item,
+            _isZan = false
+          _item.timeFormat = utils.formatTimeText(item.recordDate)
+          _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
+            if (item2.consumerId == app.globalData.openid) {
+              _isZan = true
+            }
+            return {
+              consumerId: item2.consumerId,
+              nickname: item2.praiseConsumer.nickname
+            }
+          })
+          _item.isZan = _isZan
+          return _item
+        })
+
+        that.setData({
+          recommand: that.data.recommand.concat(_recommand),
+          loading: false
+        })
+
+        if (res.data.rows.length < this.data.size) {
+          that.setData({
+            loadingComplete: true,
+          })
+        }
+      })
+    }
   },
 })

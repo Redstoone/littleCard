@@ -25,8 +25,6 @@
 						<text class="isMine" wx:if="{{item.main}}">群主</text>
 					</view>
 					<view class="card-item-tips">
-						<!-- <text class="zan-icon zan-icon-discount"></text> -->
-						<!-- <text class="tips-item">{{item.memberNumber}}参加</text> -->
 						<text class="zan-icon zan-icon-contact"></text>
 						<text class="tips-item">{{item.cardClickNumber}}已打卡</text>
 					</view>
@@ -58,15 +56,10 @@
 						<view class="item-time-tips">
 							<text class="time">{{item.timeFormat}}</text>
 							<text class="">·</text>
-							<!-- <text class="">已经坚持{{item.days}}天</text> -->
 						</view>
 					</view>
 				</view>
 				<view class="item-remark">{{item.recordDescription}}</view>
-				<!-- <view class="item-pic">
-		                    <image src="{{item.item_pic}}"></image>
-		                  </view> -->
-				<!-- <view class="address">128广场</view> -->
 				<view class="tool-bar">
 					<view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
 						<i class="iconfont icon-more-o"></i> 详情</view>
@@ -77,14 +70,8 @@
 				</view>
 				<view class="praise-group" wx:if="{{item.zanList.length > 0}}">
 					<i class="iconfont icon-xin"></i>
-					<text wx:for="{{item.zanList}}" wx:key="{{index}}">{{item.nickname}}</text>
+					<text class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{item.zanList.length-1 != index}}">,</text></text>
 				</view>
-				<!-- <view class="recommand-item">
-					<view class="tb-item fz26 c999">
-						<i class="iconfont icon-xin"></i>
-						<text wx:for="{{item.cardRecordPraiseList}}">{{item.praiseConsumer.nickname+','}}</text>
-					</view>
-				</view> -->
 				<view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">
 					<view class="tb-item fz26 c999">
 						{{item.commentConsumer.nickname+': '+item.commentDescription}}
@@ -92,6 +79,8 @@
 				</view>
 			</view>
 		</block>
+		<view class="loading" wx:if="{{loading}}">正在加载中...</view>
+		<view class="loading complete" wx:if="{{loadingComplete}}">没有更多数据~~~</view>
 	</view>
 	<view class="no-data" style="font-size: 28rpx;color: #999;text-align: center;" wx:else>
 		暂无打卡日记
