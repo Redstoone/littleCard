@@ -11,7 +11,7 @@
 
 .txtNum{position: absolute;right: 4rpx;top: -22rpx}
 
-.cont_items{margin-top:60rpx;font-size: 26rpx;color: #1dafaa;text-align: center;
+.cont_items{margin-top:60rpx;font-size: 26rpx;color: #519FFF;text-align: center;
 }
 .cont_item{width: 50%;}
 .store_info_btnImg{width: 25rpx;height: 25rpx;}
@@ -56,7 +56,7 @@
 
 
 
-.nextbtn{background: #1dafaa;width: 400rpx;margin-top: 60rpx}
+.nextbtn{background: #519FFF;width: 400rpx;margin-top: 60rpx}
 
 .back{position: fixed;left: 0;top: 0;right: 0;bottom: 0;background: rgba(0,0,0,0.5);overflow:hidden;z-index: 10 }
 .audiobox{background: #fff;width: 600rpx;height: 500rpx;border-radius: 20rpx;position: fixed;left: 50%;margin-left: -300rpx;top: 50%;margin-top: -250rpx;z-index: 11}

@@ -1,5 +1,5 @@
 .header {
-  background: #1dafaa;
+  background: #519FFF;
   height: 200rpx;
   width: 100%
 }
@@ -78,7 +78,7 @@
   width: 50rpx;
   height: 50prpx;
   border-radius: 8rpx;
-  background-color: #1dafaa;
+  background-color: #519FFF;
   display: inline-block;
   margin-right: 16rpx;
   text-align: center;

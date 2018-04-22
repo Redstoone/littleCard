@@ -55,13 +55,13 @@ page {
 }
 
 .c-tabs .tab-item.active {
-  color: #1dafaa;
+  color: #519FFF;
 }
 
 .c-tabs .tab-item.active:after {
   content: '';
   height: 4rpx;
-  background-color: #1dafaa;
+  background-color: #519FFF;
   width: 100rpx;
   position: absolute;
   bottom: 0;
@@ -136,8 +136,8 @@ page {
 }
 
 .addwx {
-  color: #1dafaa !important;
-  border: 2rpx solid #1dafaa;
+  color: #519FFF !important;
+  border: 2rpx solid #519FFF;
   padding: 5rpx 15rpx;
   border-radius: 10rpx;
 }
@@ -159,7 +159,7 @@ page {
   content: '';
   width: 6rpx;
   height: 100%;
-  background-color: #1dafaa;
+  background-color: #519FFF;
   position: absolute;
   left: 0;
   top: 0;

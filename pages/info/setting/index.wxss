@@ -112,7 +112,7 @@ page {
   position: fixed;
   width: 650rpx;
   height: 98rpx;
-  background: #1dafaa;
+  background: #519FFF;
   left: 50%;
   margin-left: -325rpx;
   bottom: 60rpx;

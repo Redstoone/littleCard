@@ -26,7 +26,7 @@
 <view class="contant">
 	<view class='cont_title fz30 c000'>设置打卡详情</view>
 	<!-- <view class="fz26 c999">使用电脑登录
-		<text style='color:#1dafaa'>wwwww</text>编辑图文详情更方便
+		<text style='color:#519FFF'>wwwww</text>编辑图文详情更方便
 	</view> -->
 	<view class="fz28 c666">
 		当前未设置打卡详情

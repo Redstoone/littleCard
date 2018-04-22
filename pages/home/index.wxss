@@ -31,7 +31,7 @@
 	text-align: left;
 	padding: 20rpx;
 	font-size: 32rpx;
-	color: #1dafaa;
+	color: #519FFF;
 }
 
 .add-card .add-card-tips {
@@ -101,7 +101,7 @@
 }
 
 .user-bg {
-	background-color: #1dafaa;
+	background-color: #519FFF;
 	width: 100%;
 	height: 60%;
 	position: absolute;
@@ -127,7 +127,7 @@
 	font-size: 26rpx;
 	color: #fff;
 	padding: 8rpx 0;
-	background-color: #1dafaa;
+	background-color: #519FFF;
 	border-radius: 8rpx;
 	width: 100rpx;
 	text-align: center;

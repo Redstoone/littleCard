@@ -65,8 +65,8 @@
 }
 
 .classify-item.active {
-  color: #1dafaa;
-  border-color: #1dafaa;
+  color: #519FFF;
+  border-color: #519FFF;
 }
 
 .classify-item:nth-child(4n) {
