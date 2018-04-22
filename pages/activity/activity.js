@@ -30,7 +30,9 @@ Page({
     activityDescImg: null,
     activityDescImgData: '',
     activityDescVideo: '',
-    activityDescVideoData: ''
+    activityDescVideoData: '',
+    isPlay: false,
+    videoCtx: ''
 
   },
   changeTab(e) {
@@ -336,13 +338,21 @@ Page({
       ratio = $width / $height; //图片的真实宽高比例
     let viewWidth = 710, //设置图片显示宽度，左右留有16rpx边距
       viewHeight = 710 / ratio; //计算的高度值
-    let image = this.data.activityDescImg;
-    image[e.target.dataset.index] = {
-      width: viewWidth,
-      height: viewHeight
-    }
     this.setData({
-      activityDescImgData: image
+      activityDescImgData: {
+        width: viewWidth,
+        height: viewHeight
+      }
     })
+  },
+
+  onReady (e) {
+    this.videoCtx = wx.createVideoContext('myVideo')
+  },
+  showVideo () {
+    this.setData({
+      isPlay: true
+    })
+    this.videoCtx.play()
   },
 })

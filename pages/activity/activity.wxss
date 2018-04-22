@@ -334,6 +334,7 @@ page {
   width: 100%;
   padding: 20rpx;
   box-sizing: border-box;
+  position: relative;
 }
 
 .activity-wrap .aw-title {
@@ -422,5 +423,16 @@ page {
 
 .previewVideo {
   width: 100%;
-  margin: 10rpx auto;
+  height: 100%;
+}
+
+.aw-video {
+  position: absolute;
+  left: 20rpx;
+  bottom: 40rpx;
+  width: calc(100% - 40rpx);
+}
+
+.ui-video{
+  margin: 20rpx auto;
 }

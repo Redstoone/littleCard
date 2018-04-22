@@ -22,13 +22,13 @@
     <view class="look_title">活动详情</view>
     <view class='fz26 c666'>
       {{activityDetail.activityDescription}}
-      <view class="aw-video" wx:if="{{activityDescVideo}}">
-        <video class="previewVideo" src="{{activityDescVideo}}" enable-danmu danmu-btn controls></video>
-      </view>
       <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
         <image wx:for="{{activityDescImg}}" data-index="{{index}}"
           src=" {{item}} " wx:key="{{index}}" bindload="imageLoad" 
           style="width:{{ activityDescImgData[index].width }}rpx; height:{{ activityDescImgData[index].height }}rpx; margin: 10rpx auto;"></image>
+      </view>
+      <view class="aw-video" wx:if="{{activityDescVideo}}">
+        <video class="previewVideo" src="{{activityDescVideo}}#t=1" controls></video>
       </view>
     </view>
   </view>
