@@ -44,16 +44,7 @@ Page({
       consumerId: app.globalData.openid
     }, (res) => {
       if (res.data.success) {
-        let _myCardList = res.data.item
-
-        _myCardList.map((item, index) => {
-          let _item = item
-          app.postRequest('/wx/cardRecord/hasCard', 'POST', {
-            consumerId: item.consumerId
-          }, (ret) => {
-            _item.hasCard = ret.data.hasCardRecord
-          })
-        })
+        
 
         this.setData({
           myCardList: res.data.item

@@ -202,7 +202,12 @@
     <image src="/images/icon_home.png"></image>
     首页
   </view>
-  <view class="bar-item" bindtap='clickCard'>
+  <view class="bar-item" wx:if="{{hasCardRecord}}">
+    <view class="bar-card-clik has-card">
+      已打卡
+    </view>
+  </view>
+  <view class="bar-item" bindtap='clickCard' wx:else>
     <view class="bar-card-clik">
       打卡
     </view>

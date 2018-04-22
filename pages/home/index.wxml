@@ -29,7 +29,7 @@
 						<text class="tips-item">{{item.cardClickNumber}}已打卡</text>
 					</view>
 
-					<view class="has-card" wx:if="{{!item.hasCard}}"> 打卡 </view>
+					<view class="has-card" wx:if="{{!item.hasCurrentDayCard}}"> 打卡 </view>
 					<view class="has-card has-no-card" wx:else> 已打卡 </view>
 				</view>
 			</view>

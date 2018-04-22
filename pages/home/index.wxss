@@ -138,7 +138,7 @@
 }
 
 .has-no-card {
-	background-color: #999;
+	background-color: #ccc;
 }
 
 .recommand-item{

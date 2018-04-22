@@ -36,7 +36,8 @@ Page({
     page: 1,
     size: 5,
     loading: false,
-    loadingComplete: false
+    loadingComplete: false,
+    hasCardRecord: false
   },
   changeTab(e) {
     this.setData({
@@ -179,12 +180,14 @@ Page({
 
     this.getDateList();
     this.getCardRecordComment(e.acId);
+    this.getHasCardRecord(e.acId);
   },
 
   onShow() {
     this.getCardRecordComment(this.data.acId);
+    this.getHasCardRecord(this.data.acId)
   },
-  getCardRecordComment(acid) {
+  getCardRecordComment (acid) {
     let that = this
     let _data = {
       page: that.data.page,
@@ -198,7 +201,7 @@ Page({
       _recommand.map((item, index) => {
         let _item = item,
           _isZan = false
-        _item.timeFormat = utils.formatTimeText(item.recordDate)
+        _item.timeFormat = utils.formatTimeText(item.createTime)
         _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
           if (item2.consumerId == app.globalData.openid) {
             _isZan = true
@@ -219,6 +222,19 @@ Page({
       if (res.data.rows.length < this.data.size) {
         that.setData({
           loadingComplete: true,
+        })
+      }
+    })
+  },
+  getHasCardRecord (acid) {
+    let that = this
+    app.postRequest('/wx/cardRecord/hasCard', 'POST', {
+      consumerId: app.globalData.openid,
+      activityId: acid
+    }, (res) => {
+      if (res.data.success) {
+        that.setData({
+          hasCardRecord: res.data.hasCardRecord
         })
       }
     })
@@ -389,7 +405,7 @@ Page({
         _recommand.map((item, index) => {
           let _item = item,
             _isZan = false
-          _item.timeFormat = utils.formatTimeText(item.recordDate)
+          _item.timeFormat = utils.formatTimeText(item.createTime)
           _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
             if (item2.consumerId == app.globalData.openid) {
               _isZan = true

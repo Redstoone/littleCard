@@ -433,7 +433,7 @@ page {
   width: calc(100% - 40rpx);
 }
 
-.ui-video{
+.ui-video {
   margin: 20rpx auto;
   position: relative;
 }
@@ -448,4 +448,10 @@ page {
   bottom: 0;
   z-index: 1;
   margin: auto;
+}
+
+.has-card{
+  background-color: #fff;
+  border: 2rpx solid #1dafaa;
+  color: #1dafaa;
 }
