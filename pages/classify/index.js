@@ -40,7 +40,8 @@ Page({
 
   onShow() {
     this.setData({
-      page: 1
+      page: 1,
+      activityList: []
     })
     this.getActivityList(this.data.categoryId)
   },

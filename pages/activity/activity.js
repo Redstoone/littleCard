@@ -166,7 +166,7 @@ Page({
           }
         })
         app.postRequest('/wx/cardRecord/countDay', 'POST', {
-          consumerId: item.consumerId,
+          consumerId: app.globalData.openid,
           activityId: e.acId
         }, (ret) => {
           if (ret.data.success) {

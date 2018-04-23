@@ -11,7 +11,7 @@ App({
         wx.getUserInfo({
           lang: 'zh_CN',
           success: function (res) {
-            // _this.globalData.userInfo = res.userInfo
+            _this.globalData.userInfo = res.userInfo
             _this.getOpenId(e.code, cb)
             // wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
             // typeof cb == "function" && cb(_this.globalData.userInfo)
@@ -50,8 +50,9 @@ App({
         _this.postRequest('/wx/consumer/record', 'POST', { consumerId: res.data.openid }, (rst) => {
           if (rst.data.item) {
             _this.globalData.userInfo = rst.data.item
-            typeof cb == "function" && cb(res.data.openid, _this.globalData.userInfo)
+            typeof cb == "function" && cb(res.data.openid, rst.data.item)
           } else {
+            typeof cb == "function" && cb(res.data.openid, _this.globalData.userInfo)
             _this.postRequest("/wx/wechat/logged", 'POST', {
               id: res.data.openid,
               nickname: _this.globalData.userInfo.nickName,
