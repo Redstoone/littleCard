@@ -18,7 +18,7 @@
         <view class="zan-card__detail-row zan-ellipsis--l2">{{item.name}}</view>
 
         <view class="zan-card__detail-row zan-c-gray-darker" wx:if="{{item.activityDetail.mainDescription}}">
-          <view class="zan-cell--last-child">{{item.activityDetail.mainDescription}}</view>
+          <view class="zan-cell--last-child zan-ellipsis">{{item.activityDetail.mainDescription}}</view>
         </view>
 
         <view class="zan-card__detail-row zan-c-gray-darker c-footer">

@@ -26,6 +26,8 @@
   border: 3rpx solid #fb4a0a;
   background-color: #fff7f4;
   display: inline-block;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .zan-card {

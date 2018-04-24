@@ -21,7 +21,7 @@
 				<image class="card-item-img" src="{{item.activityDetail.activityThumb}}" mode="aspectFill"></image>
 				<view class="card-item-info">
 					<view class="card-item-title">
-						<text>{{item.name}}</text>
+						<view class="activity-name">{{item.name}}</view>
 						<text class="isMine" wx:if="{{item.main}}">群主</text>
 					</view>
 					<view class="card-item-tips">
@@ -73,7 +73,9 @@
 				</view>
 				<view class="praise-group" wx:if="{{item.zanList.length > 0}}">
 					<i class="iconfont icon-xin"></i>
-					<text class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{item.zanList.length-1 != index}}">,</text></text>
+					<text class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}
+						<text wx:if="{{item.zanList.length-1 != index}}">,</text>
+					</text>
 				</view>
 				<view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">
 					<view class="tb-item fz26 c999">
