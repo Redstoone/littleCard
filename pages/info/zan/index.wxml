@@ -2,9 +2,9 @@
   <view class="zan-list" wx:if="{{zanList.length > 0}}">
     <view class="info-item clear" wx:for="{{zanList}}" wx:key="{{index}}">
       <view class="left">
-        <image class="avart-img" src='{{item.praiseConsumer.headicon}}'></image>
+        <image class="avart-img" src='{{userInfo.headicon}}'></image>
         <view class="user-info">
-          <view class="name">{{item.praiseConsumer.nickname}}</view>
+          <view class="name">{{userInfo.nickname}}</view>
           <view class="iconfont icon-xin1"></view>
           <view class="time">{{item.createTime}}</view>
         </view>

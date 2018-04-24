@@ -60,6 +60,9 @@
 					</view>
 				</view>
 				<view class="item-remark">{{item.recordDescription}}</view>
+				<view class="cimg-list" wx:if="{{item.imgList.length > 0}}">
+					<image wx:for="{{item.imgList}}" wx:key="{{index}}" wx:for-item="img-item" src="{{img-item}}" mode="aspectFill"></image>
+				</view>
 				<view class="tool-bar">
 					<view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
 						<i class="iconfont icon-more-o"></i> 详情</view>
