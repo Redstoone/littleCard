@@ -16,7 +16,7 @@ page {
 
 .ac-header .contant {
   position: absolute;
-  width: 400rpx;
+  width: 600rpx;
   color: #ffffff;
   text-align: center;
   top: 0;
@@ -28,11 +28,18 @@ page {
 }
 
 .look_title {
-  padding: 20rpx 0;
+  margin: 20rpx 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nameImg {
-  margin-top: 20rpx
+  margin-top: 20rpx;
+  margin: 10rpx auto;
+  display: inline-block;
 }
 
 .names {
@@ -78,7 +85,7 @@ page {
 .tant_com {
   position: absolute;
   right: 30rpx;
-  top: 30rpx;
+  top: 20rpx;
   color: #ffffff;
   line-height: 44rpx;
   width: 160rpx;
@@ -103,8 +110,9 @@ page {
 }
 
 .cont_title {
-  line-height: 80rpx;
   background: #fff9ef;
+  padding: 20rpx;
+  font-size: 28rpx;
 }
 
 .cont_box {
@@ -450,7 +458,7 @@ page {
   margin: auto;
 }
 
-.has-card{
+.has-card {
   background-color: #fff;
   border: 2rpx solid #519FFF;
   color: #519FFF;

@@ -19,10 +19,10 @@ Page({
   bindClassifyClick (e) {
     let _idx = e.target.dataset.idx
     this.setData({
-      classifyActive: e.target.dataset.idx,
-      categoryId: e.target.dataset.cid
+      classifyActive: _idx,
+      categoryId: _idx ? e.target.dataset.cid : ''
     })
-    this.getActivityList(e.target.dataset.cid)
+    this.getActivityList(this.data.categoryId)
   },
 
   // 获取活动分类
@@ -31,7 +31,6 @@ Page({
       if (res.data.success && res.data.item.length > 0) {
         this.setData({
           classifyList: res.data.item,
-          // categoryId: res.data.item[0].id
         })
         this.getActivityList()
       }

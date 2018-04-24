@@ -1,5 +1,7 @@
 // pages/newCard/newCard.js
+var utils = require("../../utils/util")
 const app = getApp()
+
 Page({
   data: {
     items: [{
@@ -38,30 +40,35 @@ Page({
   },
   startTimeChange: function (e) {
     this.setData({
-      startTime: e.detail.value
+      startTime: utils.trim(e.detail.value)
     })
   },
   overTimeChange: function (e) {
     this.setData({
-      overTime: e.detail.value
+      overTime: utils.trim(e.detail.value)
     })
   },
   inputTxt(e) {
     var that = this
     that.setData({
-      title: e.detail.value
+      title: utils.trim(e.detail.value)
     })
   },
   next() {
     if (this.data.title.length == 0) {
       wx.showToast({
         title: '请输入活动名称！',
-        icon: 'loading',
+        icon: 'none',
         duration: 1500
       })
       return false;
-    }
-    if (this.data.items[0].checked == true) {
+    } else if (this.data.title.length > 20) {
+      wx.showToast({
+        title: '活动名称不能超过20个字',
+        icon: 'none',
+        duration: 1500
+      })
+    } else if (this.data.items[0].checked == true) {
       app.postRequest('/wx/activity/add_first', 'POST', {
         name: this.data.title,
         timeType: 10,
@@ -79,7 +86,7 @@ Page({
       if (this.data.startTime == '') {
         wx.showToast({
           title: '请选择开始时间！',
-          icon: 'loading',
+          icon: 'none',
           duration: 1500
         })
         return false;
@@ -87,7 +94,7 @@ Page({
       if (this.data.overTime == '') {
         wx.showToast({
           title: '请选择结束时间！',
-          icon: 'loading',
+          icon: 'none',
           duration: 1500
         })
         return false;

@@ -144,3 +144,12 @@
 .recommand-item{
 	border-top: 16rpx solid #f8f8f8;
 }
+
+.activity-name{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 360rpx;
+	display: inline-block;
+	vertical-align: middle;
+}

@@ -37,7 +37,8 @@ Page({
     size: 5,
     loading: false,
     loadingComplete: false,
-    hasCardRecord: false
+    hasCardRecord: false,
+    mineCountDay: 0
   },
   changeTab(e) {
     this.setData({
@@ -165,16 +166,8 @@ Page({
             })
           }
         })
-        app.postRequest('/wx/cardRecord/countDay', 'POST', {
-          consumerId: app.globalData.openid,
-          activityId: e.acId
-        }, (ret) => {
-          if (ret.data.success) {
-            that.setData({
-              countDay: ret.data.item
-            })
-          }
-        })
+        this.getCountDay(e.acId)
+        this.getMineCountDay(item.consumerId, e.acId)
       }
     })
 
@@ -186,6 +179,36 @@ Page({
   onShow() {
     this.getCardRecordComment(this.data.acId);
     this.getHasCardRecord(this.data.acId)
+    this.getCountDay(this.data.acId)
+    this.getMineCountDay(this.user.consumerId, this.data.acId)
+  },
+
+  getCountDay(acId) {
+    let that = this
+    app.postRequest('/wx/cardRecord/countDay', 'POST', {
+      consumerId: app.globalData.openid,
+      activityId: acId
+    }, (ret) => {
+      if (ret.data.success) {
+        that.setData({
+          countDay: ret.data.item
+        })
+      }
+    })
+  },
+
+  getMineCountDay(consumerId, acId) {
+    let that = this
+    app.postRequest('/wx/cardRecord/countDay', 'POST', {
+      consumerId: consumerId,
+      activityId: acId
+    }, (ret) => {
+      if (ret.data.success) {
+        that.setData({
+          mineCountDay: ret.data.item
+        })
+      }
+    })
   },
   getCardRecordComment (acid) {
     let that = this
@@ -201,7 +224,8 @@ Page({
       _recommand.map((item, index) => {
         let _item = item,
           _isZan = false
-        _item.timeFormat = utils.formatTimeText(item.createTime)
+        // _item.timeFormat = utils.formatTimeText(item.createTime)
+        _item.timeFormat = item.createTime
         _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
           if (item2.consumerId == app.globalData.openid) {
             _isZan = true
@@ -405,7 +429,8 @@ Page({
         _recommand.map((item, index) => {
           let _item = item,
             _isZan = false
-          _item.timeFormat = utils.formatTimeText(item.createTime)
+          // _item.timeFormat = utils.formatTimeText(item.createTime)
+          _item.timeFormat = item.createTime
           _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
             if (item2.consumerId == app.globalData.openid) {
               _isZan = true

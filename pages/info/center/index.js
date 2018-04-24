@@ -76,7 +76,8 @@ Page({
       _recommand.map((item, index) => {
         let _item = item,
           _isZan = false
-        _item.timeFormat = utils.formatTimeText(item.recordDate)
+        // _item.timeFormat = utils.formatTimeText(item.createTime)
+        _item.timeFormat = item.createTime
         _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
           if (item2.consumerId == app.globalData.openid) {
             _isZan = true
@@ -161,7 +162,8 @@ Page({
         _recommand.map((item, index) => {
           let _item = item,
             _isZan = false
-          _item.timeFormat = utils.formatTimeText(item.recordDate)
+          // _item.timeFormat = utils.formatTimeText(item.createTime)
+          _item.timeFormat = item.createTime
           _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
             if (item2.consumerId == app.globalData.openid) {
               _isZan = true

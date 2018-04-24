@@ -42,7 +42,7 @@
 
 .userinfo-wrap .user-name {
   font-size: 36rpx;
-  padding-top: 15rpx;
+  padding-top: 10rpx;
   margin-bottom: 10rpx;
   line-height: 100rpx;
 }

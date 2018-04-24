@@ -1,4 +1,5 @@
 // pages/clock/clock.js
+var utils = require("../../utils/util")
 const app = getApp()
 Page({
 
@@ -48,7 +49,7 @@ Page({
   inputTxt(e) {
     var that = this
     that.setData({
-      title: e.detail.value
+      title: utils.trim(e.detail.value)
     })
   },
 

@@ -31,7 +31,8 @@ Page({
       let _recommand = res.data.item,
           _isZan = false
 
-      _recommand.timeFormat = utils.formatTimeText(_recommand.createTime)
+      // _recommand.timeFormat = utils.formatTimeText(_recommand.createTime)
+      _recommand.timeFormat = _recommand.createTime
       _recommand.zanList = _recommand.cardRecordPraiseList.map((item2, idx2) => {
         if (item2.consumerId == app.globalData.openid) {
           _isZan = true

@@ -2,7 +2,7 @@
   <view class="zan-list" wx:if="{{zanList.length > 0}}">
     <view class="info-item clear" wx:for="{{zanList}}" wx:key="{{index}}">
       <view class="left">
-        <image class="avart-img" src='{{userInfo.headicon}}'></image>
+        <image class="avart-img" src='{{userInfo.headicon}}' mode="aspectFill"></image>
         <view class="user-info">
           <view class="name">{{userInfo.nickname}}</view>
           <view class="iconfont icon-xin1"></view>
@@ -10,7 +10,7 @@
         </view>
       </view>
       <view class="right">
-        <image class="infoimg" src='{{item.recordImg}}' wx:if="{{item.recordImg}}"></image>
+        <image class="infoimg" src='{{item.recordImg}}' mode="aspectFill" wx:if="{{item.recordImg}}"></image>
         <text class="infoimg info-text" wx:if="{{!item.recordImg && item.cardRecord.recordDescription}}">{{item.cardRecord.recordDescription}}</text>
       </view>
     </view>

@@ -49,7 +49,13 @@ const formatTimeText = date => {
   return "刚刚"
 }
 
+//删除左右两端的空格
+const trim = str => { 
+  return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
 module.exports = {
   formatTime: formatTime,
-  formatTimeText: formatTimeText
+  formatTimeText: formatTimeText,
+  trim: trim
 }
