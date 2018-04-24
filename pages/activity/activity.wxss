@@ -38,8 +38,8 @@ page {
 
 .nameImg {
   margin-top: 20rpx;
-  width: 300rpx;
   margin: 10rpx auto;
+  display: inline-block;
 }
 
 .names {

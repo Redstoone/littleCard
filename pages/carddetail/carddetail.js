@@ -1,10 +1,8 @@
 // pages/carddetail/carddetail.js
+var utils = require("../../utils/util")
 const app = getApp()
-Page({
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
     list: [{
         name: '活动名称',
@@ -91,7 +89,6 @@ Page({
     }
   },
   wxtxt(e) {
-    console.log(e.detail.value)
     var that = this;
 
     that.setData({
@@ -99,56 +96,54 @@ Page({
     })
   },
   next() {
-    if (this.data.list[0].value.length == 0) {
+    if (utils.trim(this.data.list[0].value).length == 0) {
       wx.showToast({
         title: '请输入活动名称！',
-        icon: 'loading',
+        icon: 'none',
         duration: 1500
       })
       return false;
-    }
-    if (this.data.list[1].value.length == 0) {
+    } else if (utils.trim(this.data.list[1].value).length == 0) {
       wx.showToast({
         title: '请输入群主简介！',
-        icon: 'loading',
+        icon: 'none',
         duration: 1500
       })
       return false;
-    }
-    if (this.data.list[2].value.length == 0) {
+    } else if (utils.trim(this.data.list[2].value).length == 0) {
       wx.showToast({
         title: '请输入打卡公告！',
-        icon: 'loading',
+        icon: 'none',
         duration: 1500
       })
       return false;
-    }
-    if (this.data.wxtxt.length == 0) {
+    } else if (utils.trim(this.data.wxtxt).length == 0) {
       wx.showToast({
         title: '请输入群主微信！',
-        icon: 'loading',
+        icon: 'none',
         duration: 1500
       })
       return false;
+    } else {
+      app.postRequest('/wx/activity/detail/add_second', 'POST', {
+        mainDescription: this.data.list[1].value,
+        activityNotice: this.data.list[2].value,
+        mainWx: this.data.wxtxt,
+        activityId: this.data.id,
+        activityThumb: this.data.camBg,
+        activityDescription: this.data.thetxt,
+        activityDescImg: this.data.files,
+        activityDescVideo: this.data.filesvd,
+        // id: app.globalData.openid
+      }, (res) => {
+        if (res.data.success) {
+          wx.navigateTo({
+            url: '../lookdetail/lookdetail?acId=' + this.data.id,
+          })
+        }
+      })
     }
 
-    app.postRequest('/wx/activity/detail/add_second', 'POST', {
-      mainDescription: this.data.list[1].value,
-      activityNotice: this.data.list[2].value,
-      mainWx: this.data.wxtxt,
-      activityId: this.data.id,
-      activityThumb: this.data.camBg,
-      activityDescription: this.data.thetxt,
-      activityDescImg: this.data.files,
-      activityDescVideo: this.data.filesvd,
-      // id: app.globalData.openid
-    }, (res) => {
-      if (res.data.success) {
-        wx.navigateTo({
-          url: '../lookdetail/lookdetail?acId=' + this.data.id,
-        })
-      }
-    })
   },
   
   changeBg() {

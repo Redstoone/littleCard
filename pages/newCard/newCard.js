@@ -1,5 +1,7 @@
 // pages/newCard/newCard.js
+var utils = require("../../utils/util")
 const app = getApp()
+
 Page({
   data: {
     items: [{
@@ -38,18 +40,18 @@ Page({
   },
   startTimeChange: function (e) {
     this.setData({
-      startTime: e.detail.value
+      startTime: utils.trim(e.detail.value)
     })
   },
   overTimeChange: function (e) {
     this.setData({
-      overTime: e.detail.value
+      overTime: utils.trim(e.detail.value)
     })
   },
   inputTxt(e) {
     var that = this
     that.setData({
-      title: e.detail.value
+      title: utils.trim(e.detail.value)
     })
   },
   next() {

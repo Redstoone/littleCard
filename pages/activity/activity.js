@@ -165,16 +165,7 @@ Page({
             })
           }
         })
-        app.postRequest('/wx/cardRecord/countDay', 'POST', {
-          consumerId: app.globalData.openid,
-          activityId: e.acId
-        }, (ret) => {
-          if (ret.data.success) {
-            that.setData({
-              countDay: ret.data.item
-            })
-          }
-        })
+        this.getCountDay(e.acId)
       }
     })
 
@@ -186,6 +177,21 @@ Page({
   onShow() {
     this.getCardRecordComment(this.data.acId);
     this.getHasCardRecord(this.data.acId)
+    this.getCountDay(this.data.acId)
+  },
+
+  getCountDay(acId) {
+    let that = this
+    app.postRequest('/wx/cardRecord/countDay', 'POST', {
+      consumerId: app.globalData.openid,
+      activityId: acId
+    }, (ret) => {
+      if (ret.data.success) {
+        that.setData({
+          countDay: ret.data.item
+        })
+      }
+    })
   },
   getCardRecordComment (acid) {
     let that = this

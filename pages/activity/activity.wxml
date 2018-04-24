@@ -48,7 +48,7 @@
             <!-- <text class="fz26 c999">修改昵称</text> -->
           </view>
           <view class="cont_day fz24 c999">
-            已坚持打卡0天
+            已坚持打卡{{countDay}}天
           </view>
         </view>
       </view>
