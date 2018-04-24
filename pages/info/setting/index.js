@@ -33,10 +33,10 @@ Page({
         gender: res.data.item.gender,
         nickname: res.data.item.nickname,
         genderName: _genderName,
-        brithDate: res.data.item.brithDate,
-        sign: res.data.item.sign,
-        realname: res.data.item.realname,
-        phone: res.data.item.phone,
+        brithDate: res.data.item.brithDate == 'undefined' ? '' : res.data.item.brithDate,
+        sign: res.data.item.sign == 'undefined' ? '' : res.data.item.sign,
+        realname: res.data.item.realname == 'undefined' ? '' : res.data.item.realname,
+        phone: res.data.item.phone == 'undefined' ? '' : res.data.item.phone,
         region: [res.data.item.province, res.data.item.city, '']
       })
     })

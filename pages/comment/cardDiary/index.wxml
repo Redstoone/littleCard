@@ -13,9 +13,7 @@
             </view>
           </view>
           <view class="item-title-info">
-            <view class="item-title">
-              <text>{{user.nickname}}</text>
-            </view>
+            <view class="item-title">{{user.nickname}}</view>
             <view class="item-time-tips">
               <text class="time">{{recommand.timeFormat}}</text>
               <text class="">·</text>
@@ -42,7 +40,7 @@
         <view class="praise-group" wx:if="{{recommand.zanList.length > 0}}">
           <i class="iconfont icon-xin"></i>
           <!-- <text wx:for="{{recommand.zanList}}" wx:key="{{index}}">{{item.nickname}}</text> -->
-          <text class="usname" wx:for="{{recommand.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{recommand.zanList.length-1 != index}}">,</text></text>
+          <view class="usname" wx:for="{{recommand.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{recommand.zanList.length-1 != index}}">,</text></view>
         </view>
         
         <view class="comment-group" wx:for="{{recommand.cardRecordCommentList}}" wx:key="{{index}}">

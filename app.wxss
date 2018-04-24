@@ -204,14 +204,15 @@ page {
   vertical-align: top;
   width: calc(100% - 120rpx);
   height: 80rpx;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .recommand-item .item-title {
   font-size: 32rpx;
-  color: #065eb5
+  color: #065eb5;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .recommand-item .item-time-tips {
@@ -335,6 +336,7 @@ page {
 
 .praise-group .usname {
   margin-left: 6rpx;
+  display: inline-block;
 }
 
 .comment-group {
@@ -375,10 +377,11 @@ page {
   color: #999;
 }
 
-.cimg-list{
+.cimg-list {
   padding-left: 90rpx;
 }
-.cimg-list image{
+
+.cimg-list image {
   width: 300rpx;
   height: 180rpx;
 }
