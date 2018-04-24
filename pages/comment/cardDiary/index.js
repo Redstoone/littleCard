@@ -15,10 +15,12 @@ Page({
       cruid: options.cruid
     })
     this.getCommandList(options.crid, options.cruid)
+    this.getUser(options.cruid)
   },
 
   onShow() {
     this.getCommandList(this.data.crid, this.data.cruid)
+    this.getUser(this.data.cruid)
   },
 
   getCommandList(crid, cruid) {
@@ -44,7 +46,16 @@ Page({
 
       this.setData({
         recommand: _recommand,
-        user: app.globalData.userInfo
+      })
+    })
+  },
+
+  getUser(crid) {
+    app.postRequest('/wx/consumer/record', 'POST', {
+      consumerId: crid
+    }, (res) => {
+      this.setData({
+        user: res.data.item
       })
     })
   },
