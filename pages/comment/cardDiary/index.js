@@ -40,6 +40,7 @@ Page({
         }
       })
       _recommand.isZan = _isZan
+      _recommand.imgList = _recommand.recordDescImg ? _recommand.recordDescImg.split(',') : []
 
       this.setData({
         recommand: _recommand,

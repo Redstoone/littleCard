@@ -81,6 +81,7 @@ Page({
           }
         })
         _item.isZan = _isZan
+        // _item.imgList = 
         return _item
       })
 

@@ -371,3 +371,11 @@ page {
   font-size: 24rpx;
   color: #999;
 }
+
+.cimg-list{
+  padding-left: 90rpx;
+}
+.cimg-list image{
+  width: 300rpx;
+  height: 180rpx;
+}

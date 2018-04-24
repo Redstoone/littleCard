@@ -1,11 +1,15 @@
 const app = getApp();
 Page({
   data: {
-    zanList: []
+    zanList: [],
+    userInfo: null
   },
 
   onLoad () {
     this.getZanList();
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
 
   getZanList () {
