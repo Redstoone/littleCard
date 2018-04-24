@@ -204,6 +204,9 @@ page {
   vertical-align: top;
   width: calc(100% - 120rpx);
   height: 80rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .recommand-item .item-title {

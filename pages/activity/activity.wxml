@@ -40,7 +40,7 @@
     <view class="clear cont_tant">
       <view class="left">
         <view class='cont_head left'>
-          <image src='{{user.headicon}}' style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
+          <image src='{{user.headicon}}' mode="aspectFill" style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
         </view>
         <view class='cont_box left'>
           <view class="cont_name fz28 c666">
@@ -48,7 +48,7 @@
             <!-- <text class="fz26 c999">修改昵称</text> -->
           </view>
           <view class="cont_day fz24 c999">
-            已坚持打卡{{countDay}}天
+            已坚持打卡{{mineCountDay}}天
           </view>
         </view>
       </view>

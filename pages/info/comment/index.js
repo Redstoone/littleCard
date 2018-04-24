@@ -16,7 +16,8 @@ Page({
 
       _recommand.map((item, index) => {
         let _item = item
-        _item.timeFormat = utils.formatTimeText(item.createTime)
+        // _item.timeFormat = utils.formatTimeText(item.createTime)
+        _item.timeFormat = item.createTime
         return _item
       })
 

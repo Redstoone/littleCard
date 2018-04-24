@@ -58,12 +58,17 @@ Page({
     if (this.data.title.length == 0) {
       wx.showToast({
         title: '请输入活动名称！',
-        icon: 'loading',
+        icon: 'none',
         duration: 1500
       })
       return false;
-    }
-    if (this.data.items[0].checked == true) {
+    } else if (this.data.title.length > 20) {
+      wx.showToast({
+        title: '活动名称不能超过20个字',
+        icon: 'none',
+        duration: 1500
+      })
+    } else if (this.data.items[0].checked == true) {
       app.postRequest('/wx/activity/add_first', 'POST', {
         name: this.data.title,
         timeType: 10,
@@ -81,7 +86,7 @@ Page({
       if (this.data.startTime == '') {
         wx.showToast({
           title: '请选择开始时间！',
-          icon: 'loading',
+          icon: 'none',
           duration: 1500
         })
         return false;
@@ -89,7 +94,7 @@ Page({
       if (this.data.overTime == '') {
         wx.showToast({
           title: '请选择结束时间！',
-          icon: 'loading',
+          icon: 'none',
           duration: 1500
         })
         return false;
