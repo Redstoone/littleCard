@@ -34,7 +34,8 @@ Page({
     title: '', //感想
     acid: null,
     viewText: '对外公开',
-    isPlay: false
+    isPlay: false,
+    isPush: false
   },
 
   /**
@@ -58,49 +59,63 @@ Page({
   },
 
   push() { //发表日记
+    if (this.data.isPush){
+      return false
+    }
+    this.setData({
+      isPush: true
+    })
     if (!this.data.title) {
       wx.showToast({
         title: '发表日记不能为空',
         icon: 'none',
         duration: 1500,
       })
-    }
-
-    var value;
-    for (var i = 0; i < this.data.items.length; i++) {
-      if (this.data.items[i].checked == true) {
-        value = this.data.items[i].value
+      return false;
+    } else if (this.data.files.length >= 9) {
+      wx.showToast({
+        title: "最多只能上传9张图片",
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      var value;
+      for (var i = 0; i < this.data.items.length; i++) {
+        if (this.data.items[i].checked == true) {
+          value = this.data.items[i].value
+        }
       }
+      app.postRequest('/wx/cardRecord/merged', 'POST', {
+        consumerId: app.globalData.openid,
+        activityId: this.data.acid, //活动id
+        viewType: value, //查看权限(10 对外公开 20群主和私人可见 30 仅私人可见)
+        recordDescription: this.data.title, //日记内容
+        recordPoint: this.data.currentCity, //地点
+        recordDescImg: this.data.files, //图片
+        recordDescVideo: this.data.camvd, //视频
+      }, (res) => {
+        this.setData({
+          isPush: false
+        })
+        if (res.data.success) {
+          wx.showToast({
+            title: '发表日记成功',
+            icon: 'success',
+            duration: 1500,
+            success: function (ret) {
+              wx.navigateBack();
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '今日已打卡',
+            icon: 'success',
+            duration: 1500
+          })
+        }
+      })
     }
-    app.postRequest('/wx/cardRecord/merged', 'POST', {
-      consumerId: app.globalData.openid,
-      activityId: this.data.acid, //活动id
-      viewType: value, //查看权限(10 对外公开 20群主和私人可见 30 仅私人可见)
-      recordDescription: this.data.title, //日记内容
-      recordPoint: this.data.currentCity, //地点
-      recordDescImg: this.data.files, //图片
-      recordDescVideo: this.data.camvd, //视频
-    }, (res) => {
-      if (res.data.success) {
-        wx.showToast({
-          title: '发表日记成功',
-          icon: 'success',
-          duration: 1500,
-          success: function (ret) {
-            wx.navigateBack();
-          }
-        })
-      } else {
-        wx.showToast({
-          title: '今日已打卡',
-          icon: 'success',
-          duration: 1500
-        })
-      }
-    })
   },
-
-
 
   clickImg(e) {
     var that = this
@@ -111,7 +126,7 @@ Page({
   },
   uploadImg() { //上传多图
     var that = this
-    if (that.data.files.length < 10) {
+    if (that.data.files.length < 9) {
       var maxCount = 10 - that.data.files.length
       wx.chooseImage({
         count: maxCount, // 默认9
@@ -165,8 +180,8 @@ Page({
       })
     } else {
       wx.showToast({
-        title: "图片太多了~",
-        icon: 'loading',
+        title: "最多只能上传9张图片",
+        icon: 'none',
         duration: 2000
       })
     }
@@ -183,7 +198,7 @@ Page({
     })
   },
 
-  removeVideo () {
+  removeVideo() {
     this.setData({
       camvd: ''
     })
@@ -277,7 +292,7 @@ Page({
     })
   },
 
-  videoClose () {
+  videoClose() {
     this.setData({
       isPlay: false
     })
@@ -285,10 +300,10 @@ Page({
     this.videoCtx.seek(0);
   },
 
-  onReady (e) {
+  onReady(e) {
     this.videoCtx = wx.createVideoContext('myVideo')
   },
-  showVideo () {
+  showVideo() {
     this.setData({
       isPlay: true
     })

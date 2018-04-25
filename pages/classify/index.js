@@ -62,6 +62,8 @@ Page({
         this.setData({
           activityList: res.data.rows
         })
+        wx.hideNavigationBarLoading() //完成停止加载
+        wx.stopPullDownRefresh() //停止下拉刷新
       }
     })
   },
@@ -104,5 +106,20 @@ Page({
     wx.navigateTo({
       url: '../lookdetail/lookdetail?acId=' + e.currentTarget.dataset.id,
     })
+  },
+
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    
+    this.setData({
+      page: 1,
+      activityList: [],
+      classifyList: [{
+        id: 0,
+        name: '推荐'
+      }],
+    })
+    this.getActivityCategoryList();
+    this.getActivityList(this.data.categoryId)
   },
 })

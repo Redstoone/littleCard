@@ -128,3 +128,14 @@ page {
   height: 20rpx;
   background-color: #f9f9f9;
 }
+
+.brithday {
+  min-width: 200rpx;
+  min-height: 60rpx;
+  text-align: right;
+  line-height: 60rpx;
+}
+
+.cam-ipt{
+  text-align: right;
+}

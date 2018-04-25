@@ -124,6 +124,12 @@ Page({
         duration: 1500
       })
       return false;
+    } else if (that.data.files.length >= 9) {
+      wx.showToast({
+        title: "最多只能上传9张图片",
+        icon: 'none',
+        duration: 1500
+      })
     } else {
       app.postRequest('/wx/activity/detail/add_second', 'POST', {
         mainDescription: this.data.list[1].value,
@@ -198,7 +204,6 @@ Page({
   navbarTap(e) {
     var that = this
     var idx = e.currentTarget.id
-    console.log(e)
     if (idx == 0) {
       that.setData({
         istext: true
@@ -240,7 +245,7 @@ Page({
   },
   uploadImg() { //上传多图
     var that = this
-    if (that.data.files.length < 5) {
+    if (that.data.files.length < 9) {
       var maxCount = 5 - that.data.files.length
       wx.chooseImage({
         count: maxCount, // 默认9
@@ -291,16 +296,13 @@ Page({
           })
         }
       })
-
     } else {
       wx.showToast({
-        title: "最多只能上传4张图片",
-        icon: 'loading',
+        title: "最多只能上传9张图片",
+        icon: 'none',
         duration: 2000
       })
     }
-
-
   },
   remove(e) { //多图删除
     var index = Number(e.currentTarget.id)
