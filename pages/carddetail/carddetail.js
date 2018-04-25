@@ -124,7 +124,7 @@ Page({
         duration: 1500
       })
       return false;
-    } else if (that.data.files.length >= 9) {
+    } else if (this.data.files.length >= 9) {
       wx.showToast({
         title: "最多只能上传9张图片",
         icon: 'none',
