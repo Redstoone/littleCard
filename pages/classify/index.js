@@ -22,6 +22,7 @@ Page({
   bindClassifyClick (e) {
     let _idx = e.target.dataset.idx
     this.setData({
+      page: 1,
       classifyActive: _idx,
       categoryId: _idx ? e.target.dataset.cid : ''
     })
