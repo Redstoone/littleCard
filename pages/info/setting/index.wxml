@@ -24,7 +24,7 @@
       昵称
     </view>
     <view class="right">
-      <input placeholder='请输入昵称' value="{{nickname}}" bindinput="camNicknameTxt"></input>
+      <input class="cam-ipt" placeholder='请输入昵称' value="{{nickname}}" bindinput="camNicknameTxt"></input>
     </view>
   </view>
   <view class="info-item clear">
@@ -56,7 +56,7 @@
       手机号
     </view>
     <view class="right">
-      <input placeholder='请输入手机号' value="{{phone}}" bindinput="camPhoneTxt" type="number"></input>
+      <input class="cam-ipt" placeholder='请输入手机号' value="{{phone}}" bindinput="camPhoneTxt" type="number"></input>
     </view>
   </view>
   <view class="info-item clear">
@@ -64,21 +64,20 @@
       出生日期
     </view>
     <view class="right">
-      <picker mode="date" value="{{brithDate}}" start="1950-09-01" end="2035-09-01" bindchange="bindDateChange">
-        <view class="picker">
+      <picker mode="date" class="brithday" value="{{brithDate}}" start="1950-09-01" end="2035-09-01" bindchange="bindDateChange">
+        <view class="picker" class="brithday">
           {{brithDate}}
         </view>
       </picker>
     </view>
   </view>
-  
 
   <view class="info-item clear">
     <view class="left">
       真实名字
     </view>
     <view class="right">
-      <input placeholder='请输入真实名字' value="{{realname}}" bindinput="camRealnameTxt"></input>
+      <input class="cam-ipt" placeholder='请输入真实名字' value="{{realname}}" bindinput="camRealnameTxt"></input>
     </view>
   </view>
   <view class="info-item clear">
@@ -86,7 +85,7 @@
       个性签名
     </view>
     <view class="right">
-      <input placeholder='一句话介绍你自己' value="{{sign}}" bindinput="camSignTxt"></input>
+      <input class="cam-ipt" placeholder='一句话介绍你自己' value="{{sign}}" bindinput="camSignTxt"></input>
     </view>
   </view>
 

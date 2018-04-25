@@ -38,7 +38,8 @@ Page({
     loading: false,
     loadingComplete: false,
     hasCardRecord: false,
-    mineCountDay: 0
+    mineCountDay: 0,
+    hasNotstart: false
   },
   changeTab(e) {
     this.setData({
@@ -153,7 +154,8 @@ Page({
           activityDescImg: item.activityDetail.activityDescImg.split(','),
           activityMember: item.activityMember,
           activityDescVideo: item.activityDetail.activityDescVideo,
-          totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime()
+          totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime(),
+          hasNotstart: new Date(item.startTime) - new Date() > 0 ? true :false
         })
         that.countDown()
         app.postRequest('/wx/consumer/record', 'POST', {

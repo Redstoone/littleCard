@@ -208,6 +208,11 @@
       已打卡
     </view>
   </view>
+  <view class="bar-item" wx:elif="{{hasNotstart}}">
+    <view class="bar-card-clik has-card">
+      未开始
+    </view>
+  </view>
   <view class="bar-item" bindtap='clickCard' wx:else>
     <view class="bar-card-clik">
       打卡
