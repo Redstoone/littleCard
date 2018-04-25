@@ -121,7 +121,6 @@ Page({
         isDate: true
       });
     }
-    console.log(newList)
     // newList[0][0].day = "今天"
     this.setData({
       week: week,
@@ -180,7 +179,7 @@ Page({
     this.getCardRecordComment(this.data.acId);
     this.getHasCardRecord(this.data.acId)
     this.getCountDay(this.data.acId)
-    this.getMineCountDay(this.user.consumerId, this.data.acId)
+    this.getMineCountDay(app.globalData.openid, this.data.acId)
   },
 
   getCountDay(acId) {
