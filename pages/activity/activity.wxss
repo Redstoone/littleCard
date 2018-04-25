@@ -314,6 +314,10 @@ page {
 
 .member-item .mi-name {
   line-height: 60rpx;
+  width: calc(100% - 300rpx);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .member-item .member-qun {
