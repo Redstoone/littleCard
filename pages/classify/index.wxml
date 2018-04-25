@@ -1,7 +1,7 @@
 <import src="/plugins/zanui/capsule/index.wxml" />
 
 <view class="container">
-  <view class="zan-panel">
+  <view class="zan-panel classify-panel">
     <view class="zan-row">
       <view wx:for="{{classifyList}}" wx:key="{{index}}" class="zan-col zan-col-6 classify-item {{classifyActive == index ? 'active' : ''}}" bindtap="bindClassifyClick" data-idx="{{index}}" data-cid="{{item.id}}">
         {{item.name}}
@@ -9,7 +9,7 @@
     </view>
   </view>
 
-  <view class="zan-panel" wx:if="{{activityList.length > 0}}">
+  <view class="zan-panel card-list" wx:if="{{activityList.length > 0}}">
     <view class="zan-card" wx:for="{{activityList}}" wx:key="index" bindtap="bindVeiwActivity" data-id="{{item.id}}">
       <view class="zan-card__thumb">
         <image class="zan-card__img" src="{{item.activityDetail.activityThumb}}" mode="aspectFill"></image>

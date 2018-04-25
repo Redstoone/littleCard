@@ -116,7 +116,7 @@
                   <view class="item-title">{{item.recordConsumer.nickname}}</view>
                   <view class="item-time-tips">
                     <text class="time">{{item.timeFormat}}</text>
-                    <text class="">·</text>
+                    <!-- <text class="">·</text> -->
                   </view>
                 </view>
               </view>

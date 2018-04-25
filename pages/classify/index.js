@@ -2,9 +2,12 @@ const app = getApp()
 
 Page({
   data: {
-    classifyList: [],
+    classifyList: [{
+      id: 0,
+      name: '推荐'
+    }],
     activityList: [],
-    classifyActive: '',
+    classifyActive: 0,
     categoryId: '',
     page: 1,
     size: 5,
@@ -30,7 +33,7 @@ Page({
     app.postRequest('/wx/category/record', 'POST', '', (res) => {
       if (res.data.success && res.data.item.length > 0) {
         this.setData({
-          classifyList: res.data.item,
+          classifyList: this.data.classifyList.concat(res.data.item),
         })
         this.getActivityList()
       }
