@@ -94,7 +94,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'https://xgh.smarttinfo.com',
+    host: 'https://mzld.smarttinfo.com',
     nickname: '',
     headicon: '',
     openid: null
