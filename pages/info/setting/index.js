@@ -90,7 +90,7 @@ Page({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths;
         wx.request({
-          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          url: getApp().globalData.host + '/wx/index/utoken',
           data: {},
           method: "POST",
           header: {

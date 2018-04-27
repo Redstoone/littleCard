@@ -162,7 +162,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         wx.request({
-          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          url: getApp().globalData.host + '/wx/index/utoken',
           //url: 'https://union.wevirtus.cn/utoken',
           data: {},
           method: "POST",
@@ -255,7 +255,7 @@ Page({
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           var tempFilePaths = res.tempFilePaths
           wx.request({
-            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            url: getApp().globalData.host + '/wx/index/utoken',
             data: {},
             method: "POST",
             header: {
@@ -324,7 +324,7 @@ Page({
         success: function (res) {
           var tempFilePaths = res.tempFilePath
           wx.request({
-            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            url: getApp().globalData.host + '/wx/index/utoken',
             data: {},
             method: "POST",
             header: {
