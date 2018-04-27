@@ -164,7 +164,7 @@ Page({
         wx.request({
           url: 'https://xgh.smarttinfo.com/wx/index/utoken',
           //url: 'https://union.wevirtus.cn/utoken',
-          data: {},
+          data: { 'bucket': 'snack-tmp' },
           method: "POST",
           header: {
             "content-type": "application/x-www-form-urlencoded",
@@ -173,7 +173,7 @@ Page({
           success: function (data) {
 
             wx.uploadFile({
-              url: 'https://up.qbox.me',
+              url: 'https://upload-z2.qiniup.com',
               filePath: tempFilePaths[0],
               name: 'file',
               formData: {
@@ -183,7 +183,7 @@ Page({
               success: function (res) {
                 var data = JSON.parse(res.data);
                 that.setData({
-                  camBg: 'http://tmp-qiniu.smarttinfo.com/' + data.key + '?imageView/2/w/750/h/300',
+                  camBg: 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key + '?imageView/2/w/750/h/300',
                   isLogo: true,
                   key: data.key
                 })
@@ -256,7 +256,7 @@ Page({
           var tempFilePaths = res.tempFilePaths
           wx.request({
             url: 'https://xgh.smarttinfo.com/wx/index/utoken',
-            data: {},
+            data: { 'bucket': 'snack-tmp' },
             method: "POST",
             header: {
               "content-type": "application/x-www-form-urlencoded",
@@ -266,7 +266,7 @@ Page({
 
               for (let i = 0; i < res.tempFilePaths.length; i++) {
                 wx.uploadFile({
-                  url: 'https://up.qbox.me', //仅为示例，并非真实的接口地址
+                  url: 'https://upload-z2.qiniup.com', //仅为示例，并非真实的接口地址
                   filePath: res.tempFilePaths[i],
                   name: 'file',
                   formData: {
@@ -277,7 +277,7 @@ Page({
                     var data = JSON.parse(data.data)
                     if (data.key) {
                       var fileArr = that.data.files
-                      let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key;
+                      let testImg = 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key;
                       fileArr.push(testImg)
                       that.setData({
                         files: fileArr
@@ -325,7 +325,7 @@ Page({
           var tempFilePaths = res.tempFilePath
           wx.request({
             url: 'https://xgh.smarttinfo.com/wx/index/utoken',
-            data: {},
+            data: { 'bucket': 'snack-tmp' },
             method: "POST",
             header: {
               "content-type": "application/x-www-form-urlencoded",
@@ -333,7 +333,7 @@ Page({
             },
             success: function (data) {
               wx.uploadFile({
-                url: 'https://up.qbox.me',
+                url: 'https://upload-z2.qiniup.com',
                 filePath: tempFilePaths,
                 name: 'file',
                 formData: {
@@ -344,7 +344,7 @@ Page({
                   var data = JSON.parse(res.data);
                   if (data.key) {
                     var fileArr = that.data.filesvd
-                    let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key
+                    let testImg = 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key
                     fileArr.push(testImg)
                     that.setData({
                       filesvd: fileArr

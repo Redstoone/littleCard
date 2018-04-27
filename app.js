@@ -94,7 +94,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'https://xdk.smarttinfo.com',
+    host: 'https://daka.spacet.cn',
     nickname: '',
     headicon: '',
     openid: null

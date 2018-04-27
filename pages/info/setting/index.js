@@ -91,7 +91,7 @@ Page({
         var tempFilePaths = res.tempFilePaths;
         wx.request({
           url: 'https://xgh.smarttinfo.com/wx/index/utoken',
-          data: {},
+          data: {'bucket': 'snack-tmp'},
           method: "POST",
           header: {
             "content-type": "application/x-www-form-urlencoded",
@@ -99,7 +99,7 @@ Page({
           },
           success: function (data) {
             wx.uploadFile({
-              url: 'https://up.qbox.me',
+              url: 'https://upload-z2.qiniup.com',
               filePath: tempFilePaths[0],
               name: 'file',
               formData: {
@@ -109,7 +109,7 @@ Page({
               success: function (res) {
                 var data = JSON.parse(res.data);
                 that.setData({
-                  headicon: 'http://tmp-qiniu.smarttinfo.com/' + data.key,
+                  headicon: 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key,
                 })
               }
             })

@@ -137,7 +137,7 @@ Page({
           var tempFilePaths = res.tempFilePaths
           wx.request({
             url: 'https://xgh.smarttinfo.com/wx/index/utoken',
-            data: {},
+            data: { 'bucket': 'snack-tmp' },
             method: "POST",
             header: {
               "content-type": "application/x-www-form-urlencoded",
@@ -147,7 +147,7 @@ Page({
 
               for (let i = 0; i < res.tempFilePaths.length; i++) {
                 wx.uploadFile({
-                  url: 'https://up.qbox.me', //仅为示例，并非真实的接口地址
+                  url: 'https://upload-z2.qiniup.com', //仅为示例，并非真实的接口地址
                   filePath: res.tempFilePaths[i],
                   name: 'file',
                   formData: {
@@ -158,7 +158,7 @@ Page({
                     var data = JSON.parse(data.data)
                     if (data.key) {
                       var fileArr = that.data.files
-                      let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key + '?imageView/2/w/120/h/120';
+                      let testImg = 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key + '?imageView/2/w/120/h/120';
                       fileArr.push(testImg)
                       that.setData({
                         files: fileArr
@@ -217,7 +217,7 @@ Page({
         })
         wx.request({
           url: 'https://xgh.smarttinfo.com/wx/index/utoken',
-          data: {},
+          data: { 'bucket': 'snack-tmp' },
           method: "POST",
           header: {
             "content-type": "application/x-www-form-urlencoded",
@@ -225,7 +225,7 @@ Page({
           },
           success: function (data) {
             wx.uploadFile({
-              url: 'https://up.qbox.me',
+              url: 'https://upload-z2.qiniup.com',
               filePath: tempFilePaths,
               name: 'file',
               formData: {
@@ -235,7 +235,7 @@ Page({
               success: function (res) {
                 var data = JSON.parse(res.data);
                 that.setData({
-                  camvd: 'http://tmp-qiniu.smarttinfo.com/' + data.key,
+                  camvd: 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key,
                   isLogo: true,
                   key: data.key
                 })
