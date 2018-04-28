@@ -162,7 +162,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         wx.request({
-          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          url: getApp().globalData.host + '/wx/index/utoken',
           //url: 'https://union.wevirtus.cn/utoken',
           data: { 'bucket': 'snack-tmp' },
           method: "POST",
@@ -183,7 +183,7 @@ Page({
               success: function (res) {
                 var data = JSON.parse(res.data);
                 that.setData({
-                  camBg: 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key + '?imageView/2/w/750/h/300',
+                  camBg: 'http://card-tmp.spacet.cn/' + data.key + '?imageView/2/w/750/h/300',
                   isLogo: true,
                   key: data.key
                 })
@@ -255,7 +255,7 @@ Page({
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           var tempFilePaths = res.tempFilePaths
           wx.request({
-            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            url: getApp().globalData.host + '/wx/index/utoken',
             data: { 'bucket': 'snack-tmp' },
             method: "POST",
             header: {
@@ -277,7 +277,7 @@ Page({
                     var data = JSON.parse(data.data)
                     if (data.key) {
                       var fileArr = that.data.files
-                      let testImg = 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key;
+                      let testImg = 'http://card-tmp.spacet.cn/' + data.key;
                       fileArr.push(testImg)
                       that.setData({
                         files: fileArr
@@ -324,7 +324,7 @@ Page({
         success: function (res) {
           var tempFilePaths = res.tempFilePath
           wx.request({
-            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            url: getApp().globalData.host + '/wx/index/utoken',
             data: { 'bucket': 'snack-tmp' },
             method: "POST",
             header: {
@@ -344,7 +344,7 @@ Page({
                   var data = JSON.parse(res.data);
                   if (data.key) {
                     var fileArr = that.data.filesvd
-                    let testImg = 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key
+                    let testImg = 'http://card-tmp.spacet.cn/' + data.key
                     fileArr.push(testImg)
                     that.setData({
                       filesvd: fileArr

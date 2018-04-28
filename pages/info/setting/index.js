@@ -90,7 +90,7 @@ Page({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths;
         wx.request({
-          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          url: getApp().globalData.host + '/wx/index/utoken',
           data: {'bucket': 'snack-tmp'},
           method: "POST",
           header: {
@@ -109,7 +109,7 @@ Page({
               success: function (res) {
                 var data = JSON.parse(res.data);
                 that.setData({
-                  headicon: 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key,
+                  headicon: 'http://card-tmp.spacet.cn/' + data.key,
                 })
               }
             })

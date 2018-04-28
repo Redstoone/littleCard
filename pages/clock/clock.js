@@ -136,7 +136,7 @@ Page({
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           var tempFilePaths = res.tempFilePaths
           wx.request({
-            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            url: getApp().globalData.host + '/wx/index/utoken',
             data: { 'bucket': 'snack-tmp' },
             method: "POST",
             header: {
@@ -158,7 +158,7 @@ Page({
                     var data = JSON.parse(data.data)
                     if (data.key) {
                       var fileArr = that.data.files
-                      let testImg = 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key + '?imageView/2/w/120/h/120';
+                      let testImg = 'http://card-tmp.spacet.cn/' + data.key + '?imageView/2/w/120/h/120';
                       fileArr.push(testImg)
                       that.setData({
                         files: fileArr
@@ -216,7 +216,7 @@ Page({
           title: '上传中'
         })
         wx.request({
-          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          url: getApp().globalData.host + '/wx/index/utoken',
           data: { 'bucket': 'snack-tmp' },
           method: "POST",
           header: {
@@ -235,7 +235,7 @@ Page({
               success: function (res) {
                 var data = JSON.parse(res.data);
                 that.setData({
-                  camvd: 'http://p7ugdlvkw.bkt.clouddn.com/' + data.key,
+                  camvd: 'http://card-tmp.spacet.cn/' + data.key,
                   isLogo: true,
                   key: data.key
                 })
