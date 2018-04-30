@@ -69,11 +69,11 @@
       <view class="_week">六</view>
     </view>
     <view class="_subYears_items clear">
-      <view class="_subYears_wrap" wx:for="{{years}}" wx:key="index">
+      <view class="_subYears_wrap" wx:for="{{years}}" wx:key="index" class="_subYears_item left">
         <!-- <view class="_subYears_item_f" style="margin-left:{{(item[0].week-1)*107}}rpx"></view> -->
-        <view wx:for-items="{{item}}" wx:key="{{index}}" id="{{index}}" class="_subYears_item left" bindtap="clickChecked">
-          <view>{{item.str == '今天' ? item.str : item.day}}</view>
-        </view>
+        <!-- <view wx:for-items="{{item}}" wx:key="{{index}}" id="{{index}}" class="_subYears_item left" bindtap="clickChecked"> -->
+        <view indtap="clickChecked">{{item.str == '今天' ? item.str : item.day}}</view>
+        <!-- </view> -->
       </view>
     </view>
 
@@ -132,7 +132,9 @@
 
               <view class="praise-group" wx:if="{{item.zanList.length > 0}}">
                 <i class="iconfont icon-xin"></i>
-                <view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}} <text wx:if="{{item.zanList.length-1 != index}}">,</text> </view>
+                <view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}
+                  <text wx:if="{{item.zanList.length-1 != index}}">,</text>
+                </view>
               </view>
 
               <view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">
