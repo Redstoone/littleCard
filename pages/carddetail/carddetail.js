@@ -61,6 +61,20 @@ Page({
       id: option.id,
       'list[0].value': option.title
     })
+    // this.getSingleDetail(option.id)
+  },
+
+  getSingleDetail(acid) {
+    let that = this
+    app.postRequest('/wx/activity/detail/singleDetail', 'POST', {
+      activityId: acid
+    }, (res) => {
+      let _detail = res.data.item
+      // that.setData({
+      //   'list[0].value': _detail.name
+      // })
+      console.log(res)
+    })
   },
 
   /**
@@ -151,7 +165,7 @@ Page({
     }
 
   },
-  
+
   changeBg() {
     var that = this
     wx.chooseImage({
@@ -263,7 +277,6 @@ Page({
               'X-Requested-Page': 'json'
             },
             success: function (data) {
-
               for (let i = 0; i < res.tempFilePaths.length; i++) {
                 wx.uploadFile({
                   url: 'https://up.qbox.me', //仅为示例，并非真实的接口地址

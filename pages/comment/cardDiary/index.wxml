@@ -16,7 +16,7 @@
             <view class="item-title">{{user.nickname}}</view>
             <view class="item-time-tips">
               <text class="time">{{recommand.timeFormat}}</text>
-              <text class="">·</text>
+              <!-- <text class="">·</text> -->
               <!-- <text class="">已经坚持{{item.days}}天</text> -->
             </view>
           </view>

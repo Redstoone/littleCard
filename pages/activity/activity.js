@@ -39,7 +39,8 @@ Page({
     loadingComplete: false,
     hasCardRecord: false,
     mineCountDay: 0,
-    hasNotstart: false
+    hasNotstart: false,
+    isAddWx: false
   },
   changeTab(e) {
     this.setData({
@@ -391,10 +392,8 @@ Page({
     this.videoCtx.play()
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  // 页面上拉触底事件的处理函数
+  onReachBottom () {
     let that = this;
     if (!that.data.loadingComplete) {
       that.setData({
@@ -441,4 +440,47 @@ Page({
       })
     }
   },
+
+  // 编辑详情
+  editActivity() {
+    wx.navigateTo({
+      url: '../carddetail/carddetail?id=' + this.data.acId,
+    })
+  },
+
+  // 加微信
+  addWx () {
+    this.setData({
+      isAddWx: true
+    })
+  },
+
+  // 复制微信
+  copyWx() {
+    this.setData({
+      isAddWx: false
+    })
+    wx.setClipboardData({
+      data: this.data.mainWx,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            console.log(res.data)
+            wx.showToast({
+              title: '复制成功！',
+              icon: 'success',
+              duration: 2000
+            })
+          }
+        })
+      }
+    })
+  },
+
+  // 关闭添加微信弹框
+  closeWxbox() {
+    this.setData({
+      isAddWx: false
+    })
+  }
 })
