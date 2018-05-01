@@ -465,11 +465,10 @@ Page({
       success: function (res) {
         wx.getClipboardData({
           success: function (res) {
-            console.log(res.data)
             wx.showToast({
               title: '复制成功！',
               icon: 'success',
-              duration: 2000
+              duration: 1500
             })
           }
         })
