@@ -7,10 +7,9 @@
     <view class='contant'>
       <view class="look_title ">{{name}}</view>
       <view class='names fz26'>
-        {{memberNumber}}人参加 | {{cardClickNumber}}次打卡
+        {{memberNumber}}人已参加 | {{cardClickNumber}}次打卡
       </view>
       <view class='nameImg fz26 clear'>
-        <!-- <image class="left head" src='{{user.headicon}}' /> -->
         <image class="left head ac-member-img" wx:for="{{activityMemberHeader}}" wx:key="{{index}}" src='{{item.consumer.headicon}}'></image>
         <view class="left name" style="line-height:40rpx;">
           {{activityMemberHeader && activityMemberHeader[0].consumer.nickname}}
@@ -19,12 +18,12 @@
         <!-- <view class="left btn">加微信</view> -->
       </view>
     </view>
-    <!-- <view class="tant_txt clear">
-    <view class="item_icon">
-      <i class="iconfont icon-post"></i>
-    </view>
-    <view class="item_play fz24">编辑详情</view>
-  </view> -->
+    <!-- <view class="tant_txt clear" bindtap="editActivity" data-id="acId">
+      <view class="item_icon">
+        <i class="iconfont icon-post"></i>
+      </view>
+      <view class="item_play fz24">编辑详情</view>
+    </view> -->
     <button open-type="share" class="tant_com clear" style="padding:0">
       <view class="item_icon">
         <i class="iconfont icon-share"></i>
@@ -46,6 +45,7 @@
           <view class="cont_name fz28 c666">
             {{user.nickname}}
             <!-- <text class="fz26 c999">修改昵称</text> -->
+            <view class="btn btn-add-wx" bindtap="addWx">加微信</view>
           </view>
           <view class="cont_day fz24 c999">
             已坚持打卡{{mineCountDay}}天
@@ -223,5 +223,29 @@
   <view class="bar-item" bindtap='gotoClassify'>
     <image src="/images/icon_classify.png"></image>
     发现
+  </view>
+</view>
+
+<view class="back" wx:if="{{isAddWx}}"></view>
+<view class="addwxbox" wx:if="{{isAddWx}}">
+  <view class="wx_box">
+    <view class="addwxbox_title fz32">添加群主微信</view>
+    <view class="clear">
+      <view class='cont_head left'>
+        <image src='{{user.headicon}}' mode="aspectFill" style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
+      </view>
+      <view class='cont_box left'>
+        <view class="cont_name fz28 c666">
+          {{user.nickname}}
+        </view>
+        <view class="cont_day fz24 c999">
+          微信号: {{mainWx}}
+        </view>
+      </view>
+    </view>
+    <view class="wx-btn-group">
+      <view class="addwxbox_btn fz28 " bindtap='copyWx'>一键复制群主微信</view>
+      <view class="addwxbox_btn2 fz28 " bindtap='closeWxbox'>不用，我已经添加微信</view>
+    </view>
   </view>
 </view>
