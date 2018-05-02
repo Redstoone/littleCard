@@ -53,13 +53,34 @@ Page({
     isvd: false,
     filesvd: [],
     isaudio: false,
-    camBg: 'http://tmp-qiniu.smarttinfo.com/Ftqw4KzWdVCSWEIM5r3M4-GKNxeO?imageView/2/w/750/h/300'
+    camBg: 'http://tmp-qiniu.smarttinfo.com/Ftqw4KzWdVCSWEIM5r3M4-GKNxeO?imageView/2/w/750/h/300',
+    isPlay: false
   },
 
   onLoad(option) {
     this.setData({
       id: option.id,
       'list[0].value': option.title
+    })
+    // this.getSingleDetail(option.id)
+  },
+
+  // 获取活动详情
+  getSingleDetail(acid) {
+    let that = this
+    app.postRequest('/wx/activity/detail/singleDetail', 'POST', {
+      activityId: acid
+    }, (res) => {
+      let _detail = res.data.item
+      that.setData({
+        'list[0].value': _detail.name,
+        camBg: _detail.activityThumb,
+        'list[2].value': _detail.activityNotice,
+        thetxt: _detail.activityDescription,
+        files: _detail.activityDescImg.split(','),
+        filesvd: _detail.activityDescVideo.split(','),
+        wxtxt: _detail.mainWx
+      })
     })
   },
 
@@ -151,7 +172,7 @@ Page({
     }
 
   },
-  
+
   changeBg() {
     var that = this
     wx.chooseImage({
@@ -162,7 +183,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         wx.request({
-          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          url: getApp().globalData.host + '/wx/index/utoken',
           //url: 'https://union.wevirtus.cn/utoken',
           data: {},
           method: "POST",
@@ -255,7 +276,7 @@ Page({
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           var tempFilePaths = res.tempFilePaths
           wx.request({
-            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            url: getApp().globalData.host + '/wx/index/utoken',
             data: {},
             method: "POST",
             header: {
@@ -263,7 +284,6 @@ Page({
               'X-Requested-Page': 'json'
             },
             success: function (data) {
-
               for (let i = 0; i < res.tempFilePaths.length; i++) {
                 wx.uploadFile({
                   url: 'https://up.qbox.me', //仅为示例，并非真实的接口地址
@@ -304,27 +324,34 @@ Page({
       })
     }
   },
-  remove(e) { //多图删除
-    var index = Number(e.currentTarget.id)
-    var that = this
-    var files = that.data.files;
+
+  // 多图删除
+  remove(e) {
+    let index = Number(e.currentTarget.id)
+    let that = this
+    let files = that.data.files;
     files.splice(index)
     that.setData({
       files: files
     })
   },
-  uploadvd() { //上传多视频
-    var that = this
+
+  // 上传多视频
+  uploadvd() {
+    let that = this
     if (that.data.files.length < 10) {
-      var maxCount = 10 - that.data.files.length
+      let maxCount = 10 - that.data.files.length
       wx.chooseVideo({
         sourceType: ['album', 'camera'],
         maxDuration: 60,
         camera: 'back',
         success: function (res) {
-          var tempFilePaths = res.tempFilePath
+          let tempFilePaths = res.tempFilePath
+          wx.showLoading({
+            title: '视频上传中'
+          })
           wx.request({
-            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            url: getApp().globalData.host + '/wx/index/utoken',
             data: {},
             method: "POST",
             header: {
@@ -341,14 +368,15 @@ Page({
                   'accept': 'text/plain'
                 },
                 success: function (res) {
-                  var data = JSON.parse(res.data);
+                  let data = JSON.parse(res.data);
                   if (data.key) {
-                    var fileArr = that.data.filesvd
+                    let fileArr = that.data.filesvd
                     let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key
                     fileArr.push(testImg)
                     that.setData({
                       filesvd: fileArr
                     })
+                    wx.hideLoading()
                   } else {
                     wx.showToast({
                       title: "视频上传失败",
@@ -365,19 +393,50 @@ Page({
     }
   },
 
-  removevd(e) { //多视频删除
-    var index = Number(e.currentTarget.id)
-    var that = this
-    var filesvd = that.data.filesvd;
+  // 多视频删除
+  removevd(e) {
+    let index = Number(e.currentTarget.id)
+    let that = this
+    let filesvd = that.data.filesvd;
     filesvd.splice(index)
     that.setData({
       filesvd: filesvd
     })
   },
-  audioBtn() { //音频提示
-    var that = this
+
+  // 音频提示
+  audioBtn() {
+    let that = this
     that.setData({
       isaudio: false
     })
-  }
+  },
+
+  onReady(e) {
+    this.videoCtx = wx.createVideoContext('myVideo')
+  },
+
+  // 打开视频弹框
+  showVideo() {
+    this.setData({
+      isPlay: true
+    })
+    this.videoCtx.play()
+  },
+
+  // 删除视频
+  removeVideo() {
+    this.setData({
+      filesvd: []
+    })
+  },
+
+  // 关闭视频弹框
+  videoClose() {
+    this.setData({
+      isPlay: false
+    })
+    this.videoCtx.pause();
+    this.videoCtx.seek(0);
+  },
 })

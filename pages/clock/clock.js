@@ -59,7 +59,7 @@ Page({
   },
 
   push() { //发表日记
-    if (this.data.isPush){
+    if (this.data.isPush) {
       return false
     }
     this.setData({
@@ -136,7 +136,7 @@ Page({
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           var tempFilePaths = res.tempFilePaths
           wx.request({
-            url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+            url: getApp().globalData.host + '/wx/index/utoken',
             data: {},
             method: "POST",
             header: {
@@ -213,10 +213,10 @@ Page({
       success: function (res) {
         var tempFilePaths = res.tempFilePath;
         wx.showLoading({
-          title: '上传中'
+          title: '视频上传中'
         })
         wx.request({
-          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          url: getApp().globalData.host + '/wx/index/utoken',
           data: {},
           method: "POST",
           header: {
@@ -234,12 +234,20 @@ Page({
               },
               success: function (res) {
                 var data = JSON.parse(res.data);
-                that.setData({
-                  camvd: 'http://tmp-qiniu.smarttinfo.com/' + data.key,
-                  isLogo: true,
-                  key: data.key
-                })
-                wx.hideLoading()
+                if (data.key) {
+                  that.setData({
+                    camvd: 'http://tmp-qiniu.smarttinfo.com/' + data.key,
+                    isLogo: true,
+                    key: data.key
+                  })
+                  wx.hideLoading()
+                } else {
+                  wx.showToast({
+                    title: "视频上传失败",
+                    icon: 'loading',
+                    duration: 2000
+                  })
+                }
               }
             })
           },

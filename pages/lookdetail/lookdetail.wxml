@@ -23,17 +23,17 @@
     <view class='fz26 c666'>
       {{activityDetail.activityDescription}}
       <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
-        <image wx:for="{{activityDescImg}}" data-index="{{index}}"
-          src=" {{item}} " wx:key="{{index}}" bindload="imageLoad" 
-          style="width:{{ activityDescImgData.width }}rpx; height:{{ activityDescImgData.height }}rpx; margin: 10rpx auto;"></image>
+        <image wx:for="{{activityDescImg}}" data-index="{{index}}" src=" {{item}} " wx:key="{{index}}" bindload="imageLoad" style="width:{{ activityDescImgData.width }}rpx; height:{{ activityDescImgData.height }}rpx; margin: 10rpx auto;"></image>
       </view>
       <view class="ui-video" wx:if="{{activityDescVideo}}" bindtap="showVideo" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;">
-        <image wx:if="{{!isPlay}}" src="{{activityDescVideo +'?vframe/png/offset/1'}}" style="width:100%; height:100%; margin: 0 auto;"></image>
+        <image wx:if="{{!isPlay}}" src="{{activityDescVideo +'?vframe/png/offset/1'}}" style="width:100%; height:100%; margin: 0 auto;"
+          mode="aspectFit"></image>
         <image wx:if="{{!isPlay}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAArlBMVEXX19fQ0NDW1tb////T09PS0tLW1tYAAADX19fR0dHe3t7i4uL////T09PT09PZ2dn////W1tbT09Po6Ojs7Oz////w8PD////////i4uLg4ODp6enl5eXf39/////////////29vb19fXz8/Pq6urf39/////////g4ODd3d3////////////////////5+fn////////////////////z8/P////////5+fn7+/tADHeGAAAAN3RSTlNNLEPbPzhHAE4xYW/+Oz1Q7Eo1krH63jSzeGubgmfEZwj889KfbPQjale4Fz5G0NwsnaCBfr8E+12dhgAAAjNJREFUSMel1ml7ojAQAOBJIDTBDSCHQMH7aLWHvXyG/v8/trq7LMKAVp2v8DIkmUwCdyTiz8TwIsTIM5LPmD5vkvh9hcUgDPI0zYNwUODqPT5JXl5xltlcKaEdRwuluJ3N8PWlkzyMcL70lWnB/7BM5S/nOHpoJ2OcDZnuS6iF7Gs2nOG4jSQYKAEVqBAIFWBCyMQobFZlaGZidmFM6mTiFVzJUlAjFS+8SY0YhSNcOBGucArjmCTfnAhi+HdSkTHaighilI3jkjxhxiScDckyfPpHRlNm/YRYbDr6S55xKI6F5LzDiCE+/yHGgNU/tl6LjhViA+NA3vBRH79guQZmwmkzUj/i2558TP0+HIXTwxC3a9WWqO9PP/YkWqjaQ7OHruth7pvUSLWI7iBG24QGWTK9wLn0gSDTxhi+Cm41yb1pqWGEqeJNY/HiCzYDBZSAFGaIO4vsBjXYgBG2EpBc9fBXT1myTkIDvEC0EpDgWzsMTV4zIvAgynU7OSTy02Lr1oaq8wgwdboISM12jQl1UjxBZF/ZHqalqEjnj0lHZzh3fZCNH+sa/j7FeouBMEtQDb9jkqXpB2WhkUluW8qlo+QcF1ofAFnK1oKxWY6eXa4iKRhSlk66egwxNMsUtCxp8duIq/sqBSl+usWAZ2G/Kke6xehGlqBFlYJuZNIuSJB2QZoSCdKULm59VzTYy9v45YfF5UfSFQffDcdrGZszh/jtV4XzF5KLrz23Xq6uuML9Bn/rUTH81g3uAAAAAElFTkSuQmCC"
           class="icon"></image>
       </view>
-<view class="aw-video" wx:if="{{isPlay}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;">
-        <video class="previewVideo" id="myVideo" poster="{{activityDescVideo +'?vframe/png/offset/1'}}" src="{{activityDescVideo}}#t=1" controls></video>
+      <view class="aw-video" wx:if="{{isPlay}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;">
+        <video class="previewVideo" id="myVideo" poster="{{activityDescVideo +'?vframe/png/offset/1'}}" src="{{activityDescVideo}}#t=1"
+          controls></video>
       </view>
     </view>
   </view>

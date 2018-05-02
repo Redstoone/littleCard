@@ -43,7 +43,6 @@ Page({
   },
 
   bindDateChange: function (e) {
-    console.log(e)
     this.setData({
       brithDate: e.detail.value
     })
@@ -90,7 +89,7 @@ Page({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths;
         wx.request({
-          url: 'https://xgh.smarttinfo.com/wx/index/utoken',
+          url: getApp().globalData.host + '/wx/index/utoken',
           data: {},
           method: "POST",
           header: {
@@ -153,7 +152,10 @@ Page({
         wx.showToast({
           title: '修改资料成功',
           icon: 'success',
-          duration: 1500
+          duration: 1500,
+          success: function (params) {
+            wx.navigateBack();
+          }
         })
       } else {
         wx.showToast({
