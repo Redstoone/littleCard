@@ -1,7 +1,7 @@
 <!--pages/activity/activity.wxml-->
 <view class="activity-room">
   <view class='cont tant ac-header'>
-    <image src='{{activityDetail.activityThumb}}' style="width:100%;height:300rpx;background:#999999" />
+    <image src='{{activityDetail.activityThumb}}' style="width:100%;height:300rpx;background:#999999" mode="aspectFill"/>
     <view class="ac-header-bg"></view>
 
     <view class='contant'>

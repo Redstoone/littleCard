@@ -158,7 +158,8 @@ Page({
                     var data = JSON.parse(data.data)
                     if (data.key) {
                       var fileArr = that.data.files
-                      let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key + '?imageView/2/w/120/h/120';
+                      let testImg = 'http://tmp-qiniu.smarttinfo.com/' + data.key;
+                      // + '?imageView/2/w/120/h/120'
                       fileArr.push(testImg)
                       that.setData({
                         files: fileArr

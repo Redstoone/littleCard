@@ -228,7 +228,7 @@ page {
 }
 
 .recommand-item .item-remark {
-  padding: 0 0 20rpx 0;
+  padding: 0 0 10rpx 0;
   font-size: 28rpx;
   color: #333;
   padding-left: 90rpx;
@@ -279,7 +279,7 @@ page {
 }
 
 .recommand-item .tool-bar {
-  padding: 0 0 15rpx 0;
+  padding: 5rpx 0 15rpx 0;
   padding-left: 90rpx;
 }
 
@@ -382,6 +382,7 @@ page {
 }
 
 .cimg-list image {
-  width: 300rpx;
+  width: 180rpx;
   height: 180rpx;
+  margin-right: 20rpx;
 }
