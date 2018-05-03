@@ -12,17 +12,27 @@ Page({
     loading: false,
     loadingComplete: false
   },
-  onShow: function () {
-    this.setData({
-      page: 1,
-      recommand: []
-    })
-    this.getUserInfo()
-  },
-
-  // onLoad () {
+  // onShow: function () {
+  //   this.setData({
+  //     page: 1,
+  //     recommand: []
+  //   })
   //   this.getUserInfo()
   // },
+
+  // 下拉刷新  
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading();
+    var that = this;
+    that.setData({
+      page: 1,
+      recommand: []
+    });
+    that.getUserInfo()
+  },
+  onLoad () {
+    this.getUserInfo()
+  },
 
   getUserInfo() {
     let _this = this
@@ -49,8 +59,6 @@ Page({
       consumerId: app.globalData.openid
     }, (res) => {
       if (res.data.success) {
-        
-
         this.setData({
           myCardList: res.data.item
         })
@@ -96,6 +104,9 @@ Page({
           loadingComplete: true,
         })
       }
+
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh(); 
     })
   },
 
