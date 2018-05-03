@@ -23,7 +23,7 @@
       <view class="picker fz26 c666">
         {{startTime}}
       </view>
-      <image class='pickerImg' src='../../images/index/time.png'></image>
+      <image mode="aspectFill" class='pickerImg' src='../../images/index/time.png'></image>
     </picker>
   </view>
   <view class="clear setTime">
@@ -32,7 +32,7 @@
       <view class="picker fz26 c666">
         {{overTime}}
       </view>
-      <image class='pickerImg' src='../../images/index/time.png'></image>
+      <image mode="aspectFill" class='pickerImg' src='../../images/index/time.png'></image>
     </picker>
   </view>
 
