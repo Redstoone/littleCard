@@ -113,7 +113,6 @@ Page({
       years: daysOfThisWeek
     })
   },
-  clickChecked(e) {},
   onLoad: function (e) {
     var that = this
     that.setData({
@@ -151,17 +150,17 @@ Page({
             })
           }
         })
-        this.getCountDay(e.acId)
-        this.getMineCountDay(item.consumerId, e.acId)
+        // this.getCountDay(e.acId)
+        // this.getMineCountDay(item.consumerId, e.acId)
       }
     })
 
     this.getDateList();
-    this.getCardRecordComment(e.acId);
-    this.getHasCardRecord(e.acId);
+    // this.getCardRecordComment(e.acId);
+    // this.getHasCardRecord(e.acId);
   },
 
-  onShow() {
+  onShow(e) {
     this.getCardRecordComment(this.data.acId);
     this.getHasCardRecord(this.data.acId)
     this.getCountDay(this.data.acId)
