@@ -24,7 +24,7 @@
         <view class="item-remark">{{recommand.recordDescription}}</view>
 
         <view class="cimg-list" wx:if="{{recommand.imgList.length > 0}}">
-          <image wx:for="{{recommand.imgList}}" wx:key="{{index}}" src="{{item}}" mode="aspectFill"></image>
+          <image wx:for="{{recommand.imgList}}" wx:key="{{index}}" src="{{item}}" data-src="{{item}}" mode="aspectFill" bindtap="previewImage"></image>
         </view>
         <!-- <view class="item-pic">
             <image src="{{item.item_pic}}"></image>

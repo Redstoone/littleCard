@@ -29,7 +29,7 @@ Page({
       cardRecordId: crid
     }, (res) => {
       let _recommand = res.data.item,
-          _isZan = false
+        _isZan = false
 
       // _recommand.timeFormat = utils.formatTimeText(_recommand.createTime)
       _recommand.timeFormat = _recommand.createTime
@@ -86,6 +86,14 @@ Page({
           recommand: this.data.recommand
         })
       }
+    })
+  },
+
+  previewImage(e) {
+    var current = e.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: this.data.recommand.imgList
     })
   }
 })
