@@ -30,6 +30,12 @@
             <image src="{{item.item_pic}}"></image>
           </view> -->
         <!-- <view class="address">128广场</view> -->
+        <view class="item-remark item-weight" wx:if="{{recommand.cardWeight && recommand.cardWeight.recordWeight}}">
+          <view class="iw">体重: {{recommand.cardWeight.recordWeight > 0 ? '+'+recommand.cardWeight.recordWeight : recommand.cardWeight.recordWeight}}</view>
+          <view class="iw">腰围: {{recommand.cardWeight.recordWaist > 0 ? '+'+recommand.cardWeight.recordWaist : recommand.cardWeight.recordWaist}}</view>
+          <view class="iw">体脂率: {{recommand.cardWeight.recordFat > 0 ? '+'+recommand.cardWeight.recordFat + '%' :recommand.cardWeight.recordFat
+            + '%'}}</view>
+        </view>
         <view class="tool-bar">
           <view class="tb-item" bindtap="bindComment" data-crid="{{recommand.id}}" data-cruid="{{recommand.consumerId}}">
             <i class="iconfont icon-comment"></i> 评论</view>
@@ -40,9 +46,11 @@
         <view class="praise-group" wx:if="{{recommand.zanList.length > 0}}">
           <i class="iconfont icon-xin"></i>
           <!-- <text wx:for="{{recommand.zanList}}" wx:key="{{index}}">{{item.nickname}}</text> -->
-          <view class="usname" wx:for="{{recommand.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{recommand.zanList.length-1 != index}}">,</text></view>
+          <view class="usname" wx:for="{{recommand.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}
+            <text wx:if="{{recommand.zanList.length-1 != index}}">,</text>
+          </view>
         </view>
-        
+
         <view class="comment-group" wx:for="{{recommand.cardRecordCommentList}}" wx:key="{{index}}">
           <view class="tb-item fz26 c999">
             {{item.commentConsumer.nickname + ': ' + item.commentDescription}}

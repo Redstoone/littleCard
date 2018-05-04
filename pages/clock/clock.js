@@ -35,7 +35,25 @@ Page({
     acid: null,
     viewText: '对外公开',
     isPlay: false,
-    isPush: false
+    isPush: false,
+    stepper1: {
+      stepper: 0,
+      min: -5,
+      max: 5,
+      step: .1
+    },
+    stepper2: {
+      stepper: 0,
+      min: -5,
+      max: 5,
+      step: .1
+    },
+    stepper3: {
+      stepper: 0,
+      min: -5,
+      max: 5,
+      step: .1
+    }
   },
 
   /**
@@ -45,6 +63,16 @@ Page({
     this.setData({
       acid: options.acId
     })
+  },
+
+
+  handleZanStepperChange(e) {
+    const componentId = e.target.dataset.componentId;
+    const stepper = e.detail;
+
+    this.setData({
+      [`${componentId}.stepper`]: stepper
+    });
   },
 
   inputTxt(e) {
@@ -85,6 +113,15 @@ Page({
           value = this.data.items[i].value
         }
       }
+      app.postRequest('/wx/card/weight/merged', 'POST', {
+        consumerId: app.globalData.openid,
+        recordWeight: this.data.stepper1.stepper,
+        recordWaist: this.data.stepper2.stepper,
+        recordFat: this.data.stepper3.stepper,
+      }, (res) => {
+        console.log('weight====' + res.data.success);
+      })
+
       app.postRequest('/wx/cardRecord/merged', 'POST', {
         consumerId: app.globalData.openid,
         activityId: this.data.acid, //活动id

@@ -89,6 +89,9 @@ Page({
             nickname: item2.praiseConsumer.nickname
           }
         })
+        _item.cardWeight.recordWeight = Number(_item.cardWeight.recordWeight);
+        _item.cardWeight.recordWaist = Number(_item.cardWeight.recordWaist);
+        _item.cardWeight.recordFat = Number(_item.cardWeight.recordFat);
         _item.isZan = _isZan
         // _item.imgList = 
         return _item

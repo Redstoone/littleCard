@@ -102,6 +102,7 @@
 
 .zan-cell__bd .text {
   display: inline-block;
+  font-size: 28rpx;
 }
 
 .no-data {

@@ -10,6 +10,7 @@
     "pages/info/zan/index",
     "pages/info/setting/index",
     "pages/info/comment/index",
+    "pages/info/weight/index",
     "pages/cardComment/index",
     "pages/comment/cardDiary/index",
     "pages/comment/create/index",

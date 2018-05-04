@@ -60,6 +60,11 @@
 					</view>
 				</view>
 				<view class="item-remark">{{item.recordDescription}}</view>
+				<view class="item-remark item-weight" wx:if="{{item.cardWeight && item.cardWeight.recordWeight}}">
+					<view class="iw">体重: {{item.cardWeight.recordWeight > 0 ? '+'+item.cardWeight.recordWeight : item.cardWeight.recordWeight}}</view>
+					<view class="iw">腰围: {{item.cardWeight.recordWaist > 0 ? '+'+item.cardWeight.recordWaist : item.cardWeight.recordWaist}}</view>
+					<view class="iw">体脂率: {{item.cardWeight.recordFat > 0 ? '+'+item.cardWeight.recordFat + '%' :item.cardWeight.recordFat + '%'}}</view>
+				</view>
 				<view class="cimg-list" wx:if="{{item.imgList.length > 0}}">
 					<image wx:for="{{item.imgList}}" wx:key="{{index}}" wx:for-item="img-item" src="{{img-item}}" mode="aspectFill"></image>
 				</view>
@@ -73,7 +78,8 @@
 				</view>
 				<view class="praise-group" wx:if="{{item.zanList.length > 0}}">
 					<i class="iconfont icon-xin"></i>
-					<view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{item.zanList.length-1 != index}}">,</text>
+					<view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}
+						<text wx:if="{{item.zanList.length-1 != index}}">,</text>
 					</view>
 				</view>
 				<view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">

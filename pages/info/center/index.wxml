@@ -51,6 +51,15 @@
       </view>
       <view class="zan-cell__ft info-ft"></view>
     </navigator>
+    <navigator class="zan-cell zan-cell--access" url="/pages/info/weight/index">
+      <view class="zan-cell__bd c000">
+        <view class="center-icon ci4">
+          <i class="iconfont icon-weight"></i>
+        </view>
+        <view class="text">我的变化</view>
+      </view>
+      <view class="zan-cell__ft info-ft"></view>
+    </navigator>
     <!-- <navigator class="zan-cell zan-cell--access" url="/pages/collection?type=0">
       <view class="zan-cell__bd c000">
         <image class="item_img" src="../images/icon_my_04.png" />
@@ -89,6 +98,11 @@
             <image src="{{item.item_pic}}"></image>
           </view> -->
           <!-- <view class="address">128广场</view> -->
+          <view class="item-remark item-weight" wx:if="{{item.cardWeight && item.cardWeight.recordWeight}}">
+            <view class="iw">体重: {{item.cardWeight.recordWeight > 0 ? '+'+item.cardWeight.recordWeight : item.cardWeight.recordWeight}}</view>
+            <view class="iw">腰围: {{item.cardWeight.recordWaist > 0 ? '+'+item.cardWeight.recordWaist : item.cardWeight.recordWaist}}</view>
+            <view class="iw">体脂率: {{item.cardWeight.recordFat > 0 ? '+'+item.cardWeight.recordFat + '%' :item.cardWeight.recordFat + '%'}}</view>
+          </view>
           <view class="tool-bar">
             <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
               <i class="iconfont icon-more-o"></i> 详情</view>
@@ -100,9 +114,11 @@
 
           <view class="praise-group" wx:if="{{item.zanList.length > 0}}">
             <i class="iconfont icon-xin"></i>
-            <view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{item.zanList.length-1 != index}}">,</text></view>
+            <view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}
+              <text wx:if="{{item.zanList.length-1 != index}}">,</text>
+            </view>
           </view>
-          
+
           <view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">
             <view class="tb-item fz26 c999">
               {{item.commentConsumer.nickname+': '+item.commentDescription}}

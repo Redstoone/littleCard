@@ -50,6 +50,37 @@
 		</view>
 		<view class="right arrow-right">{{currentCity}}</view>
 	</view> -->
+	<view class="clear fz28 c666 cont_nav">
+		<view class='clear left'>
+			<view class='left'>体重变化(单位:kg)</view>
+		</view>
+		<view class="right">
+			<zan-stepper stepper="{{ stepper1.stepper }}" min="{{ stepper1.min }}" max="{{ stepper1.max }}" step="{{ stepper1.step }}"
+			  data-component-id="stepper1" size="middle" bind:change="handleZanStepperChange">
+			</zan-stepper>
+		</view>
+	</view>
+	<view class="clear fz28 c666 cont_nav">
+		<view class='clear left'>
+			<view class='left'>腰围变化(单位:cm)</view>
+		</view>
+		<view class="right">
+			<zan-stepper stepper="{{ stepper2.stepper }}" min="{{ stepper2.min }}" max="{{ stepper2.max }}" step="{{ stepper2.step }}"
+			  data-component-id="stepper2" size="middle" bind:change="handleZanStepperChange">
+			</zan-stepper>
+		</view>
+	</view>
+	<view class="clear fz28 c666 cont_nav">
+		<view class='clear left'>
+			<view class='left'>体脂率变化(单位:%)</view>
+		</view>
+		<view class="right">
+			<zan-stepper stepper="{{ stepper3.stepper }}" min="{{ stepper3.min }}" max="{{ stepper3.max }}" step="{{ stepper3.step }}"
+			  data-component-id="stepper3" size="middle" bind:change="handleZanStepperChange">
+			</zan-stepper>
+		</view>
+	</view>
+
 	<view class="clear fz28 c666 cont_nav" bindtap='getlook'>
 		<view class='clear left'>
 			<view class='left cont_b'>

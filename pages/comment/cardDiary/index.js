@@ -42,6 +42,9 @@ Page({
           nickname: item2.praiseConsumer.nickname
         }
       })
+      _recommand.cardWeight.recordWeight = Number(_recommand.cardWeight.recordWeight);
+      _recommand.cardWeight.recordWaist = Number(_recommand.cardWeight.recordWaist);
+      _recommand.cardWeight.recordFat = Number(_recommand.cardWeight.recordFat);
       _recommand.isZan = _isZan
       _recommand.imgList = _recommand.recordDescImg ? _recommand.recordDescImg.split(',') : []
 

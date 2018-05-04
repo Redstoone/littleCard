@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "发表日记"
+  "navigationBarTitleText": "发表日记",
+  "usingComponents": {
+    "zan-stepper": "../../dist/stepper/index"
+  }
 }

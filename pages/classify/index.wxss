@@ -13,6 +13,7 @@
   background-color: #39a9ed;
   font-size: 28rpx;
   color: #fff;
+  display: inline-block;
 }
 
 .zan-col:nth-child(even) {
@@ -37,15 +38,15 @@
 .zan-card__thumb {
   width: 298rpx;
   height: 200rpx;
+  position: absolute;
+  left: 0;
 }
 
 .zan-card__img {
   border-top-left-radius: 10rpx;
   border-top-right-radius: 10rpx;
-}
-
-.zan-card__detail {
-  margin-left: 320rpx;
+  width: 100%;
+  height: 100%;
 }
 
 .card-accout {
@@ -81,7 +82,7 @@
 
 .c-footer {
   position: absolute;
-  bottom: 0;
+  bottom: 20rpx;
 }
 
 .no-data {
@@ -97,6 +98,8 @@
 
 .zan-card {
   border-bottom: 2rpx solid #dfdfdf;
+  position: relative;
+  padding-left: 320rpx;
 }
 
 .zan-panel::after {
@@ -106,4 +109,8 @@
 .card-list {
   width: 100%;
   border-top: 2rpx solid #dfdfdf;
+}
+
+.zan-card__detail-row{
+  margin-top: 20rpx;
 }

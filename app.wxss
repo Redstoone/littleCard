@@ -1,6 +1,6 @@
 /**app.wxss**/
 
-@import "plugins/zanui/index.wxss";
+@import "dist/index.wxss";
 @import "utils/font.wxss";
 @import "utils/iconfont.wxss";
 .container {
@@ -232,6 +232,14 @@ page {
   font-size: 28rpx;
   color: #333;
   padding-left: 90rpx;
+}
+.recommand-item .item-weight{
+  font-size: 24rpx;
+  padding-bottom: 0;
+}
+.recommand-item .item-weight .iw{
+  display: inline-block;
+  margin-right: 20rpx;
 }
 
 .recommand-item .item-desc {

@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="weight-wrap">
+    <view class="w-header">
+      <view class="w-item">记录时间</view>
+      <view class="w-item">体重(kg)</view>
+      <view class="w-item">腰围(cm)</view>
+      <view class="w-item">体脂率(%)</view>
+    </view>
+
+    <view class="w-list">
+      <view class="wl-item" wx:for="{{weightList}}" wx:key="{{index}}">
+        <view class="w-item">{{item.recordDate}}</view>
+        <view class="w-item">{{item.recordWeight > 0 ? '+' + item.recordWeight : item.recordWeight}}</view>
+        <view class="w-item">{{item.recordWaist> 0 ? '+' + item.recordWaist : item.recordWaist}}</view>
+        <view class="w-item">{{item.recordFat> 0 ? '+' + item.recordFat + '%' : item.recordFat+ '%'}}</view>
+      </view>
+    </view>
+  </view>
+</view>
