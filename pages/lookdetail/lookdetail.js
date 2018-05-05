@@ -22,7 +22,27 @@ Page({
     this.setData({
       acId: options.acId
     })
-    this.getSingleAll(options.acId);
+    this.getUserInfo();
+  },
+
+  getUserInfo() {
+    let _this = this
+    let us = app.globalData.userInfo
+    if (us) {
+      _this.setData({
+        userInfo: us
+      })
+      _this.getSingleAll(_this.data.acId)
+    } else {
+      app.getUserInfo(function (openid, userInfo) {
+        if (openid) {
+          _this.setData({
+            userInfo: userInfo
+          })
+          _this.getSingleAll(_this.data.acId)
+        }
+      })
+    }
   },
 
   onShow() {

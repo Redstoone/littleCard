@@ -121,6 +121,10 @@
                 </view>
               </view>
               <view class="item-remark">{{item.recordDescription}}</view>
+              <view class="cimg-list" wx:if="{{item.imgList.length > 0}}">
+                <image wx:for="{{item.imgList}}" wx:for-index="sidx" wx:key="{{sidx}}" wx:for-item="imgItem" src="{{imgItem}}" data-src="{{imgItem}}"
+                  data-idx="{{index}}" mode="aspectFill" bindtap="previewImage"></image>
+              </view>
               <view class="tool-bar">
                 <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.consumerId}}">
                   <i class="iconfont icon-more-o"></i> 详情</view>

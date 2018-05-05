@@ -92,10 +92,10 @@ Page({
           _month = date.getMonth() + 1,
           _day = date.getDate(),
           _d = _year +
-            '-' +
-            String(_month).padStart(2, '0') +
-            '-' +
-            String(_day).padStart(2, '0')
+          '-' +
+          String(_month).padStart(2, '0') +
+          '-' +
+          String(_day).padStart(2, '0')
 
         return {
           str: _d === new Date().getFullYear() +
@@ -115,12 +115,16 @@ Page({
     })
   },
   onLoad: function (e) {
-    let that = this
-    that.setData({
+    this.setData({
       acId: e.acId
     })
+    this.getUserInfo();
+  },
+
+  getInitData() {
+    let that = this
     app.postRequest('/wx/activity/singleAll', 'POST', {
-      id: e.acId
+      id: that.data.acId
     }, (res) => {
       if (res.data.success) {
         let item = res.data.item
@@ -157,14 +161,29 @@ Page({
             })
           }
         })
-        // this.getCountDay(e.acId)
-        // this.getMineCountDay(item.consumerId, e.acId)
       }
     })
-
     this.getDateList();
-    // this.getCardRecordComment(e.acId);
-    // this.getHasCardRecord(e.acId);
+  },
+
+  getUserInfo() {
+    let _this = this
+    let us = app.globalData.userInfo
+    if (us) {
+      _this.setData({
+        userInfo: us
+      })
+      _this.getInitData()
+    } else {
+      app.getUserInfo(function (openid, userInfo) {
+        if (openid) {
+          _this.setData({
+            userInfo: userInfo
+          })
+          _this.getInitData()
+        }
+      })
+    }
   },
 
   onShow(e) {
@@ -216,7 +235,7 @@ Page({
         let _item = item,
           _isZan = false
         // _item.timeFormat = utils.formatTimeText(item.createTime)
-        _item.timeFormat = item.recordConsumer && item.recordConsumer.createTime ? item.recordConsumer.createTime: ''
+        _item.timeFormat = item.recordConsumer && item.recordConsumer.createTime ? item.recordConsumer.createTime : ''
         _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
           if (item2.consumerId == app.globalData.openid) {
             _isZan = true
@@ -227,6 +246,7 @@ Page({
           }
         })
         _item.isZan = _isZan
+        _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
         return _item
       })
 
@@ -320,8 +340,8 @@ Page({
   onShareAppMessage: function () { //分享
     return {
       title: "打卡", // 默认是小程序的名称(可以写slogan等)
-      path: '/pages/home/index',
-      // path: '/pages/activity/activity?acId=' + this.data.acId,
+      // path: '/pages/home/index',
+      path: '/pages/lookdetail/lookdetail?acId=' + this.data.acId,
     }
   },
 
@@ -399,7 +419,7 @@ Page({
   },
 
   // 页面上拉触底事件的处理函数
-  onReachBottom () {
+  onReachBottom() {
     let that = this;
     if (!that.data.loadingComplete) {
       that.setData({
@@ -430,6 +450,7 @@ Page({
             }
           })
           _item.isZan = _isZan
+          _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
           return _item
         })
 
@@ -455,7 +476,7 @@ Page({
   },
 
   // 加微信
-  addWx () {
+  addWx() {
     this.setData({
       isAddWx: true
     })
@@ -486,6 +507,16 @@ Page({
   closeWxbox() {
     this.setData({
       isAddWx: false
+    })
+  },
+
+  // 图片预览
+  previewImage(e) {
+    var current = e.target.dataset.src;
+    var idx = e.target.dataset.idx;
+    wx.previewImage({
+      current: current,
+      urls: this.data.recommand[idx].imgList
     })
   }
 })
