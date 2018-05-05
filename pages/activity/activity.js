@@ -1,5 +1,5 @@
 // pages/activity/activity.js
-var utils = require("../../utils/util")
+let utils = require("../../utils/util")
 const app = getApp()
 Page({
   /**
@@ -115,7 +115,7 @@ Page({
     })
   },
   onLoad: function (e) {
-    var that = this
+    let that = this
     that.setData({
       acId: e.acId
     })
@@ -123,10 +123,12 @@ Page({
       id: e.acId
     }, (res) => {
       if (res.data.success) {
-        var item = res.data.item
+        let item = res.data.item
         let activity = res.data.item;
-        activity.startDate = activity.startTime.substring(0, 10);
-        activity.overDate = activity.overTime.substring(0, 10);
+        if (activity.timeType == 20) {
+          activity.startDate = activity.startTime.substring(0, 10);
+          activity.overDate = activity.overTime.substring(0, 10);
+        }
         that.setData({
           activity: activity,
           name: item.name,
@@ -261,9 +263,9 @@ Page({
     return new Date(time).getTime()
   },
   countDown() {
-    var that = this
+    let that = this
     // 渲染倒计时时钟
-    var clock = this.date_format(this.data.totalms)
+    let clock = this.date_format(this.data.totalms)
     that.setData({
       clock: clock
     })
@@ -287,13 +289,13 @@ Page({
   date_format(micro) {
     micro = micro || 1
     // 秒数
-    var second = Math.floor(micro / 1000);
+    let second = Math.floor(micro / 1000);
     // 小时位
-    var hr = Math.floor(second / 3600);
+    let hr = Math.floor(second / 3600);
     // 分钟位
-    var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+    let min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
     // 秒位
-    var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60)); // equal to => var sec = second % 60;
+    let sec = this.fill_zero_prefix((second - hr * 3600 - min * 60)); // equal to => let sec = second % 60;
 
     if (hr) {
       return hr + ":" + min + ":" + sec;

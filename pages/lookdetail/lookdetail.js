@@ -19,14 +19,27 @@ Page({
   },
 
   onLoad: function (options) {
-    var that = this
+    this.setData({
+      acId: options.acId
+    })
+    this.getSingleAll(options.acId);
+  },
+
+  onShow() {
+    this.getSingleAll(this.data.acId);
+  },
+
+  getSingleAll (acid) {
+    let that = this
     app.postRequest('/wx/activity/singleAll', 'POST', {
-      id: options.acId
+      id: acid
     }, (res) => {
       if (res.data.success) {
         let activity = res.data.item;
-        activity.startDate = activity.startTime.substring(0, 10);
-        activity.overDate = activity.overTime.substring(0, 10);
+        if (activity.timeType == 20) {
+          activity.startDate = activity.startTime.substring(0, 10);
+          activity.overDate = activity.overTime.substring(0, 10);
+        }
         that.setData({
           activity: activity,
           activityDetail: res.data.item.activityDetail,
@@ -36,7 +49,6 @@ Page({
           activityDescVideo: res.data.item.activityDetail.activityDescVideo,
           memberNumber: res.data.item.memberNumber,
           name: res.data.item.name,
-          acId: options.acId,
           isStrat: activity.timeType == 20 && new Date(activity.startTime) < new Date() ? true : false,
           isOver: activity.timeType == 20 && new Date(activity.overTime) < new Date() ? true : false
         })
@@ -51,7 +63,7 @@ Page({
         })
       }
     })
-    this.getHasJon(options.acId)
+    this.getHasJon(acid)
   },
 
   getHasJon(acId) {
