@@ -99,8 +99,8 @@ Page({
             nickname: item2.praiseConsumer.nickname
           }
         })
-        _item.isZan = _isZan
-        // _item.imgList = 
+        _item.isZan = _isZan;
+        _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
         return _item
       })
 
@@ -182,4 +182,15 @@ Page({
       this.getCardRecord()
     }
   },
+
+
+  // 图片预览
+  previewImage(e) {
+    var current = e.target.dataset.src;
+    var idx = e.target.dataset.idx;
+    wx.previewImage({
+      current: current,
+      urls: this.data.recommand[idx].imgList
+    })
+  }
 })
