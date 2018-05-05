@@ -26,6 +26,7 @@ Page({
     user: null,
     activityDetail: null,
     countDay: 0,
+    activity: null,
     activityMember: null,
     activityDescImg: null,
     activityDescImgData: '',
@@ -123,7 +124,11 @@ Page({
     }, (res) => {
       if (res.data.success) {
         var item = res.data.item
+        let activity = res.data.item;
+        activity.startDate = activity.startTime.substring(0, 10);
+        activity.overDate = activity.overTime.substring(0, 10);
         that.setData({
+          activity: activity,
           name: item.name,
           mainWx: item.mainWx,
           mainDescription: item.activityDetail.mainDescription,
@@ -138,7 +143,7 @@ Page({
           activityMember: item.activityMember,
           activityDescVideo: item.activityDetail.activityDescVideo,
           totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime(),
-          hasNotstart: new Date(item.startTime) - new Date() > 0 ? true : false
+          hasNotstart: new Date(item.startTime) - new Date() > 0 ? true : false,
         })
         that.countDown()
         app.postRequest('/wx/consumer/record', 'POST', {
@@ -209,7 +214,7 @@ Page({
         let _item = item,
           _isZan = false
         // _item.timeFormat = utils.formatTimeText(item.createTime)
-        _item.timeFormat = item.createTime
+        _item.timeFormat = item.recordConsumer && item.recordConsumer.createTime ? item.recordConsumer.createTime: ''
         _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
           if (item2.consumerId == app.globalData.openid) {
             _isZan = true

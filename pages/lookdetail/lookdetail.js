@@ -3,6 +3,7 @@ const app = getApp()
 Page({
 
   data: {
+    activity: '',
     activityDetail: '',
     activityMember: '',
     cardClickNumber: '',
@@ -23,7 +24,11 @@ Page({
       id: options.acId
     }, (res) => {
       if (res.data.success) {
+        let activity = res.data.item;
+        activity.startDate = activity.startTime.substring(0, 10);
+        activity.overDate = activity.overTime.substring(0, 10);
         that.setData({
+          activity: activity,
           activityDetail: res.data.item.activityDetail,
           activityMember: res.data.item.activityMember.slice(0, 3),
           cardClickNumber: res.data.item.cardClickNumber,
@@ -31,7 +36,9 @@ Page({
           activityDescVideo: res.data.item.activityDetail.activityDescVideo,
           memberNumber: res.data.item.memberNumber,
           name: res.data.item.name,
-          acId: options.acId
+          acId: options.acId,
+          isStrat: activity.timeType == 20 && new Date(activity.startTime) < new Date() ? true : false,
+          isOver: activity.timeType == 20 && new Date(activity.overTime) < new Date() ? true : false
         })
         app.postRequest('/wx/consumer/record', 'POST', {
           consumerId: res.data.item.consumerId
@@ -47,7 +54,7 @@ Page({
     this.getHasJon(options.acId)
   },
 
-  getHasJon (acId) {
+  getHasJon(acId) {
     let that = this
     app.postRequest('/wx/activity/member/hasJoin', 'POST', {
       activityId: acId,
@@ -92,13 +99,13 @@ Page({
     });
   },
 
-  bindGotoActivity () {
+  bindGotoActivity() {
     wx.navigateTo({
       url: '../activity/activity?acId=' + this.data.acId,
     })
   },
 
-  imageLoad (e) {
+  imageLoad(e) {
     let $width = e.detail.width, //获取图片真实宽度
       $height = e.detail.height,
       ratio = $width / $height; //图片的真实宽高比例

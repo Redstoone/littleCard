@@ -386,3 +386,10 @@ page {
   height: 180rpx;
   margin-right: 20rpx;
 }
+
+.activity-time{
+  font-size: 28rpx;
+  color: #000;
+  margin-bottom: 20rpx;
+  display: block;
+}

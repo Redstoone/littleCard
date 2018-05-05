@@ -125,10 +125,11 @@ Page({
     })
     that.uploadImg()
   },
+  // 最多只能上传三张图
   uploadImg() { //上传多图
     var that = this
-    if (that.data.files.length < 9) {
-      var maxCount = 10 - that.data.files.length
+    if (that.data.files.length < 3) {
+      var maxCount = 4 - that.data.files.length
       wx.chooseImage({
         count: maxCount, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
