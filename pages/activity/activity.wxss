@@ -549,3 +549,7 @@ page {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.activity-header{
+  color: #fff;
+}

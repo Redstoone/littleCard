@@ -3,6 +3,7 @@ const app = getApp()
 Page({
 
   data: {
+    activity: '',
     activityDetail: '',
     activityMember: '',
     cardClickNumber: '',
@@ -18,12 +19,49 @@ Page({
   },
 
   onLoad: function (options) {
-    var that = this
+    this.setData({
+      acId: options.acId
+    })
+    this.getUserInfo();
+  },
+
+  getUserInfo() {
+    let _this = this
+    let us = app.globalData.userInfo
+    if (us) {
+      _this.setData({
+        userInfo: us
+      })
+      _this.getSingleAll(_this.data.acId)
+    } else {
+      app.getUserInfo(function (openid, userInfo) {
+        if (openid) {
+          _this.setData({
+            userInfo: userInfo
+          })
+          _this.getSingleAll(_this.data.acId)
+        }
+      })
+    }
+  },
+
+  onShow() {
+    this.getSingleAll(this.data.acId);
+  },
+
+  getSingleAll (acid) {
+    let that = this
     app.postRequest('/wx/activity/singleAll', 'POST', {
-      id: options.acId
+      id: acid
     }, (res) => {
       if (res.data.success) {
+        let activity = res.data.item;
+        if (activity.timeType == 20) {
+          activity.startDate = activity.startTime.substring(0, 10);
+          activity.overDate = activity.overTime.substring(0, 10);
+        }
         that.setData({
+          activity: activity,
           activityDetail: res.data.item.activityDetail,
           activityMember: res.data.item.activityMember.slice(0, 3),
           cardClickNumber: res.data.item.cardClickNumber,
@@ -31,7 +69,8 @@ Page({
           activityDescVideo: res.data.item.activityDetail.activityDescVideo,
           memberNumber: res.data.item.memberNumber,
           name: res.data.item.name,
-          acId: options.acId
+          isStrat: activity.timeType == 20 && new Date(activity.startTime) < new Date() ? true : false,
+          isOver: activity.timeType == 20 && new Date(activity.overTime) < new Date() ? true : false
         })
         app.postRequest('/wx/consumer/record', 'POST', {
           consumerId: res.data.item.consumerId
@@ -44,10 +83,10 @@ Page({
         })
       }
     })
-    this.getHasJon(options.acId)
+    this.getHasJon(acid)
   },
 
-  getHasJon (acId) {
+  getHasJon(acId) {
     let that = this
     app.postRequest('/wx/activity/member/hasJoin', 'POST', {
       activityId: acId,
@@ -92,13 +131,13 @@ Page({
     });
   },
 
-  bindGotoActivity () {
+  bindGotoActivity() {
     wx.navigateTo({
       url: '../activity/activity?acId=' + this.data.acId,
     })
   },
 
-  imageLoad (e) {
+  imageLoad(e) {
     let $width = e.detail.width, //获取图片真实宽度
       $height = e.detail.height,
       ratio = $width / $height; //图片的真实宽高比例

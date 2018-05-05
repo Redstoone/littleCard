@@ -30,7 +30,7 @@ Page({
     });
     that.getUserInfo()
   },
-  onLoad () {
+  onLoad() {
     this.getUserInfo()
   },
 
@@ -59,8 +59,18 @@ Page({
       consumerId: app.globalData.openid
     }, (res) => {
       if (res.data.success) {
+        let cardList = res.data.item
+        cardList = cardList.map((item, index) => {
+          let _item = item;
+          if (_item.timeType == 20) {
+            _item.startDate = _item.startTime.substring(5, 10);
+            _item.overDate = _item.overTime.substring(5, 10);
+          }
+          return _item
+        })
+
         this.setData({
-          myCardList: res.data.item
+          myCardList: cardList
         })
       }
     })
@@ -89,8 +99,8 @@ Page({
             nickname: item2.praiseConsumer.nickname
           }
         })
-        _item.isZan = _isZan
-        // _item.imgList = 
+        _item.isZan = _isZan;
+        _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
         return _item
       })
 
@@ -106,7 +116,7 @@ Page({
       }
 
       wx.hideNavigationBarLoading();
-      wx.stopPullDownRefresh(); 
+      wx.stopPullDownRefresh();
     })
   },
 
@@ -172,4 +182,15 @@ Page({
       this.getCardRecord()
     }
   },
+
+
+  // 图片预览
+  previewImage(e) {
+    var current = e.target.dataset.src;
+    var idx = e.target.dataset.idx;
+    wx.previewImage({
+      current: current,
+      urls: this.data.recommand[idx].imgList
+    })
+  }
 })

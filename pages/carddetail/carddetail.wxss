@@ -10,7 +10,13 @@
   position: relative
 }
 
-.cont_items{margin-top:60rpx;font-size: 26rpx;color: #519FFF;text-align: center;}
+.cont_items {
+  margin-top: 60rpx;
+  font-size: 26rpx;
+  color: #519FFF;
+  text-align: center;
+}
+
 .tant_set {
   position: absolute;
   right: 50rpx;
@@ -142,9 +148,10 @@
   position: relative;
 }
 
-.thecont.no-border{
+.thecont.no-border {
   border: none;
 }
+
 .thecont .thecont_box {
   width: 96%;
   height: 180rpx;
@@ -306,7 +313,12 @@
   margin: auto;
 }
 
-.nextbtn{background: #519FFF;width: 400rpx;margin-top: 60rpx}
+.nextbtn {
+  background: #519FFF;
+  width: 400rpx;
+  margin-top: 60rpx
+}
+
 .icon-close-wrap {
   position: absolute;
   right: 60rpx;

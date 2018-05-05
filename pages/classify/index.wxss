@@ -82,6 +82,8 @@
 .c-footer {
   position: absolute;
   bottom: 0;
+  line-height: 28rpx;
+  margin-bottom: 0;
 }
 
 .no-data {
