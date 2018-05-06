@@ -141,9 +141,10 @@
   position: relative;
 }
 
-.thecont.no-border{
+.thecont.no-border {
   border: none;
 }
+
 .thecont .thecont_box {
   width: 96%;
   height: 180rpx;
@@ -246,7 +247,7 @@
   margin-left: -300rpx;
   top: 40%;
   margin-top: -150rpx;
-  z-index: 11111
+  z-index: 11111;
 }
 
 .audio_box {
@@ -258,8 +259,11 @@
 }
 
 .audiobox_btn {
-  position: absolute;
-  right: 40rpx;
-  bottom: 40rpx;
-  color: green
+  /* position: absolute; */
+  /* right: 40rpx; */
+  /* bottom: 40rpx; */
+  color: green;
+  z-index: 9999999;
+  margin-left: 80%;
+  margin-top: 150rpx;
 }
