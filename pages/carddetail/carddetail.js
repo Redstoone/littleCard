@@ -266,8 +266,8 @@ Page({
   },
   uploadImg() { //上传多图
     var that = this
-    if (that.data.files.length < 9) {
-      var maxCount = 5 - that.data.files.length
+    if (that.data.files.length <= 6) {
+      var maxCount = 6 - that.data.files.length
       wx.chooseImage({
         count: maxCount, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -318,7 +318,7 @@ Page({
       })
     } else {
       wx.showToast({
-        title: "最多只能上传9张图片",
+        title: "最多只能上传6张图片",
         icon: 'none',
         duration: 2000
       })
@@ -339,8 +339,8 @@ Page({
   // 上传多视频
   uploadvd() {
     let that = this
-    if (that.data.files.length < 10) {
-      let maxCount = 10 - that.data.files.length
+    // if (that.data.files.length < 10) {
+      // let maxCount = 10 - that.data.files.length
       wx.chooseVideo({
         sourceType: ['album', 'camera'],
         maxDuration: 60,
@@ -390,7 +390,7 @@ Page({
           })
         }
       })
-    }
+    // }
   },
 
   // 多视频删除
