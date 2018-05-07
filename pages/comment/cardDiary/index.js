@@ -51,6 +51,7 @@ Page({
       _recommand.cardWeight.recordFat = Number(_recommand.cardWeight.recordFat);
       _recommand.isZan = _isZan
       _recommand.imgList = _recommand.recordDescImg ? _recommand.recordDescImg.split(',') : []
+      // _recommand.recordDescVideo = _recommand.recordDescVideo ? _recommand.recordDescVideo : null
 
       this.setData({
         recommand: _recommand,
