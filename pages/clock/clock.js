@@ -93,7 +93,7 @@ Page({
         recordPoint: this.data.currentCity, //地点
         recordDescImg: this.data.files, //图片
         recordDescVideo: this.data.camvd, //视频
-        // recordDescVoice: '' // 音频
+        recordDescVoice: '' // 音频
       }, (res) => {
         this.setData({
           isPush: false
