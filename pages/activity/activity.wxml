@@ -18,12 +18,12 @@
       </view>
       <view class="activity-time activity-header" wx:if="{{activity.timeType == 20}}">活动时间：{{activity.startDate}}至{{activity.overDate}}</view>
     </view>
-    <view class="tant_txt clear" bindtap="editActivity" data-id="acId">
+    <!-- <view class="tant_txt clear" bindtap="editActivity" data-id="acId">
       <view class="item_icon">
         <i class="iconfont icon-post"></i>
       </view>
       <view class="item_play fz24">编辑详情</view>
-    </view>
+    </view> -->
     <button open-type="share" class="tant_com clear" style="padding:0">
       <view class="item_icon">
         <i class="iconfont icon-share"></i>
