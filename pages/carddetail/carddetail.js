@@ -185,14 +185,13 @@ Page({
         wx.request({
           url: getApp().globalData.host + '/wx/index/utoken',
           //url: 'https://union.wevirtus.cn/utoken',
-          data: { 'bucket': 'snack-tmp' },
+          // data: { 'bucket': 'card-tmp' },
           method: "POST",
           header: {
             "content-type": "application/x-www-form-urlencoded",
             'X-Requested-Page': 'json'
           },
           success: function (data) {
-
             wx.uploadFile({
               url: 'https://upload-z2.qiniup.com',
               filePath: tempFilePaths[0],
@@ -277,7 +276,7 @@ Page({
           var tempFilePaths = res.tempFilePaths
           wx.request({
             url: getApp().globalData.host + '/wx/index/utoken',
-            data: { 'bucket': 'snack-tmp' },
+            // data: { 'bucket': 'card-tmp' },
             method: "POST",
             header: {
               "content-type": "application/x-www-form-urlencoded",
@@ -352,7 +351,7 @@ Page({
           })
           wx.request({
             url: getApp().globalData.host + '/wx/index/utoken',
-            data: { 'bucket': 'snack-tmp' },
+            // data: { 'bucket': 'card-tmp' },
             method: "POST",
             header: {
               "content-type": "application/x-www-form-urlencoded",

@@ -90,7 +90,7 @@ Page({
         var tempFilePaths = res.tempFilePaths;
         wx.request({
           url: getApp().globalData.host + '/wx/index/utoken',
-          data: {'bucket': 'snack-tmp'},
+          // data: {'bucket': 'card-tmp'},
           method: "POST",
           header: {
             "content-type": "application/x-www-form-urlencoded",

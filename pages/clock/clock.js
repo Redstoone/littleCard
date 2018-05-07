@@ -139,14 +139,13 @@ Page({
           let tempFilePaths = res.tempFilePaths
           wx.request({
             url: getApp().globalData.host + '/wx/index/utoken',
-            data: { 'bucket': 'snack-tmp' },
+            // data: { 'bucket': 'card-tmp' },
             method: "POST",
             header: {
               "content-type": "application/x-www-form-urlencoded",
               'X-Requested-Page': 'json'
             },
             success: function (data) {
-
               for (let i = 0; i < res.tempFilePaths.length; i++) {
                 wx.uploadFile({
                   url: 'https://upload-z2.qiniup.com', //仅为示例，并非真实的接口地址
@@ -220,7 +219,7 @@ Page({
         })
         wx.request({
           url: getApp().globalData.host + '/wx/index/utoken',
-          data: { 'bucket': 'snack-tmp' },
+          // data: { 'bucket': 'card-tmp' },
           method: "POST",
           header: {
             "content-type": "application/x-www-form-urlencoded",
