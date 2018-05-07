@@ -27,6 +27,8 @@
 					<view class="card-item-tips">
 						<text class="zan-icon zan-icon-contact"></text>
 						<text class="tips-item">{{item.cardClickNumber}}已打卡</text>
+
+						<text wx:if="{{item.timeType == 20}}">时间：{{item.startDate}}至{{item.overDate}}</text>
 					</view>
 
 					<view class="has-card" wx:if="{{!item.hasCurrentDayCard}}"> 打卡 </view>
@@ -61,7 +63,8 @@
 				</view>
 				<view class="item-remark">{{item.recordDescription}}</view>
 				<view class="cimg-list" wx:if="{{item.imgList.length > 0}}">
-					<image wx:for="{{item.imgList}}" wx:key="{{index}}" wx:for-item="img-item" src="{{img-item}}" mode="aspectFill"></image>
+					<image wx:for="{{item.imgList}}" wx:for-index="sidx" wx:key="{{sidx}}" wx:for-item="imgItem" src="{{imgItem}}" data-src="{{imgItem}}"
+					  data-idx="{{index}}" mode="aspectFill" bindtap="previewImage"></image>
 				</view>
 				<view class="tool-bar">
 					<view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
@@ -73,7 +76,8 @@
 				</view>
 				<view class="praise-group" wx:if="{{item.zanList.length > 0}}">
 					<i class="iconfont icon-xin"></i>
-					<view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{item.zanList.length-1 != index}}">,</text>
+					<view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}
+						<text wx:if="{{item.zanList.length-1 != index}}">,</text>
 					</view>
 				</view>
 				<view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">

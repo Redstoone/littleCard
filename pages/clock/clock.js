@@ -1,5 +1,5 @@
 // pages/clock/clock.js
-var utils = require("../../utils/util")
+let utils = require("../../utils/util")
 const app = getApp()
 Page({
 
@@ -48,7 +48,7 @@ Page({
   },
 
   inputTxt(e) {
-    var that = this
+    let that = this
     that.setData({
       title: utils.trim(e.detail.value)
     })
@@ -59,7 +59,7 @@ Page({
   },
 
   push() { //发表日记
-    if (this.data.isPush){
+    if (this.data.isPush) {
       return false
     }
     this.setData({
@@ -79,8 +79,8 @@ Page({
         duration: 2000
       })
     } else {
-      var value;
-      for (var i = 0; i < this.data.items.length; i++) {
+      let value;
+      for (let i = 0; i < this.data.items.length; i++) {
         if (this.data.items[i].checked == true) {
           value = this.data.items[i].value
         }
@@ -93,6 +93,7 @@ Page({
         recordPoint: this.data.currentCity, //地点
         recordDescImg: this.data.files, //图片
         recordDescVideo: this.data.camvd, //视频
+        // recordDescVoice: '' // 音频
       }, (res) => {
         this.setData({
           isPush: false
@@ -118,23 +119,24 @@ Page({
   },
 
   clickImg(e) {
-    var that = this
+    let that = this
     that.setData({
       isUp: true
     })
     that.uploadImg()
   },
+  // 最多只能上传三张图
   uploadImg() { //上传多图
-    var that = this
-    if (that.data.files.length < 9) {
-      var maxCount = 10 - that.data.files.length
+    let that = this
+    if (that.data.files.length <= 3) {
+      let maxCount = 3 - that.data.files.length
       wx.chooseImage({
         count: maxCount, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          var tempFilePaths = res.tempFilePaths
+          let tempFilePaths = res.tempFilePaths
           wx.request({
             url: getApp().globalData.host + '/wx/index/utoken',
             data: { 'bucket': 'snack-tmp' },
@@ -155,10 +157,11 @@ Page({
                     'accept': 'text/plain'
                   },
                   success: function (data) {
-                    var data = JSON.parse(data.data)
-                    if (data.key) {
-                      var fileArr = that.data.files
-                      let testImg = 'http://card-tmp.spacet.cn/' + data.key + '?imageView/2/w/120/h/120';
+                    let _data = JSON.parse(data.data)
+                    if (_data.key) {
+                      let fileArr = that.data.files
+                      let testImg = 'http://card-tmp.spacet.cn/' + _data.key;
+                      // + '?imageView/2/w/120/h/120'
                       fileArr.push(testImg)
                       that.setData({
                         files: fileArr
@@ -180,7 +183,7 @@ Page({
       })
     } else {
       wx.showToast({
-        title: "最多只能上传9张图片",
+        title: "最多只能上传3张图片",
         icon: 'none',
         duration: 2000
       })
@@ -189,9 +192,9 @@ Page({
 
   },
   remove(e) { //多图删除
-    var index = Number(e.currentTarget.id)
-    var that = this
-    var files = that.data.files;
+    let index = Number(e.currentTarget.id)
+    let that = this
+    let files = that.data.files;
     files.splice(index)
     that.setData({
       files: files
@@ -205,15 +208,15 @@ Page({
   },
 
   changevd() {
-    var that = this
+    let that = this
     wx.chooseVideo({
       sourceType: ['album', 'camera'],
       maxDuration: 60,
       camera: 'back',
       success: function (res) {
-        var tempFilePaths = res.tempFilePath;
+        let tempFilePaths = res.tempFilePath;
         wx.showLoading({
-          title: '上传中'
+          title: '视频上传中'
         })
         wx.request({
           url: getApp().globalData.host + '/wx/index/utoken',
@@ -233,13 +236,21 @@ Page({
                 'accept': 'text/plain'
               },
               success: function (res) {
-                var data = JSON.parse(res.data);
-                that.setData({
-                  camvd: 'http://card-tmp.spacet.cn/' + data.key,
-                  isLogo: true,
-                  key: data.key
-                })
-                wx.hideLoading()
+                let data = JSON.parse(res.data);
+                if (data.key) {
+                  that.setData({
+                    camvd: 'http://card-tmp.spacet.cn/' + data.key,
+                    isLogo: true,
+                    key: data.key
+                  })
+                  wx.hideLoading()
+                } else {
+                  wx.showToast({
+                    title: "视频上传失败",
+                    icon: 'loading',
+                    duration: 2000
+                  })
+                }
               }
             })
           },
@@ -249,12 +260,12 @@ Page({
   },
 
   getLocation: function () { //定位
-    var that = this
+    let that = this
     wx.getUserInfo({
       lang: 'zh_CN',
       success: function (res) {
-        var userInfo = res.userInfo
-        var currentCity = userInfo.city
+        let userInfo = res.userInfo
+        let currentCity = userInfo.city
         that.setData({
           currentCity: currentCity
         })
@@ -262,23 +273,23 @@ Page({
     })
   },
   getlook() {
-    var that = this
+    let that = this
     that.setData({
       isLook: true
     })
   },
   hideLook() {
-    var that = this
+    let that = this
     that.setData({
       isLook: false
     })
   },
   radioChange: function (e) { //权限
-    var that = this;
-    var items = [];
-    var _viewtext = ''
-    for (var i = 0; i < that.data.items.length; i++) {
-      var item = that.data.items[i]
+    let that = this;
+    let items = [];
+    let _viewtext = ''
+    for (let i = 0; i < that.data.items.length; i++) {
+      let item = that.data.items[i]
       item.checked = false
       if (e.detail.value && e.detail.value === that.data.items[i].value) {
         item.checked = true

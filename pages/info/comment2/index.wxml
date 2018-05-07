@@ -25,7 +25,7 @@
         </view>
         <view class="item-remark">{{item.commentDescription}}</view>
         <!-- <view class="item-pic">
-          <image src="{{item.item_pic}}"></image>
+          <image src="{{item.item_pic}}" mode="aspectFill"></image>
         </view> -->
         <!-- <view class="address">128广场</view> -->
         <view class="tool-bar">

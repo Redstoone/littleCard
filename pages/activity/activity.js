@@ -1,5 +1,5 @@
 // pages/activity/activity.js
-var utils = require("../../utils/util")
+let utils = require("../../utils/util")
 const app = getApp()
 Page({
   /**
@@ -26,6 +26,7 @@ Page({
     user: null,
     activityDetail: null,
     countDay: 0,
+    activity: null,
     activityMember: null,
     activityDescImg: null,
     activityDescImgData: '',
@@ -39,7 +40,8 @@ Page({
     loadingComplete: false,
     hasCardRecord: false,
     mineCountDay: 0,
-    hasNotstart: false
+    hasNotstart: false,
+    isAddWx: false
   },
   changeTab(e) {
     this.setData({
@@ -81,66 +83,58 @@ Page({
     }
   },
   getDateList: function () {
-    var time = new Date();
-    var year = time.getFullYear();
-    var month = time.getMonth() + 1;
-    var day = time.getDate() - (new Date().getDay() + 7) % 7;
-    var week = time.getDay();
-    var today = month + "/" + day;
-    //当月天数
-    var count = new Date(year, month, 0).getDate();
-    var list = [];
-    var newList = [
-      []
-    ];
-    for (var i = 0; i < 7; i++) {
-      var _week = (week + i) % 7; //星期
-      var str = (day + i == time.getDate() ? "今天" : (day + i + 1 == time.getDate() + 1 ? "明天" : (day + i + 2 == time.getDate() + 2 ? "后天" : this.getWeek(_week))));
-      var _month = month + parseInt((day + i) / count); //月份
-      var _count = new Date(year, (month + 1), 0).getDate(); //当月天数
-      var _day = 0;
-      if ((day + i >= count + _count) || parseInt((day + i) / count) == 2) {
-        _month = month + 1 + parseInt((day + i - count) / _count);
-        _day = (day + i - count) % _count;
-      } else {
-        _day = (day + i) % count; //日期
-        _count = 0;
-      }
-      if (_day == 0) {
-        _month -= 1;
-        _day = _count || count;
-      }
-      if (_month - month != newList.length - 1) {
-        newList.push([]);
-      }
-      newList[_month - month].push({
-        str: str.replace(/周[\s|\S]$/, ''),
-        year: year,
-        month: _month,
-        week: _week,
-        day: (_day < 10 ? "0" : "") + _day,
-        isDate: true
-      });
-    }
-    // newList[0][0].day = "今天"
+    let dateOfToday = Date.now()
+    let dayOfToday = (new Date().getDay() + 7) % 7
+    let daysOfThisWeek = Array.from(new Array(7))
+      .map((_, i) => {
+        let date = new Date(dateOfToday + (i - dayOfToday) * 1000 * 60 * 60 * 24),
+          _year = date.getFullYear(),
+          _month = date.getMonth() + 1,
+          _day = date.getDate(),
+          _d = _year +
+          '-' +
+          String(_month).padStart(2, '0') +
+          '-' +
+          String(_day).padStart(2, '0')
+
+        return {
+          str: _d === new Date().getFullYear() +
+            '-' +
+            String(new Date().getMonth() + 1).padStart(2, '0') +
+            '-' +
+            String(new Date().getDate()).padStart(2, '0') ? '今天' : '',
+          d: _d,
+          year: _year,
+          month: _month,
+          day: String(_day).padStart(2, '0')
+        }
+      })
+
     this.setData({
-      week: week,
-      years: newList
+      years: daysOfThisWeek
     })
-  },
-  clickChecked(e) {
   },
   onLoad: function (e) {
-    var that = this
-    that.setData({
+    this.setData({
       acId: e.acId
     })
+    this.getUserInfo();
+  },
+
+  getInitData() {
+    let that = this
     app.postRequest('/wx/activity/singleAll', 'POST', {
-      id: e.acId
+      id: that.data.acId
     }, (res) => {
       if (res.data.success) {
-        var item = res.data.item
+        let item = res.data.item
+        let activity = res.data.item;
+        if (activity.timeType == 20) {
+          activity.startDate = activity.startTime.substring(0, 10);
+          activity.overDate = activity.overTime.substring(0, 10);
+        }
         that.setData({
+          activity: activity,
           name: item.name,
           mainWx: item.mainWx,
           mainDescription: item.activityDetail.mainDescription,
@@ -155,7 +149,7 @@ Page({
           activityMember: item.activityMember,
           activityDescVideo: item.activityDetail.activityDescVideo,
           totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime(),
-          hasNotstart: new Date(item.startTime) - new Date() > 0 ? true :false
+          hasNotstart: new Date(item.startTime) - new Date() > 0 ? true : false,
         })
         that.countDown()
         app.postRequest('/wx/consumer/record', 'POST', {
@@ -167,17 +161,32 @@ Page({
             })
           }
         })
-        this.getCountDay(e.acId)
-        this.getMineCountDay(item.consumerId, e.acId)
       }
     })
-
     this.getDateList();
-    this.getCardRecordComment(e.acId);
-    this.getHasCardRecord(e.acId);
   },
 
-  onShow() {
+  getUserInfo() {
+    let _this = this
+    let us = app.globalData.userInfo
+    if (us) {
+      _this.setData({
+        userInfo: us
+      })
+      _this.getInitData()
+    } else {
+      app.getUserInfo(function (openid, userInfo) {
+        if (openid) {
+          _this.setData({
+            userInfo: userInfo
+          })
+          _this.getInitData()
+        }
+      })
+    }
+  },
+
+  onShow(e) {
     this.getCardRecordComment(this.data.acId);
     this.getHasCardRecord(this.data.acId)
     this.getCountDay(this.data.acId)
@@ -211,7 +220,7 @@ Page({
       }
     })
   },
-  getCardRecordComment (acid) {
+  getCardRecordComment(acid) {
     let that = this
     let _data = {
       page: that.data.page,
@@ -226,7 +235,7 @@ Page({
         let _item = item,
           _isZan = false
         // _item.timeFormat = utils.formatTimeText(item.createTime)
-        _item.timeFormat = item.createTime
+        _item.timeFormat = item.recordConsumer && item.recordConsumer.createTime ? item.recordConsumer.createTime : ''
         _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
           if (item2.consumerId == app.globalData.openid) {
             _isZan = true
@@ -237,6 +246,7 @@ Page({
           }
         })
         _item.isZan = _isZan
+        _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
         return _item
       })
 
@@ -251,7 +261,7 @@ Page({
       }
     })
   },
-  getHasCardRecord (acid) {
+  getHasCardRecord(acid) {
     let that = this
     app.postRequest('/wx/cardRecord/hasCard', 'POST', {
       consumerId: app.globalData.openid,
@@ -273,9 +283,9 @@ Page({
     return new Date(time).getTime()
   },
   countDown() {
-    var that = this
+    let that = this
     // 渲染倒计时时钟
-    var clock = this.date_format(this.data.totalms)
+    let clock = this.date_format(this.data.totalms)
     that.setData({
       clock: clock
     })
@@ -299,13 +309,13 @@ Page({
   date_format(micro) {
     micro = micro || 1
     // 秒数
-    var second = Math.floor(micro / 1000);
+    let second = Math.floor(micro / 1000);
     // 小时位
-    var hr = Math.floor(second / 3600);
+    let hr = Math.floor(second / 3600);
     // 分钟位
-    var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+    let min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
     // 秒位
-    var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60)); // equal to => var sec = second % 60;
+    let sec = this.fill_zero_prefix((second - hr * 3600 - min * 60)); // equal to => let sec = second % 60;
 
     if (hr) {
       return hr + ":" + min + ":" + sec;
@@ -330,8 +340,8 @@ Page({
   onShareAppMessage: function () { //分享
     return {
       title: "打卡", // 默认是小程序的名称(可以写slogan等)
-      path: '/pages/home/index',
-      // path: '/pages/activity/activity?acId=' + this.data.acId,
+      // path: '/pages/home/index',
+      path: '/pages/lookdetail/lookdetail?acId=' + this.data.acId,
     }
   },
 
@@ -364,13 +374,13 @@ Page({
     })
   },
 
-  gotoHome () {
+  gotoHome() {
     wx.switchTab({
       url: '/pages/home/index'
     })
   },
 
-  gotoClassify () {
+  gotoClassify() {
     wx.switchTab({
       url: '/pages/classify/index'
     })
@@ -398,20 +408,18 @@ Page({
     })
   },
 
-  onReady (e) {
+  onReady(e) {
     this.videoCtx = wx.createVideoContext('myVideo')
   },
-  showVideo () {
+  showVideo() {
     this.setData({
       isPlay: true
     })
     this.videoCtx.play()
   },
 
-  /**
- * 页面上拉触底事件的处理函数
- */
-  onReachBottom: function () {
+  // 页面上拉触底事件的处理函数
+  onReachBottom() {
     let that = this;
     if (!that.data.loadingComplete) {
       that.setData({
@@ -442,6 +450,7 @@ Page({
             }
           })
           _item.isZan = _isZan
+          _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
           return _item
         })
 
@@ -458,4 +467,56 @@ Page({
       })
     }
   },
+
+  // 编辑详情
+  editActivity() {
+    wx.navigateTo({
+      url: '../carddetail/carddetail?id=' + this.data.acId,
+    })
+  },
+
+  // 加微信
+  addWx() {
+    this.setData({
+      isAddWx: true
+    })
+  },
+
+  // 复制微信
+  copyWx() {
+    this.setData({
+      isAddWx: false
+    })
+    wx.setClipboardData({
+      data: this.data.mainWx,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: '复制成功！',
+              icon: 'success',
+              duration: 1500
+            })
+          }
+        })
+      }
+    })
+  },
+
+  // 关闭添加微信弹框
+  closeWxbox() {
+    this.setData({
+      isAddWx: false
+    })
+  },
+
+  // 图片预览
+  previewImage(e) {
+    var current = e.target.dataset.src;
+    var idx = e.target.dataset.idx;
+    wx.previewImage({
+      current: current,
+      urls: this.data.recommand[idx].imgList
+    })
+  }
 })

@@ -61,12 +61,12 @@
 		<view class="thecont">
 			<view class="thecont_box upload">
 				<view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
-					<image class="previewImg" src="{{item}}"></image>
+					<image class="previewImg" src="{{item}}" mode="aspectFill"></image>
 					<view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">
 						X
 					</view>
 				</view>
-				<view class="upload_input" bindtap="uploadImg" wx:if="{{files.length < 10}}">
+				<view class="upload_input" bindtap="uploadImg" wx:if="{{files.length < 6}}">
 					<view class="pos-a line"></view>
 					<view class="pos-a lines"></view>
 				</view>
@@ -76,7 +76,7 @@
 	</view>
 
 	<!-- 视频 -->
-	<view class="theImage theback" wx:if="{{isvd}}">
+	<view class="theImage theback" wx:if="{{isvd && filesvd}}">
 		<view class="thetitle clear">
 			<view class="left fz28 c333">
 				视频部分
@@ -86,18 +86,20 @@
               <view class='thebottom right'></view>
           </view> -->
 		</view>
-		<view class="thecont">
-			<view class="thecont_box upload">
-				<view class="previewImgs pos-r mb30" wx:for="{{filesvd}}" wx:key="files">
-					<video class="previewImg" id="myVideo" src="{{item}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
-					<view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="removevd">
-						X
+		<view class="thecont no-border">
+			<view class="video-poster" wx:if="{{filesvd.length > 0}}">
+				<view class="pos-r mb30">
+					<view class="video-ui" style="width:400rpx; height:200rpx; margin: 0;position: relative;border: 2rpx solid #eee;" bindtap="showVideo">
+						<image src="{{filesvd+'?vframe/png/offset/1'}}" style="width:100%; height:100%; margin: 0 auto;" mode="aspectFit"></image>
+						<image wx:if="{{!isPlay}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAArlBMVEXX19fQ0NDW1tb////T09PS0tLW1tYAAADX19fR0dHe3t7i4uL////T09PT09PZ2dn////W1tbT09Po6Ojs7Oz////w8PD////////i4uLg4ODp6enl5eXf39/////////////29vb19fXz8/Pq6urf39/////////g4ODd3d3////////////////////5+fn////////////////////z8/P////////5+fn7+/tADHeGAAAAN3RSTlNNLEPbPzhHAE4xYW/+Oz1Q7Eo1krH63jSzeGubgmfEZwj889KfbPQjale4Fz5G0NwsnaCBfr8E+12dhgAAAjNJREFUSMel1ml7ojAQAOBJIDTBDSCHQMH7aLWHvXyG/v8/trq7LMKAVp2v8DIkmUwCdyTiz8TwIsTIM5LPmD5vkvh9hcUgDPI0zYNwUODqPT5JXl5xltlcKaEdRwuluJ3N8PWlkzyMcL70lWnB/7BM5S/nOHpoJ2OcDZnuS6iF7Gs2nOG4jSQYKAEVqBAIFWBCyMQobFZlaGZidmFM6mTiFVzJUlAjFS+8SY0YhSNcOBGucArjmCTfnAhi+HdSkTHaighilI3jkjxhxiScDckyfPpHRlNm/YRYbDr6S55xKI6F5LzDiCE+/yHGgNU/tl6LjhViA+NA3vBRH79guQZmwmkzUj/i2558TP0+HIXTwxC3a9WWqO9PP/YkWqjaQ7OHruth7pvUSLWI7iBG24QGWTK9wLn0gSDTxhi+Cm41yb1pqWGEqeJNY/HiCzYDBZSAFGaIO4vsBjXYgBG2EpBc9fBXT1myTkIDvEC0EpDgWzsMTV4zIvAgynU7OSTy02Lr1oaq8wgwdboISM12jQl1UjxBZF/ZHqalqEjnj0lHZzh3fZCNH+sa/j7FeouBMEtQDb9jkqXpB2WhkUluW8qlo+QcF1ofAFnK1oKxWY6eXa4iKRhSlk66egwxNMsUtCxp8duIq/sqBSl+usWAZ2G/Kke6xehGlqBFlYJuZNIuSJB2QZoSCdKULm59VzTYy9v45YfF5UfSFQffDcdrGZszh/jtV4XzF5KLrz23Xq6uuML9Bn/rUTH81g3uAAAAAElFTkSuQmCC"
+						  class="icon"></image>
 					</view>
 				</view>
-				<view class="upload_input" bindtap="uploadvd" wx:if="{{filesvd.length < 1}}">
-					<view class="pos-a line"></view>
-					<view class="pos-a lines"></view>
-				</view>
+				<view class="remove-video" bindtap="removeVideo"> 删除 </view>
+			</view>
+			<view class="upload_input" bindtap="uploadvd" wx:else>
+				<view class="pos-a line"></view>
+				<view class="pos-a lines"></view>
 			</view>
 		</view>
 		<view class="thecal fz24" bindtap='hidevd'>X</view>
@@ -119,11 +121,18 @@
 </view>
 
 <!-- 音频 -->
-<view class="back" wx:if="{{isaudio}}"></view>
-<view class="audiobox" wx:if="{{isaudio}}">
-	<view class="audio_box">
+<cover-view class="back" wx:if="{{isaudio}}"></cover-view>
+<cover-view class="audiobox" wx:if="{{isaudio}}">
+	<cover-view class="audio_box">
 		<!-- <view class="audiobox_title fz32 c333">请登录PC</view> -->
-		<view class="audiobox_txt fz28 c666">暂未开放音频功能</view>
-		<view class="audiobox_btn fz28 " bindtap='audioBtn'>确定</view>
+		<cover-view class="audiobox_txt fz28 c666">暂未开放音频功能</cover-view>
+		<cover-view class="audiobox_btn fz28 " bindtap='audioBtn'>确定</cover-view>
+	</cover-view>
+</cover-view>
+
+<view class="view-video" wx:if="{{isPlay}}">
+	<view class="icon-close-wrap" bindtap="videoClose">
+		<i class="iconfont icon-close"></i>
 	</view>
+	<video class="clockVideo" id="myVideo" src="{{filesvd}}" enable-danmu danmu-btn controls></video>
 </view>

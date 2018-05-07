@@ -3,7 +3,8 @@
 <view class="container">
   <view class="zan-panel classify-panel">
     <view class="zan-row">
-      <view wx:for="{{classifyList}}" wx:key="{{index}}" class="zan-col zan-col-6 classify-item {{classifyActive == index ? 'active' : ''}}" bindtap="bindClassifyClick" data-idx="{{index}}" data-cid="{{item.id}}">
+      <view wx:for="{{classifyList}}" wx:key="{{index}}" class="zan-col zan-col-6 classify-item {{classifyActive == index ? 'active' : ''}}"
+        bindtap="bindClassifyClick" data-idx="{{index}}" data-cid="{{item.id}}">
         {{item.name}}
       </view>
     </view>
@@ -21,9 +22,13 @@
           <view class="zan-cell--last-child zan-ellipsis">{{item.activityDetail.mainDescription}}</view>
         </view>
 
+
         <view class="zan-card__detail-row zan-c-gray-darker c-footer">
-          <label class="card-accout fz12">{{item.memberNumber}}人参加</label>
-          <label class="card-num fz12">{{item.cardClickNumber}}次打卡</label>
+          <view class="card-time fz12" wx:if="{{item.timeType == 20}}">活动时间：{{item.startDate}}至{{item.overDate}}</view>
+          <view>
+            <label class="card-accout fz12">{{item.memberNumber}}人参加</label>
+            <label class="card-num fz12">{{item.cardClickNumber}}次打卡</label>
+          </view>
         </view>
       </view>
     </view>

@@ -1,4 +1,4 @@
-var utils = require("../../../utils/util")
+let utils = require("../../../utils/util")
 const app = getApp()
 
 Page({
@@ -6,7 +6,11 @@ Page({
     recommand: null,
     user: null,
     crid: null,
-    cruid: null
+    cruid: null,
+    camvd: null,
+    isPlay: false,
+    imgWidth: 0,
+    imgHeight: 0
   },
 
   onLoad(options) {
@@ -18,10 +22,10 @@ Page({
     this.getUser(options.cruid)
   },
 
-  onShow() {
-    this.getCommandList(this.data.crid, this.data.cruid)
-    this.getUser(this.data.cruid)
-  },
+  // onShow() {
+  //   this.getCommandList(this.data.crid, this.data.cruid)
+  //   this.getUser(this.data.cruid)
+  // },
 
   getCommandList(crid, cruid) {
     app.postRequest('/wx/cardRecord/detail', 'POST', {
@@ -29,7 +33,7 @@ Page({
       cardRecordId: crid
     }, (res) => {
       let _recommand = res.data.item,
-          _isZan = false
+        _isZan = false
 
       // _recommand.timeFormat = utils.formatTimeText(_recommand.createTime)
       _recommand.timeFormat = _recommand.createTime
@@ -86,6 +90,57 @@ Page({
           recommand: this.data.recommand
         })
       }
+    })
+  },
+
+  previewImage(e) {
+    let current = e.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: this.data.recommand.imgList
+    })
+  },
+
+  videoClose() {
+    this.setData({
+      isPlay: false
+    })
+    this.videoCtx.pause();
+    this.videoCtx.seek(0);
+    this.videoCtx.exitFullScreen();
+  },
+
+  onReady(e) {
+    this.videoCtx = wx.createVideoContext('prewVideo')
+  },
+  showVideo(e) {
+    let videoSrc = e.currentTarget.dataset.src;
+    this.setData({
+      isPlay: true,
+      camvd: videoSrc
+    })
+    this.videoCtx.seek(0);
+    this.videoCtx.play();
+    this.videoCtx.requestFullScreen();
+  },
+
+  bindVideoScreenChange(e) {
+    let status = e.detail.fullScreen;
+    let _isPlay = false;
+    if (status) {
+      _isPlay = true
+    } else {
+      this.videoCtx.pause();
+    }
+    this.setData({
+      isPlay: _isPlay
+    });
+  },
+
+  imageOnLoad(ev) {
+    this.setData({
+      imgWidth: ev.detail.width/2,
+      imgHeight: ev.detail.height/2
     })
   }
 })
