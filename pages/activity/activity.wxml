@@ -10,20 +10,20 @@
         {{memberNumber}}人已参加 | {{cardClickNumber}}次打卡
       </view>
       <view class='nameImg fz26 clear'>
-        <image class="left head ac-member-img" wx:for="{{activityMemberHeader}}" wx:key="{{index}}" src='{{item.consumer.headicon}}'></image>
+        <image class="left head ac-member-img" mode="aspectFill" wx:for="{{activityMemberHeader}}" wx:key="{{index}}" src='{{item.consumer.headicon}}'></image>
         <view class="left name" style="line-height:40rpx;">
           {{activityMemberHeader && activityMemberHeader[0].consumer.nickname}}
           <span wx:if="{{activityMemberHeader.length >= 2}}">等人</span> 参加
         </view>
-        <!-- <view class="left btn">加微信</view> -->
       </view>
+      <view class="activity-time activity-header" wx:if="{{activity.timeType == 20}}">活动时间：{{activity.startDate}}至{{activity.overDate}}</view>
     </view>
-    <!-- <view class="tant_txt clear" bindtap="editActivity" data-id="acId">
+    <view class="tant_txt clear" bindtap="editActivity" data-id="acId">
       <view class="item_icon">
         <i class="iconfont icon-post"></i>
       </view>
       <view class="item_play fz24">编辑详情</view>
-    </view> -->
+    </view>
     <button open-type="share" class="tant_com clear" style="padding:0">
       <view class="item_icon">
         <i class="iconfont icon-share"></i>
@@ -121,6 +121,10 @@
                 </view>
               </view>
               <view class="item-remark">{{item.recordDescription}}</view>
+              <view class="cimg-list" wx:if="{{item.imgList.length > 0}}">
+                <image wx:for="{{item.imgList}}" wx:for-index="sidx" wx:key="{{sidx}}" wx:for-item="imgItem" src="{{imgItem}}" data-src="{{imgItem}}"
+                  data-idx="{{index}}" mode="aspectFill" bindtap="previewImage"></image>
+              </view>
 
               <view class="item-remark item-weight" wx:if="{{item.cardWeight && item.cardWeight.recordWeight}}">
                 <view class="iw">体重: {{item.cardWeight.recordWeight > 0 ? '+'+item.cardWeight.recordWeight : item.cardWeight.recordWeight}}</view>
@@ -176,8 +180,8 @@
             <view class="aw-title">活动详情</view>
             <view class="aw-detail">{{activityDescription}}</view>
             <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
-              <image wx:for="{{activityDescImg}}" data-index="{{index}}" src=" {{item}} " mode="aspectFill" wx:key="{{index}}" bindload="imageLoad"
-                style="width:{{ activityDescImgData.width }}rpx; height:{{ activityDescImgData.height }}rpx; margin: 0 auto;"></image>
+              <image wx:for="{{activityDescImg}}" data-index="{{index}}" src=" {{item}} " mode="aspectFit" wx:key="{{index}}" bindload="imageLoad"
+                style="width:{{ activityDescImgData.width }}rpx; height:{{ activityDescImgData.height }}rpx; margin: 10rpx auto;"></image>
             </view>
             <view class="ui-video" wx:if="{{activityDescVideo}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;"
               bindtap="showVideo">

@@ -60,8 +60,18 @@ Page({
     }
     app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
       if (res.data.success) {
+        let cardList = res.data.rows
+        cardList = cardList.map((item, index) => {
+          let _item = item;
+          if (_item.timeType == 20) {
+            _item.startDate = _item.startTime.substring(5, 10);
+            _item.overDate = _item.overTime.substring(5, 10);
+          }
+          return _item
+        })
+
         this.setData({
-          activityList: res.data.rows
+          activityList: cardList
         })
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
@@ -88,8 +98,17 @@ Page({
       }
       app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
         if (res.data.success) {
+          let cardList = res.data.rows
+          cardList = cardList.map((item, index) => {
+            let _item = item;
+            if (_item.timeType == 20) {
+              _item.startDate = _item.startTime.substring(5, 10);
+              _item.overDate = _item.overTime.substring(5, 10);
+            }
+            return _item
+          })
           that.setData({
-            activityList: that.data.activityList.concat(res.data.rows),
+            activityList: that.data.activityList.concat(cardList),
             loading: false
           })
           if (res.data.rows.length < this.data.size) {

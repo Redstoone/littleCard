@@ -27,6 +27,8 @@
 					<view class="card-item-tips">
 						<text class="zan-icon zan-icon-contact"></text>
 						<text class="tips-item">{{item.cardClickNumber}}已打卡</text>
+
+						<text wx:if="{{item.timeType == 20}}">时间：{{item.startDate}}至{{item.overDate}}</text>
 					</view>
 
 					<view class="has-card" wx:if="{{!item.hasCurrentDayCard}}"> 打卡 </view>
@@ -66,7 +68,8 @@
 					<view class="iw">体脂率: {{item.cardWeight.recordFat > 0 ? '+'+item.cardWeight.recordFat + '%' :item.cardWeight.recordFat + '%'}}</view>
 				</view>
 				<view class="cimg-list" wx:if="{{item.imgList.length > 0}}">
-					<image wx:for="{{item.imgList}}" wx:key="{{index}}" wx:for-item="img-item" src="{{img-item}}" mode="aspectFill"></image>
+					<image wx:for="{{item.imgList}}" wx:for-index="sidx" wx:key="{{sidx}}" wx:for-item="imgItem" src="{{imgItem}}" data-src="{{imgItem}}"
+					  data-idx="{{index}}" mode="aspectFill" bindtap="previewImage"></image>
 				</view>
 				<view class="tool-bar">
 					<view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">

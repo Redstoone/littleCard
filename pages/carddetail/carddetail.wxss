@@ -141,9 +141,10 @@
   position: relative;
 }
 
-.thecont.no-border{
+.thecont.no-border {
   border: none;
 }
+
 .thecont .thecont_box {
   width: 96%;
   height: 180rpx;
@@ -246,7 +247,7 @@
   margin-left: -300rpx;
   top: 40%;
   margin-top: -150rpx;
-  z-index: 11111
+  z-index: 11111;
 }
 
 .audio_box {
@@ -258,63 +259,11 @@
 }
 
 .audiobox_btn {
-  position: absolute;
-  right: 40rpx;
-  bottom: 40rpx;
-  color: green
-}
-
-.video-ui .icon {
-  width: 60rpx;
-  height: 60rpx;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  margin: auto;
-}
-
-.remove-video {
-  font-size: 24rpx;
-  color: #ff0000;
-  position: absolute;
-  right: 100rpx;
-  top: 90rpx;
-}
-
-.view-video {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, .5);
-  z-index: 1000000;
-}
-
-.clockVideo {
-  width: 100%;
-  height: 400rpx;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.icon-close-wrap {
-  position: absolute;
-  right: 60rpx;
-  top: 60rpx;
-  z-index: 999;
-}
-
-.icon-close {
-  color: #fff;
-  border: 2rpx solid #fff;
-  border-radius: 50%;
-  padding: 10rpx;
+  /* position: absolute; */
+  /* right: 40rpx; */
+  /* bottom: 40rpx; */
+  color: green;
+  z-index: 9999999;
+  margin-left: 80%;
+  margin-top: 150rpx;
 }

@@ -12,7 +12,7 @@ Page({
     loadingComplete: false
   },
 
-  onLoad () {
+  onLoad() {
     this.getUserInfo();
   },
 
@@ -36,19 +36,22 @@ Page({
     }
   },
 
-  navtoSetting () {
+  navtoSetting() {
     wx.navigateTo({
       url: '/pages/info/setting/index'
     })
   },
 
   // 下拉刷新
-  onPullDownRefresh () {
+  onPullDownRefresh() {
     wx.showNavigationBarLoading();
     var that = this;
   },
 
-  onShow() {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
     app.postRequest('/wx/consumer/record', 'POST', {
       consumerId: app.globalData.openid
     }, (res) => {
@@ -60,10 +63,10 @@ Page({
       page: 1,
       recommand: []
     })
-    this.getCardRecord ()
+    this.getCardRecord()
   },
 
-  getCardRecord () {
+  getCardRecord() {
     let that = this
     let _data = {
       page: that.data.page,
@@ -91,20 +94,21 @@ Page({
         _item.cardWeight.recordWaist = Number(_item.cardWeight.recordWaist);
         _item.cardWeight.recordFat = Number(_item.cardWeight.recordFat);
         _item.isZan = _isZan
+        _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
         return _item
       })
 
-      this.setData({
+      that.setData({
         recommand: _recommand
       })
 
-      if (res.data.rows.length < this.data.size) {
+      if (res.data.rows.length < that.data.size) {
         that.setData({
           loadingComplete: true,
         })
       }
     })
-    
+
   },
 
   bindCommentDetail(e) {
@@ -145,8 +149,8 @@ Page({
   },
 
   /**
- * 页面上拉触底事件的处理函数
- */
+   * 页面上拉触底事件的处理函数
+   */
   onReachBottom: function () {
     let that = this;
     if (!that.data.loadingComplete) {
@@ -154,7 +158,6 @@ Page({
         page: that.data.page + 1,
         loading: true
       });
-      let that = this
       let _data = {
         page: that.data.page,
         size: that.data.size,
@@ -177,6 +180,7 @@ Page({
             }
           })
           _item.isZan = _isZan
+          _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
           return _item
         })
 
@@ -193,4 +197,14 @@ Page({
       })
     }
   },
+
+  // 图片预览
+  previewImage(e) {
+    var current = e.target.dataset.src;
+    var idx = e.target.dataset.idx;
+    wx.previewImage({
+      current: current,
+      urls: this.data.recommand[idx].imgList
+    })
+  }
 })

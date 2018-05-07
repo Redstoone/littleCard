@@ -66,7 +66,7 @@
 						X
 					</view>
 				</view>
-				<view class="upload_input" bindtap="uploadImg" wx:if="{{files.length < 10}}">
+				<view class="upload_input" bindtap="uploadImg" wx:if="{{files.length < 6}}">
 					<view class="pos-a line"></view>
 					<view class="pos-a lines"></view>
 				</view>
@@ -121,14 +121,14 @@
 </view>
 
 <!-- 音频 -->
-<view class="back" wx:if="{{isaudio}}"></view>
-<view class="audiobox" wx:if="{{isaudio}}">
-	<view class="audio_box">
+<cover-view class="back" wx:if="{{isaudio}}"></cover-view>
+<cover-view class="audiobox" wx:if="{{isaudio}}">
+	<cover-view class="audio_box">
 		<!-- <view class="audiobox_title fz32 c333">请登录PC</view> -->
-		<view class="audiobox_txt fz28 c666">暂未开放音频功能</view>
-		<view class="audiobox_btn fz28 " bindtap='audioBtn'>确定</view>
-	</view>
-</view>
+		<cover-view class="audiobox_txt fz28 c666">暂未开放音频功能</cover-view>
+		<cover-view class="audiobox_btn fz28 " bindtap='audioBtn'>确定</cover-view>
+	</cover-view>
+</cover-view>
 
 <view class="view-video" wx:if="{{isPlay}}">
 	<view class="icon-close-wrap" bindtap="videoClose">

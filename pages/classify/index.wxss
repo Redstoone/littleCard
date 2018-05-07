@@ -82,7 +82,9 @@
 
 .c-footer {
   position: absolute;
-  bottom: 20rpx;
+  bottom: 0;
+  line-height: 28rpx;
+  margin-bottom: 0;
 }
 
 .no-data {
@@ -110,7 +112,10 @@
   width: 100%;
   border-top: 2rpx solid #dfdfdf;
 }
+<<<<<<< HEAD
 
 .zan-card__detail-row{
   margin-top: 20rpx;
 }
+=======
+>>>>>>> master
