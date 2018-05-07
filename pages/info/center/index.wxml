@@ -85,6 +85,11 @@
             </view>
           </view>
           <view class="item-remark">{{item.recordDescription}}</view>
+          <view class="cimg-list" wx:if="{{item.imgList.length > 0}}">
+            <image wx:for="{{item.imgList}}" wx:for-index="sidx" wx:key="{{sidx}}" wx:for-item="imgItem" src="{{imgItem}}" data-src="{{imgItem}}"
+              data-idx="{{index}}" mode="aspectFill" bindtap="previewImage"></image>
+          </view>
+
           <!-- <view class="item-pic">
             <image src="{{item.item_pic}}"></image>
           </view> -->
@@ -100,9 +105,11 @@
 
           <view class="praise-group" wx:if="{{item.zanList.length > 0}}">
             <i class="iconfont icon-xin"></i>
-            <view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}<text wx:if="{{item.zanList.length-1 != index}}">,</text></view>
+            <view class="usname" wx:for="{{item.zanList}}" wx:key="{{index}}" wx:for-item="item2">{{item2.nickname}}
+              <text wx:if="{{item.zanList.length-1 != index}}">,</text>
+            </view>
           </view>
-          
+
           <view class="comment-group" wx:for="{{item.cardRecordCommentList}}" wx:key="{{index}}">
             <view class="tb-item fz26 c999">
               {{item.commentConsumer.nickname+': '+item.commentDescription}}

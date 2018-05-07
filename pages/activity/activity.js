@@ -1,5 +1,5 @@
 // pages/activity/activity.js
-var utils = require("../../utils/util")
+let utils = require("../../utils/util")
 const app = getApp()
 Page({
   /**
@@ -26,6 +26,7 @@ Page({
     user: null,
     activityDetail: null,
     countDay: 0,
+    activity: null,
     activityMember: null,
     activityDescImg: null,
     activityDescImgData: '',
@@ -91,10 +92,10 @@ Page({
           _month = date.getMonth() + 1,
           _day = date.getDate(),
           _d = _year +
-            '-' +
-            String(_month).padStart(2, '0') +
-            '-' +
-            String(_day).padStart(2, '0')
+          '-' +
+          String(_month).padStart(2, '0') +
+          '-' +
+          String(_day).padStart(2, '0')
 
         return {
           str: _d === new Date().getFullYear() +
@@ -114,16 +115,26 @@ Page({
     })
   },
   onLoad: function (e) {
-    var that = this
-    that.setData({
+    this.setData({
       acId: e.acId
     })
+    this.getUserInfo();
+  },
+
+  getInitData() {
+    let that = this
     app.postRequest('/wx/activity/singleAll', 'POST', {
-      id: e.acId
+      id: that.data.acId
     }, (res) => {
       if (res.data.success) {
-        var item = res.data.item
+        let item = res.data.item
+        let activity = res.data.item;
+        if (activity.timeType == 20) {
+          activity.startDate = activity.startTime.substring(0, 10);
+          activity.overDate = activity.overTime.substring(0, 10);
+        }
         that.setData({
+          activity: activity,
           name: item.name,
           mainWx: item.mainWx,
           mainDescription: item.activityDetail.mainDescription,
@@ -138,7 +149,7 @@ Page({
           activityMember: item.activityMember,
           activityDescVideo: item.activityDetail.activityDescVideo,
           totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime(),
-          hasNotstart: new Date(item.startTime) - new Date() > 0 ? true : false
+          hasNotstart: new Date(item.startTime) - new Date() > 0 ? true : false,
         })
         that.countDown()
         app.postRequest('/wx/consumer/record', 'POST', {
@@ -150,14 +161,29 @@ Page({
             })
           }
         })
-        // this.getCountDay(e.acId)
-        // this.getMineCountDay(item.consumerId, e.acId)
       }
     })
-
     this.getDateList();
-    // this.getCardRecordComment(e.acId);
-    // this.getHasCardRecord(e.acId);
+  },
+
+  getUserInfo() {
+    let _this = this
+    let us = app.globalData.userInfo
+    if (us) {
+      _this.setData({
+        userInfo: us
+      })
+      _this.getInitData()
+    } else {
+      app.getUserInfo(function (openid, userInfo) {
+        if (openid) {
+          _this.setData({
+            userInfo: userInfo
+          })
+          _this.getInitData()
+        }
+      })
+    }
   },
 
   onShow(e) {
@@ -209,7 +235,7 @@ Page({
         let _item = item,
           _isZan = false
         // _item.timeFormat = utils.formatTimeText(item.createTime)
-        _item.timeFormat = item.recordConsumer.createTime
+        _item.timeFormat = item.recordConsumer && item.recordConsumer.createTime ? item.recordConsumer.createTime : ''
         _item.zanList = _item.cardRecordPraiseList.map((item2, idx2) => {
           if (item2.consumerId == app.globalData.openid) {
             _isZan = true
@@ -220,6 +246,7 @@ Page({
           }
         })
         _item.isZan = _isZan
+        _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
         return _item
       })
 
@@ -256,9 +283,9 @@ Page({
     return new Date(time).getTime()
   },
   countDown() {
-    var that = this
+    let that = this
     // 渲染倒计时时钟
-    var clock = this.date_format(this.data.totalms)
+    let clock = this.date_format(this.data.totalms)
     that.setData({
       clock: clock
     })
@@ -282,13 +309,13 @@ Page({
   date_format(micro) {
     micro = micro || 1
     // 秒数
-    var second = Math.floor(micro / 1000);
+    let second = Math.floor(micro / 1000);
     // 小时位
-    var hr = Math.floor(second / 3600);
+    let hr = Math.floor(second / 3600);
     // 分钟位
-    var min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+    let min = this.fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
     // 秒位
-    var sec = this.fill_zero_prefix((second - hr * 3600 - min * 60)); // equal to => var sec = second % 60;
+    let sec = this.fill_zero_prefix((second - hr * 3600 - min * 60)); // equal to => let sec = second % 60;
 
     if (hr) {
       return hr + ":" + min + ":" + sec;
@@ -313,8 +340,8 @@ Page({
   onShareAppMessage: function () { //分享
     return {
       title: "打卡", // 默认是小程序的名称(可以写slogan等)
-      path: '/pages/home/index',
-      // path: '/pages/activity/activity?acId=' + this.data.acId,
+      // path: '/pages/home/index',
+      path: '/pages/lookdetail/lookdetail?acId=' + this.data.acId,
     }
   },
 
@@ -392,7 +419,7 @@ Page({
   },
 
   // 页面上拉触底事件的处理函数
-  onReachBottom () {
+  onReachBottom() {
     let that = this;
     if (!that.data.loadingComplete) {
       that.setData({
@@ -423,6 +450,7 @@ Page({
             }
           })
           _item.isZan = _isZan
+          _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
           return _item
         })
 
@@ -448,7 +476,7 @@ Page({
   },
 
   // 加微信
-  addWx () {
+  addWx() {
     this.setData({
       isAddWx: true
     })
@@ -479,6 +507,16 @@ Page({
   closeWxbox() {
     this.setData({
       isAddWx: false
+    })
+  },
+
+  // 图片预览
+  previewImage(e) {
+    var current = e.target.dataset.src;
+    var idx = e.target.dataset.idx;
+    wx.previewImage({
+      current: current,
+      urls: this.data.recommand[idx].imgList
     })
   }
 })
