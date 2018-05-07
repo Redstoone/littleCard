@@ -112,10 +112,7 @@
   width: 100%;
   border-top: 2rpx solid #dfdfdf;
 }
-<<<<<<< HEAD
 
 .zan-card__detail-row{
   margin-top: 20rpx;
 }
-=======
->>>>>>> master
