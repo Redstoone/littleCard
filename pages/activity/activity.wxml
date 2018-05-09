@@ -174,8 +174,8 @@
             <view class="aw-title">活动详情</view>
             <view class="aw-detail">{{activityDescription}}</view>
             <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
-              <image wx:for="{{activityDescImg}}" data-index="{{index}}" src=" {{item}} " mode="aspectFit" wx:key="{{index}}" bindload="imageLoad"
-                style="width:{{ activityDescImgData.width }}rpx; height:{{ activityDescImgData.height }}rpx; margin: 10rpx auto;"></image>
+              <image wx:for="{{activityDescImg}}" id="{{item.id}}" src=" {{item.url}} " mode="aspectFit" wx:key="{{index}}" bindload="imageLoad"
+                style="width:100%; height:{{ item.height }}rpx; margin: 10rpx auto;"></image>
             </view>
             <view class="ui-video" wx:if="{{activityDescVideo}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;"
               bindtap="showVideo">
