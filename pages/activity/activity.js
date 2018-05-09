@@ -139,7 +139,9 @@ Page({
           imgs = imgs.map((item, index) => {
             return {
               id: index,
-              url: item
+              url: item,
+              width: 0,
+              height: 0
             }
           });
         }
@@ -407,18 +409,19 @@ Page({
 
   imageLoad(e) {
     let imageId = e.currentTarget.id;
-    let oImgW = e.detail.width;         //图片原始宽度
-    let oImgH = e.detail.height;        //图片原始高度
-    let imgWidth = 710;  //图片设置的宽度
-    let scale = imgWidth / oImgW;       //比例计算
-    let imgHeight = oImgH * scale;      //自适应高度
+    let oImgW = e.detail.width; //图片原始宽度
+    let oImgH = e.detail.height; //图片原始高度
+    let imgWidth = 710; //图片设置的宽度
+    let scale = imgWidth / oImgW; //比例计算
+    let imgHeight = oImgH * scale; //自适应高度
 
     let images = this.data.activityDescImg;
 
     for (let i = 0; i < images.length; i++) {
       let img = images[i];
       if (img.id == imageId) {
-        images[i].height = imgHeight;``
+        images[i].width = '100%';
+        images[i].height = imgHeight;
         break;
       }
     }

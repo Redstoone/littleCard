@@ -66,7 +66,9 @@ Page({
           imgs = imgs.map((item, index) => {
             return {
               id: index,
-              url: item
+              url: item,
+              width: 0,
+              height: 0
             }
           });
         }
@@ -160,6 +162,7 @@ Page({
     for (let i = 0; i < images.length; i++) {
       let img = images[i];
       if (img.id == imageId) {
+        images[i].width = '100%';
         images[i].height = imgHeight;
         break;
       }

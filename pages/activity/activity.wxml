@@ -176,7 +176,7 @@
             <view class="aw-detail">{{activityDescription}}</view>
             <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
               <image wx:for="{{activityDescImg}}" id="{{item.id}}" src=" {{item.url}} " mode="aspectFit" wx:key="{{index}}" bindload="imageLoad"
-                style="width:100%; height:{{ item.height }}rpx; margin: 10rpx auto;"></image>
+                style="width:{{item.width}}; height:{{ item.height }}rpx; margin: 10rpx auto;"></image>
             </view>
             <view class="ui-video" wx:if="{{activityDescVideo}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;"
               bindtap="showVideo">
