@@ -480,6 +480,9 @@ page {
   display: inline-block;
   margin-left: 30rpx;
   padding: 4rpx 8rpx;
+  position: absolute;
+  right: 40rpx;
+  top: 20rpx;
 }
 
 .back {

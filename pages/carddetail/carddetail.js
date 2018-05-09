@@ -164,7 +164,7 @@ Page({
         // id: app.globalData.openid
       }, (res) => {
         if (res.data.success) {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../lookdetail/lookdetail?acId=' + this.data.id,
           })
         }

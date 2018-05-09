@@ -39,13 +39,13 @@
     <view class="clear cont_tant">
       <view class="left">
         <view class='cont_head left'>
-          <image src='{{user.headicon}}' mode="aspectFill" style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
+          <image src='{{userInfo.headicon}}' mode="aspectFill" style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
         </view>
         <view class='cont_box left'>
           <view class="cont_name fz28 c666">
-            {{user.nickname}}
+            {{userInfo.nickname}}
             <!-- <text class="fz26 c999">修改昵称</text> -->
-            <view class="btn btn-add-wx" bindtap="addWx">加微信</view>
+
           </view>
           <view class="cont_day fz24 c999">
             已坚持打卡{{mineCountDay}}天
@@ -162,6 +162,7 @@
               <view class="">
                 <image src="{{user.headicon}}" class="member-img" mode="aspectFill"></image>
                 <view class="member-name">{{user.nickname}}</view>
+                <view class="btn btn-add-wx" bindtap="addWx">加微信</view>
                 <!-- <view class="member-qun">群主</view> -->
                 <view class="member-desc">{{mainDescription}}</view>
               </view>

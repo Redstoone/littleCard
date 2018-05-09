@@ -142,7 +142,7 @@ Page({
   },
 
   bindGotoActivity() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../activity/activity?acId=' + this.data.acId,
     })
   },
