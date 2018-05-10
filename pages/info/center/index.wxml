@@ -104,8 +104,8 @@
           </view> -->
           <!-- <view class="address">128广场</view> -->
           <view class="item-remark item-weight" wx:if="{{item.cardWeight && item.cardWeight.recordWeight}}">
-            <view class="iw">体重: {{item.cardWeight.recordWeight > 0 ? '+'+item.cardWeight.recordWeight : item.cardWeight.recordWeight}}</view>
-            <view class="iw">腰围: {{item.cardWeight.recordWaist > 0 ? '+'+item.cardWeight.recordWaist : item.cardWeight.recordWaist}}</view>
+            <view class="iw">体重: {{item.cardWeight.recordWeight > 0 ? '+'+item.cardWeight.recordWeight : item.cardWeight.recordWeight}}kg</view>
+            <view class="iw">腰围: {{item.cardWeight.recordWaist > 0 ? '+'+item.cardWeight.recordWaist : item.cardWeight.recordWaist}}cm</view>
             <view class="iw">体脂率: {{item.cardWeight.recordFat > 0 ? '+'+item.cardWeight.recordFat + '%' :item.cardWeight.recordFat + '%'}}</view>
           </view>
           <view class="tool-bar">

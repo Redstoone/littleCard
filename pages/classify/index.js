@@ -14,12 +14,35 @@ Page({
     loading: false,
     loadingComplete: false
   },
-  onLoad: function () {
-    this.getActivityCategoryList();
+  // onLoad: function () {
+  // },
+
+  onLoad() {
+    this.getUserInfo()
   },
-  
+
+  getUserInfo() {
+    let _this = this
+    let us = wx.getStorageSync('userInfo')
+    if (us) {
+      _this.setData({
+        userInfo: JSON.parse(us)
+      })
+      _this.getActivityCategoryList();
+    } else {
+      app.getUserInfo(function (openid, userInfo) {
+        if (openid) {
+          _this.setData({
+            userInfo: userInfo
+          })
+          _this.getActivityCategoryList();
+        }
+      })
+    }
+  },
+
   // 切换分类
-  bindClassifyClick (e) {
+  bindClassifyClick(e) {
     let _idx = e.target.dataset.idx
     this.setData({
       page: 1,
@@ -30,7 +53,7 @@ Page({
   },
 
   // 获取活动分类
-  getActivityCategoryList () {
+  getActivityCategoryList() {
     app.postRequest('/wx/category/record', 'POST', '', (res) => {
       if (res.data.success && res.data.item.length > 0) {
         this.setData({
@@ -41,13 +64,13 @@ Page({
     })
   },
 
-  onShow() {
-    this.setData({
-      page: 1,
-      activityList: []
-    })
-    this.getActivityList(this.data.categoryId)
-  },
+  // onShow() {
+  //   this.setData({
+  //     page: 1,
+  //     activityList: []
+  //   })
+  //   this.getActivityList(this.data.categoryId)
+  // },
 
   // 获取活动列表
   getActivityList(categoryId = null) {
@@ -55,7 +78,7 @@ Page({
       page: this.data.page,
       size: this.data.size
     }
-    if (categoryId){
+    if (categoryId) {
       _data.categoryId = categoryId
     }
     app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
@@ -122,7 +145,7 @@ Page({
   },
 
   // 跳转活动详情页面
-  bindVeiwActivity (e) {
+  bindVeiwActivity(e) {
     wx.navigateTo({
       url: '../lookdetail/lookdetail?acId=' + e.currentTarget.dataset.id,
     })
@@ -130,7 +153,7 @@ Page({
 
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    
+
     this.setData({
       page: 1,
       activityList: [],

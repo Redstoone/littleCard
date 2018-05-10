@@ -78,6 +78,7 @@
 
 .zan-card__detail {
   min-height: 200rpx;
+  position: relative;
 }
 
 .c-footer {
@@ -114,5 +115,5 @@
 }
 
 .zan-card__detail-row{
-  margin-top: 20rpx;
+  /* margin-top: 20rpx; */
 }

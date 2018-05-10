@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/classify/index",
     "pages/home/index",
     "pages/newCard/newCard",
     "pages/carddetail/carddetail",
     "pages/lookdetail/lookdetail",
     "pages/activity/activity",
-    "pages/classify/index",
     "pages/info/center/index",
     "pages/info/zan/index",
     "pages/info/setting/index",
@@ -28,15 +28,15 @@
     "backgroundColor": "#ffffff",
     "borderStyle": "black",
     "list": [{
-      "pagePath": "pages/home/index",
-      "text": "首页",
-      "iconPath": "images/icon_home.png",
-      "selectedIconPath": "images/icon_home_active.png"
-    }, {
       "pagePath": "pages/classify/index",
       "text": "发现",
       "iconPath": "images/icon_classify.png",
       "selectedIconPath": "images/icon_classify_active.png"
+    }, {
+      "pagePath": "pages/home/index",
+      "text": "首页",
+      "iconPath": "images/icon_home.png",
+      "selectedIconPath": "images/icon_home_active.png"
     },{
       "pagePath": "pages/info/center/index",
       "text": "我的",

@@ -235,7 +235,7 @@ page {
 }
 .recommand-item .item-weight{
   font-size: 24rpx;
-  padding-bottom: 0;
+  padding-bottom: 10rpx;
 }
 .recommand-item .item-weight .iw{
   display: inline-block;
