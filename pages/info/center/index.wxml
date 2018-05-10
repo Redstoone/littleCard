@@ -95,9 +95,9 @@
           </view> -->
           <!-- <view class="address">128广场</view> -->
           <view class="tool-bar">
-            <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
+            <view class="tb-item" bindtap="bindCommentDetail" data-crid="{{item.id}}" data-cruid="{{userInfo.id}}">
               <i class="iconfont icon-more-o"></i> 详情</view>
-            <view class="tb-item" bindtap="bindComment" data-crid="{{item.id}}" data-cruid="{{item.recordConsumer.id}}">
+            <view class="tb-item" bindtap="bindComment" data-crid="{{item.id}}" data-cruid="{{userInfo.id}}">
               <i class="iconfont icon-comment"></i> 评论</view>
             <view class="tb-item" bindtap="bindZan" data-crid="{{item.id}}" data-idx="{{index}}">
               <i class="iconfont {{item.isZan ? 'icon-xin1' : 'icon-xin'}}"></i> 赞</view>
