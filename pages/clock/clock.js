@@ -100,9 +100,9 @@ Page({
         duration: 1500,
       })
       return false;
-    } else if (this.data.files.length >= 9) {
+    } else if (this.data.files.length > 3) {
       wx.showToast({
-        title: "最多只能上传9张图片",
+        title: "最多只能上传3张图片",
         icon: 'none',
         duration: 2000
       })

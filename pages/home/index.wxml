@@ -26,7 +26,7 @@
 					</view>
 					<view class="card-item-tips">
 						<text class="zan-icon zan-icon-contact"></text>
-						<text class="tips-item">{{item.cardClickNumber}}已打卡</text>
+						<text class="tips-item">已打卡{{item.cardClickNumber}}次</text>
 
 						<text wx:if="{{item.timeType == 20}}">时间：{{item.startDate}}至{{item.overDate}}</text>
 					</view>
