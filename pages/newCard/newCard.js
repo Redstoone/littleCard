@@ -109,7 +109,7 @@ Page({
         if (res.data.success) {
           var title = res.data.item.name;
           var id = res.data.item.id
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../carddetail/carddetail?id=' + id + "&title=" + title,
           })
         }
