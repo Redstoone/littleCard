@@ -105,10 +105,17 @@ page {
   border-bottom: 1rpx solid #eeeeee;
   padding: 20rpx 30rpx;
   background: #ffffff;
+  padding-left: 130rpx;
+  position: relative;
 }
 
 .set {
   line-height: 98rpx
+}
+.cont_tant .cont_head{
+  position: absolute;
+  left: 30rpx;
+  top: 20rpx;
 }
 
 .cont_title {
@@ -118,7 +125,8 @@ page {
 }
 
 .cont_box {
-  margin-left: 20rpx
+  margin-left: 20rpx;
+  min-height: 100rpx;
 }
 
 .cont_day {
@@ -312,6 +320,7 @@ page {
 
 .member-item .member-name {
   vertical-align: middle;
+  font-size: 28rpx !important;
 }
 
 .member-item .mi-name {
@@ -328,7 +337,7 @@ page {
 }
 
 .member-item .member-desc {
-  margin-top: 20rpx;
+  margin-top: 15rpx;
 }
 
 .hr {
@@ -369,7 +378,7 @@ page {
 }
 
 .activity-room {
-  height: calc(100% - 120rpx);
+  height: calc(100% - 100rpx);
   overflow-y: auto;
 }
 
@@ -472,14 +481,14 @@ page {
 
 .btn-add-wx {
   font-size: 24rpx;
-  line-height: 28rpx;
-  color: #fff;
+  line-height: 24rpx;
+  color: #fff;  
   background-color: #1dafaa;
   border-radius: 4rpx;
   text-align: center;
   display: inline-block;
   margin-left: 30rpx;
-  padding: 4rpx 8rpx;
+  padding: 6rpx 8rpx;
   position: absolute;
   right: 40rpx;
   top: 20rpx;

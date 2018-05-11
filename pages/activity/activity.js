@@ -164,15 +164,15 @@ Page({
           hasNotstart: new Date(activity.startTime) - new Date() > 0 ? true : false,
         })
         that.countDown()
-        // app.postRequest('/wx/consumer/record', 'POST', {
-        //   consumerId: activity.consumerId
-        // }, (ret) => {
-        //   if (ret.data.success) {
-        //     that.setData({
-        //       user: ret.data.item
-        //     })
-        //   }
-        // })
+        app.postRequest('/wx/consumer/record', 'POST', {
+          consumerId: activity.consumerId
+        }, (ret) => {
+          if (ret.data.success) {
+            that.setData({
+              user: ret.data.item
+            })
+          }
+        })
       }
     })
     this.getDateList();
