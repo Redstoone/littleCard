@@ -122,9 +122,23 @@ Page({
   },
 
   // 跳转活动详情页面
+  // 第二次打开无需进入打卡详情页直接进入打卡页面
   bindVeiwActivity (e) {
-    wx.navigateTo({
-      url: '../lookdetail/lookdetail?acId=' + e.currentTarget.dataset.id,
+    let acId = e.currentTarget.dataset.id;
+    let that = this;
+    app.postRequest('/wx/activity/member/hasJoin', 'POST', {
+      activityId: acId,
+      consumerId: app.globalData.openid
+    }, (res) => {
+      if (res.data.success) {
+        wx.navigateTo({
+          url: '../activity/activity?acId=' + acId,
+        })
+      } else {
+        wx.navigateTo({
+          url: '../lookdetail/lookdetail?acId=' + acId,
+        })
+      }
     })
   },
 
