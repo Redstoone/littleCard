@@ -36,20 +36,18 @@
   </view>
 
   <view class="">
-    <view class="clear cont_tant">
-      <view class="left">
-        <view class='cont_head left'>
-          <image src='{{userInfo.headicon}}' mode="aspectFill" style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
-        </view>
-        <view class='cont_box left'>
-          <view class="cont_name fz28 c666">
-            {{userInfo.nickname}}
-            <!-- <text class="fz26 c999">修改昵称</text> -->
+    <view class="cont_tant">
+      <view class='cont_head'>
+        <image src='{{userInfo.headicon}}' mode="aspectFill" style='width:100rpx;height:100rpx;background:#999999;border-radius: 50%'></image>
+      </view>
+      <view class='cont_box'>
+        <view class="cont_name fz28 c666">
+          {{userInfo.nickname}}
+          <!-- <text class="fz26 c999">修改昵称</text> -->
 
-          </view>
-          <view class="cont_day fz24 c999">
-            已坚持打卡{{mineCountDay}}天
-          </view>
+        </view>
+        <view class="cont_day fz24 c999">
+          已坚持打卡{{mineCountDay}}天
         </view>
       </view>
       <!-- <view class="right fz26 set c666" bindtap='set'>
@@ -156,38 +154,36 @@
         <view class="no-recommand" wx:else>暂无打卡日记</view>
       </view>
       <view class="tab-panel" wx:elif="{{selectedId == 1}}">
-        <view class="">
-          <view class="member-list">
-            <view class="member-item clear">
-              <view class="">
-                <image src="{{user.headicon}}" class="member-img" mode="aspectFill"></image>
-                <view class="member-name">{{user.nickname}}</view>
-                <view class="btn btn-add-wx" bindtap="addWx">加微信</view>
-                <!-- <view class="member-qun">群主</view> -->
-                <view class="member-desc">{{mainDescription}}</view>
-              </view>
-              <!-- <view class="right join-time addwx">加Ta微信</view> -->
+        <view class="cont_tant">
+            <view class="cont_head">
+<image src="{{user.headicon}}" mode="aspectFill" style="width:50px;height:50px;background:#999999;border-radius: 50%"></image>
             </view>
-          </view>
+            <view class="cont_box">
+              <view class="cont_name fz28 c666">{{user.nickname}}</view>
+              <view class="btn btn-add-wx" bindtap="addWx">加微信</view>
+              <!-- <view class="member-qun">群主</view> -->
+              <view class="cont_day fz24 c999">{{mainDescription}}</view>
+            </view>
+            <!-- <view class="right join-time addwx">加Ta微信</view> -->
+        </view>
 
-          <view class="hr"></view>
-          <view class="activity-wrap">
-            <view class="aw-title">活动详情</view>
-            <view class="aw-detail">{{activityDescription}}</view>
-            <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
-              <image wx:for="{{activityDescImg}}" id="{{item.id}}" src=" {{item.url}} " mode="aspectFit" wx:key="{{index}}" bindload="imageLoad"
-                style="width:{{item.width}}; height:{{ item.height }}rpx; margin: 10rpx auto;"></image>
-            </view>
-            <view class="ui-video" wx:if="{{activityDescVideo}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;"
-              bindtap="showVideo">
-              <image wx:if="{{!isPlay}}" mode="aspectFill" src="{{activityDescVideo +'?vframe/png/offset/1'}}" style="width:100%; height:100%; margin: 0 auto;"></image>
-              <image wx:if="{{!isPlay}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAArlBMVEXX19fQ0NDW1tb////T09PS0tLW1tYAAADX19fR0dHe3t7i4uL////T09PT09PZ2dn////W1tbT09Po6Ojs7Oz////w8PD////////i4uLg4ODp6enl5eXf39/////////////29vb19fXz8/Pq6urf39/////////g4ODd3d3////////////////////5+fn////////////////////z8/P////////5+fn7+/tADHeGAAAAN3RSTlNNLEPbPzhHAE4xYW/+Oz1Q7Eo1krH63jSzeGubgmfEZwj889KfbPQjale4Fz5G0NwsnaCBfr8E+12dhgAAAjNJREFUSMel1ml7ojAQAOBJIDTBDSCHQMH7aLWHvXyG/v8/trq7LMKAVp2v8DIkmUwCdyTiz8TwIsTIM5LPmD5vkvh9hcUgDPI0zYNwUODqPT5JXl5xltlcKaEdRwuluJ3N8PWlkzyMcL70lWnB/7BM5S/nOHpoJ2OcDZnuS6iF7Gs2nOG4jSQYKAEVqBAIFWBCyMQobFZlaGZidmFM6mTiFVzJUlAjFS+8SY0YhSNcOBGucArjmCTfnAhi+HdSkTHaighilI3jkjxhxiScDckyfPpHRlNm/YRYbDr6S55xKI6F5LzDiCE+/yHGgNU/tl6LjhViA+NA3vBRH79guQZmwmkzUj/i2558TP0+HIXTwxC3a9WWqO9PP/YkWqjaQ7OHruth7pvUSLWI7iBG24QGWTK9wLn0gSDTxhi+Cm41yb1pqWGEqeJNY/HiCzYDBZSAFGaIO4vsBjXYgBG2EpBc9fBXT1myTkIDvEC0EpDgWzsMTV4zIvAgynU7OSTy02Lr1oaq8wgwdboISM12jQl1UjxBZF/ZHqalqEjnj0lHZzh3fZCNH+sa/j7FeouBMEtQDb9jkqXpB2WhkUluW8qlo+QcF1ofAFnK1oKxWY6eXa4iKRhSlk66egwxNMsUtCxp8duIq/sqBSl+usWAZ2G/Kke6xehGlqBFlYJuZNIuSJB2QZoSCdKULm59VzTYy9v45YfF5UfSFQffDcdrGZszh/jtV4XzF5KLrz23Xq6uuML9Bn/rUTH81g3uAAAAAElFTkSuQmCC"
-                class="icon"></image>
-            </view>
-            <view class="aw-video" wx:if="{{isPlay}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;">
-              <video class="previewVideo" id="myVideo" src="{{activityDescVideo}}" poster="{{activityDescVideo +'?vframe/png/offset/1'}}"
-                controls></video>
-            </view>
+        <view class="hr"></view>
+        <view class="activity-wrap">
+          <view class="aw-title">活动详情</view>
+          <view class="aw-detail">{{activityDescription}}</view>
+          <view class="aw-img" wx:if="{{activityDescImg.length > 0}}">
+            <image wx:for="{{activityDescImg}}" id="{{item.id}}" src=" {{item.url}} " mode="aspectFit" wx:key="{{index}}" bindload="imageLoad"
+              style="width:{{item.width}}; height:{{ item.height }}rpx; margin: 10rpx auto;"></image>
+          </view>
+          <view class="ui-video" wx:if="{{activityDescVideo}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;"
+            bindtap="showVideo">
+            <image wx:if="{{!isPlay}}" mode="aspectFill" src="{{activityDescVideo +'?vframe/png/offset/1'}}" style="width:100%; height:100%; margin: 0 auto;"></image>
+            <image wx:if="{{!isPlay}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAArlBMVEXX19fQ0NDW1tb////T09PS0tLW1tYAAADX19fR0dHe3t7i4uL////T09PT09PZ2dn////W1tbT09Po6Ojs7Oz////w8PD////////i4uLg4ODp6enl5eXf39/////////////29vb19fXz8/Pq6urf39/////////g4ODd3d3////////////////////5+fn////////////////////z8/P////////5+fn7+/tADHeGAAAAN3RSTlNNLEPbPzhHAE4xYW/+Oz1Q7Eo1krH63jSzeGubgmfEZwj889KfbPQjale4Fz5G0NwsnaCBfr8E+12dhgAAAjNJREFUSMel1ml7ojAQAOBJIDTBDSCHQMH7aLWHvXyG/v8/trq7LMKAVp2v8DIkmUwCdyTiz8TwIsTIM5LPmD5vkvh9hcUgDPI0zYNwUODqPT5JXl5xltlcKaEdRwuluJ3N8PWlkzyMcL70lWnB/7BM5S/nOHpoJ2OcDZnuS6iF7Gs2nOG4jSQYKAEVqBAIFWBCyMQobFZlaGZidmFM6mTiFVzJUlAjFS+8SY0YhSNcOBGucArjmCTfnAhi+HdSkTHaighilI3jkjxhxiScDckyfPpHRlNm/YRYbDr6S55xKI6F5LzDiCE+/yHGgNU/tl6LjhViA+NA3vBRH79guQZmwmkzUj/i2558TP0+HIXTwxC3a9WWqO9PP/YkWqjaQ7OHruth7pvUSLWI7iBG24QGWTK9wLn0gSDTxhi+Cm41yb1pqWGEqeJNY/HiCzYDBZSAFGaIO4vsBjXYgBG2EpBc9fBXT1myTkIDvEC0EpDgWzsMTV4zIvAgynU7OSTy02Lr1oaq8wgwdboISM12jQl1UjxBZF/ZHqalqEjnj0lHZzh3fZCNH+sa/j7FeouBMEtQDb9jkqXpB2WhkUluW8qlo+QcF1ofAFnK1oKxWY6eXa4iKRhSlk66egwxNMsUtCxp8duIq/sqBSl+usWAZ2G/Kke6xehGlqBFlYJuZNIuSJB2QZoSCdKULm59VzTYy9v45YfF5UfSFQffDcdrGZszh/jtV4XzF5KLrz23Xq6uuML9Bn/rUTH81g3uAAAAAElFTkSuQmCC"
+              class="icon"></image>
+          </view>
+          <view class="aw-video" wx:if="{{isPlay}}" style="width:{{activityDescImgData.width }}rpx; height:400rpx; margin: 20rpx auto;">
+            <video class="previewVideo" id="myVideo" src="{{activityDescVideo}}" poster="{{activityDescVideo +'?vframe/png/offset/1'}}"
+              controls></video>
           </view>
         </view>
       </view>

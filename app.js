@@ -11,11 +11,13 @@ App({
         wx.getUserInfo({
           lang: 'zh_CN',
           success: function (res) {
+            // console.log(res)
             _this.globalData.userInfo = res.userInfo
             _this.getOpenId(e.code, cb)
             // wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
             // typeof cb == "function" && cb(_this.globalData.userInfo)
           }, fail: function(res) {
+            // console.log(res)
             wx.showModal({
               title: '温馨提示',
               content: '若不授权登录，则无法使用该小程序；点击授权，勾选‘用户信息’方可继续使用；或者，在微信[发现]－[小程序]，删除该小程序，重新搜索该小程序，方可使用。',
