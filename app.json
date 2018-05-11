@@ -29,7 +29,7 @@
     "borderStyle": "black",
     "list": [{
       "pagePath": "pages/classify/index",
-      "text": "发现",
+      "text": "打卡",
       "iconPath": "images/icon_classify.png",
       "selectedIconPath": "images/icon_classify_active.png"
     }, {
