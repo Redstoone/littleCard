@@ -67,7 +67,14 @@ Page({
     })
     if (!this.data.title) {
       wx.showToast({
-        title: '发表日记不能为空',
+        title: '发表日记内容不能为空',
+        icon: 'none',
+        duration: 1500,
+      })
+      return false;
+    } else if (this.data.title.length > 250) {
+      wx.showToast({
+        title: '发表日记内容长度不能超过250个字符',
         icon: 'none',
         duration: 1500,
       })
