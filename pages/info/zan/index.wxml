@@ -11,7 +11,8 @@
       </view>
       <view class="right">
         <image class="infoimg" src='{{item.recordImg}}' mode="aspectFill" wx:if="{{item.recordImg}}"></image>
-        <text class="infoimg info-text" wx:if="{{!item.recordImg && item.cardRecord.recordDescription}}">{{item.cardRecord.recordDescription}}</text>
+        <text class="infoimg info-text" wx:elif="{{!item.recordImg && item.cardRecord.recordDescription}}">{{item.cardRecord.recordDescription}}</text>
+        <view class="infoimg" wx:else></view>
       </view>
     </view>
     <view class="loading" wx:if="{{loading}}">正在加载中...</view>

@@ -115,6 +115,10 @@ Page({
     })
   },
   onLoad: function (e) {
+    wx.showLoading({
+      title: '加载中',
+    })
+
     this.setData({
       acId: e.acId
     })
@@ -176,6 +180,7 @@ Page({
       }
     })
     this.getDateList();
+    wx.hideLoading();
   },
 
   getUserInfo() {

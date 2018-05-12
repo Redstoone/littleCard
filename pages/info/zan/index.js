@@ -10,6 +10,9 @@ Page({
   },
 
   onLoad () {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getZanList();
     this.setData({
       userInfo: app.globalData.userInfo
@@ -26,7 +29,7 @@ Page({
 
       _zanList = _zanList.map((item, index) => {
         let _item = item
-        if (_item.cardRecord.recordDescImg){
+        if (_item.cardRecord && _item.cardRecord.recordDescImg) {
           _item.recordImg = _item.cardRecord.recordDescImg.split(',')[0]
         }
         return _item
@@ -39,6 +42,7 @@ Page({
           loadingComplete: true,
         })
       }
+      wx.hideLoading()
     })
   },
 

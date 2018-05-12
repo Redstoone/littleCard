@@ -13,6 +13,9 @@ Page({
   },
 
   onLoad() {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getUserInfo();
   },
 
@@ -104,6 +107,8 @@ Page({
           loadingComplete: true,
         })
       }
+
+      wx.hideLoading()
     })
 
   },

@@ -19,6 +19,10 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    })
+
     this.setData({
       acId: options.acId
     })
@@ -93,6 +97,8 @@ Page({
             })
           }
         })
+
+        wx.hideLoading();
       }
     })
     this.getHasJon(acid)

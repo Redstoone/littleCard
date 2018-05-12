@@ -7,6 +7,9 @@ Page({
   },
 
   onLoad() {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getCommandList()
   },
 
@@ -25,6 +28,8 @@ Page({
         recommand: _recommand,
         user: res.data.user
       })
+
+      wx.hideLoading()
     })
   }
 })

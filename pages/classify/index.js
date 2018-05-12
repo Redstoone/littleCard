@@ -15,6 +15,9 @@ Page({
     loadingComplete: false
   },
   onLoad: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getActivityCategoryList();
   },
 
@@ -77,6 +80,7 @@ Page({
         this.setData({
           activityList: cardList
         })
+        wx.hideLoading()
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
       }

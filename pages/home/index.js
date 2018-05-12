@@ -31,6 +31,9 @@ Page({
     that.getUserInfo()
   },
   onLoad() {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getUserInfo()
   },
 
@@ -41,6 +44,8 @@ Page({
       _this.setData({
         userInfo: JSON.parse(us)
       })
+      _this.getActivity()
+      _this.getCardRecord()
     } else {
       app.getUserInfo(function (openid, userInfo) {
         if (openid) {
@@ -116,7 +121,8 @@ Page({
           loadingComplete: true,
         })
       }
-
+      
+      wx.hideLoading()
       wx.hideNavigationBarLoading();
       wx.stopPullDownRefresh();
     })

@@ -14,6 +14,9 @@ Page({
   },
 
   onLoad(options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.setData({
       crid: options.crid,
       cruid: options.cruid
@@ -53,6 +56,7 @@ Page({
       this.setData({
         recommand: _recommand,
       })
+      wx.hideLoading();
     })
   },
 
