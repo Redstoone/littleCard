@@ -65,6 +65,8 @@ Page({
           if (_item.timeType == 20) {
             _item.startDate = _item.startTime.substring(5, 10);
             _item.overDate = _item.overTime.substring(5, 10);
+            _item.isStart = new Date() < new Date(_item.overTime) ? true : false;
+            _item.isOver = new Date() > new Date(_item.overTime) ? true : false;
           }
           return _item
         })

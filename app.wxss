@@ -471,3 +471,10 @@ page {
 .video-record{
   padding-left: 90rpx;
 }
+
+.time-over {
+  background-color: #888;
+  color: #fff;
+  border-radius: 8rpx;
+  padding: 2rpx 10rpx;
+}
