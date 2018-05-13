@@ -9,7 +9,9 @@ Page({
     page: 1,
     size: 5,
     loading: false,
-    loadingComplete: false
+    loadingComplete: false,
+    isPlay: false,
+    videoSrc: null
   },
 
   onLoad() {
@@ -207,6 +209,57 @@ Page({
     wx.previewImage({
       current: current,
       urls: this.data.recommand[idx].imgList
+    })
+  },
+
+  videoClose() { 
+    this.setData({
+      isPlay: false
+    })
+    this.videoCtx.pause();
+    this.videoCtx.seek(0);
+    this.videoCtx.exitFullScreen();
+  },
+
+  onReady(e) {
+    this.videoCtx = wx.createVideoContext('prewVideo')
+  },
+
+  // 显示视频
+  showVideo(e) {
+    let videoSrc = e.currentTarget.dataset.src;
+    this.setData({
+      isPlay: true,
+      videoSrc: videoSrc
+    })
+    this.videoCtx.seek(0);
+    this.videoCtx.play();
+    this.videoCtx.requestFullScreen();
+  },
+
+
+  // 视屏全屏
+  bindVideoScreenChange(e) {
+    let status = e.detail.fullScreen;
+    let _isPlay = false;
+    if (status) {
+      _isPlay = true
+    } else {
+      this.videoCtx.pause();
+    }
+    this.setData({
+      isPlay: _isPlay
+    });
+  },
+
+  videoImageOnLoad(ev) {
+    var idx = ev.target.dataset.idx;
+    this.data.recommand[idx].videoImg = {
+      w: 480,
+      h: ev.detail.height * 480 / ev.detail.width
+    }
+    this.setData({
+      recommand: this.data.recommand
     })
   }
 })

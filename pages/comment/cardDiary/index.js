@@ -144,8 +144,8 @@ Page({
 
   imageOnLoad(ev) {
     this.setData({
-      imgWidth: ev.detail.width/2,
-      imgHeight: ev.detail.height/2
+      imgWidth: 480,
+      imgHeight: ev.detail.height * 480 / ev.detail.width
     })
   }
 })
