@@ -41,7 +41,9 @@ Page({
     hasCardRecord: false,
     mineCountDay: 0,
     hasNotstart: false,
-    isAddWx: false
+    isAddWx: false,
+    isPlay: false,
+    videoSrc: null
   },
   changeTab(e) {
     this.setData({
@@ -115,6 +117,10 @@ Page({
     })
   },
   onLoad: function (e) {
+    wx.showLoading({
+      title: '加载中',
+    })
+
     this.setData({
       acId: e.acId
     })
@@ -176,6 +182,7 @@ Page({
       }
     })
     this.getDateList();
+    wx.hideLoading();
   },
 
   getUserInfo() {
@@ -539,6 +546,58 @@ Page({
     wx.previewImage({
       current: current,
       urls: this.data.recommand[idx].imgList
+    })
+  },
+
+  // 关闭视频
+  videoClose() {
+    this.setData({
+      isPlay: false
+    })
+    this.videoCtx.pause();
+    this.videoCtx.seek(0);
+    this.videoCtx.exitFullScreen();
+  },
+
+  onReady(e) {
+    this.videoCtx = wx.createVideoContext('prewVideo')
+  },
+
+  // 显示视频
+  showVideo(e) {
+    let videoSrc = e.currentTarget.dataset.src;
+    this.setData({
+      isPlay: true,
+      videoSrc: videoSrc
+    })
+    this.videoCtx.seek(0);
+    this.videoCtx.play();
+    this.videoCtx.requestFullScreen();
+  },
+
+
+  // 视屏全屏
+  bindVideoScreenChange(e) {
+    let status = e.detail.fullScreen;
+    let _isPlay = false;
+    if (status) {
+      _isPlay = true
+    } else {
+      this.videoCtx.pause();
+    }
+    this.setData({
+      isPlay: _isPlay
+    });
+  },
+
+  videoImageOnLoad(ev) {
+    var idx = ev.target.dataset.idx;
+    this.data.recommand[idx].videoImg = {
+      w: 480,
+      h: ev.detail.height * 480 / ev.detail.width
+    }
+    this.setData({
+      recommand: this.data.recommand
     })
   }
 })

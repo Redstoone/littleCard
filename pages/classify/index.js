@@ -15,11 +15,14 @@ Page({
     loadingComplete: false
   },
   onLoad: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getActivityCategoryList();
   },
-  
+
   // 切换分类
-  bindClassifyClick (e) {
+  bindClassifyClick(e) {
     let _idx = e.target.dataset.idx
     this.setData({
       page: 1,
@@ -30,7 +33,7 @@ Page({
   },
 
   // 获取活动分类
-  getActivityCategoryList () {
+  getActivityCategoryList() {
     app.postRequest('/wx/category/record', 'POST', '', (res) => {
       if (res.data.success && res.data.item.length > 0) {
         this.setData({
@@ -44,7 +47,9 @@ Page({
   onShow() {
     this.setData({
       page: 1,
-      activityList: []
+      activityList: [],
+      loading: false,
+      loadingComplete: false
     })
     this.getActivityList(this.data.categoryId)
   },
@@ -55,7 +60,7 @@ Page({
       page: this.data.page,
       size: this.data.size
     }
-    if (categoryId){
+    if (categoryId) {
       _data.categoryId = categoryId
     }
     app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
@@ -66,6 +71,8 @@ Page({
           if (_item.timeType == 20) {
             _item.startDate = _item.startTime.substring(5, 10);
             _item.overDate = _item.overTime.substring(5, 10);
+            _item.isStart = new Date() < new Date(_item.overTime) ? true : false;
+            _item.isOver = new Date() > new Date(_item.overTime) ? true : false;
           }
           return _item
         })
@@ -73,6 +80,7 @@ Page({
         this.setData({
           activityList: cardList
         })
+        wx.hideLoading()
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
       }
@@ -104,6 +112,8 @@ Page({
             if (_item.timeType == 20) {
               _item.startDate = _item.startTime.substring(5, 10);
               _item.overDate = _item.overTime.substring(5, 10);
+              _item.isStart = new Date() < new Date(_item.overTime) ? true : false;
+              _item.isOver = new Date() > new Date(_item.overTime) ? true : false;
             }
             return _item
           })
@@ -123,7 +133,7 @@ Page({
 
   // 跳转活动详情页面
   // 第二次打开无需进入打卡详情页直接进入打卡页面
-  bindVeiwActivity (e) {
+  bindVeiwActivity(e) {
     let acId = e.currentTarget.dataset.id;
     let that = this;
     app.postRequest('/wx/activity/member/hasJoin', 'POST', {
@@ -144,7 +154,7 @@ Page({
 
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    
+
     this.setData({
       page: 1,
       activityList: [],

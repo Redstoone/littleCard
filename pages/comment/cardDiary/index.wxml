@@ -27,7 +27,7 @@
           <image wx:for="{{recommand.imgList}}" wx:key="{{index}}" src="{{item}}" data-src="{{item}}" mode="aspectFill" bindtap="previewImage"></image>
         </view>
 
-        <view wx:if="{{recommand.recordDescVideo.length}}">
+        <view wx:if="{{recommand.recordDescVideo && recommand.recordDescVideo.length > 0}}">
           <view class="video-poster video-record">
             <view class="video-ui" style="width:{{imgWidth}}rpx; height:{{imgHeight}}rpx; margin: 0;position: relative;" bindtap="showVideo"
               data-src="{{recommand.recordDescVideo}}">
@@ -67,4 +67,4 @@
   </view>
 </view>
 
-<video id="prewVideo" autoplay="true" src="{{camvd}}" muted="{{!playVideo}}" direction="0" bindfullscreenchange="bindVideoScreenChange"></video>
+<video id="prewVideo" autoplay="true" src="{{camvd}}" direction="0" bindfullscreenchange="bindVideoScreenChange"></video>

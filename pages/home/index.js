@@ -10,7 +10,9 @@ Page({
     page: 1,
     size: 5,
     loading: false,
-    loadingComplete: false
+    loadingComplete: false,
+    isPlay: false,
+    videoSrc: null
   },
   // onShow: function () {
   //   this.setData({
@@ -31,6 +33,9 @@ Page({
     that.getUserInfo()
   },
   onLoad() {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getUserInfo()
   },
 
@@ -41,6 +46,8 @@ Page({
       _this.setData({
         userInfo: JSON.parse(us)
       })
+      _this.getActivity()
+      _this.getCardRecord()
     } else {
       app.getUserInfo(function (openid, userInfo) {
         if (openid) {
@@ -65,6 +72,8 @@ Page({
           if (_item.timeType == 20) {
             _item.startDate = _item.startTime.substring(5, 10);
             _item.overDate = _item.overTime.substring(5, 10);
+            _item.isStart = new Date() < new Date(_item.overTime) ? true : false;
+            _item.isOver = new Date() > new Date(_item.overTime) ? true : false;
           }
           return _item
         })
@@ -115,6 +124,7 @@ Page({
         })
       }
 
+      wx.hideLoading()
       wx.hideNavigationBarLoading();
       wx.stopPullDownRefresh();
     })
@@ -183,7 +193,6 @@ Page({
     }
   },
 
-
   // 图片预览
   previewImage(e) {
     var current = e.target.dataset.src;
@@ -191,6 +200,57 @@ Page({
     wx.previewImage({
       current: current,
       urls: this.data.recommand[idx].imgList
+    })
+  },
+
+  // 关闭视频
+  videoClose() {
+    this.setData({
+      isPlay: false
+    })
+    this.videoCtx.pause();
+    this.videoCtx.seek(0);
+    this.videoCtx.exitFullScreen();
+  },
+
+  onReady(e) {
+    this.videoCtx = wx.createVideoContext('prewVideo')
+  },
+
+  // 显示视频
+  showVideo(e) {
+    let videoSrc = e.currentTarget.dataset.src;
+    this.setData({
+      isPlay: true,
+      videoSrc: videoSrc
+    })
+    this.videoCtx.seek(0);
+    this.videoCtx.play();
+    this.videoCtx.requestFullScreen();
+  },
+
+  // 视屏全屏
+  bindVideoScreenChange(e) {
+    let status = e.detail.fullScreen;
+    let _isPlay = false;
+    if (status) {
+      _isPlay = true
+    } else {
+      this.videoCtx.pause();
+    }
+    this.setData({
+      isPlay: _isPlay
+    });
+  },
+
+  videoImageOnLoad(ev) {
+    var idx = ev.target.dataset.idx;
+    this.data.recommand[idx].videoImg = {
+      w: 480,
+      h: ev.detail.height * 480 / ev.detail.width
+    }
+    this.setData({
+      recommand: this.data.recommand
     })
   }
 })

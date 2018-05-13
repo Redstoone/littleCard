@@ -82,7 +82,7 @@
 .c-footer {
   position: absolute;
   bottom: 0;
-  line-height: 28rpx;
+  line-height: 32rpx;
   margin-bottom: 0;
 }
 
