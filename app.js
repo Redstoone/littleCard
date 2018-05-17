@@ -4,6 +4,7 @@ App({
     // this.getUserInfo();
   },
   getUserInfo: function (cb) {
+    console.log("-----------")
     var _this = this
       //调用登录接口
     wx.login({
@@ -26,7 +27,9 @@ App({
                         wx.openSetting({
                           success: (res) => {
                             if (res.authSetting['scope.userInfo'] == true) {
-                              this.getUserInfo();
+                              
+                            }else{
+                              _this.getUserInfo();
                             }
                           }
                         })
@@ -34,7 +37,7 @@ App({
                         wx.openSetting({
                           success: (res) => {
                             if (res.authSetting['scope.userInfo'] == true) {
-                              this.getUserInfo();
+                              _this.getUserInfo();
                             }
                           }
                         })                        
@@ -43,6 +46,8 @@ App({
                   })
                 },
               })
+            }else{
+              
             }
           }
         })
