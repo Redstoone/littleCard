@@ -51,7 +51,14 @@ App({
                 },
               })
             }else{
-              
+               wx.getUserInfo({
+                lang: 'zh_CN',
+                success: function (res) {
+                  _this.globalData.userInfo = res.userInfo
+                  _this.getOpenId(e.code, cb)
+
+              },
+            })
             }
           }
         })
