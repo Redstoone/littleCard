@@ -26,8 +26,7 @@ App({
                         wx.openSetting({
                           success: (res) => {
                             if (res.authSetting['scope.userInfo'] == true) {
-                              _this.globalData.userInfo = res.userInfo
-                              _this.getOpenId(e.code, cb)
+                              this.getUserInfo();
                             }
                           }
                         })
@@ -35,8 +34,7 @@ App({
                         wx.openSetting({
                           success: (res) => {
                             if (res.authSetting['scope.userInfo'] == true) {
-                              _this.globalData.userInfo = res.userInfo
-                              _this.getOpenId(e.code, cb)
+                              this.getUserInfo();
                             }
                           }
                         })                        
