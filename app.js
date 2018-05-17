@@ -27,16 +27,20 @@ App({
                         wx.openSetting({
                           success: (res) => {
                             if (res.authSetting['scope.userInfo'] == true) {
-                              
+                              _this.globalData.userInfo = res.userInfo
+                              _this.getOpenId(e.code, cb)                          
                             }else{
                               _this.getUserInfo();
                             }
                           }
                         })
-                      }else{
+                      } else if (res.cancel){
                         wx.openSetting({
                           success: (res) => {
                             if (res.authSetting['scope.userInfo'] == true) {
+                              _this.globalData.userInfo = res.userInfo
+                              _this.getOpenId(e.code, cb)
+                            }else{
                               _this.getUserInfo();
                             }
                           }
