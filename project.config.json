@@ -29,12 +29,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
 					"name": "打卡页面",
-					"pathName": "pages/clock/clock"
+					"pathName": "pages/clock/clock",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "授权",
+					"pathName": "pages/authorize/index",
+					"query": ""
 				}
 			]
 		}

@@ -2,10 +2,6 @@
 let utils = require("../../utils/util")
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     files: [], //多图
     isUp: false,
@@ -37,16 +33,35 @@ Page({
     isPlay: false,
     isPush: false,
     maskHidden: true,
+    userInfo: null,
+    head_img: null,
+    day: 0,
+    activeTitle: '早起',
+    monthList: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+    txtList: [
+      ['再长的路一步步也能走完，', '再短的路不迈开双腿也无法到达。'],
+      ['点滴汇聚无际，', '习惯决定未来。'],
+      ['我不怕千万人阻挡，', '只怕自己投降。'],
+      ['既然选择了远方，', '便只顾风雨兼程。'],
+      ['不堕于过往，', '不荒废远方。'],
+      ['世上没有绝望的处境，', '只有对处境绝望的人。'],
+      ['真正的失败只有一种可能，', '那就是放弃。'],
+      ['人生只有走出来的美丽，', '没有等出来的辉煌。'],
+      ['人生的烦恼，多在于想的太多，', '而做的太少。'],
+      ['最大的幸福莫过于有梦可追,', '有事可做,有人可爱。'],
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.createNewImg();
     this.setData({
-      acid: options.acId
+      acid: options.acId,
+      userInfo: app.globalData.userInfo
     })
+    this.handlePoster();
+    // this.getImageInfo(app.globalData.userInfo.headicon)
   },
 
   inputTxt(e) {
@@ -350,22 +365,39 @@ Page({
 
   // 点击生成海报按钮
   handlePoster(e) {
+    let that = this;
     wx.getSetting({ // 获取用户设置
       success(res) {
         if (!res.authSetting['scope.writePhotosAlbum']) { // 如果用户之前拒绝了授权
-          wx.openSetting({
-            success(tag) {
-              if (tag.authSetting["scope.writePhotosAlbum"]) { // 用户在设置页选择同意授权
-                wx.showLoading({
-                  title: '正在生成...',
-                })
-              }
+          wx.authorize({
+            scope: "scope.writePhotosAlbum",
+            success() {
+              console.log('授权成功')
+              wx.showLoading({
+                title: '正在生成...',
+              })
+              that.createNewImg();
+            },
+            fail() {
+              console.log('授权失败')
             }
-          });
-        } else { //  用户已经授权
+          })
+
+          // wx.openSetting({
+          //   success(tag) {
+          //     if (tag.authSetting["scope.writePhotosAlbum"]) { // 用户在设置页选择同意授权
+          //       wx.showLoading({
+          //         title: '正在生成...',
+          //       })
+          //     }
+          //     this.createNewImg();
+          //   }
+          // });
+        } else { // 用户已经授权
           wx.showLoading({
             title: '正在生成...',
           })
+          that.createNewImg();
         }
       }
     })
@@ -374,12 +406,17 @@ Page({
   createNewImg: function () {
     var that = this;
     var context = wx.createCanvasContext('mycanvas');
-    var path = "/images/poster1.jpg";
+    let num = Math.floor(Math.random() * 2 + 1);
+    var path = `/images/poster/poster${num}.jpg`;
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, 750, 1334);
     context.drawImage(path, 0, 0, 750, 732);
-    //context.draw(true);
-    //context.draw();
-    this.setMoney(context);
+    this.setBeautifulSentence(context);
     this.setName(context);
+    this.setDay(context);
+    this.setTitle(context);
+    context.drawImage('/images/qrcode.jpg', 246, 1000, 258, 258);
+    this.setTip(context);
     //绘制图片
     context.draw();
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
@@ -387,38 +424,98 @@ Page({
       wx.canvasToTempFilePath({
         canvasId: 'mycanvas',
         success: function (res) {
-          var tempFilePath = res.tempFilePath;
-          console.log(tempFilePath);
+          wx.hideLoading();
+          let tempFilePath = res.tempFilePath;
+          console.log(tempFilePath)
           that.setData({
             imagePath: tempFilePath,
             // canvasHidden:true
           });
+          // wx.saveImageToPhotosAlbum({
+          //   filePath: res.tempFilePath,
+          //   success: function (data) {
+          //     console.log(data);
+          //   },
+          //   fail: function (err) {
+          //     console.log(err);
+          //   }
+          // })
         },
         fail: function (res) {
+          wx.hideLoading();
           console.log(res);
         }
       });
-    }, 200);
+    }, 1000);
   },
 
-  //将金额绘制到canvas的固定
-  setMoney: function (context) {
-    context.setFontSize(24);
-    context.setFillStyle("#484a3d");
-    context.fillText('1231412123', 340, 190);
-    context.stroke();
-  },
-
-  //将姓名绘制到canvas的固定
-  setName: function (context) {
-    // var name = toPinyin.Pinyin.getFullChars(this.data.name);
-    context.setFontSize(20);
-    context.setFillStyle("#67695b");
+  // 将美句绘制到canvas
+  setBeautifulSentence(context) {
+    let num = Math.floor(Math.random() * 10);
+    context.setFontSize(36);
+    context.setFillStyle("#000000");
     context.save();
-    context.translate(170, 506); //必须先将旋转原点平移到文字位置
-    context.rotate(-5 * Math.PI / 180);
-    context.fillText('redstoone', 0, 0); //必须为（0,0）原点
+    context.textAlign = "center";
+    context.fillText(this.data.txtList[num][0], 375, 565); //必须为（0,0）原点
+    context.restore();
+    context.stroke();
+
+    context.setFontSize(36);
+    context.setFillStyle("#000000");
+    context.save();
+    context.textAlign = "center";
+    context.fillText(this.data.txtList[num][1], 375, 622); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
+
+  // 将头像绘制到canvas 
+  setHeadImg(context) {
+    context.arc(186, 246, 50, 0, 2 * Math.PI) //画出圆
+    // context.strokeStyle = "#ffe200";
+    context.clip(); //裁剪上面的圆形
+    context.drawImage(this.data.head_img, 136, 196, 100, 100); // 在刚刚裁剪的园上画图
+    context.draw();
+  },
+
+  // 将姓名绘制到canvas
+  setName(context) {
+    context.setFontSize(32);
+    context.setFillStyle("#656565");
+    context.save();
+    context.textAlign = "center";
+    context.fillText(this.data.userInfo.nickname, 375, 860); //必须为（0,0）原点
+    context.restore();
+    context.stroke();
+  },
+
+  setDay(context) {
+    context.setFontSize(28);
+    context.setFillStyle("#656565");
+    context.save();
+    context.textAlign = "center";
+    context.fillText(`打卡第${this.data.day}天`, 375, 900); //必须为（0,0）原点
+    context.restore();
+    context.stroke();
+  },
+
+  setTitle(context) {
+    context.setFontSize(36);
+    context.setFillStyle("#656565");
+    context.save();
+    context.textAlign = "center";
+    context.fillText(`${this.data.activeTitle}`, 375, 970); //必须为（0,0）原点
+    context.restore();
+    context.stroke();
+  },
+
+  setTip(context) {
+    context.setFontSize(24);
+    context.setFillStyle("#656565");
+    context.save();
+    context.textAlign = "center";
+    context.fillText(`长按识别小程序码`, 375, 1300); //必须为（0,0）原点
+    context.restore();
+    context.stroke();
+  }
 })
