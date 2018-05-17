@@ -39,29 +39,29 @@ Page({
         this.setData({
           classifyList: this.data.classifyList.concat(res.data.item),
         })
-        this.getActivityList()
+        this.getActivityList(this.data.categoryId)
       }
     })
   },
 
   onShow() {
-    this.setData({
-      page: 1,
-      activityList: [],
-      loading: false,
-      loadingComplete: false
-    })
-    this.getActivityList(this.data.categoryId)
+    // this.setData({
+    //   page: 1,
+    //   activityList: [],
+    //   loading: false,
+    //   loadingComplete: false
+    // })
+    // this.getActivityList(this.data.categoryId)
   },
 
   // 获取活动列表
-  getActivityList(categoryId = null) {
+  getActivityList(cId = null) {
     let _data = {
       page: this.data.page,
       size: this.data.size
     }
-    if (categoryId) {
-      _data.categoryId = categoryId
+    if (cId) {
+      _data.categoryId = cId
     }
     app.postRequest('/wx/activity/activitys', 'POST', _data, (res) => {
       if (res.data.success) {
@@ -164,6 +164,5 @@ Page({
       }],
     })
     this.getActivityCategoryList();
-    this.getActivityList(this.data.categoryId)
   },
 })

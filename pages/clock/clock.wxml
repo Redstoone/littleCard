@@ -93,3 +93,8 @@
 	</view>
 	<video class="clockVideo" id="myVideo" src="{{camvd}}" enable-danmu danmu-btn controls></video>
 </view>
+
+<view hidden="{{maskHidden}}" class="mask"></view>
+<view class="canvas-box">
+	<canvas style="width: 750px;height: 1334px;" canvas-id="mycanvas" />
+</view>

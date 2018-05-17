@@ -35,13 +35,15 @@ Page({
     acid: null,
     viewText: '对外公开',
     isPlay: false,
-    isPush: false
+    isPush: false,
+    maskHidden: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.createNewImg();
     this.setData({
       acid: options.acId
     })
@@ -195,8 +197,6 @@ Page({
         duration: 2000
       })
     }
-
-
   },
   remove(e) { //多图删除
     let index = Number(e.currentTarget.id)
@@ -214,6 +214,8 @@ Page({
     })
   },
 
+
+  // 选择上传视频
   changevd() {
     let that = this
     wx.chooseVideo({
@@ -266,6 +268,7 @@ Page({
     })
   },
 
+  // 获取地址
   getLocation: function () { //定位
     let that = this
     wx.getUserInfo({
@@ -326,5 +329,96 @@ Page({
       isPlay: true
     })
     this.videoCtx.play()
+  },
+
+  // 图片缓存本地
+  getImageInfo(url) {
+    if (typeof url === 'string') {
+      wx.getImageInfo({ // 小程序获取图片信息API
+        src: url,
+        success: function (res) {
+          this.setData({
+            head_img: res.path
+          })
+        },
+        fail(err) {
+          console.log(err)
+        }
+      })
+    }
+  },
+
+  // 点击生成海报按钮
+  handlePoster(e) {
+    wx.getSetting({ // 获取用户设置
+      success(res) {
+        if (!res.authSetting['scope.writePhotosAlbum']) { // 如果用户之前拒绝了授权
+          wx.openSetting({
+            success(tag) {
+              if (tag.authSetting["scope.writePhotosAlbum"]) { // 用户在设置页选择同意授权
+                wx.showLoading({
+                  title: '正在生成...',
+                })
+              }
+            }
+          });
+        } else { //  用户已经授权
+          wx.showLoading({
+            title: '正在生成...',
+          })
+        }
+      }
+    })
+  },
+
+  createNewImg: function () {
+    var that = this;
+    var context = wx.createCanvasContext('mycanvas');
+    var path = "/images/poster1.jpg";
+    context.drawImage(path, 0, 0, 750, 732);
+    //context.draw(true);
+    //context.draw();
+    this.setMoney(context);
+    this.setName(context);
+    //绘制图片
+    context.draw();
+    //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
+    setTimeout(function () {
+      wx.canvasToTempFilePath({
+        canvasId: 'mycanvas',
+        success: function (res) {
+          var tempFilePath = res.tempFilePath;
+          console.log(tempFilePath);
+          that.setData({
+            imagePath: tempFilePath,
+            // canvasHidden:true
+          });
+        },
+        fail: function (res) {
+          console.log(res);
+        }
+      });
+    }, 200);
+  },
+
+  //将金额绘制到canvas的固定
+  setMoney: function (context) {
+    context.setFontSize(24);
+    context.setFillStyle("#484a3d");
+    context.fillText('1231412123', 340, 190);
+    context.stroke();
+  },
+
+  //将姓名绘制到canvas的固定
+  setName: function (context) {
+    // var name = toPinyin.Pinyin.getFullChars(this.data.name);
+    context.setFontSize(20);
+    context.setFillStyle("#67695b");
+    context.save();
+    context.translate(170, 506); //必须先将旋转原点平移到文字位置
+    context.rotate(-5 * Math.PI / 180);
+    context.fillText('redstoone', 0, 0); //必须为（0,0）原点
+    context.restore();
+    context.stroke();
   },
 })
