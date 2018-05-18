@@ -51,13 +51,16 @@
       </view>
       <view class="zan-cell__ft info-ft"></view>
     </navigator>
-    <!-- <navigator class="zan-cell zan-cell--access" url="/pages/collection?type=0">
+    <view class="zan-cell zan-cell--access zan-contact">
+      <button open-type="contact" session-from="weapp" class="btn-contact">进入客服会话</button>
       <view class="zan-cell__bd c000">
-        <image class="item_img" src="../images/icon_my_04.png" />
-        <view class="text">意见反馈</view>
+        <view class="center-icon ci4">
+          <i class="iconfont icon-custom-service"></i>
+        </view>
+        <view class="text">联系客服</view>
       </view>
       <view class="zan-cell__ft info-ft"></view>
-    </navigator> -->
+    </view>
   </view>
   <view class="zan-panel" style="margin-bottom:20rpx;">
     <view class="info_title zan-font-16 c000">我的打卡日记</view>

@@ -96,6 +96,10 @@
   background-color: #6089e8;
 }
 
+.ci4 {
+  background-color: #F29A59;
+}
+
 .center-icon .iconfont {
   color: #fff;
 }
@@ -117,6 +121,22 @@
   margin-top: 0
 }
 
-.zan-panel::after{
+.zan-panel::after {
   opacity: 0;
+}
+
+.zan-contact {
+  position: relative;
+}
+
+.zan-contact .btn-contact {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
 }
