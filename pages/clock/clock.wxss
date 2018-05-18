@@ -340,7 +340,7 @@
 }
 
 .share-poster-wrap {
-  padding-top: 20%;
+  padding-top: 10px;
   box-sizing: border-box;
   position: fixed;
   width: 100%;
@@ -371,4 +371,8 @@
 .share-poster-wrap .btn-group .btn-poster{
   background-color: #1dafaa;
   color: #fff;
+}
+
+.poster-img{
+  text-align: center;
 }

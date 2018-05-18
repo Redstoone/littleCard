@@ -94,17 +94,19 @@
 	<video class="clockVideo" id="myVideo" src="{{camvd}}" enable-danmu danmu-btn controls></video>
 </view>
 
-<view hidden="{{maskHidden}}" class="mask"></view>
 <view class="share-poster-wrap" wx:if="{{showPoster}}">
-	<view class="icon">
-		<icon type="success" size="40" />
-		<view>今天打卡成功！</view>
+	<view class="poster-img">
+		<image src="{{imagePath}}" mode="aspectFit" style="width:{{imageWidht}}px;height:{{imageHeight}}px"></image>
 	</view>
 	<view class="btn-group">
-		<button class="btn btn-poster" bindtap="handlePoster">生成打卡分享海报</button>
+		<button class="btn btn-poster" bindtap="handlePoster">保存到相册</button>
 		<button class="btn" bindtap="goback">取消</button>
 	</view>
 </view>
+
+
+<view hidden="{{maskHidden}}" class="mask"></view>
+
 <view class="canvas-box">
 	<canvas style="width: 640px;height: 1040px;" canvas-id="mycanvas" />
 </view>
