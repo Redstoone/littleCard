@@ -14,7 +14,7 @@ App({
             if (!res.authSetting['scope.userInfo']) {
               wx.authorize({
                 scope: 'scope.userInfo',
-                success() {
+                success(res) {
                   _this.globalData.userInfo = res.userInfo
                   _this.getOpenId(e.code, cb)
                 },
@@ -56,7 +56,6 @@ App({
                 success: function (res) {
                   _this.globalData.userInfo = res.userInfo
                   _this.getOpenId(e.code, cb)
-
               },
             })
             }
