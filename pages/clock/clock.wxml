@@ -95,6 +95,16 @@
 </view>
 
 <view hidden="{{maskHidden}}" class="mask"></view>
+<view class="share-poster-wrap" wx:if="{{showPoster}}">
+	<view class="icon">
+		<icon type="success" size="40" />
+		<view>今天打卡成功！</view>
+	</view>
+	<view class="btn-group">
+		<button class="btn btn-poster" bindtap="handlePoster">生成打卡分享海报</button>
+		<button class="btn" bindtap="goback">取消</button>
+	</view>
+</view>
 <view class="canvas-box">
-	<canvas style="width: 750px;height: 1334px;" canvas-id="mycanvas" />
+	<canvas style="width: 640px;height: 1040px;" canvas-id="mycanvas" />
 </view>

@@ -352,7 +352,7 @@ Page({
   clickCard() { //点击打卡
     if (this.data.isClick) { // 是不已打卡
       wx.navigateTo({
-        url: '../clock/clock?acId=' + this.data.acId,
+        url: '../clock/clock?acId=' + this.data.acId + '&activityTitle=' + this.data.name + '&mineCountDay=' + this.data.mineCountDay,
       })
     }
 

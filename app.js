@@ -4,7 +4,6 @@ App({
     // this.getUserInfo();
   },
   getUserInfo: function (cb) {
-    console.log("-----------")
     var _this = this
       //调用登录接口
     wx.login({

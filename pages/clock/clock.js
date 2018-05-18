@@ -32,11 +32,12 @@ Page({
     viewText: '对外公开',
     isPlay: false,
     isPush: false,
+    showPoster: false,
     maskHidden: true,
     userInfo: null,
     head_img: null,
     day: 0,
-    activeTitle: '早起',
+    activeTitle: '',
     monthList: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
     txtList: [
       ['再长的路一步步也能走完，', '再短的路不迈开双腿也无法到达。'],
@@ -58,9 +59,11 @@ Page({
   onLoad: function (options) {
     this.setData({
       acid: options.acId,
+      activityTitle: options.activityTitle,
+      day: options.mineCountDay,
       userInfo: app.globalData.userInfo
     })
-    this.handlePoster();
+    // this.handlePoster();
     // this.getImageInfo(app.globalData.userInfo.headicon)
   },
 
@@ -76,6 +79,7 @@ Page({
   },
 
   push() { //发表日记
+    let that = this;
     if (this.data.isPush) {
       return false
     }
@@ -119,18 +123,21 @@ Page({
         recordDescVideo: this.data.camvd, //视频
         recordDescVoice: '' // 音频
       }, (res) => {
-        this.setData({
+        that.setData({
           isPush: false
         })
         if (res.data.success) {
-          wx.showToast({
-            title: '发表日记成功',
-            icon: 'success',
-            duration: 1500,
-            success: function (ret) {
-              wx.navigateBack();
-            }
-          })
+          // wx.showToast({
+          //   title: '发表日记成功',
+          //   icon: 'success',
+          //   duration: 1500,
+          //   success: function (ret) {
+              // wx.navigateBack();
+              that.setData({
+                showPoster: true
+              })
+            // }
+          // })
         } else {
           wx.showToast({
             title: '今日已打卡',
@@ -365,9 +372,13 @@ Page({
 
   // 点击生成海报按钮
   handlePoster(e) {
+    this.setData({
+      showPoster: false
+    })
     let that = this;
     wx.getSetting({ // 获取用户设置
       success(res) {
+        console.log('1221')
         if (!res.authSetting['scope.writePhotosAlbum']) { // 如果用户之前拒绝了授权
           wx.authorize({
             scope: "scope.writePhotosAlbum",
@@ -394,6 +405,7 @@ Page({
           //   }
           // });
         } else { // 用户已经授权
+          console.log('asfaf')
           wx.showLoading({
             title: '正在生成...',
           })
@@ -406,16 +418,16 @@ Page({
   createNewImg: function () {
     var that = this;
     var context = wx.createCanvasContext('mycanvas');
-    let num = Math.floor(Math.random() * 2 + 1);
+    let num = Math.floor(Math.random() * 5 + 1);
     var path = `/images/poster/poster${num}.jpg`;
     context.fillStyle = "#ffffff";
-    context.fillRect(0, 0, 750, 1334);
-    context.drawImage(path, 0, 0, 750, 732);
+    context.fillRect(0, 0, 640, 1040);
+    context.drawImage(path, 0, 0, 640, 630);
     this.setBeautifulSentence(context);
     this.setName(context);
     this.setDay(context);
     this.setTitle(context);
-    context.drawImage('/images/qrcode.jpg', 246, 1000, 258, 258);
+    context.drawImage('/images/qrcode.jpg', 239, 817, 162, 162);
     this.setTip(context);
     //绘制图片
     context.draw();
@@ -453,18 +465,15 @@ Page({
   setBeautifulSentence(context) {
     let num = Math.floor(Math.random() * 10);
     context.setFontSize(36);
-    context.setFillStyle("#000000");
+    if (num >= 4) {
+      context.setFillStyle("#ffffff");
+    } else {
+      context.setFillStyle("#000000");
+    }
     context.save();
     context.textAlign = "center";
-    context.fillText(this.data.txtList[num][0], 375, 565); //必须为（0,0）原点
-    context.restore();
-    context.stroke();
-
-    context.setFontSize(36);
-    context.setFillStyle("#000000");
-    context.save();
-    context.textAlign = "center";
-    context.fillText(this.data.txtList[num][1], 375, 622); //必须为（0,0）原点
+    context.fillText(this.data.txtList[num][0], 320, 475);
+    context.fillText(this.data.txtList[num][1], 320, 522);
     context.restore();
     context.stroke();
   },
@@ -484,7 +493,7 @@ Page({
     context.setFillStyle("#656565");
     context.save();
     context.textAlign = "center";
-    context.fillText(this.data.userInfo.nickname, 375, 860); //必须为（0,0）原点
+    context.fillText(this.data.userInfo.nickname, 320, 687); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
@@ -494,7 +503,7 @@ Page({
     context.setFillStyle("#656565");
     context.save();
     context.textAlign = "center";
-    context.fillText(`打卡第${this.data.day}天`, 375, 900); //必须为（0,0）原点
+    context.fillText(`打卡第${this.data.day}天`, 320, 722); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
@@ -504,7 +513,7 @@ Page({
     context.setFillStyle("#656565");
     context.save();
     context.textAlign = "center";
-    context.fillText(`${this.data.activeTitle}`, 375, 970); //必须为（0,0）原点
+    context.fillText(`${this.data.activeTitle}`, 320, 756); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
@@ -514,8 +523,12 @@ Page({
     context.setFillStyle("#656565");
     context.save();
     context.textAlign = "center";
-    context.fillText(`长按识别小程序码`, 375, 1300); //必须为（0,0）原点
+    context.fillText(`长按识别小程序码`, 320, 980); //必须为（0,0）原点
     context.restore();
     context.stroke();
+  },
+
+  goback() {
+    wx.navigateBack();
   }
 })
