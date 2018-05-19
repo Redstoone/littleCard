@@ -13,7 +13,8 @@
     "pages/cardComment/index",
     "pages/comment/cardDiary/index",
     "pages/comment/create/index",
-    "pages/clock/clock"
+    "pages/clock/clock",
+    "pages/authorize/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

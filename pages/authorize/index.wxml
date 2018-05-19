@@ -1,0 +1,4 @@
+<view class='warp'>
+  <!-- <button open-type="getUserInfo" hover-class='none' bindgetuserinfo="getUserInfoFun">.</button> -->
+  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+</view>

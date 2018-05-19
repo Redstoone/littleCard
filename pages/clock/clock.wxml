@@ -93,3 +93,20 @@
 	</view>
 	<video class="clockVideo" id="myVideo" src="{{camvd}}" enable-danmu danmu-btn controls></video>
 </view>
+
+<cover-view class="share-poster-wrap" wx:if="{{showPoster}}">
+	<cover-view class="poster-img">
+		<cover-image class="post-img" src="{{imagePath}}" mode="aspectFit" style="width:{{imageWidht}}px;height:{{imageHeight}}px"></cover-image>
+	</cover-view>
+	<cover-view class="btn-group">
+		<cover-view class="btn btn-poster" bindtap="handlePoster">保存到相册</cover-view>
+		<cover-view class="btn" bindtap="goback">取消</cover-view>
+	</cover-view>
+</cover-view>
+
+
+<view hidden="{{maskHidden}}" class="mask"></view>
+
+<view class="canvas-box">
+	<canvas style="width: 640px;height: 1040px;" canvas-id="mycanvas" />
+</view>
