@@ -78,7 +78,7 @@ Page({
     });
     // this.handlePoster();
     // this.getImageInfo(app.globalData.userInfo.headicon)
-    this.createNewImg();
+    // this.createNewImg();
   },
 
   inputTxt(e) {
@@ -153,9 +153,9 @@ Page({
           // that.setData({
           //   showPoster: true
           // })
-          that.createNewImg();
           // }
           // })
+          that.createNewImg();
         } else {
           wx.showToast({
             title: '今日已打卡',
@@ -403,18 +403,22 @@ Page({
               wx.saveImageToPhotosAlbum({
                 filePath: that.data.imagePath,
                 success: function (data) {
-                  wx.showToast({
-                    title: '图片已保存',
-                    icon: 'none'
-                  })
+                  // wx.showToast({
+                  //   title: '图片已保存',
+                  //   icon: 'none'
+                  // })
+                  console.log('保存图片成功')
                 },
                 fail: function (err) {
-                  console.log(err);
+                  wx.showToast({
+                    title: '保存图片失败',
+                    icon: 'none'
+                  })
                 }
               })
             },
             fail() {
-              console.log('授权失败')
+              console.log('用户拒绝授权')
             }
           })
 
@@ -429,7 +433,22 @@ Page({
           //   }
           // });
         } else { // 用户已经授权
-          console.log('asfaf')
+          wx.saveImageToPhotosAlbum({
+            filePath: that.data.imagePath,
+            success: function (data) {
+              // wx.showToast({
+              //   title: '图片已保存',
+              //   icon: 'none'
+              // })
+              console.log('保存图片成功')
+            },
+            fail: function (err) {
+              wx.showToast({
+                title: '保存图片失败',
+                icon: 'none'
+              })
+            }
+          })
         }
       }
     })
