@@ -558,7 +558,7 @@ Page({
     context.setFillStyle("#656565");
     context.save();
     context.textAlign = "center";
-    context.fillText(`打卡第${this.data.day}天`, 320, 722); //必须为（0,0）原点
+    context.fillText(`第${this.data.day}天`, 320, 722); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
