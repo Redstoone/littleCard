@@ -40,6 +40,7 @@ Page({
     activityTitle: '',
     imagePath: '',
     monthList: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+    // isPoster: false,
     txtList: [
       ['再长的路一步步也能走完，', '再短的路不迈开双腿也无法到达。'],
       ['点滴汇聚无际，', '习惯决定未来。'],
@@ -59,7 +60,6 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    console.log(options)
     this.setData({
       acid: options.acId,
       activityTitle: options.activityTitle,
@@ -76,6 +76,7 @@ Page({
         });
       }
     });
+    // this.setCurrDate(111)
     // this.handlePoster();
     // this.getImageInfo(app.globalData.userInfo.headicon)
     // this.createNewImg();
@@ -403,11 +404,8 @@ Page({
               wx.saveImageToPhotosAlbum({
                 filePath: that.data.imagePath,
                 success: function (data) {
-                  // wx.showToast({
-                  //   title: '图片已保存',
-                  //   icon: 'none'
-                  // })
                   console.log('保存图片成功')
+                  wx.navigateBack();
                 },
                 fail: function (err) {
                   wx.showToast({
@@ -421,26 +419,12 @@ Page({
               console.log('用户拒绝授权')
             }
           })
-
-          // wx.openSetting({
-          //   success(tag) {
-          //     if (tag.authSetting["scope.writePhotosAlbum"]) { // 用户在设置页选择同意授权
-          //       wx.showLoading({
-          //         title: '正在生成...',
-          //       })
-          //     }
-          //     this.createNewImg();
-          //   }
-          // });
         } else { // 用户已经授权
           wx.saveImageToPhotosAlbum({
             filePath: that.data.imagePath,
             success: function (data) {
-              // wx.showToast({
-              //   title: '图片已保存',
-              //   icon: 'none'
-              // })
               console.log('保存图片成功')
+              wx.navigateBack();
             },
             fail: function (err) {
               wx.showToast({
@@ -460,12 +444,13 @@ Page({
     })
     var that = this;
     var context = wx.createCanvasContext('mycanvas');
-    let num = Math.floor(Math.random() * 5 + 1);
-    var path = `/images/poster/poster${num}.jpg`;
+    let imgNum = Math.floor(Math.random() * 5 + 1);
+    var path = `/images/poster/poster${imgNum}.jpg`;
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, 640, 1040);
     context.drawImage(path, 0, 0, 640, 630);
-    this.setBeautifulSentence(context);
+    this.setCurrDate(imgNum, context);
+    this.setBeautifulSentence(imgNum, context);
     this.setName(context);
     this.setDay(context);
     this.setTitle(context);
@@ -484,15 +469,6 @@ Page({
             imagePath: tempFilePath,
             showPoster: true
           });
-          // wx.saveImageToPhotosAlbum({
-          //   filePath: res.tempFilePath,
-          //   success: function (data) {
-          //     console.log(data);
-          //   },
-          //   fail: function (err) {
-          //     console.log(err);
-          //   }
-          // })
         },
         fail: function (res) {
           wx.hideLoading();
@@ -506,19 +482,53 @@ Page({
     }, 1000);
   },
 
+  // 将时间绘制到canvas
+  setCurrDate(imgNum, context) {
+    let myDate = new Date(),
+      year = myDate.getFullYear(),
+      month = this.data.monthList[myDate.getMonth()],
+      day = myDate.getDate();
+
+    if (imgNum >= 3) {
+      context.setFillStyle("#ffffff");
+      context.setStrokeStyle("#ffffff");
+    } else {
+      context.setFillStyle("#000000");
+      context.setStrokeStyle("#000000");
+    }
+    context.setFontSize(28);
+    context.save();
+    context.textAlign = "center";
+    context.fillText(month, 320, 50); //必须为（0,0）原点
+    context.setFontSize(32);
+    context.fillText(day, 320, 95); //必须为（0,0）原点
+    context.setFontSize(20);
+    context.fillText(year, 320, 120); //必须为（0,0）原点
+    context.restore();
+    context.stroke();
+
+    context.setLineWidth(2)
+
+    context.moveTo(280, 60)
+    context.lineTo(360, 60)
+
+    context.moveTo(280, 130)
+    context.lineTo(360, 130)
+  },
+
   // 将美句绘制到canvas
-  setBeautifulSentence(context) {
-    let num = Math.floor(Math.random() * 10);
+  setBeautifulSentence(imgNum, context) {
+    let txtNum = Math.floor(Math.random() * 10);
     context.setFontSize(36);
-    if (num >= 4) {
+    if (imgNum >= 3) {
       context.setFillStyle("#ffffff");
     } else {
       context.setFillStyle("#000000");
     }
     context.save();
     context.textAlign = "center";
-    context.fillText(this.data.txtList[num][0], 320, 475);
-    context.fillText(this.data.txtList[num][1], 320, 522);
+    context.fillText(this.data.txtList[txtNum][0], 320, 475);
+    context.fillText(this.data.txtList[txtNum][1], 320, 522);
     context.restore();
     context.stroke();
   },

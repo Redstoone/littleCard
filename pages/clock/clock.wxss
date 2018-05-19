@@ -367,6 +367,10 @@
   background-color: #eeeeee;
   margin-top: 30rpx;
   font-size: 32rpx;
+  text-align: center;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  box-sizing: border-box;
 }
 .share-poster-wrap .btn-group .btn-poster{
   background-color: #1dafaa;
@@ -375,4 +379,7 @@
 
 .poster-img{
   text-align: center;
+}
+.post-img{
+  margin: 0 auto;
 }
