@@ -228,6 +228,11 @@
       未开始
     </view>
   </view>
+  <view class="bar-item" wx:elif="{{hasOver}}">
+    <view class="bar-card-clik has-card">
+      已结束
+    </view>
+  </view>
   <view class="bar-item" bindtap='clickCard' wx:else>
     <view class="bar-card-clik">
       打卡

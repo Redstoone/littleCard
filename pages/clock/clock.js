@@ -63,7 +63,7 @@ Page({
     this.setData({
       acid: options.acId,
       activityTitle: options.activityTitle,
-      day: options.mineCountDay,
+      day: parseInt(options.mineCountDay) + 1,
       userInfo: app.globalData.userInfo,
     })
     wx.getSystemInfo({

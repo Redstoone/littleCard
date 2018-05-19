@@ -168,6 +168,7 @@ Page({
           activityDescVideo: activity.activityDetail.activityDescVideo,
           totalms: this.dateFormat(activity.startTime) + 86400000 - new Date().getTime(),
           hasNotstart: new Date(activity.startTime) - new Date() > 0 ? true : false,
+          hasOver: new Date() > new Date(activity.overTime) ? true : false
         })
         that.countDown()
         app.postRequest('/wx/consumer/record', 'POST', {
