@@ -499,27 +499,27 @@ Page({
     context.setFontSize(28);
     context.save();
     context.textAlign = "center";
-    context.fillText(month, 320, 50); //必须为（0,0）原点
+    context.fillText(month, 320, 80); //必须为（0,0）原点
     context.setFontSize(32);
-    context.fillText(day, 320, 95); //必须为（0,0）原点
+    context.fillText(day, 320, 125); //必须为（0,0）原点
     context.setFontSize(20);
-    context.fillText(year, 320, 120); //必须为（0,0）原点
+    context.fillText(year, 320, 150); //必须为（0,0）原点
     context.restore();
     context.stroke();
 
     context.setLineWidth(2)
 
-    context.moveTo(280, 60)
-    context.lineTo(360, 60)
+    context.moveTo(280, 90)
+    context.lineTo(360, 90)
 
-    context.moveTo(280, 130)
-    context.lineTo(360, 130)
+    context.moveTo(280, 160)
+    context.lineTo(360, 160)
   },
 
   // 将美句绘制到canvas
   setBeautifulSentence(imgNum, context) {
     let txtNum = Math.floor(Math.random() * 10);
-    context.setFontSize(36);
+    // context.setFontSize(36);
     if (imgNum >= 3) {
       context.setFillStyle("#ffffff");
     } else {
@@ -527,6 +527,7 @@ Page({
     }
     context.save();
     context.textAlign = "center";
+    context.font = 'normal bold 36px STZhongsong';
     context.fillText(this.data.txtList[txtNum][0], 320, 475);
     context.fillText(this.data.txtList[txtNum][1], 320, 522);
     context.restore();
@@ -554,11 +555,13 @@ Page({
   },
 
   setDay(context) {
-    context.setFontSize(28);
     context.setFillStyle("#656565");
     context.save();
     context.textAlign = "center";
-    context.fillText(`第${this.data.day}天`, 320, 722); //必须为（0,0）原点
+    context.setFontSize(28);
+    context.fillText(`第        天`, 320, 732); //必须为（0,0）原点
+    context.setFontSize(36);
+    context.fillText(`${this.data.day}`, 320, 732); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
