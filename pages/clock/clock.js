@@ -454,7 +454,7 @@ Page({
     this.setName(context);
     this.setDay(context);
     this.setTitle(context);
-    context.drawImage('/images/qrcode.jpg', 239, 817, 162, 162);
+    context.drawImage('/images/qrcode.jpg', 239, 827, 162, 162);
     this.setTip(context);
     //绘制图片
     context.draw();
@@ -493,24 +493,24 @@ Page({
       context.setFillStyle("#ffffff");
       context.setStrokeStyle("#ffffff");
     } else {
-      context.setFillStyle("#000000");
-      context.setStrokeStyle("#000000");
+      context.setFillStyle("#464646");
+      context.setStrokeStyle("#464646");
     }
-    context.setFontSize(28);
+    context.setFontSize(32);
     context.save();
     context.textAlign = "center";
-    context.fillText(month, 320, 80); //必须为（0,0）原点
-    context.setFontSize(32);
-    context.fillText(day, 320, 125); //必须为（0,0）原点
-    context.setFontSize(20);
+    context.fillText(month, 320, 70); //必须为（0,0）原点
+    context.setFontSize(40);
+    context.fillText(day, 320, 120); //必须为（0,0）原点
+    context.setFontSize(22);
     context.fillText(year, 320, 150); //必须为（0,0）原点
     context.restore();
     context.stroke();
 
     context.setLineWidth(2)
 
-    context.moveTo(280, 90)
-    context.lineTo(360, 90)
+    context.moveTo(280, 80)
+    context.lineTo(360, 80)
 
     context.moveTo(280, 160)
     context.lineTo(360, 160)
@@ -523,13 +523,13 @@ Page({
     if (imgNum >= 3) {
       context.setFillStyle("#ffffff");
     } else {
-      context.setFillStyle("#000000");
+      context.setFillStyle("#464646");
     }
     context.save();
     context.textAlign = "center";
     context.font = 'normal bold 36px STZhongsong';
-    context.fillText(this.data.txtList[txtNum][0], 320, 475);
-    context.fillText(this.data.txtList[txtNum][1], 320, 522);
+    context.fillText(this.data.txtList[txtNum][0], 320, 494);
+    context.fillText(this.data.txtList[txtNum][1], 320, 542);
     context.restore();
     context.stroke();
   },
@@ -545,43 +545,45 @@ Page({
 
   // 将姓名绘制到canvas
   setName(context) {
-    context.setFontSize(32);
-    context.setFillStyle("#656565");
+    context.setFontSize(36);
+    context.setFillStyle("#838383");
     context.save();
     context.textAlign = "center";
-    context.fillText(this.data.userInfo.nickname, 320, 687); //必须为（0,0）原点
+    context.fillText(this.data.userInfo.nickname, 320, 714); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
 
   setDay(context) {
-    context.setFillStyle("#656565");
+    
     context.save();
     context.textAlign = "center";
-    context.setFontSize(28);
-    context.fillText(`第        天`, 320, 732); //必须为（0,0）原点
-    context.setFontSize(36);
-    context.fillText(`${this.data.day}`, 320, 732); //必须为（0,0）原点
+    context.setFontSize(24);
+    context.setFillStyle("#8d8d8d");
+    context.fillText(`第        天`, 320, 762); //必须为（0,0）原点
+    context.setFontSize(42);
+    context.setFillStyle("#5b5b5b");
+    context.fillText(`${this.data.day}`, 320, 762); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
 
   setTitle(context) {
-    context.setFontSize(36);
+    context.setFontSize(30);
     context.setFillStyle("#656565");
     context.save();
     context.textAlign = "center";
-    context.fillText(`${this.data.activityTitle}`, 320, 776); //必须为（0,0）原点
+    context.fillText(`${this.data.activityTitle}`, 320, 806); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
 
   setTip(context) {
-    context.setFontSize(24);
+    context.setFontSize(20);
     context.setFillStyle("#656565");
     context.save();
     context.textAlign = "center";
-    context.fillText(`长按识别小程序码`, 320, 1020); //必须为（0,0）原点
+    context.fillText(`长按识码我们一起成长`, 320, 1020); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
