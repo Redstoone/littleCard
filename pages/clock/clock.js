@@ -79,7 +79,7 @@ Page({
     // this.setCurrDate(111)
     // this.handlePoster();
     // this.getImageInfo(app.globalData.userInfo.headicon)
-    this.createNewImg();
+    // this.createNewImg();
   },
 
   inputTxt(e) {
