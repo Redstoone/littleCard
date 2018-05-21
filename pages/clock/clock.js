@@ -79,7 +79,7 @@ Page({
     // this.setCurrDate(111)
     // this.handlePoster();
     // this.getImageInfo(app.globalData.userInfo.headicon)
-    // this.createNewImg();
+    this.createNewImg();
   },
 
   inputTxt(e) {
@@ -546,41 +546,40 @@ Page({
   // 将姓名绘制到canvas
   setName(context) {
     context.setFontSize(36);
-    context.setFillStyle("#838383");
+    context.setFillStyle("#999");
     context.save();
     context.textAlign = "center";
-    context.fillText(this.data.userInfo.nickname, 320, 714); //必须为（0,0）原点
+    context.fillText(this.data.userInfo.nickname, 320, 684); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
 
   setDay(context) {
-    
     context.save();
     context.textAlign = "center";
     context.setFontSize(24);
-    context.setFillStyle("#8d8d8d");
-    context.fillText(`第        天`, 320, 762); //必须为（0,0）原点
+    context.setFillStyle("#bbb");
+    context.fillText(`第        天`, 320, 742); //必须为（0,0）原点
     context.setFontSize(42);
-    context.setFillStyle("#5b5b5b");
-    context.fillText(`${this.data.day}`, 320, 762); //必须为（0,0）原点
+    context.setFillStyle("#999");
+    context.fillText(`${this.data.day}`, 320, 742); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
 
   setTitle(context) {
-    context.setFontSize(30);
-    context.setFillStyle("#656565");
+    context.setFontSize(28);
+    context.setFillStyle("#999");
     context.save();
     context.textAlign = "center";
-    context.fillText(`${this.data.activityTitle}`, 320, 806); //必须为（0,0）原点
+    context.fillText(`${this.data.activityTitle}`, 320, 796); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
 
   setTip(context) {
     context.setFontSize(20);
-    context.setFillStyle("#656565");
+    context.setFillStyle("#838383");
     context.save();
     context.textAlign = "center";
     context.fillText(`长按识码我们一起成长`, 320, 1020); //必须为（0,0）原点
