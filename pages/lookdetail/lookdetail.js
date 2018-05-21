@@ -76,6 +76,12 @@ Page({
             }
           });
         }
+        if (activity.timeType == 20 && new Date(activity.overTime) < new Date()) {
+          wx.redirectTo({
+            url: '../activity/activity?acId=' + this.data.acId,
+          })
+        }
+
         that.setData({
           activity: activity,
           activityDetail: res.data.item.activityDetail,

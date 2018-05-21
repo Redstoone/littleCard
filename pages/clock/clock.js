@@ -52,7 +52,8 @@ Page({
       ['人生只有走出来的美丽，', '没有等出来的辉煌。'],
       ['人生的烦恼，多在于想的太多，', '而做的太少。'],
       ['最大的幸福莫过于有梦可追,', '有事可做,有人可爱。'],
-    ]
+    ],
+    qrcodeImg: '/images/qrcode.jpg'
   },
 
   /**
@@ -79,7 +80,29 @@ Page({
     // this.setCurrDate(111)
     // this.handlePoster();
     // this.getImageInfo(app.globalData.userInfo.headicon)
-    // this.createNewImg();
+    this.getQrcode(options.acId);
+  },
+
+  getQrcode(acId) {
+    let that = this;
+    wx.getImageInfo({ // 小程序获取图片信息API
+      src: 'https://xgh.smarttinfo.com/wx/activity/qrcode.png?acId=' + acId,
+      success: function (res) {
+        that.setData({
+          qrcodeImg: res.path
+        })
+      },
+      fail(err) {
+        console.log(err, '下载图片失败')
+      }
+    })
+
+    // wx.saveFile({
+    //   tempFilePath: '/wx/activity/qrcode.png?acId=' + acId,
+    //   success: function (res) {
+    //     var savedFilePath = res.savedFilePath
+    //   }
+    // })
   },
 
   inputTxt(e) {
@@ -454,7 +477,7 @@ Page({
     this.setName(context);
     this.setDay(context);
     this.setTitle(context);
-    context.drawImage('/images/qrcode.jpg', 239, 827, 162, 162);
+    context.drawImage(this.data.qrcodeImg, 239, 827, 162, 162);
     this.setTip(context);
     //绘制图片
     context.draw();
