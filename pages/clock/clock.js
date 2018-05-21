@@ -549,7 +549,7 @@ Page({
     context.setFillStyle("#999");
     context.save();
     context.textAlign = "center";
-    context.fillText(this.data.userInfo.nickname, 320, 684); //必须为（0,0）原点
+    context.fillText(this.data.userInfo.nickname, 320, 690); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
@@ -572,7 +572,7 @@ Page({
     context.setFillStyle("#999");
     context.save();
     context.textAlign = "center";
-    context.fillText(`${this.data.activityTitle}`, 320, 796); //必须为（0,0）原点
+    context.fillText(`${this.data.activityTitle}`, 320, 786); //必须为（0,0）原点
     context.restore();
     context.stroke();
   },
