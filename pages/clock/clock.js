@@ -569,7 +569,7 @@ Page({
   // 将姓名绘制到canvas
   setName(context) {
     context.setFontSize(36);
-    context.setFillStyle("#999");
+    context.setFillStyle("#626262");
     context.save();
     context.textAlign = "center";
     context.fillText(this.data.userInfo.nickname, 320, 690); //必须为（0,0）原点
@@ -581,10 +581,10 @@ Page({
     context.save();
     context.textAlign = "center";
     context.setFontSize(24);
-    context.setFillStyle("#bbb");
+    context.setFillStyle("#999");
     context.fillText(`第        天`, 320, 742); //必须为（0,0）原点
     context.setFontSize(42);
-    context.setFillStyle("#999");
+    context.setFillStyle("#626262");
     context.fillText(`${this.data.day}`, 320, 742); //必须为（0,0）原点
     context.restore();
     context.stroke();
@@ -592,7 +592,7 @@ Page({
 
   setTitle(context) {
     context.setFontSize(28);
-    context.setFillStyle("#999");
+    context.setFillStyle("#626262");
     context.save();
     context.textAlign = "center";
     context.fillText(`${this.data.activityTitle}`, 320, 786); //必须为（0,0）原点

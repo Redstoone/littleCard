@@ -36,6 +36,7 @@ Page({
       _this.setData({
         userInfo: us
       })
+      _this.getHasJon(_this.data.acId)
       _this.getSingleAll(_this.data.acId)
     } else {
       app.getUserInfo(function (openid, userInfo) {
@@ -43,6 +44,7 @@ Page({
           _this.setData({
             userInfo: userInfo
           })
+          _this.getHasJon(_this.data.acId)
           _this.getSingleAll(_this.data.acId)
         }
       })
@@ -50,6 +52,7 @@ Page({
   },
 
   onShow() {
+    this.getHasJon(this.data.acId)
     this.getSingleAll(this.data.acId);
   },
 
@@ -76,12 +79,6 @@ Page({
             }
           });
         }
-        if (activity.timeType == 20 && new Date(activity.overTime) < new Date()) {
-          wx.redirectTo({
-            url: '../activity/activity?acId=' + this.data.acId,
-          })
-        }
-
         that.setData({
           activity: activity,
           activityDetail: res.data.item.activityDetail,
@@ -107,7 +104,6 @@ Page({
         wx.hideLoading();
       }
     })
-    this.getHasJon(acid)
   },
 
   getHasJon(acId) {
@@ -117,6 +113,9 @@ Page({
       consumerId: app.globalData.openid
     }, (res) => {
       if (res.data.success) {
+        // wx.redirectTo({
+        //   url: '../activity/activity?acId=' + this.data.acId,
+        // })
         this.setData({
           hasJoin: true
         })
