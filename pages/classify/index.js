@@ -26,6 +26,7 @@ Page({
     let _idx = e.target.dataset.idx
     this.setData({
       page: 1,
+      loadingComplete: false,
       classifyActive: _idx,
       categoryId: _idx ? e.target.dataset.cid : ''
     })
