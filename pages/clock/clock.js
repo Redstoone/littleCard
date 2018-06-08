@@ -54,13 +54,14 @@ Page({
       ['最大的幸福莫过于有梦可追,', '有事可做,有人可爱。'],
     ],
     qrcodeImg: '/images/qrcode.jpg',
-    tmpDomain: app.globalData.tmp_domain + '/'
+    tmpDomain: app.globalData.tmp_domain
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.tmp_domain)
     let that = this
     this.setData({
       acid: options.acId,
