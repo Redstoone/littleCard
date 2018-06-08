@@ -51,8 +51,8 @@ Page({
       })
       _recommand.isZan = _isZan
       _recommand.imgList = _recommand.recordDescImg ? _recommand.recordDescImg.split(',') : []
-      if (_item.imgList.length) {
-        _item.imgList = _item.imgList.map((imgUrl, index) => {
+      if (_recommand.imgList.length) {
+        _recommand.imgList = _recommand.imgList.map((imgUrl, index) => {
           if (imgUrl.indexOf('http://') < 0) {
             imgUrl = app.globalData.tmp_domain + imgUrl
           }
