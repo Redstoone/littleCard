@@ -86,7 +86,7 @@ Page({
   getQrcode(acId) {
     let that = this;
     wx.getImageInfo({ // 小程序获取图片信息API
-      src: 'https://xgh.smarttinfo.com/wx/activity/qrcode.png?acId=' + acId,
+      src: 'https://daka.spacet.cn/wx/activity/qrcode.png?acId=' + acId,
       success: function (res) {
         that.setData({
           qrcodeImg: res.path
