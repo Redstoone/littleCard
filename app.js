@@ -20,32 +20,37 @@ App({
                 fail: function (res) {
                   wx.showModal({
                     title: '警告',
-                    content: '您点击了拒绝授权，将无法正常使用体验。请点击确定打开授权，或者删除小程序重新进入。',
+                    content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
                     success: function (res) {
                       if (res.confirm) {
-                        wx.openSetting({
-                          success: (res) => {
-                            if (res.authSetting['scope.userInfo'] == true) {
-                              _this.globalData.userInfo = res.userInfo
-                              _this.getOpenId(e.code, cb)                          
-                            }else{
-                              _this.getUserInfo();
-                            }
-                          }
+                        console.log('用户点击确定')
+                        wx.navigateTo({
+                          url: '../authorize/index',
                         })
-                      } else if (res.cancel){
-                        wx.openSetting({
-                          success: (res) => {
-                            if (res.authSetting['scope.userInfo'] == true) {
-                              _this.globalData.userInfo = res.userInfo
-                              _this.getOpenId(e.code, cb)
-                            }else{
-                              _this.getUserInfo();
-                            }
-                          }
-                        })                        
+                      } else {
+                        wx.navigateTo({
+                          url: '../authorize/index',
+                        })
                       }
                     }
+                    // success: function (res) {
+                    //   if (res.confirm) {
+                    //     wx.openSetting({
+                    //       success: (res) => {
+                    //         if (res.authSetting['scope.userInfo'] == true) {
+                    //           _this.globalData.userInfo = res.userInfo
+                    //           _this.getOpenId(e.code, cb)                          
+                    //         }else{
+                    //           _this.getUserInfo();
+                    //         }
+                    //       }
+                    //     })
+                    //   } else {
+                    //     wx.navigateTo({
+                    //       url: '../authorize/index',
+                    //     })
+                    //   }
+                    // }
                   })
                 },
               })

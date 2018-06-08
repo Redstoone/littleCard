@@ -15,7 +15,9 @@ Page({
     let that = this;
     wx.getUserInfo({
       success: function (res) {
-        console.log(res)　　　　　　　 //do anything
+        wx.navigateBack({
+          delta: 1
+        })
       },
       fail: that.showPrePage
     })

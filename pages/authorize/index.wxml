@@ -1,4 +1,4 @@
 <view class='warp'>
-  <!-- <button open-type="getUserInfo" hover-class='none' bindgetuserinfo="getUserInfoFun">.</button> -->
-  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+  <view class="login-tip">请先授权才能访问小程序</view>
+  <button class="btn-login" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信授权登录</button>
 </view>
