@@ -1,8 +1,6 @@
 <view class="container">
   <view class="info-item clear">
-    <view class="left">
-      <view class="logotxt">头像</view>
-    </view>
+    <view class="left logotxt">头像</view>
     <view class="right infoimg" bindtap='changeAvatar'>
       <view wx:if="{{headicon}}">
         <image style='width:90rpx;height:90rpx' src='{{headicon}}' mode="aspectFill"></image>

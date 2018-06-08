@@ -46,6 +46,7 @@ Page({
   },
 
   onShow() {
+    this.getUserInfo();
     // this.setData({
     //   page: 1,
     //   activityList: [],

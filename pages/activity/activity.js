@@ -207,6 +207,7 @@ Page({
   },
 
   onShow(e) {
+    this.getUserInfo();
     this.getCardRecordComment(this.data.acId);
     this.getHasCardRecord(this.data.acId)
     this.getCountDay(this.data.acId)

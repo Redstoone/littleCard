@@ -14,13 +14,13 @@ Page({
     isPlay: false,
     videoSrc: null
   },
-  // onShow: function () {
-  //   this.setData({
-  //     page: 1,
-  //     recommand: []
-  //   })
-  //   this.getUserInfo()
-  // },
+  onShow: function () {
+    // this.setData({
+    //   page: 1,
+    //   recommand: []
+    // })
+    this.getUserInfo()
+  },
 
   // 下拉刷新  
   onPullDownRefresh: function () {
@@ -33,9 +33,9 @@ Page({
     that.getUserInfo()
   },
   onLoad() {
-    wx.showLoading({
-      title: '加载中',
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     this.getUserInfo()
   },
 

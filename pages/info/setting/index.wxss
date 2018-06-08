@@ -57,7 +57,10 @@ page {
 }
 
 .logotxt {
-  margin-top: 40rpx
+  margin-top: 40rpx;
+  width:60rpx;
+  text-align:right;
+
 }
 
 .size {

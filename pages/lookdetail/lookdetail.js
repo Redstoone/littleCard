@@ -52,6 +52,7 @@ Page({
   },
 
   onShow() {
+    this.getUserInfo();
     this.getHasJon(this.data.acId)
     this.getSingleAll(this.data.acId);
   },
