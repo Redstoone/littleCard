@@ -15,7 +15,8 @@ App({
                 scope: 'scope.userInfo',
                 success(res) {
                   _this.globalData.userInfo = res.userInfo
-                  _this.getOpenId(e.code, cb)
+                  _this.getOpenId(e.code, cb);
+                  _this.getUtoken();
                 },
                 fail: function (res) {
                   wx.showModal({
@@ -60,6 +61,7 @@ App({
                 success: function (res) {
                   _this.globalData.userInfo = res.userInfo
                   _this.getOpenId(e.code, cb)
+                  _this.getUtoken();
               },
             })
             }
@@ -130,6 +132,27 @@ App({
       }
     })
   },
+
+  getUtoken () {
+    let _this = this
+    wx.request({
+      url: getApp().globalData.host + '/wx/index/utoken',
+      data: {},
+      method: "POST",
+      header: {
+        "content-type": "application/x-www-form-urlencoded",
+        'X-Requested-Page': 'json'
+      },
+      success: function (res) {
+        if (res.data.success) {
+          _this.globalData.uptoken = res.data.uptoken;
+          _this.globalData.tmp_domain = res.data.tmp_domain;
+          _this.globalData.res_domain = res.data.res_domain;
+        }
+      }
+    })
+  },
+
   postRequest: function (url, method, data, fn) {
     let _this = this
     // let userInfo = {}

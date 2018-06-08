@@ -143,6 +143,9 @@ Page({
         if (res.data.item.activityDetail.activityDescImg) {
           imgs = activity.activityDetail.activityDescImg.split(',');
           imgs = imgs.map((item, index) => {
+            if (item.indexOf('http://') < 0) {
+              item = '' + item
+            }
             return {
               id: index,
               url: item,
