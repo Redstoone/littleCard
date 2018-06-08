@@ -54,7 +54,7 @@ Page({
       if (_recommand.imgList.length) {
         _recommand.imgList = _recommand.imgList.map((imgUrl, index) => {
           if (imgUrl.indexOf('http://') < 0) {
-            imgUrl = app.globalData.tmp_domain + imgUrl
+            imgUrl = app.globalData.tmp_domain + '/' + imgUrl
           }
           return imgUrl
         });

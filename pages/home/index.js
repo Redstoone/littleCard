@@ -110,7 +110,7 @@ Page({
         if (_item.imgList.length) {
           _item.imgList = _item.imgList.map((imgUrl, index) => {
             if (imgUrl.indexOf('http://') < 0) {
-              imgUrl = app.globalData.tmp_domain + imgUrl
+              imgUrl = app.globalData.tmp_domain + '/' + imgUrl
             }
             return imgUrl
           });
