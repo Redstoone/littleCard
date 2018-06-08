@@ -284,19 +284,22 @@ Page({
             },
             success: function (data) {
               for (let i = 0; i < res.tempFilePaths.length; i++) {
+                let uuidKey = utils.uuid();
                 wx.uploadFile({
                   url: 'https://upload-z2.qiniup.com', //仅为示例，并非真实的接口地址
                   filePath: res.tempFilePaths[i],
                   name: 'file',
                   formData: {
                     'token': data.data.uptoken,
-                    'accept': 'text/plain'
+                    'accept': 'text/plain',
+                    'key': uuidKey,
                   },
                   success: function (data) {
                     var data = JSON.parse(data.data)
                     if (data.key) {
                       var fileArr = that.data.files
-                      let testImg = 'http://card-tmp.spacet.cn/' + data.key;
+                      // let testImg = 'http://card-tmp.spacet.cn/' + data.key;
+                      let testImg = data.key;
                       fileArr.push(testImg)
                       that.setData({
                         files: fileArr

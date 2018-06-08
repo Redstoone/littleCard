@@ -8,11 +8,9 @@
 		<view class="thecont_box upload">
 			<view class="previewImgs pos-r mb30" wx:for="{{files}}" wx:key="files">
 				<image class="previewImg" src="{{item}}" mode="aspectFill"></image>
-				<view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">
-					X
-				</view>
+				<view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">X</view>
 			</view>
-			<view class="upload_input" bindtap="uploadImg" wx:if="{{isUp && files.length !== 0  &&files.length < 3}}">
+			<view class="upload_input" bindtap="uploadImg" wx:if="{{isUp && files.length !== 0  && files.length < 3}}">
 				<view class="pos-a line"></view>
 				<view class="pos-a lines"></view>
 			</view>
