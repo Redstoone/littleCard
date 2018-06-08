@@ -8,36 +8,90 @@ App({
       //调用登录接口
     wx.login({
       success: function (e) {
-        wx.getUserInfo({
-          lang: 'zh_CN',
-          success: function (res) {
-            _this.globalData.userInfo = res.userInfo
-            _this.getOpenId(e.code, cb)
-            // wx.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-            // typeof cb == "function" && cb(_this.globalData.userInfo)
-          }, fail: function(res) {
-            wx.showModal({
-              title: '温馨提示',
-              content: '若不授权登录，则无法使用该小程序；点击授权，勾选‘用户信息’方可继续使用；或者，在微信[发现]－[小程序]，删除该小程序，重新搜索该小程序，方可使用。',
-              cancelText: '不授权',
-              confirmText: '授权',
-              success: (res) => {
-                if (res.confirm) {
-                  wx.openSetting({
-                    success: (r) => {
-                      wx.getUserInfo({
-                        success: function (res) {
-                          // _this.globalData.userInfo = res.userInfo
-                          _this.getOpenId(e.code)
-                        }
-                      })
+        wx.getSetting({
+          success(res){
+            if (!res.authSetting['scope.userInfo']) {
+              wx.authorize({
+                scope: 'scope.userInfo',
+                success(res) {
+                  _this.globalData.userInfo = res.userInfo
+                  _this.getOpenId(e.code, cb)
+                },
+                fail: function (res) {
+                  wx.showModal({
+                    title: '警告',
+                    content: '您点击了拒绝授权，将无法正常使用体验。请点击确定打开授权，或者删除小程序重新进入。',
+                    success: function (res) {
+                      if (res.confirm) {
+                        wx.openSetting({
+                          success: (res) => {
+                            if (res.authSetting['scope.userInfo'] == true) {
+                              _this.globalData.userInfo = res.userInfo
+                              _this.getOpenId(e.code, cb)                          
+                            }else{
+                              _this.getUserInfo();
+                            }
+                          }
+                        })
+                      } else if (res.cancel){
+                        wx.openSetting({
+                          success: (res) => {
+                            if (res.authSetting['scope.userInfo'] == true) {
+                              _this.globalData.userInfo = res.userInfo
+                              _this.getOpenId(e.code, cb)
+                            }else{
+                              _this.getUserInfo();
+                            }
+                          }
+                        })                        
+                      }
                     }
                   })
-                }
-              }
+                },
+              })
+            }else{
+               wx.getUserInfo({
+                lang: 'zh_CN',
+                success: function (res) {
+                  _this.globalData.userInfo = res.userInfo
+                  _this.getOpenId(e.code, cb)
+              },
             })
+            }
           }
         })
+
+        // wx.getUserInfo({
+        //   lang: 'zh_CN',
+        //   success: function (res) {
+        //     _this.globalData.userInfo = res.userInfo
+        //     _this.getOpenId(e.code, cb)
+
+        //   }, 
+          // fail: function(res) {
+          //   // console.log(res)
+          //   wx.showModal({
+          //     title: '温馨提示',
+          //     content: '若不授权登录，则无法使用该小程序；点击授权，勾选‘用户信息’方可继续使用；或者，在微信[发现]－[小程序]，删除该小程序，重新搜索该小程序，方可使用。',
+          //     cancelText: '不授权',
+          //     confirmText: '授权',
+          //     success: (res) => {
+          //       if (res.confirm) {
+          //         wx.openSetting({
+          //           success: (r) => {
+          //             wx.getUserInfo({
+          //               success: function (res) {
+          //                 // _this.globalData.userInfo = res.userInfo
+          //                 _this.getOpenId(e.code)
+          //               }
+          //             })
+          //           }
+          //         })
+          //       }
+          //     }
+          //   })
+          // }
+        // })
       }
     })
   },

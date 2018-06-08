@@ -30,7 +30,26 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "打卡页面",
+					"pathName": "pages/clock/clock",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "授权",
+					"pathName": "pages/authorize/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "pages/lookdetail/lookdetail",
+					"query": "acId=930910526941171712"
+				}
+			]
 		}
 	}
 }

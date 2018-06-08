@@ -145,9 +145,9 @@ Page({
         duration: 1500
       })
       return false;
-    } else if (this.data.files.length >= 9) {
+    } else if (this.data.files.length > 6) {
       wx.showToast({
-        title: "最多只能上传9张图片",
+        title: "最多只能上传6张图片",
         icon: 'none',
         duration: 1500
       })
@@ -164,7 +164,7 @@ Page({
         // id: app.globalData.openid
       }, (res) => {
         if (res.data.success) {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../lookdetail/lookdetail?acId=' + this.data.id,
           })
         }

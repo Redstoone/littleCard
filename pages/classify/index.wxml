@@ -24,7 +24,8 @@
 
 
         <view class="zan-card__detail-row zan-c-gray-darker c-footer">
-          <view class="card-time fz12" wx:if="{{item.timeType == 20}}">活动时间：{{item.startDate}}至{{item.overDate}}</view>
+          <text class="card-time fz12 time-over" wx:if="{{item.timeType == 20 && item.isOver}}">已结束</text>
+          <view class="card-time fz12" wx:elif="{{item.timeType == 20}}">活动时间：{{item.startDate}}至{{item.overDate}}</view>
           <view>
             <label class="card-accout fz12">{{item.memberNumber}}人参加</label>
             <label class="card-num fz12">{{item.cardClickNumber}}次打卡</label>

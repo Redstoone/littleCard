@@ -41,7 +41,9 @@ Page({
     hasCardRecord: false,
     mineCountDay: 0,
     hasNotstart: false,
-    isAddWx: false
+    isAddWx: false,
+    isPlay: false,
+    videoSrc: null
   },
   changeTab(e) {
     this.setData({
@@ -115,6 +117,10 @@ Page({
     })
   },
   onLoad: function (e) {
+    wx.showLoading({
+      title: '加载中',
+    })
+
     this.setData({
       acId: e.acId
     })
@@ -127,33 +133,46 @@ Page({
       id: that.data.acId
     }, (res) => {
       if (res.data.success) {
-        let item = res.data.item
+        // let item = res.data.item
         let activity = res.data.item;
         if (activity.timeType == 20) {
           activity.startDate = activity.startTime.substring(0, 10);
           activity.overDate = activity.overTime.substring(0, 10);
         }
+        let imgs = []
+        if (res.data.item.activityDetail.activityDescImg) {
+          imgs = activity.activityDetail.activityDescImg.split(',');
+          imgs = imgs.map((item, index) => {
+            return {
+              id: index,
+              url: item,
+              width: 0,
+              height: 0
+            }
+          });
+        }
         that.setData({
           activity: activity,
-          name: item.name,
-          mainWx: item.mainWx,
-          mainDescription: item.activityDetail.mainDescription,
-          memberNumber: item.memberNumber,
-          cardClickNumber: item.cardClickNumber,
-          activityDescription: item.activityDetail.activityDescription,
-          activityNotice: item.activityDetail.activityNotice,
-          activityMemberHeader: item.activityMember.slice(0, 3),
-          activityDetail: item.activityDetail,
-          startTime: item.startTime,
-          activityDescImg: item.activityDetail.activityDescImg.split(','),
-          activityMember: item.activityMember,
-          activityDescVideo: item.activityDetail.activityDescVideo,
-          totalms: this.dateFormat(item.startTime) + 86400000 - new Date().getTime(),
-          hasNotstart: new Date(item.startTime) - new Date() > 0 ? true : false,
+          name: activity.name,
+          mainWx: activity.mainWx,
+          mainDescription: activity.activityDetail.mainDescription,
+          memberNumber: activity.memberNumber,
+          cardClickNumber: activity.cardClickNumber,
+          activityDescription: activity.activityDetail.activityDescription,
+          activityNotice: activity.activityDetail.activityNotice,
+          activityMemberHeader: activity.activityMember.slice(0, 3),
+          activityDetail: activity.activityDetail,
+          startTime: activity.startTime,
+          activityDescImg: imgs,
+          activityMember: activity.activityMember,
+          activityDescVideo: activity.activityDetail.activityDescVideo,
+          totalms: this.dateFormat(activity.startTime) + 86400000 - new Date().getTime(),
+          hasNotstart: new Date(activity.startTime) - new Date() > 0 ? true : false,
+          hasOver: new Date() > new Date(activity.overTime) ? true : false
         })
         that.countDown()
         app.postRequest('/wx/consumer/record', 'POST', {
-          consumerId: item.consumerId
+          consumerId: activity.consumerId
         }, (ret) => {
           if (ret.data.success) {
             that.setData({
@@ -164,6 +183,7 @@ Page({
       }
     })
     this.getDateList();
+    wx.hideLoading();
   },
 
   getUserInfo() {
@@ -333,7 +353,7 @@ Page({
   clickCard() { //点击打卡
     if (this.data.isClick) { // 是不已打卡
       wx.navigateTo({
-        url: '../clock/clock?acId=' + this.data.acId,
+        url: '../clock/clock?acId=' + this.data.acId + '&activityTitle=' + this.data.name + '&mineCountDay=' + this.data.mineCountDay,
       })
     }
 
@@ -396,16 +416,25 @@ Page({
   },
 
   imageLoad(e) {
-    let $width = e.detail.width, //获取图片真实宽度
-      $height = e.detail.height,
-      ratio = $width / $height; //图片的真实宽高比例
-    let viewWidth = 710, //设置图片显示宽度，左右留有16rpx边距
-      viewHeight = 710 / ratio; //计算的高度值
-    this.setData({
-      activityDescImgData: {
-        width: viewWidth,
-        height: viewHeight
+    let imageId = e.currentTarget.id;
+    let oImgW = e.detail.width; //图片原始宽度
+    let oImgH = e.detail.height; //图片原始高度
+    let imgWidth = 710; //图片设置的宽度
+    let scale = imgWidth / oImgW; //比例计算
+    let imgHeight = oImgH * scale; //自适应高度
+
+    let images = this.data.activityDescImg;
+
+    for (let i = 0; i < images.length; i++) {
+      let img = images[i];
+      if (img.id == imageId) {
+        images[i].width = '100%';
+        images[i].height = imgHeight;
+        break;
       }
+    }
+    this.setData({
+      activityDescImg: images
     })
   },
 
@@ -518,6 +547,58 @@ Page({
     wx.previewImage({
       current: current,
       urls: this.data.recommand[idx].imgList
+    })
+  },
+
+  // 关闭视频
+  videoClose() {
+    this.setData({
+      isPlay: false
+    })
+    this.videoCtx.pause();
+    this.videoCtx.seek(0);
+    this.videoCtx.exitFullScreen();
+  },
+
+  onReady(e) {
+    this.videoCtx = wx.createVideoContext('prewVideo')
+  },
+
+  // 显示视频
+  showVideo(e) {
+    let videoSrc = e.currentTarget.dataset.src;
+    this.setData({
+      isPlay: true,
+      videoSrc: videoSrc
+    })
+    this.videoCtx.seek(0);
+    this.videoCtx.play();
+    this.videoCtx.requestFullScreen();
+  },
+
+
+  // 视屏全屏
+  bindVideoScreenChange(e) {
+    let status = e.detail.fullScreen;
+    let _isPlay = false;
+    if (status) {
+      _isPlay = true
+    } else {
+      this.videoCtx.pause();
+    }
+    this.setData({
+      isPlay: _isPlay
+    });
+  },
+
+  videoImageOnLoad(ev) {
+    var idx = ev.target.dataset.idx;
+    this.data.recommand[idx].videoImg = {
+      w: 480,
+      h: ev.detail.height * 480 / ev.detail.width
+    }
+    this.setData({
+      recommand: this.data.recommand
     })
   }
 })

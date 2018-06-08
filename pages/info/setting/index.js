@@ -15,6 +15,9 @@ Page({
   },
 
   onLoad() {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getUserinfo()
   },
 
@@ -39,6 +42,7 @@ Page({
         phone: res.data.item.phone == 'undefined' ? '' : res.data.item.phone,
         region: [res.data.item.province, res.data.item.city, '']
       })
+      wx.hideLoading()
     })
   },
 

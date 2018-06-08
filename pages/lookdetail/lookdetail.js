@@ -19,6 +19,10 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    })
+
     this.setData({
       acId: options.acId
     })
@@ -32,6 +36,7 @@ Page({
       _this.setData({
         userInfo: us
       })
+      _this.getHasJon(_this.data.acId)
       _this.getSingleAll(_this.data.acId)
     } else {
       app.getUserInfo(function (openid, userInfo) {
@@ -39,6 +44,7 @@ Page({
           _this.setData({
             userInfo: userInfo
           })
+          _this.getHasJon(_this.data.acId)
           _this.getSingleAll(_this.data.acId)
         }
       })
@@ -46,6 +52,7 @@ Page({
   },
 
   onShow() {
+    this.getHasJon(this.data.acId)
     this.getSingleAll(this.data.acId);
   },
 
@@ -60,12 +67,24 @@ Page({
           activity.startDate = activity.startTime.substring(0, 10);
           activity.overDate = activity.overTime.substring(0, 10);
         }
+        let imgs = []
+        if (activity.activityDetail.activityDescImg) {
+          imgs = activity.activityDetail.activityDescImg.split(',');
+          imgs = imgs.map((item, index) => {
+            return {
+              id: index,
+              url: item,
+              width: 0,
+              height: 0
+            }
+          });
+        }
         that.setData({
           activity: activity,
           activityDetail: res.data.item.activityDetail,
           activityMember: res.data.item.activityMember.slice(0, 3),
           cardClickNumber: res.data.item.cardClickNumber,
-          activityDescImg: res.data.item.activityDetail.activityDescImg ? res.data.item.activityDetail.activityDescImg.split(',') : [],
+          activityDescImg: imgs,
           activityDescVideo: res.data.item.activityDetail.activityDescVideo,
           memberNumber: res.data.item.memberNumber,
           name: res.data.item.name,
@@ -81,9 +100,10 @@ Page({
             })
           }
         })
+
+        wx.hideLoading();
       }
     })
-    this.getHasJon(acid)
   },
 
   getHasJon(acId) {
@@ -93,6 +113,9 @@ Page({
       consumerId: app.globalData.openid
     }, (res) => {
       if (res.data.success) {
+        // wx.redirectTo({
+        //   url: '../activity/activity?acId=' + this.data.acId,
+        // })
         this.setData({
           hasJoin: true
         })
@@ -132,22 +155,31 @@ Page({
   },
 
   bindGotoActivity() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../activity/activity?acId=' + this.data.acId,
     })
   },
 
   imageLoad(e) {
-    let $width = e.detail.width, //获取图片真实宽度
-      $height = e.detail.height,
-      ratio = $width / $height; //图片的真实宽高比例
-    let viewWidth = 690, //设置图片显示宽度，左右留有16rpx边距
-      viewHeight = 690 / ratio; //计算的高度值
-    this.setData({
-      activityDescImgData: {
-        width: viewWidth,
-        height: viewHeight
+    let imageId = e.currentTarget.id;
+    let oImgW = e.detail.width; //图片原始宽度
+    let oImgH = e.detail.height; //图片原始高度
+    let imgWidth = 710; //图片设置的宽度
+    let scale = imgWidth / oImgW; //比例计算
+    let imgHeight = oImgH * scale; //自适应高度
+
+    let images = this.data.activityDescImg;
+
+    for (let i = 0; i < images.length; i++) {
+      let img = images[i];
+      if (img.id == imageId) {
+        images[i].width = '100%';
+        images[i].height = imgHeight;
+        break;
       }
+    }
+    this.setData({
+      activityDescImg: images
     })
   },
 
