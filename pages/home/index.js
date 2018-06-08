@@ -32,12 +32,9 @@ Page({
     });
     that.getUserInfo()
   },
-  onLoad() {
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
-    this.getUserInfo()
-  },
+  // onLoad() {
+  //   this.getUserInfo()
+  // },
 
   getUserInfo() {
     let _this = this
