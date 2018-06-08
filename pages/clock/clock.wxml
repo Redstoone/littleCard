@@ -10,7 +10,7 @@
 				<image class="previewImg" src="{{tmpDomain + '/' + item}}" mode="aspectFill"></image>
 				<view id="{{index}}" class="shanchuimg txt-c pos-a" bindtap="remove">X</view>
 			</view>
-			<view class="upload_input" bindtap="uploadImg" wx:if="{{isUp && files.length !== 0  && files.length < 3}}">
+			<view class="upload_input" bindtap="uploadImg" wx:if="{{isUp && files.length !== 0  && files.length < 9}}">
 				<view class="pos-a line"></view>
 				<view class="pos-a lines"></view>
 			</view>
