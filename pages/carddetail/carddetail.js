@@ -55,14 +55,15 @@ Page({
     isaudio: false,
     camBg: 'http://tmp-qiniu.smarttinfo.com/Ftqw4KzWdVCSWEIM5r3M4-GKNxeO?imageView/2/w/750/h/300',
     isPlay: false,
-    tmpDomain: app.globalData.tmp_domain
+    tmpDomain: ''
   },
 
   onLoad(option) {
     console.log(app.globalData)
     this.setData({
       id: option.id,
-      'list[0].value': option.title
+      'list[0].value': option.title,
+      tmpDomain: app.globalData.tmp_domain
     })
     // this.getSingleDetail(option.id)
   },
