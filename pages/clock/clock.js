@@ -53,7 +53,8 @@ Page({
       ['人生的烦恼，多在于想的太多，', '而做的太少。'],
       ['最大的幸福莫过于有梦可追,', '有事可做,有人可爱。'],
     ],
-    qrcodeImg: '/images/qrcode.jpg'
+    qrcodeImg: '/images/qrcode.jpg',
+    tmpDomain: app.globalData.tmp_domain + '/'
   },
 
   /**
@@ -138,9 +139,9 @@ Page({
         duration: 1500,
       })
       return false;
-    } else if (this.data.files.length > 3) {
+    } else if (this.data.files.length > 9) {
       wx.showToast({
-        title: "最多只能上传3张图片",
+        title: "最多只能上传9张图片",
         icon: 'none',
         duration: 2000
       })
@@ -201,8 +202,8 @@ Page({
   // 最多只能上传三张图
   uploadImg() { //上传多图
     let that = this
-    if (that.data.files.length <= 3) {
-      let maxCount = 3 - that.data.files.length
+    if (that.data.files.length <= 9) {
+      let maxCount = 9 - that.data.files.length
       wx.chooseImage({
         count: maxCount, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有

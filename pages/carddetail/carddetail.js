@@ -54,10 +54,12 @@ Page({
     filesvd: [],
     isaudio: false,
     camBg: 'http://tmp-qiniu.smarttinfo.com/Ftqw4KzWdVCSWEIM5r3M4-GKNxeO?imageView/2/w/750/h/300',
-    isPlay: false
+    isPlay: false,
+    tmpDomain: app.globalData.tmp_domain
   },
 
   onLoad(option) {
+    console.log(app.globalData)
     this.setData({
       id: option.id,
       'list[0].value': option.title

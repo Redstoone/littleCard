@@ -144,7 +144,7 @@ Page({
           imgs = activity.activityDetail.activityDescImg.split(',');
           imgs = imgs.map((item, index) => {
             if (item.indexOf('http://') < 0) {
-              item = app.globalData.tmp_domain + item
+              item = app.globalData.tmp_domain + '/' + item
             }
             return {
               id: index,
@@ -275,7 +275,7 @@ Page({
         if (_item.imgList.length) {
           _item.imgList = _item.imgList.map((imgUrl, index) => {
             if (imgUrl.indexOf('http://') < 0) {
-              imgUrl = app.globalData.tmp_domain + imgUrl
+              imgUrl = app.globalData.tmp_domain + '/' + imgUrl
             }
             return imgUrl
           });
