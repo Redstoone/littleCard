@@ -144,7 +144,7 @@ Page({
           imgs = activity.activityDetail.activityDescImg.split(',');
           imgs = imgs.map((item, index) => {
             if (item.indexOf('http://') < 0) {
-              item = '' + item
+              item = app.globalData.tmp_domain + item
             }
             return {
               id: index,
@@ -272,6 +272,14 @@ Page({
         })
         _item.isZan = _isZan
         _item.imgList = _item.recordDescImg ? _item.recordDescImg.split(',') : [];
+        if (_item.imgList.length) {
+          _item.imgList = _item.imgList.map((imgUrl, index) => {
+            if (imgUrl.indexOf('http://') < 0) {
+              imgUrl = app.globalData.tmp_domain + imgUrl
+            }
+            return imgUrl
+          });
+        }
         return _item
       })
 
