@@ -59,7 +59,6 @@ Page({
   },
 
   onLoad(option) {
-    console.log(app.globalData)
     this.setData({
       id: option.id,
       'list[0].value': option.title,
@@ -148,9 +147,9 @@ Page({
         duration: 1500
       })
       return false;
-    } else if (this.data.files.length > 6) {
+    } else if (this.data.files.length > 9) {
       wx.showToast({
-        title: "最多只能上传6张图片",
+        title: "最多只能上传9张图片",
         icon: 'none',
         duration: 1500
       })
@@ -268,8 +267,8 @@ Page({
   },
   uploadImg() { //上传多图
     var that = this
-    if (that.data.files.length <= 6) {
-      var maxCount = 6 - that.data.files.length
+    if (that.data.files.length <= 9) {
+      var maxCount = 9 - that.data.files.length
       wx.chooseImage({
         count: maxCount, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
