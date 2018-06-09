@@ -1,5 +1,8 @@
 /* pages/clock/clock.wxss */
 
+page{
+  margin-bottom: 120rpx;
+}
 .pad {
   padding: 0 30rpx
 }
@@ -368,9 +371,11 @@
   margin-top: 30rpx;
   font-size: 32rpx;
   text-align: center;
-  padding: 20rpx;
+  /*padding: 20rpx;*/
   border-radius: 8rpx;
   box-sizing: border-box;
+  height: 76rpx;
+  line-height: 76rpx;
 }
 .share-poster-wrap .btn-group .btn-poster{
   background-color: #1dafaa;

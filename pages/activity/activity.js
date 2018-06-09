@@ -125,6 +125,7 @@ Page({
       acId: e.acId
     })
     this.getUserInfo();
+    this.getCardRecordComment(this.data.acId);
   },
 
   getInitData() {
@@ -211,7 +212,6 @@ Page({
 
   onShow(e) {
     this.getUserInfo();
-    this.getCardRecordComment(this.data.acId);
     this.getHasCardRecord(this.data.acId)
     this.getCountDay(this.data.acId)
     this.getMineCountDay(app.globalData.openid, this.data.acId)
